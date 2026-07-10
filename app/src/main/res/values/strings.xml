@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Health Tracker Application</string>
+    <string name="tab_dashboard">Dashboard</string>
+    <string name="tab_diary">Bữa ăn</string>
+    <string name="tab_activity">Hoạt động</string>
+    <string name="tab_statistics">Thống kê</string>
+    <string name="tab_settings">Cài đặt</string>
 </resources>
