@@ -13,6 +13,7 @@ interface ActivityTypeDao {
 
     @Insert
     suspend fun insertAll(items: List<ActivityTypeEntity>)
+
     @Query("SELECT COUNT(*) FROM activity_type")
     suspend fun count(): Int
 }
