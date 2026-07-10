@@ -1,10 +1,7 @@
-package com.example.healthtracker.ui.theme
+package com.example.healthtracker.presentation.theme
 
 import androidx.compose.ui.unit.dp
 
-/**
- * Shared dimensions based on the 4dp HealthTracker layout grid.
- */
 object AppDimensions {
     // Reference viewport
     val ScreenWidth = 360.dp
