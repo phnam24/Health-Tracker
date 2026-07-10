@@ -1,4 +1,4 @@
-package com.example.healthtrackerapplication.ui.theme
+package com.example.healthtracker.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

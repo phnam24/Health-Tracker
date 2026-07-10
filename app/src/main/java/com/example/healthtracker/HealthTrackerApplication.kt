@@ -1,4 +1,4 @@
-package com.example.healthtrackerapplication
+package com.example.healthtracker
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

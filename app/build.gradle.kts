@@ -7,13 +7,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.healthtrackerapplication"
+    namespace = "com.example.healthtracker"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.example.healthtrackerapplication"
+        applicationId = "com.example.healthtracker"
         minSdk = 24
         //noinspection OldTargetApi
         targetSdk = 36
