@@ -1,4 +1,4 @@
-package com.example.healthtrackerapplication
+package com.example.healthtracker
 
 import org.junit.Test
 
