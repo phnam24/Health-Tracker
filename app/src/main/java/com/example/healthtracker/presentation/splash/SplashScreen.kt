@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.BackgroundLight
@@ -81,14 +81,14 @@ fun SplashScreen() {
             Spacer(modifier = Modifier.height(AppDimensions.SpacingLarge))
 
             Text(
-                text = "Ăn đúng - Tập chuẩn - Sống khoẻ",
+                text = stringResource(R.string.splash_tagline),
                 style = HealthTrackerTypography.bodyLarge,
                 color = OnSurfaceVariantLight
             )
         }
 
         Text(
-            text = "Phiên bản 1.0.0",
+            text = stringResource(R.string.splash_version),
             style = HealthTrackerTypography.bodyMedium,
             color = OnSurfaceVariantLight.copy(alpha = 0.75f),
             modifier = Modifier

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Health Tracker Application</string>
+    <string name="tab_dashboard">Dashboard</string>
+    <string name="tab_diary">Meals</string>
+    <string name="tab_activity">Activity</string>
+    <string name="tab_statistics">Statistics</string>
+    <string name="tab_settings">Setting</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">Eat right - Train smart - Live healthy</string>
+    <string name="splash_version">Version 1.0.0</string>
+
+    <!-- Common actions -->
+    <string name="action_continue">Continue</string>
+    <string name="action_back">Back</string>
+    <string name="action_start">Get started</string>
+    <string name="action_retry">Try again</string>
+    <string name="action_select">Select</string>
+    <string name="action_change">Change</string>
+    <string name="action_save">Save</string>
+    <string name="action_saving">Saving…</string>
+
+    <!-- Progress -->
+    <string name="onboarding_step">Step %1$d of %2$d</string>
+    <string name="onboarding_progress_description">%1$d of %2$d steps completed</string>
+
+    <!-- Welcome / Name step -->
+    <string name="onboarding_welcome_title">Welcome!</string>
+    <string name="onboarding_welcome_description">Let\'s take a moment to set up your personal health profile.</string>
+
+    <string name="onboarding_benefit_tracking_title">Track with ease</string>
+    <string name="onboarding_benefit_tracking_description">Log your daily nutrition and activities.</string>
+
+    <string name="onboarding_benefit_insight_title">Understand your body</string>
+    <string name="onboarding_benefit_insight_description">Monitor your BMI, calories, and health progress.</string>
+
+    <string name="onboarding_benefit_goal_title">Reach your goals</string>
+    <string name="onboarding_benefit_goal_description">Get a calorie target tailored to your needs.</string>
+
+    <string name="onboarding_name_title">What\'s your name?</string>
+    <string name="onboarding_name_description">Your name helps us personalize your experience.</string>
+    <string name="onboarding_name_label">Full name</string>
+    <string name="onboarding_name_placeholder">Enter your full name</string>
+
+    <!-- Personal information step -->
+    <string name="onboarding_personal_info_title">Personal information</string>
+    <string name="onboarding_personal_info_description">This information is used to calculate your energy needs.</string>
+
+    <string name="onboarding_birth_date_label">Date of birth</string>
+    <string name="onboarding_birth_date_placeholder">Select your date of birth</string>
+    <string name="onboarding_birth_date_dialog_title">Select your date of birth</string>
+    <string name="onboarding_age_value">%1$d years old</string>
+
+    <string name="onboarding_gender_label">Biological sex</string>
+    <string name="onboarding_gender_description">Used in the BMR and TDEE calculations.</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+
+    <!-- Body metrics step -->
+    <string name="onboarding_body_metrics_title">Body measurements</string>
+    <string name="onboarding_body_metrics_description">Enter your current weight and height.</string>
+
+    <string name="onboarding_weight_label">Weight</string>
+    <string name="onboarding_weight_placeholder">For example: 70</string>
+    <string name="onboarding_height_label">Height</string>
+    <string name="onboarding_height_placeholder">For example: 175</string>
+    <string name="unit_kilogram">kg</string>
+    <string name="unit_centimeter">cm</string>
+
+    <!-- BMI preview -->
+    <string name="bmi_preview_title">Your BMI</string>
+    <string name="bmi_value">%1$.1f</string>
+    <string name="bmi_category_underweight">Underweight</string>
+    <string name="bmi_category_normal">Normal</string>
+    <string name="bmi_category_overweight">Overweight</string>
+    <string name="bmi_category_obese">Obese</string>
+
+    <string name="bmi_underweight_description">Your BMI is below the recommended range.</string>
+    <string name="bmi_normal_description">Your BMI is within the healthy range.</string>
+    <string name="bmi_overweight_description">Your BMI is above the recommended range.</string>
+    <string name="bmi_obese_description">Your BMI is within the obese range.</string>
+
+    <!-- Activity level step -->
+    <string name="onboarding_activity_title">Activity level</string>
+    <string name="onboarding_activity_description">Choose the option that best describes your usual activity.</string>
+
+    <string name="activity_sedentary_title">Sedentary</string>
+    <string name="activity_sedentary_description">Little or no exercise</string>
+
+    <string name="activity_light_title">Lightly active</string>
+    <string name="activity_light_description">Exercise 1–3 times per week</string>
+
+    <string name="activity_moderate_title">Moderately active</string>
+    <string name="activity_moderate_description">Exercise 3–5 times per week</string>
+
+    <string name="activity_active_title">Very active</string>
+    <string name="activity_active_description">Exercise 6–7 times per week</string>
+
+    <string name="activity_very_active_title">Extra active</string>
+    <string name="activity_very_active_description">Intense exercise every day</string>
+
+    <!-- Goal step -->
+    <string name="onboarding_goal_title">What\'s your goal?</string>
+    <string name="onboarding_goal_description">Choose a goal so we can recommend a suitable calorie target.</string>
+
+    <string name="goal_lose_weight_title">Lose weight</string>
+    <string name="goal_lose_weight_description">Lose weight gradually and sustainably</string>
+
+    <string name="goal_maintain_weight_title">Maintain weight</string>
+    <string name="goal_maintain_weight_description">Keep your current weight</string>
+
+    <string name="goal_gain_weight_title">Gain weight</string>
+    <string name="goal_gain_weight_description">Gain weight at a controlled pace</string>
+
+    <!-- TDEE preview -->
+    <string name="tdee_preview_title">Daily energy target</string>
+    <string name="tdee_bmr_label">Basal metabolic rate</string>
+    <string name="tdee_maintenance_label">Maintenance calories</string>
+    <string name="tdee_goal_adjustment_label">Goal adjustment</string>
+    <string name="tdee_target_label">Daily target</string>
+
+    <string name="calories_value">%1$d kcal</string>
+    <string name="calories_per_day_value">%1$d kcal/day</string>
+    <string name="calories_adjustment_positive">+%1$d kcal</string>
+    <string name="calories_adjustment_negative">−%1$d kcal</string>
+    <string name="calories_adjustment_none">No adjustment</string>
+
+    <string name="tdee_disclaimer">These results are estimates and do not replace advice from a healthcare professional.</string>
+
+    <!-- Validation -->
+    <string name="error_required">Please enter or select this information.</string>
+    <string name="error_name_required">Please enter your full name.</string>
+    <string name="error_name_too_long">Your name cannot exceed 50 characters.</string>
+    <string name="error_birth_date_required">Please select your date of birth.</string>
+    <string name="error_birth_date_future">Your date of birth cannot be in the future.</string>
+    <string name="error_age_range">Age must be between 10 and 100.</string>
+    <string name="error_gender_required">Please select your biological sex.</string>
+    <string name="error_invalid_number">Please enter a valid number.</string>
+    <string name="error_weight_required">Please enter your weight.</string>
+    <string name="error_weight_range">Weight must be between 20 and 300 kg.</string>
+    <string name="error_height_required">Please enter your height.</string>
+    <string name="error_height_range">Height must be between 100 and 250 cm.</string>
+    <string name="error_activity_required">Please select your activity level.</string>
+    <string name="error_goal_required">Please select your goal.</string>
+    <string name="error_save_profile">Unable to save your profile. Please try again.</string>
+
+    <!-- Accessibility -->
+    <string name="content_description_back">Go back to the previous step</string>
+    <string name="content_description_selected">Selected</string>
+
+</resources>
