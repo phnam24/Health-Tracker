@@ -50,4 +50,7 @@ object AppDimensions {
     val CardElevation = 1.dp
     val RaisedComponentElevation = 2.dp
     val BottomSheetElevation = 3.dp
+
+    val SplashLogoSize = 120.dp
+    val SplashVersionBottomPadding = 48.dp
 }

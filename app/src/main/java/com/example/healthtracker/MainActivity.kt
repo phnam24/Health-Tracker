@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.healthtracker.core.navigation.Dashboard
-import com.example.healthtracker.core.navigation.MainScaffold
+import com.example.healthtracker.presentation.root.ui.RootScreen
 import com.example.healthtracker.presentation.theme.HealthTrackerTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             HealthTrackerTheme {
-                MainScaffold(Dashboard)
+                RootScreen()
             }
         }
     }
