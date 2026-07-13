@@ -77,6 +77,14 @@ fun OnboardingScreen(
     onEvent: (OnboardingEvent) -> Unit
 ) {
     Scaffold(
+        topBar = {
+            OnboardingHeader(
+                current = uiState.currentStep.position,
+                total = OnboardingStep.entries.size,
+                showBack = !uiState.currentStep.isFirst,
+                onBack = { onEvent(OnboardingEvent.BackClicked) }
+            )
+        },
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { paddingValues ->
         Column(
@@ -85,13 +93,6 @@ fun OnboardingScreen(
                 .padding(paddingValues)
                 .imePadding()
         ) {
-            OnboardingHeader(
-                current = uiState.currentStep.position,
-                total = OnboardingStep.entries.size,
-                showBack = true,
-                onBack = { onEvent(OnboardingEvent.BackClicked) }
-            )
-
             Box(
                 modifier = Modifier
                     .weight(1f)

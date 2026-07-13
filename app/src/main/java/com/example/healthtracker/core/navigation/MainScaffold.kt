@@ -3,10 +3,10 @@ package com.example.healthtracker.core.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BarChart
-import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Restaurant
+import androidx.compose.material.icons.filled.RoomService
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.SportsMartialArts
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -26,8 +26,8 @@ enum class TopLevelTab(
     val icon: ImageVector
 ) {
     DASHBOARD(Dashboard, R.string.tab_dashboard, Icons.Filled.Home),
-    DIARY(Diary, R.string.tab_diary, Icons.Filled.Restaurant),
-    ACTIVITY(ActivityLog, R.string.tab_activity, Icons.Filled.FitnessCenter),
+    DIARY(Diary, R.string.tab_diary, Icons.Filled.RoomService),
+    ACTIVITY(ActivityLog, R.string.tab_activity, Icons.Filled.SportsMartialArts),
     STATISTICS(Statistics, R.string.tab_statistics, Icons.Filled.BarChart),
     SETTINGS(Settings, R.string.tab_settings, Icons.Filled.Settings)
 }

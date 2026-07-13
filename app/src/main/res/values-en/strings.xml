@@ -26,7 +26,7 @@
     <string name="onboarding_progress_description">%1$d of %2$d steps completed</string>
 
     <!-- Welcome / Name step -->
-    <string name="onboarding_welcome_title">Welcome!</string>
+    <string name="onboarding_welcome_title">Welcome to Health Tracker!</string>
     <string name="onboarding_welcome_description">Let\'s take a moment to set up your personal health profile.</string>
 
     <string name="onboarding_benefit_tracking_title">Track with ease</string>

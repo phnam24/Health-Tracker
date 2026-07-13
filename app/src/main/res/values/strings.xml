@@ -27,7 +27,7 @@
     <string name="onboarding_progress_description">Đã hoàn thành %1$d trên %2$d bước</string>
 
     <!-- Welcome / Name step -->
-    <string name="onboarding_welcome_title">Chào mừng bạn!</string>
+    <string name="onboarding_welcome_title">Chào mừng đến với Health Tracker!</string>
     <string name="onboarding_welcome_description">Hãy dành một chút thời gian để thiết lập hồ sơ sức khỏe cá nhân.</string>
 
     <string name="onboarding_benefit_tracking_title">Theo dõi dễ dàng</string>
@@ -40,7 +40,7 @@
     <string name="onboarding_benefit_goal_description">Nhận mục tiêu calo phù hợp với nhu cầu của bạn.</string>
 
     <string name="onboarding_name_title">Bạn tên là gì?</string>
-    <string name="onboarding_name_description">Tên giúp chúng tôi cá nhân hóa trải nghiệm của bạn.</string>
+    <string name="onboarding_name_description">Cung cấp họ và tên giúp chúng tôi cá nhân hóa trải nghiệm của bạn.</string>
     <string name="onboarding_name_label">Họ và tên</string>
     <string name="onboarding_name_placeholder">Nhập họ và tên của bạn</string>
 

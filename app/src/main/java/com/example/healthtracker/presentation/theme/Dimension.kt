@@ -53,5 +53,6 @@ object AppDimensions {
     val BottomSheetElevation = 3.dp
 
     val SplashLogoSize = 128.dp
+    val SplashLogoMediumSize = 96.dp
     val SplashVersionBottomPadding = 48.dp
 }

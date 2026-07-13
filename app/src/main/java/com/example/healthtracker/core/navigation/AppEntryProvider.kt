@@ -5,6 +5,7 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import com.example.healthtracker.presentation.PlaceholderScreen
+import com.example.healthtracker.presentation.onboarding.ui.OnboardingRoute
 
 @Composable
 fun appEntryProvider(
@@ -17,7 +18,9 @@ fun appEntryProvider(
             }
 
             Onboarding -> NavEntry(key){
-                PlaceholderScreen("Onboarding")
+                OnboardingRoute(
+                    onCompleted = { backStack.navigate(Dashboard) },
+                )
             }
 
             Dashboard -> NavEntry(key){
