@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AirlineSeatReclineNormal
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,10 +20,13 @@ import com.example.healthtracker.domain.model.ActivityLevel
 import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
+import com.example.healthtracker.presentation.onboarding.ui.OnboardingField
 import com.example.healthtracker.presentation.onboarding.ui.getUiData
+import com.example.healthtracker.presentation.onboarding.ui.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.BmiUnderweight
+import com.example.healthtracker.presentation.theme.ErrorLight
 
 @Composable
 fun ActivityLevelStep(
@@ -45,6 +50,15 @@ fun ActivityLevelStep(
                 onEvent(OnboardingEvent.ActivityLevelSelected(selectedLevel))
             }
         )
+
+        uiState.errors[OnboardingField.ACTIVITY_LEVEL]?.let {
+            Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+            Text(
+                text = stringResource(it.toStringRes()),
+                style = MaterialTheme.typography.bodyMedium,
+                color = ErrorLight
+            )
+        }
     }
 }
 

@@ -39,5 +39,7 @@ enum class OnboardingLimit(val value: Double) {
     WEIGHT_MIN(20.0),
     WEIGHT_MAX(300.0),
     HEIGHT_MIN(100.0),
-    HEIGHT_MAX(250.0)
+    HEIGHT_MAX(250.0),
+    AGE_MIN(10.0),
+    AGE_MAX(100.0)
 }

@@ -3,6 +3,7 @@ package com.example.healthtracker.presentation.onboarding.viewmodel
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.healthtracker.domain.model.ActivityLevel
 import com.example.healthtracker.domain.model.Gender
 import com.example.healthtracker.domain.model.Goal
@@ -24,8 +25,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
+import kotlin.coroutines.cancellation.CancellationException
 
 sealed interface OnboardingEvent {
     data class NameChanged(val value: String) : OnboardingEvent
@@ -135,7 +138,10 @@ class OnboardingViewModel @Inject constructor(
         recomputeTdeePreview()
     }
     private fun updateGoal(value: Goal) {
-        TODO("Not yet implemented")
+        _uiState.update {
+            it.copy(goal = value, errors = it.errors - OnboardingField.GOAL)
+        }
+        recomputeTdeePreview()
     }
 
     private fun moveToNextStep() {
@@ -171,7 +177,51 @@ class OnboardingViewModel @Inject constructor(
     }
 
     private fun finishOnboarding() {
-        TODO("Not yet implemented")
+        val state = _uiState.value
+        if (state.isSaving) return
+
+        val errors = validateAllFields(state)
+        if (errors.isNotEmpty()) {
+            val firstInvalidStep = when {
+                OnboardingField.NAME in errors -> OnboardingStep.NAME
+                OnboardingField.BIRTH_DATE in errors ||
+                        OnboardingField.GENDER in errors -> OnboardingStep.PERSONAL_INFO
+                OnboardingField.WEIGHT in errors ||
+                        OnboardingField.HEIGHT in errors -> OnboardingStep.BODY_METRICS
+                OnboardingField.ACTIVITY_LEVEL in errors -> OnboardingStep.ACTIVITY_LEVEL
+                else -> OnboardingStep.GOAL
+            }
+            _uiState.update {
+                it.copy(currentStep = firstInvalidStep, errors = errors)
+            }
+            return
+        }
+
+        val profile = state.toUserProfileOrNull()
+        if (profile == null) {
+            _uiState.update {
+                it.copy(
+                    errors = mapOf(
+                        OnboardingField.GOAL to ValidationError.REQUIRED
+                    )
+                )
+            }
+            return
+        }
+
+        _uiState.update { it.copy(isSaving = true) }
+
+        viewModelScope.launch {
+            try {
+                userRepository.saveProfile(profile)
+                _effects.send(OnboardingEffect.NavigateToDashboard)
+            } catch (error: CancellationException) {
+                throw error
+            } catch (error: Exception) {
+                _uiState.update { it.copy(isSaving = false) }
+                _effects.send(OnboardingEffect.SaveFailed)
+            }
+        }
     }
 
     private fun recomputeBmiPreview() {
@@ -247,7 +297,7 @@ class OnboardingViewModel @Inject constructor(
                     birthDate.isAfter(today) ->
                         put(OnboardingField.BIRTH_DATE, ValidationError.BIRTH_DATE_IN_FUTURE)
 
-                    calculateAge(birthDate, today) !in 10..100 ->
+                    calculateAge(birthDate, today) !in OnboardingLimit.AGE_MIN.value.toInt() ..OnboardingLimit.AGE_MAX.value.toInt() ->
                         put(OnboardingField.BIRTH_DATE, ValidationError.AGE_OUT_OF_RANGE)
                 }
                 if (state.gender == null) {
@@ -266,7 +316,7 @@ class OnboardingViewModel @Inject constructor(
                     weight == null ->
                         put(OnboardingField.WEIGHT, ValidationError.INVALID_NUMBER)
 
-                    weight !in 20.0..300.0 ->
+                    weight !in OnboardingLimit.WEIGHT_MIN.value..OnboardingLimit.WEIGHT_MAX.value ->
                         put(OnboardingField.WEIGHT, ValidationError.WEIGHT_OUT_OF_RANGE)
                 }
 
@@ -277,7 +327,7 @@ class OnboardingViewModel @Inject constructor(
                     height == null ->
                         put(OnboardingField.HEIGHT, ValidationError.INVALID_NUMBER)
 
-                    height !in 100.0..250.0 ->
+                    height !in OnboardingLimit.HEIGHT_MIN.value ..OnboardingLimit.HEIGHT_MAX.value ->
                         put(OnboardingField.HEIGHT, ValidationError.HEIGHT_OUT_OF_RANGE)
                 }
             }

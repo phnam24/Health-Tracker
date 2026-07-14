@@ -122,9 +122,10 @@
     <string name="tdee_target_label">Mục tiêu mỗi ngày</string>
 
     <string name="calories_value">%1$d kcal</string>
+    <string name="calories_per_day_unit">kcal/ngày</string>
     <string name="calories_per_day_value">%1$d kcal/ngày</string>
     <string name="calories_adjustment_positive">+%1$d kcal</string>
-    <string name="calories_adjustment_negative">−%1$d kcal</string>
+    <string name="calories_adjustment_negative">%1$d kcal</string>
     <string name="calories_adjustment_none">Không điều chỉnh</string>
 
     <string name="tdee_disclaimer">Kết quả chỉ mang tính tham khảo và không thay thế tư vấn từ chuyên gia y tế.</string>

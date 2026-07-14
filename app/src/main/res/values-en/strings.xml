@@ -121,9 +121,10 @@
     <string name="tdee_target_label">Daily target</string>
 
     <string name="calories_value">%1$d kcal</string>
+    <string name="calories_per_day_unit">kcal/day</string>
     <string name="calories_per_day_value">%1$d kcal/day</string>
     <string name="calories_adjustment_positive">+%1$d kcal</string>
-    <string name="calories_adjustment_negative">−%1$d kcal</string>
+    <string name="calories_adjustment_negative">%1$d kcal</string>
     <string name="calories_adjustment_none">No adjustment</string>
 
     <string name="tdee_disclaimer">These results are estimates and do not replace advice from a healthcare professional.</string>
