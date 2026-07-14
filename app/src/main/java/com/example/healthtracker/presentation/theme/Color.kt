@@ -97,3 +97,9 @@ val BmiUnderweight = Color(0xFF3B82F6)
 val BmiNormal = Color(0xFF22C55E)
 val BmiOverweight = Color(0xFFF59E0B)
 val BmiObese = Color(0xFFEF4444)
+
+val ActivitySedentary = SecondaryLight
+val ActivityLight = GreenPrimaryLight
+val ActivityModerate = Color(0xFF2E7D32)
+val ActivityActive = BluePrimaryLight
+val ActivityVeryActive = CaloriesConsumed

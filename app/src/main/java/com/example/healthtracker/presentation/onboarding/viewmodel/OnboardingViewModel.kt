@@ -126,9 +126,14 @@ class OnboardingViewModel @Inject constructor(
     }
 
     private fun updateActivity(value: ActivityLevel) {
-        TODO("Not yet implemented")
+        _uiState.update {
+            it.copy(
+                activityLevel = value,
+                errors = it.errors - OnboardingField.ACTIVITY_LEVEL
+            )
+        }
+        recomputeTdeePreview()
     }
-
     private fun updateGoal(value: Goal) {
         TODO("Not yet implemented")
     }

@@ -128,7 +128,7 @@ fun HeightInputSession(
 fun BmiResultSession(
     uiState: OnboardingUiState
 ) {
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxWidth()
             .border(
@@ -151,14 +151,14 @@ fun BmiResultSession(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = stringResource(R.string.bmi_value, uiState.bmiPreview?.value?:0.0),
+                text = stringResource(R.string.bmi_value, uiState.bmiPreview?.value ?: 0.0),
                 style = MaterialTheme.typography.headlineLarge
             )
 
             Spacer(modifier = Modifier.width(AppDimensions.SpacingMedium))
 
             Text(
-                text = when(uiState.bmiPreview?.category) {
+                text = when (uiState.bmiPreview?.category) {
                     BmiCategory.UNDERWEIGHT -> stringResource(R.string.bmi_category_underweight)
                     BmiCategory.NORMAL -> stringResource(R.string.bmi_category_normal)
                     BmiCategory.OVERWEIGHT -> stringResource(R.string.bmi_category_overweight)
@@ -173,7 +173,7 @@ fun BmiResultSession(
         Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
 
         Text(
-            text = when(uiState.bmiPreview?.category) {
+            text = when (uiState.bmiPreview?.category) {
                 BmiCategory.UNDERWEIGHT -> stringResource(R.string.bmi_underweight_description)
                 BmiCategory.NORMAL -> stringResource(R.string.bmi_normal_description)
                 BmiCategory.OVERWEIGHT -> stringResource(R.string.bmi_overweight_description)
@@ -186,7 +186,7 @@ fun BmiResultSession(
         Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
 
         BmiScaleBar(
-            bmi = uiState.bmiPreview?.value?.toFloat()?:10f
+            bmi = uiState.bmiPreview?.value?.toFloat() ?: 10f
         )
     }
 }
