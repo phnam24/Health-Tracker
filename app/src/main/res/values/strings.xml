@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
     <string name="app_name">Health Tracker Application</string>
     <string name="tab_dashboard">Dashboard</string>
@@ -5,4 +7,148 @@
     <string name="tab_activity">Hoạt động</string>
     <string name="tab_statistics">Thống kê</string>
     <string name="tab_settings">Cài đặt</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">Ăn đúng - Tập chuẩn - Sống khoẻ</string>
+    <string name="splash_version">Phiên bản 1.0.0</string>
+
+    <!-- Common actions -->
+    <string name="action_continue">Tiếp tục</string>
+    <string name="action_back">Quay lại</string>
+    <string name="action_start">Bắt đầu</string>
+    <string name="action_retry">Thử lại</string>
+    <string name="action_select">Chọn</string>
+    <string name="action_change">Thay đổi</string>
+    <string name="action_save">Lưu</string>
+    <string name="action_saving">Đang lưu…</string>
+
+    <!-- Progress -->
+    <string name="onboarding_step">Bước %1$d/%2$d</string>
+    <string name="onboarding_progress_description">Đã hoàn thành %1$d trên %2$d bước</string>
+
+    <!-- Welcome / Name step -->
+    <string name="onboarding_welcome_title">Chào mừng đến với Health Tracker!</string>
+    <string name="onboarding_welcome_description">Hãy dành một chút thời gian để thiết lập hồ sơ sức khỏe cá nhân.</string>
+
+    <string name="onboarding_benefit_tracking_title">Theo dõi dễ dàng</string>
+    <string name="onboarding_benefit_tracking_description">Ghi lại dinh dưỡng và hoạt động hằng ngày.</string>
+
+    <string name="onboarding_benefit_insight_title">Hiểu rõ cơ thể</string>
+    <string name="onboarding_benefit_insight_description">Theo dõi BMI, calo và tiến trình sức khỏe.</string>
+
+    <string name="onboarding_benefit_goal_title">Đạt mục tiêu</string>
+    <string name="onboarding_benefit_goal_description">Nhận mục tiêu calo phù hợp với nhu cầu của bạn.</string>
+
+    <string name="onboarding_name_title">Bạn tên là gì?</string>
+    <string name="onboarding_name_description">Cung cấp họ và tên giúp chúng tôi cá nhân hóa trải nghiệm của bạn.</string>
+    <string name="onboarding_name_label">Họ và tên</string>
+    <string name="onboarding_name_placeholder">Nhập họ và tên của bạn</string>
+
+    <!-- Personal information step -->
+    <string name="onboarding_personal_info_title">Thông tin cá nhân</string>
+    <string name="onboarding_personal_info_description">Thông tin này được dùng để tính nhu cầu năng lượng của bạn.</string>
+
+    <string name="onboarding_birth_date_label">Ngày sinh</string>
+    <string name="onboarding_birth_date_placeholder">Chọn ngày sinh</string>
+    <string name="onboarding_birth_date_dialog_title">Chọn ngày sinh</string>
+    <string name="onboarding_age_value">Bạn hiện tại đang %1$d tuổi</string>
+
+    <string name="onboarding_gender_label">Giới tính sinh học</string>
+    <string name="onboarding_gender_description">Được sử dụng trong công thức tính BMR và TDEE.</string>
+    <string name="gender_male">Nam</string>
+    <string name="gender_female">Nữ</string>
+
+    <!-- Body metrics step -->
+    <string name="onboarding_body_metrics_title">Chỉ số cơ thể</string>
+    <string name="onboarding_body_metrics_description">Nhập cân nặng và chiều cao hiện tại của bạn.</string>
+
+    <string name="onboarding_weight_label">Cân nặng</string>
+    <string name="onboarding_weight_placeholder">Ví dụ: 70</string>
+    <string name="onboarding_height_label">Chiều cao</string>
+    <string name="onboarding_height_placeholder">Ví dụ: 175</string>
+    <string name="unit_kilogram">kg</string>
+    <string name="unit_centimeter">cm</string>
+
+    <!-- BMI preview -->
+    <string name="bmi_preview_title">Chỉ số BMI của bạn</string>
+    <string name="bmi_value">%1$.1f</string>
+    <string name="bmi_category_underweight">Thiếu cân</string>
+    <string name="bmi_category_normal">Bình thường</string>
+    <string name="bmi_category_overweight">Thừa cân</string>
+    <string name="bmi_category_obese">Béo phì</string>
+
+    <string name="bmi_underweight_description">BMI của bạn thấp hơn khoảng khuyến nghị.</string>
+    <string name="bmi_normal_description">BMI của bạn nằm trong khoảng khỏe mạnh.</string>
+    <string name="bmi_overweight_description">BMI của bạn cao hơn khoảng khuyến nghị.</string>
+    <string name="bmi_obese_description">BMI của bạn nằm trong nhóm béo phì.</string>
+
+    <!-- Activity level step -->
+    <string name="onboarding_activity_title">Mức độ vận động</string>
+    <string name="onboarding_activity_description">Chọn mức mô tả gần đúng nhất hoạt động thường ngày của bạn.</string>
+
+    <string name="activity_sedentary_title">Ít vận động</string>
+    <string name="activity_sedentary_description">Hầu như không tập luyện</string>
+
+    <string name="activity_light_title">Vận động nhẹ</string>
+    <string name="activity_light_description">Tập luyện 1–3 buổi mỗi tuần</string>
+
+    <string name="activity_moderate_title">Vận động vừa</string>
+    <string name="activity_moderate_description">Tập luyện 3–5 buổi mỗi tuần</string>
+
+    <string name="activity_active_title">Vận động nhiều</string>
+    <string name="activity_active_description">Tập luyện 6–7 buổi mỗi tuần</string>
+
+    <string name="activity_very_active_title">Rất năng động</string>
+    <string name="activity_very_active_description">Vận động cường độ cao hằng ngày</string>
+
+    <!-- Goal step -->
+    <string name="onboarding_goal_title">Mục tiêu của bạn</string>
+    <string name="onboarding_goal_description">Chọn mục tiêu để chúng tôi đề xuất lượng calo phù hợp.</string>
+
+    <string name="goal_lose_weight_title">Giảm cân</string>
+    <string name="goal_lose_weight_description">Giảm cân từ từ và bền vững</string>
+
+    <string name="goal_maintain_weight_title">Duy trì cân nặng</string>
+    <string name="goal_maintain_weight_description">Giữ cân nặng hiện tại</string>
+
+    <string name="goal_gain_weight_title">Tăng cân</string>
+    <string name="goal_gain_weight_description">Tăng cân có kiểm soát</string>
+
+    <!-- TDEE preview -->
+    <string name="tdee_preview_title">Mục tiêu năng lượng hằng ngày</string>
+    <string name="tdee_bmr_label">Chuyển hóa cơ bản</string>
+    <string name="tdee_maintenance_label">Calo duy trì</string>
+    <string name="tdee_goal_adjustment_label">Điều chỉnh theo mục tiêu</string>
+    <string name="tdee_target_label">Mục tiêu mỗi ngày</string>
+
+    <string name="calories_value">%1$d kcal</string>
+    <string name="calories_per_day_unit">kcal/ngày</string>
+    <string name="calories_per_day_value">%1$d kcal/ngày</string>
+    <string name="calories_adjustment_positive">+%1$d kcal</string>
+    <string name="calories_adjustment_negative">%1$d kcal</string>
+    <string name="calories_adjustment_none">Không điều chỉnh</string>
+
+    <string name="tdee_disclaimer">Kết quả chỉ mang tính tham khảo và không thay thế tư vấn từ chuyên gia y tế.</string>
+
+    <!-- Validation -->
+    <string name="error_required">Vui lòng nhập hoặc chọn thông tin này.</string>
+    <string name="error_name_required">Vui lòng nhập họ và tên.</string>
+    <string name="error_name_too_long">Tên không được vượt quá 50 ký tự.</string>
+    <string name="error_birth_date_required">Vui lòng chọn ngày sinh.</string>
+    <string name="error_birth_date_future">Ngày sinh không thể ở tương lai.</string>
+    <string name="error_age_range">Độ tuổi phải từ 10 đến 100.</string>
+    <string name="error_gender_required">Vui lòng chọn giới tính.</string>
+    <string name="error_invalid_number">Vui lòng nhập một số hợp lệ.</string>
+    <string name="error_weight_required">Vui lòng nhập cân nặng.</string>
+    <string name="error_weight_range">Cân nặng phải từ 20 đến 300 kg.</string>
+    <string name="error_height_required">Vui lòng nhập chiều cao.</string>
+    <string name="error_height_range">Chiều cao phải từ 100 đến 250 cm.</string>
+    <string name="error_activity_required">Vui lòng chọn mức độ vận động.</string>
+    <string name="error_goal_required">Vui lòng chọn mục tiêu.</string>
+    <string name="error_save_profile">Không thể lưu hồ sơ. Vui lòng thử lại.</string>
+
+    <!-- Accessibility -->
+    <string name="content_description_back">Quay lại bước trước</string>
+    <string name="content_description_selected">Đã chọn</string>
+
 </resources>

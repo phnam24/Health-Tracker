@@ -13,6 +13,7 @@ object AppDimensions {
     val SpacingSmall = 8.dp
     val SpacingMedium = 12.dp
     val SpacingLarge = 16.dp
+    val SpacingMediumLarge = 20.dp
     val SpacingExtraLarge = 24.dp
     val SpacingDoubleExtraLarge = 32.dp
     val ScreenPadding = 16.dp
@@ -50,4 +51,8 @@ object AppDimensions {
     val CardElevation = 1.dp
     val RaisedComponentElevation = 2.dp
     val BottomSheetElevation = 3.dp
+
+    val SplashLogoSize = 128.dp
+    val SplashLogoMediumSize = 96.dp
+    val SplashVersionBottomPadding = 48.dp
 }

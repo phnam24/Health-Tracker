@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="112dp"
+    android:height="112dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Heart with a negative-space pocket reserved for the leaf. -->
+    <path
+        android:fillColor="#22C55E"
+        android:fillType="evenOdd"
+        android:pathData="
+            M54,96
+            C49,91 19,70 12,46
+            C6,25 18,11 34,11
+            C44,11 51,16 54,23
+            C57,16 64,11 74,11
+            C91,11 102,25 96,46
+            C91,64 74,82 54,96
+            Z
+            M49,91
+            C47,72 54,57 68,49
+            C77,44 87,42 94,38
+            C94,58 87,75 74,84
+            C65,90 56,93 49,91
+            Z" />
+
+    <!-- Leaf inset; the second sub-path creates its transparent vein. -->
+    <path
+        android:fillColor="#22C55E"
+        android:fillType="evenOdd"
+        android:pathData="
+            M53,87
+            C52,72 58,61 70,54
+            C78,49 86,47 90,44
+            C89,59 83,72 73,79
+            C66,84 59,87 53,87
+            Z
+            M55,84
+            C60,72 68,63 82,54
+            C69,66 62,76 57,88
+            Z" />
+</vector>

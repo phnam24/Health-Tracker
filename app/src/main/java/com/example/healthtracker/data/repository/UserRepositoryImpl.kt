@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val userProfileDao: UserProfileDao
-): UserRepository {
+) : UserRepository {
     override fun observeProfile(): Flow<UserProfile?> =
         userProfileDao.observe().map { it?.toDomain() }
 
