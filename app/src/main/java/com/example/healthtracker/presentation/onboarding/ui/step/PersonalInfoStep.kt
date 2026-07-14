@@ -17,6 +17,7 @@ import androidx.compose.material.icons.filled.Cake
 import androidx.compose.material.icons.filled.Female
 import androidx.compose.material.icons.filled.Male
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,9 +34,10 @@ import com.example.healthtracker.presentation.onboarding.ui.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.ErrorLight
 import com.example.healthtracker.presentation.theme.GreenPrimaryContainerLight
 import com.example.healthtracker.presentation.theme.GreenPrimaryLight
-import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
+import com.example.healthtracker.presentation.theme.OutlineLight
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -99,7 +101,7 @@ fun DatePickerSession(
                     .border(
                         width = AppDimensions.DividerThickness,
                         shape = ControlShape,
-                        color = OnSurfaceVariantLight
+                        color = OutlineLight
                     )
                     .padding(AppDimensions.SpacingMediumLarge),
                 verticalAlignment = Alignment.CenterVertically
@@ -155,6 +157,16 @@ fun GenderSelectSession(
                 selected = uiState.gender == Gender.FEMALE,
                 onClick = { onGenderSelected(OnboardingEvent.GenderSelected(Gender.FEMALE)) },
                 modifier = Modifier.weight(1f)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(AppDimensions.SpacingMedium))
+
+        uiState.errors[OnboardingField.GENDER]?.let {
+            Text(
+                text = stringResource(it.toStringRes()),
+                style = MaterialTheme.typography.bodyMedium,
+                color = ErrorLight
             )
         }
     }

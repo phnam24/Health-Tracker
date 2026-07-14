@@ -75,17 +75,13 @@ class OnboardingViewModel @Inject constructor(
         }
     }
 
-    private fun clearError(field: OnboardingField) {
-        _uiState.update { state ->
-            state.copy(errors = state.errors - field)
-        }
-    }
-
     private fun updateName(value: String) {
         _uiState.update {
-            it.copy(name = value)
+            it.copy(
+                name = value,
+                errors = it.errors - OnboardingField.NAME
+            )
         }
-        clearError(OnboardingField.NAME)
     }
 
     private fun updateBirthDate(value: LocalDate) {
@@ -109,13 +105,24 @@ class OnboardingViewModel @Inject constructor(
         }
     }
 
-
     private fun updateWeight(value: String) {
-        TODO("Not yet implemented")
+        _uiState.update {
+            it.copy(
+                weightInput = normalizeDecimalInput(value),
+                errors = it.errors - OnboardingField.WEIGHT
+            )
+        }
+        recomputeBmiPreview()
     }
 
     private fun updateHeight(value: String) {
-        TODO("Not yet implemented")
+        _uiState.update {
+            it.copy(
+                heightInput = normalizeDecimalInput(value),
+                errors = it.errors - OnboardingField.HEIGHT
+            )
+        }
+        recomputeBmiPreview()
     }
 
     private fun updateActivity(value: ActivityLevel) {
@@ -296,4 +303,16 @@ class OnboardingViewModel @Inject constructor(
                 ).entries
             }
             .associate { it.key to it.value }
+
+    private fun normalizeDecimalInput(value: String): String =
+        value.replace(',', '.')
+            .filterIndexed { index, char ->
+                char.isDigit() || (char == '.' && index > 0)
+            }
+            .let { filtered ->
+                val firstDot = filtered.indexOf('.')
+                if (firstDot == -1) filtered
+                else filtered.take(firstDot + 1) +
+                        filtered.drop(firstDot + 1).replace(".", "")
+            }
 }
