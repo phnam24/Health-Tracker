@@ -41,7 +41,7 @@ fun PrimaryButton(
 
         Text(
             text = text,
-            style = MaterialTheme.typography.labelLarge,
+            style = MaterialTheme.typography.titleMedium,
             maxLines = 1,
         )
     }

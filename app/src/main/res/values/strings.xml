@@ -51,7 +51,7 @@
     <string name="onboarding_birth_date_label">Ngày sinh</string>
     <string name="onboarding_birth_date_placeholder">Chọn ngày sinh</string>
     <string name="onboarding_birth_date_dialog_title">Chọn ngày sinh</string>
-    <string name="onboarding_age_value">%1$d tuổi</string>
+    <string name="onboarding_age_value">Bạn hiện tại đang %1$d tuổi</string>
 
     <string name="onboarding_gender_label">Giới tính sinh học</string>
     <string name="onboarding_gender_description">Được sử dụng trong công thức tính BMR và TDEE.</string>

@@ -50,7 +50,7 @@
     <string name="onboarding_birth_date_label">Date of birth</string>
     <string name="onboarding_birth_date_placeholder">Select your date of birth</string>
     <string name="onboarding_birth_date_dialog_title">Select your date of birth</string>
-    <string name="onboarding_age_value">%1$d years old</string>
+    <string name="onboarding_age_value">You are %1$d years old</string>
 
     <string name="onboarding_gender_label">Biological sex</string>
     <string name="onboarding_gender_description">Used in the BMR and TDEE calculations.</string>

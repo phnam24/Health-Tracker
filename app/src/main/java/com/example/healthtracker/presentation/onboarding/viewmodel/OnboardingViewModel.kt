@@ -75,19 +75,40 @@ class OnboardingViewModel @Inject constructor(
         }
     }
 
+    private fun clearError(field: OnboardingField) {
+        _uiState.update { state ->
+            state.copy(errors = state.errors - field)
+        }
+    }
+
     private fun updateName(value: String) {
         _uiState.update {
             it.copy(name = value)
         }
+        clearError(OnboardingField.NAME)
     }
 
     private fun updateBirthDate(value: LocalDate) {
-        TODO("Not yet implemented")
+        val age = if (!value.isAfter(LocalDate.now())) {
+            calculateAge(value)
+        } else {
+            null
+        }
+        _uiState.update {
+            it.copy(
+                birthDate = value,
+                age = age,
+                errors = it.errors - OnboardingField.BIRTH_DATE
+            )
+        }
     }
 
     private fun updateGender(value: Gender) {
-        TODO("Not yet implemented")
+        _uiState.update {
+            it.copy(gender = value, errors = it.errors - OnboardingField.GENDER)
+        }
     }
+
 
     private fun updateWeight(value: String) {
         TODO("Not yet implemented")
@@ -147,7 +168,7 @@ class OnboardingViewModel @Inject constructor(
             val height = state.heightInput.toDoubleOrNull()
 
             val preview = if (
-                weight != null && weight in OnboardingLimit.WEIGHT_MIN.value ..OnboardingLimit.WEIGHT_MAX.value  &&
+                weight != null && weight in OnboardingLimit.WEIGHT_MIN.value..OnboardingLimit.WEIGHT_MAX.value &&
                 height != null && height in OnboardingLimit.HEIGHT_MIN.value..OnboardingLimit.HEIGHT_MAX.value
             ) {
                 calculateBmi(weight, height)
@@ -173,9 +194,11 @@ class OnboardingViewModel @Inject constructor(
         val validBirthDate = birthDate ?: return null
         val validGender = gender ?: return null
         val validWeight = weightInput.toDoubleOrNull()
-            ?.takeIf { it in OnboardingLimit.WEIGHT_MIN.value ..OnboardingLimit.WEIGHT_MAX.value } ?: return null
+            ?.takeIf { it in OnboardingLimit.WEIGHT_MIN.value..OnboardingLimit.WEIGHT_MAX.value }
+            ?: return null
         val validHeight = heightInput.toDoubleOrNull()
-            ?.takeIf { it in OnboardingLimit.HEIGHT_MIN.value..OnboardingLimit.HEIGHT_MAX.value } ?: return null
+            ?.takeIf { it in OnboardingLimit.HEIGHT_MIN.value..OnboardingLimit.HEIGHT_MAX.value }
+            ?: return null
         val validActivity = activityLevel ?: return null
         val validGoal = goal ?: return null
 
@@ -208,8 +231,10 @@ class OnboardingViewModel @Inject constructor(
                 when {
                     birthDate == null ->
                         put(OnboardingField.BIRTH_DATE, ValidationError.REQUIRED)
+
                     birthDate.isAfter(today) ->
                         put(OnboardingField.BIRTH_DATE, ValidationError.BIRTH_DATE_IN_FUTURE)
+
                     calculateAge(birthDate, today) !in 10..100 ->
                         put(OnboardingField.BIRTH_DATE, ValidationError.AGE_OUT_OF_RANGE)
                 }
@@ -225,8 +250,10 @@ class OnboardingViewModel @Inject constructor(
                 when {
                     state.weightInput.isBlank() ->
                         put(OnboardingField.WEIGHT, ValidationError.REQUIRED)
+
                     weight == null ->
                         put(OnboardingField.WEIGHT, ValidationError.INVALID_NUMBER)
+
                     weight !in 20.0..300.0 ->
                         put(OnboardingField.WEIGHT, ValidationError.WEIGHT_OUT_OF_RANGE)
                 }
@@ -234,8 +261,10 @@ class OnboardingViewModel @Inject constructor(
                 when {
                     state.heightInput.isBlank() ->
                         put(OnboardingField.HEIGHT, ValidationError.REQUIRED)
+
                     height == null ->
                         put(OnboardingField.HEIGHT, ValidationError.INVALID_NUMBER)
+
                     height !in 100.0..250.0 ->
                         put(OnboardingField.HEIGHT, ValidationError.HEIGHT_OUT_OF_RANGE)
                 }
