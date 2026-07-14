@@ -1,19 +1,33 @@
 package com.example.healthtracker.di
 
-import com.example.healthtracker.domain.usecase.CalculateAgeUseCase
-import com.example.healthtracker.domain.usecase.CalculateBmiUseCase
-import com.example.healthtracker.domain.usecase.CalculateBmrUseCase
-import com.example.healthtracker.domain.usecase.CalculateBurnedCaloriesUseCase
-import com.example.healthtracker.domain.usecase.CalculateTdeeUseCase
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.example.healthtracker.domain.repository.UserRepository
+import com.example.healthtracker.domain.usecase.calculate.CalculateAgeUseCase
+import com.example.healthtracker.domain.usecase.calculate.CalculateBmiUseCase
+import com.example.healthtracker.domain.usecase.calculate.CalculateBmrUseCase
+import com.example.healthtracker.domain.usecase.calculate.CalculateBurnedCaloriesUseCase
+import com.example.healthtracker.domain.usecase.calculate.CalculateTdeeUseCase
+import com.example.healthtracker.domain.usecase.onboarding.BuildUserProfileUseCase
+import com.example.healthtracker.domain.usecase.onboarding.CompleteOnboardingUseCase
+import com.example.healthtracker.domain.usecase.onboarding.GetBmiPreviewUseCase
+import com.example.healthtracker.domain.usecase.onboarding.GetTdeePreviewUseCase
+import com.example.healthtracker.domain.usecase.onboarding.ValidateOnboardingUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import java.time.Clock
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
+    @RequiresApi(Build.VERSION_CODES.O)
+    @Provides
+    @Singleton
+    fun provideClock(): Clock =
+        Clock.systemDefaultZone()
 
     @Provides
     @Singleton
@@ -32,7 +46,8 @@ object UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideCalculateBurnedCaloriesUseCase(): CalculateBurnedCaloriesUseCase =
+    fun provideCalculateBurnedCaloriesUseCase():
+            CalculateBurnedCaloriesUseCase =
         CalculateBurnedCaloriesUseCase()
 
     @Provides
@@ -44,5 +59,58 @@ object UseCaseModule {
         CalculateTdeeUseCase(
             calculateAge = calculateAgeUseCase,
             calculateBmr = calculateBmrUseCase
+        )
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @Provides
+    @Singleton
+    fun provideValidateOnboardingUseCase(
+        calculateAgeUseCase: CalculateAgeUseCase,
+        clock: Clock
+    ): ValidateOnboardingUseCase =
+        ValidateOnboardingUseCase(
+            calculateAge = calculateAgeUseCase,
+            clock = clock
+        )
+
+    @Provides
+    @Singleton
+    fun provideBuildUserProfileUseCase():
+            BuildUserProfileUseCase =
+        BuildUserProfileUseCase()
+
+    @Provides
+    @Singleton
+    fun provideGetBmiPreviewUseCase(
+        calculateBmiUseCase: CalculateBmiUseCase
+    ): GetBmiPreviewUseCase =
+        GetBmiPreviewUseCase(
+            calculateBmi = calculateBmiUseCase
+        )
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @Provides
+    @Singleton
+    fun provideGetTdeePreviewUseCase(
+        buildUserProfileUseCase: BuildUserProfileUseCase,
+        calculateTdeeUseCase: CalculateTdeeUseCase
+    ): GetTdeePreviewUseCase =
+        GetTdeePreviewUseCase(
+            buildUserProfile = buildUserProfileUseCase,
+            calculateTdee = calculateTdeeUseCase
+        )
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @Provides
+    @Singleton
+    fun provideCompleteOnboardingUseCase(
+        validateOnboardingUseCase: ValidateOnboardingUseCase,
+        buildUserProfileUseCase: BuildUserProfileUseCase,
+        userRepository: UserRepository
+    ): CompleteOnboardingUseCase =
+        CompleteOnboardingUseCase(
+            validateOnboarding = validateOnboardingUseCase,
+            buildUserProfile = buildUserProfileUseCase,
+            userRepository = userRepository
         )
 }

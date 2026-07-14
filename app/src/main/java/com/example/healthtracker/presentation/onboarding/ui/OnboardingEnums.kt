@@ -14,32 +14,3 @@ enum class OnboardingStep {
     fun next(): OnboardingStep = entries.getOrElse(ordinal + 1) { this }
     fun previous(): OnboardingStep = entries.getOrElse(ordinal - 1) { this }
 }
-
-enum class OnboardingField {
-    NAME,
-    BIRTH_DATE,
-    GENDER,
-    WEIGHT,
-    HEIGHT,
-    ACTIVITY_LEVEL,
-    GOAL
-}
-
-enum class ValidationError {
-    REQUIRED,
-    NAME_TOO_LONG,
-    BIRTH_DATE_IN_FUTURE,
-    AGE_OUT_OF_RANGE,
-    INVALID_NUMBER,
-    WEIGHT_OUT_OF_RANGE,
-    HEIGHT_OUT_OF_RANGE
-}
-
-enum class OnboardingLimit(val value: Double) {
-    WEIGHT_MIN(20.0),
-    WEIGHT_MAX(300.0),
-    HEIGHT_MIN(100.0),
-    HEIGHT_MAX(250.0),
-    AGE_MIN(10.0),
-    AGE_MAX(100.0)
-}

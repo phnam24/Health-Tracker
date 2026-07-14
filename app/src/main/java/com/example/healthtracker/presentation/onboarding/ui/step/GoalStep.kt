@@ -18,18 +18,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.example.healthtracker.R
-import com.example.healthtracker.domain.model.ActivityLevel
 import com.example.healthtracker.domain.model.Goal
+import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.ui.getUiData
+import com.example.healthtracker.presentation.onboarding.ui.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.ErrorLight
 import com.example.healthtracker.presentation.theme.GreenOnPrimaryContainerLight
-import com.example.healthtracker.presentation.theme.GreenPrimaryLight
-import com.example.healthtracker.presentation.theme.OnSurfaceVariantDark
 import com.example.healthtracker.presentation.theme.OutlineLight
 import com.example.healthtracker.presentation.theme.SurfaceVariantDark
 
@@ -58,6 +58,15 @@ fun GoalStep(
         )
 
         Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+
+        uiState.errors[OnboardingField.GOAL]?.let {
+            Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+            Text(
+                text = stringResource(it.toStringRes()),
+                style = MaterialTheme.typography.bodyMedium,
+                color = ErrorLight
+            )
+        }
 
         uiState.tdeePreview?.let {
             TdeeResultSession(
@@ -155,10 +164,18 @@ fun TdeeResultSession(
 
         CaloriesInfoRow(
             label = stringResource(R.string.tdee_goal_adjustment_label),
-            value = when(uiState.goal) {
-                Goal.LOSE -> stringResource(R.string.calories_adjustment_negative, uiState.tdeePreview?.goalAdjustment ?: 0)
+            value = when (uiState.goal) {
+                Goal.LOSE -> stringResource(
+                    R.string.calories_adjustment_negative,
+                    uiState.tdeePreview?.goalAdjustment ?: 0
+                )
+
                 Goal.MAINTAIN -> stringResource(R.string.calories_adjustment_none)
-                Goal.GAIN -> stringResource(R.string.calories_adjustment_positive, uiState.tdeePreview?.goalAdjustment ?: 0)
+                Goal.GAIN -> stringResource(
+                    R.string.calories_adjustment_positive,
+                    uiState.tdeePreview?.goalAdjustment ?: 0
+                )
+
                 else -> stringResource(R.string.calories_adjustment_none)
             }
         )
@@ -170,7 +187,7 @@ fun CaloriesInfoRow(
     label: String,
     value: String
 ) {
-    Row() {
+    Row {
         Text(
             text = label,
             style = MaterialTheme.typography.bodyMedium

@@ -42,7 +42,8 @@ fun AppDatePickerField(
     var showDialog by remember { mutableStateOf(false) }
 
     val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-    val displayValue = value?.format(formatter) ?: stringResource(R.string.onboarding_birth_date_dialog_title)
+    val displayValue =
+        value?.format(formatter) ?: stringResource(R.string.onboarding_birth_date_dialog_title)
 
     Box(modifier = modifier) {
         AppTextField(

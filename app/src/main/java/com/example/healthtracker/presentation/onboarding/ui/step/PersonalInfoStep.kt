@@ -25,11 +25,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.Gender
+import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.AppDatePickerField
 import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
-import com.example.healthtracker.presentation.onboarding.ui.OnboardingField
 import com.example.healthtracker.presentation.onboarding.ui.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions

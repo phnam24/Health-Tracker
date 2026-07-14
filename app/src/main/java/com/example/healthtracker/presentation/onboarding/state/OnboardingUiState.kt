@@ -4,10 +4,10 @@ import com.example.healthtracker.domain.model.ActivityLevel
 import com.example.healthtracker.domain.model.BmiResult
 import com.example.healthtracker.domain.model.Gender
 import com.example.healthtracker.domain.model.Goal
+import com.example.healthtracker.domain.model.OnboardingField
+import com.example.healthtracker.domain.model.OnboardingValidationError
 import com.example.healthtracker.domain.model.TdeeBreakdown
-import com.example.healthtracker.presentation.onboarding.ui.OnboardingField
 import com.example.healthtracker.presentation.onboarding.ui.OnboardingStep
-import com.example.healthtracker.presentation.onboarding.ui.ValidationError
 import java.time.LocalDate
 
 data class OnboardingUiState(
@@ -22,7 +22,7 @@ data class OnboardingUiState(
     val activityLevel: ActivityLevel? = null,
     val goal: Goal? = null,
     val tdeePreview: TdeeBreakdown? = null,
-    val errors: Map<OnboardingField, ValidationError> = emptyMap(),
+    val errors: Map<OnboardingField, OnboardingValidationError> = emptyMap(),
     val isSaving: Boolean = false
 ) {
     val progress: Float

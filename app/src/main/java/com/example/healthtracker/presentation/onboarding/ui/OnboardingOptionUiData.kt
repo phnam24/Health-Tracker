@@ -71,7 +71,7 @@ fun ActivityLevel.getUiData(): OnboardingOptionUiData {
 
 @Composable
 fun Goal.getUiData(): OnboardingOptionUiData {
-    return when(this) {
+    return when (this) {
         Goal.LOSE -> OnboardingOptionUiData(
             titleRes = R.string.goal_lose_weight_title,
             descriptionRes = R.string.goal_lose_weight_description,

@@ -1,4 +1,4 @@
-package com.example.healthtracker.domain.usecase
+package com.example.healthtracker.domain.usecase.calculate
 
 import kotlin.math.roundToInt
 

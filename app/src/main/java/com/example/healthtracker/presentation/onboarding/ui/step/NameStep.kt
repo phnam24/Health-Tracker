@@ -32,10 +32,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import com.example.healthtracker.R
+import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.AppTextField
 import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
-import com.example.healthtracker.presentation.onboarding.ui.OnboardingField
 import com.example.healthtracker.presentation.onboarding.ui.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions

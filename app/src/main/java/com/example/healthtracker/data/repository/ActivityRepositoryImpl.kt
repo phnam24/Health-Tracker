@@ -15,7 +15,7 @@ import javax.inject.Inject
 class ActivityRepositoryImpl @Inject constructor(
     private val activityTypeDao: ActivityTypeDao,
     private val activityEntryDao: ActivityEntryDao
-) : ActivityRepository{
+) : ActivityRepository {
     override fun observeTypes(): Flow<List<ActivityType>> =
         activityTypeDao.observeAll().map { results ->
             results.map {

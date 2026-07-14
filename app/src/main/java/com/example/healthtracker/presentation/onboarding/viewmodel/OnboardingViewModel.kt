@@ -7,16 +7,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.healthtracker.domain.model.ActivityLevel
 import com.example.healthtracker.domain.model.Gender
 import com.example.healthtracker.domain.model.Goal
-import com.example.healthtracker.domain.model.UserProfile
-import com.example.healthtracker.domain.repository.UserRepository
-import com.example.healthtracker.domain.usecase.CalculateAgeUseCase
-import com.example.healthtracker.domain.usecase.CalculateBmiUseCase
-import com.example.healthtracker.domain.usecase.CalculateTdeeUseCase
+import com.example.healthtracker.domain.model.OnboardingField
+import com.example.healthtracker.domain.model.OnboardingValidationError
+import com.example.healthtracker.domain.model.toDraft
+import com.example.healthtracker.domain.usecase.calculate.CalculateAgeUseCase
+import com.example.healthtracker.domain.usecase.onboarding.CompleteOnboardingResult
+import com.example.healthtracker.domain.usecase.onboarding.CompleteOnboardingUseCase
+import com.example.healthtracker.domain.usecase.onboarding.GetBmiPreviewUseCase
+import com.example.healthtracker.domain.usecase.onboarding.GetTdeePreviewUseCase
+import com.example.healthtracker.domain.usecase.onboarding.ValidateOnboardingUseCase
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
-import com.example.healthtracker.presentation.onboarding.ui.OnboardingField
-import com.example.healthtracker.presentation.onboarding.ui.OnboardingLimit
 import com.example.healthtracker.presentation.onboarding.ui.OnboardingStep
-import com.example.healthtracker.presentation.onboarding.ui.ValidationError
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -52,9 +53,10 @@ sealed interface OnboardingEffect {
 @HiltViewModel
 class OnboardingViewModel @Inject constructor(
     private val calculateAge: CalculateAgeUseCase,
-    private val calculateBmi: CalculateBmiUseCase,
-    private val calculateTdee: CalculateTdeeUseCase,
-    private val userRepository: UserRepository
+    private val validateOnboarding: ValidateOnboardingUseCase,
+    private val getBmiPreview: GetBmiPreviewUseCase,
+    private val getTdeePreview: GetTdeePreviewUseCase,
+    private val completeOnboarding: CompleteOnboardingUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(OnboardingUiState())
@@ -137,6 +139,7 @@ class OnboardingViewModel @Inject constructor(
         }
         recomputeTdeePreview()
     }
+
     private fun updateGoal(value: Goal) {
         _uiState.update {
             it.copy(goal = value, errors = it.errors - OnboardingField.GOAL)
@@ -146,11 +149,19 @@ class OnboardingViewModel @Inject constructor(
 
     private fun moveToNextStep() {
         val state = _uiState.value
+
         if (state.currentStep.isLast || state.isSaving) return
 
-        val errors = validateCurrentStep(state)
-        if (errors.isNotEmpty()) {
-            _uiState.update { it.copy(errors = errors) }
+        val allErrors = validateOnboarding(state.toDraft())
+
+        val currentStepErrors = allErrors.filterKeys { field ->
+            field in state.currentStep.fields
+        }
+
+        if (currentStepErrors.isNotEmpty()) {
+            _uiState.update {
+                it.copy(errors = currentStepErrors)
+            }
             return
         }
 
@@ -176,188 +187,100 @@ class OnboardingViewModel @Inject constructor(
         }
     }
 
-    private fun finishOnboarding() {
-        val state = _uiState.value
-        if (state.isSaving) return
-
-        val errors = validateAllFields(state)
-        if (errors.isNotEmpty()) {
-            val firstInvalidStep = when {
-                OnboardingField.NAME in errors -> OnboardingStep.NAME
-                OnboardingField.BIRTH_DATE in errors ||
-                        OnboardingField.GENDER in errors -> OnboardingStep.PERSONAL_INFO
-                OnboardingField.WEIGHT in errors ||
-                        OnboardingField.HEIGHT in errors -> OnboardingStep.BODY_METRICS
-                OnboardingField.ACTIVITY_LEVEL in errors -> OnboardingStep.ACTIVITY_LEVEL
-                else -> OnboardingStep.GOAL
-            }
-            _uiState.update {
-                it.copy(currentStep = firstInvalidStep, errors = errors)
-            }
-            return
-        }
-
-        val profile = state.toUserProfileOrNull()
-        if (profile == null) {
-            _uiState.update {
-                it.copy(
-                    errors = mapOf(
-                        OnboardingField.GOAL to ValidationError.REQUIRED
-                    )
-                )
-            }
-            return
-        }
-
-        _uiState.update { it.copy(isSaving = true) }
-
-        viewModelScope.launch {
-            try {
-                userRepository.saveProfile(profile)
-                _effects.send(OnboardingEffect.NavigateToDashboard)
-            } catch (error: CancellationException) {
-                throw error
-            } catch (error: Exception) {
-                _uiState.update { it.copy(isSaving = false) }
-                _effects.send(OnboardingEffect.SaveFailed)
-            }
-        }
-    }
-
     private fun recomputeBmiPreview() {
         _uiState.update { state ->
-            val weight = state.weightInput.toDoubleOrNull()
-            val height = state.heightInput.toDoubleOrNull()
-
-            val preview = if (
-                weight != null && weight in OnboardingLimit.WEIGHT_MIN.value..OnboardingLimit.WEIGHT_MAX.value &&
-                height != null && height in OnboardingLimit.HEIGHT_MIN.value..OnboardingLimit.HEIGHT_MAX.value
-            ) {
-                calculateBmi(weight, height)
-            } else {
-                null
-            }
-
-            state.copy(bmiPreview = preview)
+            state.copy(
+                bmiPreview = getBmiPreview(state.toDraft())
+            )
         }
     }
 
     private fun recomputeTdeePreview() {
         _uiState.update { state ->
-            val profile = state.toUserProfileOrNull()
             state.copy(
-                tdeePreview = profile?.let { calculateTdee(it) }
+                tdeePreview = getTdeePreview(state.toDraft())
             )
         }
     }
 
-    private fun OnboardingUiState.toUserProfileOrNull(): UserProfile? {
-        val validName = name.trim().takeIf { it.isNotEmpty() } ?: return null
-        val validBirthDate = birthDate ?: return null
-        val validGender = gender ?: return null
-        val validWeight = weightInput.toDoubleOrNull()
-            ?.takeIf { it in OnboardingLimit.WEIGHT_MIN.value..OnboardingLimit.WEIGHT_MAX.value }
-            ?: return null
-        val validHeight = heightInput.toDoubleOrNull()
-            ?.takeIf { it in OnboardingLimit.HEIGHT_MIN.value..OnboardingLimit.HEIGHT_MAX.value }
-            ?: return null
-        val validActivity = activityLevel ?: return null
-        val validGoal = goal ?: return null
+    private fun finishOnboarding() {
+        if (_uiState.value.isSaving) return
 
-        return UserProfile(
-            name = validName,
-            birthDate = validBirthDate,
-            gender = validGender,
-            weightKg = validWeight,
-            heightCm = validHeight,
-            activityLevel = validActivity,
-            goal = validGoal
-        )
-    }
+        _uiState.update {
+            it.copy(isSaving = true)
+        }
 
-    private fun validateCurrentStep(
-        state: OnboardingUiState,
-        today: LocalDate = LocalDate.now()
-    ): Map<OnboardingField, ValidationError> = buildMap {
-        when (state.currentStep) {
-            OnboardingStep.NAME -> {
-                when {
-                    state.name.isBlank() -> put(OnboardingField.NAME, ValidationError.REQUIRED)
-                    state.name.trim().length > 50 ->
-                        put(OnboardingField.NAME, ValidationError.NAME_TOO_LONG)
+        viewModelScope.launch {
+            try {
+                when (
+                    val result = completeOnboarding(
+                        _uiState.value.toDraft()
+                    )
+                ) {
+                    CompleteOnboardingResult.Success -> {
+                        _effects.send(
+                            OnboardingEffect.NavigateToDashboard
+                        )
+                    }
+
+                    is CompleteOnboardingResult.InvalidData -> {
+                        val firstInvalidStep =
+                            findFirstInvalidStep(result.errors)
+
+                        _uiState.update {
+                            it.copy(
+                                currentStep = firstInvalidStep,
+                                errors = result.errors,
+                                isSaving = false
+                            )
+                        }
+                    }
                 }
-            }
-
-            OnboardingStep.PERSONAL_INFO -> {
-                val birthDate = state.birthDate
-                when {
-                    birthDate == null ->
-                        put(OnboardingField.BIRTH_DATE, ValidationError.REQUIRED)
-
-                    birthDate.isAfter(today) ->
-                        put(OnboardingField.BIRTH_DATE, ValidationError.BIRTH_DATE_IN_FUTURE)
-
-                    calculateAge(birthDate, today) !in OnboardingLimit.AGE_MIN.value.toInt() ..OnboardingLimit.AGE_MAX.value.toInt() ->
-                        put(OnboardingField.BIRTH_DATE, ValidationError.AGE_OUT_OF_RANGE)
-                }
-                if (state.gender == null) {
-                    put(OnboardingField.GENDER, ValidationError.REQUIRED)
-                }
-            }
-
-            OnboardingStep.BODY_METRICS -> {
-                val weight = state.weightInput.toDoubleOrNull()
-                val height = state.heightInput.toDoubleOrNull()
-
-                when {
-                    state.weightInput.isBlank() ->
-                        put(OnboardingField.WEIGHT, ValidationError.REQUIRED)
-
-                    weight == null ->
-                        put(OnboardingField.WEIGHT, ValidationError.INVALID_NUMBER)
-
-                    weight !in OnboardingLimit.WEIGHT_MIN.value..OnboardingLimit.WEIGHT_MAX.value ->
-                        put(OnboardingField.WEIGHT, ValidationError.WEIGHT_OUT_OF_RANGE)
+            } catch (error: CancellationException) {
+                throw error
+            } catch (error: Exception) {
+                _uiState.update {
+                    it.copy(isSaving = false)
                 }
 
-                when {
-                    state.heightInput.isBlank() ->
-                        put(OnboardingField.HEIGHT, ValidationError.REQUIRED)
-
-                    height == null ->
-                        put(OnboardingField.HEIGHT, ValidationError.INVALID_NUMBER)
-
-                    height !in OnboardingLimit.HEIGHT_MIN.value ..OnboardingLimit.HEIGHT_MAX.value ->
-                        put(OnboardingField.HEIGHT, ValidationError.HEIGHT_OUT_OF_RANGE)
-                }
-            }
-
-            OnboardingStep.ACTIVITY_LEVEL -> {
-                if (state.activityLevel == null) {
-                    put(OnboardingField.ACTIVITY_LEVEL, ValidationError.REQUIRED)
-                }
-            }
-
-            OnboardingStep.GOAL -> {
-                if (state.goal == null) {
-                    put(OnboardingField.GOAL, ValidationError.REQUIRED)
-                }
+                _effects.send(
+                    OnboardingEffect.SaveFailed
+                )
             }
         }
     }
 
-    private fun validateAllFields(
-        state: OnboardingUiState,
-        today: LocalDate = LocalDate.now()
-    ): Map<OnboardingField, ValidationError> =
-        OnboardingStep.entries
-            .flatMap { step ->
-                validateCurrentStep(
-                    state = state.copy(currentStep = step),
-                    today = today
-                ).entries
-            }
-            .associate { it.key to it.value }
+    private val OnboardingStep.fields: Set<OnboardingField>
+        get() = when (this) {
+            OnboardingStep.NAME -> setOf(
+                OnboardingField.NAME
+            )
+
+            OnboardingStep.PERSONAL_INFO -> setOf(
+                OnboardingField.BIRTH_DATE,
+                OnboardingField.GENDER
+            )
+
+            OnboardingStep.BODY_METRICS -> setOf(
+                OnboardingField.WEIGHT,
+                OnboardingField.HEIGHT
+            )
+
+            OnboardingStep.ACTIVITY_LEVEL -> setOf(
+                OnboardingField.ACTIVITY_LEVEL
+            )
+
+            OnboardingStep.GOAL -> setOf(
+                OnboardingField.GOAL
+            )
+        }
+
+    private fun findFirstInvalidStep(
+        errors: Map<OnboardingField, OnboardingValidationError>
+    ): OnboardingStep =
+        OnboardingStep.entries.first { step ->
+            step.fields.any(errors::containsKey)
+        }
 
     private fun normalizeDecimalInput(value: String): String =
         value.replace(',', '.')

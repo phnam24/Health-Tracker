@@ -2,14 +2,15 @@ package com.example.healthtracker.presentation.onboarding.ui
 
 import androidx.annotation.StringRes
 import com.example.healthtracker.R
+import com.example.healthtracker.domain.model.OnboardingValidationError
 
 @StringRes
-fun ValidationError.toStringRes(): Int = when (this) {
-    ValidationError.REQUIRED -> R.string.error_required
-    ValidationError.NAME_TOO_LONG -> R.string.error_name_too_long
-    ValidationError.BIRTH_DATE_IN_FUTURE -> R.string.error_birth_date_future
-    ValidationError.AGE_OUT_OF_RANGE -> R.string.error_age_range
-    ValidationError.INVALID_NUMBER -> R.string.error_invalid_number
-    ValidationError.WEIGHT_OUT_OF_RANGE -> R.string.error_weight_range
-    ValidationError.HEIGHT_OUT_OF_RANGE -> R.string.error_height_range
+fun OnboardingValidationError.toStringRes(): Int = when (this) {
+    OnboardingValidationError.REQUIRED -> R.string.error_required
+    OnboardingValidationError.NAME_TOO_LONG -> R.string.error_name_too_long
+    OnboardingValidationError.BIRTH_DATE_IN_FUTURE -> R.string.error_birth_date_future
+    OnboardingValidationError.AGE_OUT_OF_RANGE -> R.string.error_age_range
+    OnboardingValidationError.INVALID_NUMBER -> R.string.error_invalid_number
+    OnboardingValidationError.WEIGHT_OUT_OF_RANGE -> R.string.error_weight_range
+    OnboardingValidationError.HEIGHT_OUT_OF_RANGE -> R.string.error_height_range
 }
