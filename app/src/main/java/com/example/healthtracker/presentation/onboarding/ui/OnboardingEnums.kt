@@ -34,3 +34,10 @@ enum class ValidationError {
     WEIGHT_OUT_OF_RANGE,
     HEIGHT_OUT_OF_RANGE
 }
+
+enum class OnboardingLimit(val value: Double) {
+    WEIGHT_MIN(20.0),
+    WEIGHT_MAX(300.0),
+    HEIGHT_MIN(100.0),
+    HEIGHT_MAX(250.0)
+}

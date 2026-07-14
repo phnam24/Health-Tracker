@@ -1,15 +1,22 @@
 package com.example.healthtracker.presentation.onboarding.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -26,6 +33,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -44,6 +52,7 @@ import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingVie
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun OnboardingRoute(
     onCompleted: () -> Unit,
@@ -82,7 +91,7 @@ fun OnboardingScreen(
                 current = uiState.currentStep.position,
                 total = OnboardingStep.entries.size,
                 showBack = !uiState.currentStep.isFirst,
-                onBack = { onEvent(OnboardingEvent.BackClicked) }
+                onEvent = { onEvent(OnboardingEvent.BackClicked) }
             )
         },
         snackbarHost = { SnackbarHost(snackbarHostState) }
@@ -134,7 +143,7 @@ fun OnboardingHeader(
     current: Int,
     total: Int,
     showBack: Boolean = true,
-    onBack: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -142,17 +151,26 @@ fun OnboardingHeader(
             .padding(AppDimensions.SpacingMediumLarge),
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .defaultMinSize(minHeight = AppDimensions.SpacingDoubleExtraLarge),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (showBack) {
-                IconButton(
-                    onClick = { onBack }
-                ) {
+            Box(
+                modifier = Modifier
+                    .wrapContentSize()
+                    .align(Alignment.CenterVertically)
+            ) {
+                if (showBack) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Default.ArrowBack,
                         contentDescription = "Back icon",
+                        modifier = Modifier
+                            .clickable { onEvent(OnboardingEvent.BackClicked) }
+                            .padding(AppDimensions.SpacingExtraSmall)
                     )
+                } else {
+                    Spacer(modifier = Modifier.size(AppDimensions.SpacingDoubleExtraLarge))
                 }
             }
 
@@ -161,11 +179,14 @@ fun OnboardingHeader(
             Text(
                 text = stringResource(R.string.onboarding_step, current, total),
                 style = MaterialTheme.typography.labelLarge,
-                color = OnSurfaceVariantLight
+                color = OnSurfaceVariantLight,
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .padding(AppDimensions.SpacingExtraSmall)
             )
         }
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
 
         StepProgressBar(
             currentStep = current,

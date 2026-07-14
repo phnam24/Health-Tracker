@@ -34,6 +34,8 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.healthtracker.R
 import com.example.healthtracker.presentation.components.AppTextField
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
+import com.example.healthtracker.presentation.onboarding.ui.OnboardingField
+import com.example.healthtracker.presentation.onboarding.ui.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.ControlShape
@@ -43,7 +45,6 @@ import com.example.healthtracker.presentation.theme.OnBackgroundLight
 import com.example.healthtracker.presentation.theme.OnSecondaryLight
 import com.example.healthtracker.presentation.theme.OnSurfaceVariantDark
 import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
-import com.example.healthtracker.presentation.theme.OutlineDark
 
 @Composable
 fun NameStep(
@@ -51,9 +52,7 @@ fun NameStep(
     onEvent: (OnboardingEvent) -> Unit
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(AppDimensions.SpacingMedium),
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center
     ) {
         NameStepHeader()
@@ -151,6 +150,8 @@ fun NameStepInputField(
             label = stringResource(R.string.onboarding_name_label),
             placeholder = stringResource(R.string.onboarding_name_placeholder),
             leadingIcon = Icons.Default.Person,
+            isError = uiState.errors.isNotEmpty(),
+            supportingText = uiState.errors[OnboardingField.NAME]?.let { stringResource(it.toStringRes()) }
         )
     }
 }
