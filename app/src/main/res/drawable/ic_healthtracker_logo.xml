@@ -7,7 +7,7 @@
 
     <!-- Heart with a negative-space pocket reserved for the leaf. -->
     <path
-        android:fillColor="#4CAF50"
+        android:fillColor="#22C55E"
         android:fillType="evenOdd"
         android:pathData="
             M54,96
@@ -27,7 +27,7 @@
 
     <!-- Leaf inset; the second sub-path creates its transparent vein. -->
     <path
-        android:fillColor="#4CAF50"
+        android:fillColor="#22C55E"
         android:fillType="evenOdd"
         android:pathData="
             M53,87

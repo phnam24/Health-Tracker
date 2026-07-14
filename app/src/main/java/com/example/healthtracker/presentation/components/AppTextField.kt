@@ -69,7 +69,7 @@ fun AppTextField(
             {
                 Text(
                     text = it,
-                    style = MaterialTheme.typography.bodySmall,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
             }
         },
