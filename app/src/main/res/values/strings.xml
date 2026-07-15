@@ -131,14 +131,12 @@
     <string name="tdee_disclaimer">Kết quả chỉ mang tính tham khảo và không thay thế tư vấn từ chuyên gia y tế.</string>
 
     <!-- Validation -->
-    <string name="error_required">Vui lòng nhập hoặc chọn thông tin này.</string>
     <string name="error_name_required">Vui lòng nhập họ và tên.</string>
     <string name="error_name_too_long">Tên không được vượt quá 50 ký tự.</string>
     <string name="error_birth_date_required">Vui lòng chọn ngày sinh.</string>
     <string name="error_birth_date_future">Ngày sinh không thể ở tương lai.</string>
     <string name="error_age_range">Độ tuổi phải từ 10 đến 100.</string>
     <string name="error_gender_required">Vui lòng chọn giới tính.</string>
-    <string name="error_invalid_number">Vui lòng nhập một số hợp lệ.</string>
     <string name="error_weight_required">Vui lòng nhập cân nặng.</string>
     <string name="error_weight_range">Cân nặng phải từ 20 đến 300 kg.</string>
     <string name="error_height_required">Vui lòng nhập chiều cao.</string>
@@ -150,5 +148,164 @@
     <!-- Accessibility -->
     <string name="content_description_back">Quay lại bước trước</string>
     <string name="content_description_selected">Đã chọn</string>
+
+    <!-- Common -->
+    <string name="common_kcal">kcal</string>
+    <string name="common_loading">Đang tải dữ liệu…</string>
+    <string name="common_retry">Thử lại</string>
+    <string name="common_cancel">Hủy</string>
+    <string name="common_close">Đóng</string>
+    <string name="common_save">Lưu</string>
+    <string name="common_add">Thêm</string>
+    <string name="common_delete">Xóa</string>
+    <string name="common_undo">Hoàn tác</string>
+    <string name="common_today">Hôm nay</string>
+    <string name="common_previous_day">Ngày trước</string>
+    <string name="common_next_day">Ngày sau</string>
+    <string name="common_select_date">Chọn ngày</string>
+    <string name="common_no_data">Chưa có dữ liệu</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Tổng quan</string>
+    <string name="dashboard_greeting">Xin chào, %1$s!</string>
+    <string name="dashboard_today_summary">Tổng quan hôm nay</string>
+
+    <string name="dashboard_goal">Mục tiêu</string>
+    <string name="dashboard_eaten">Đã nạp</string>
+    <string name="dashboard_burned">Đã tiêu thụ</string>
+    <string name="dashboard_remaining">Còn lại</string>
+    <string name="dashboard_balance">Cân bằng</string>
+
+    <string name="dashboard_remaining_value">%1$d kcal còn lại</string>
+    <string name="dashboard_over_value">Vượt %1$d kcal</string>
+    <string name="dashboard_balance_value">%1$d kcal</string>
+
+    <string name="dashboard_advice_need_more">
+        Bạn còn %1$d kcal cho mục tiêu hôm nay
+    </string>
+    <string name="dashboard_advice_on_target">
+        Bạn đang rất gần mục tiêu hôm nay
+    </string>
+    <string name="dashboard_advice_over">
+        Bạn đã vượt %1$d kcal, hãy cân đối bữa ăn hoặc vận động thêm
+    </string>
+
+    <string name="dashboard_shortcuts">Thao tác nhanh</string>
+    <string name="dashboard_add_meal">Thêm bữa ăn</string>
+    <string name="dashboard_add_activity">Thêm hoạt động</string>
+
+    <string name="dashboard_profile_missing_title">
+        Chưa tìm thấy hồ sơ
+    </string>
+    <string name="dashboard_profile_missing_message">
+        Vui lòng hoàn tất hồ sơ để xem mục tiêu calo
+    </string>
+    <string name="dashboard_load_failed">
+        Không thể tải dữ liệu tổng quan
+    </string>
+
+    <!-- Dashboard accessibility -->
+    <string name="cd_dashboard_calorie_progress">
+        Tiến độ calo: đã nạp %1$d trên mục tiêu %2$d kcal
+    </string>
+    <string name="cd_open_meal_diary">Mở nhật ký bữa ăn</string>
+    <string name="cd_open_activity_log">Mở nhật ký hoạt động</string>
+
+    <!-- Diary -->
+    <string name="diary_title">Nhật ký bữa ăn</string>
+    <string name="diary_day_total">Tổng trong ngày</string>
+    <string name="diary_day_total_value">%1$d / %2$d kcal</string>
+    <string name="diary_goal_unavailable">Chưa có mục tiêu calo</string>
+
+    <string name="meal_breakfast">Bữa sáng</string>
+    <string name="meal_lunch">Bữa trưa</string>
+    <string name="meal_dinner">Bữa tối</string>
+    <string name="meal_snack">Bữa phụ</string>
+
+    <string name="diary_empty_meal">Chưa có món nào</string>
+    <string name="diary_add_food">Thêm món</string>
+    <string name="diary_add_food_to_meal">Thêm vào %1$s</string>
+    <string name="diary_quantity_unit">%1$s × %2$s</string>
+    <string name="diary_entry_calories">%1$d kcal</string>
+
+    <string name="diary_load_failed">
+        Không thể tải nhật ký bữa ăn
+    </string>
+    <string name="diary_delete_failed">
+        Không thể xóa món ăn
+    </string>
+    <string name="diary_restore_failed">
+        Không thể hoàn tác thao tác xóa
+    </string>
+    <string name="diary_entry_deleted">Đã xóa món ăn</string>
+
+    <!-- Add food sheet -->
+    <string name="add_food_title">Thêm món ăn</string>
+    <string name="add_food_search_hint">Tìm món ăn…</string>
+    <string name="add_food_search_empty">
+        Không tìm thấy món phù hợp
+    </string>
+    <string name="add_food_popular">Món ăn phổ biến</string>
+    <string name="add_food_results">Kết quả tìm kiếm</string>
+    <string name="add_food_select_prompt">
+        Chọn một món để nhập số lượng
+    </string>
+    <string name="add_food_selected">Món đã chọn</string>
+    <string name="add_food_quantity">Số lượng</string>
+    <string name="add_food_quantity_hint">Ví dụ: 1,5</string>
+    <string name="add_food_calories_per_unit">%1$d kcal/%2$s</string>
+    <string name="add_food_calculation">
+        %1$s × %2$d = %3$d kcal
+    </string>
+    <string name="add_food_confirm">Thêm món</string>
+    <string name="add_food_submitting">Đang thêm…</string>
+    <string name="add_food_failed">
+        Không thể thêm món ăn. Vui lòng thử lại.
+    </string>
+
+    <!-- Quantity stepper accessibility -->
+    <string name="cd_decrease_quantity">Giảm số lượng</string>
+    <string name="cd_increase_quantity">Tăng số lượng</string>
+    <string name="cd_delete_meal_entry">Xóa %1$s khỏi nhật ký</string>
+    <string name="cd_previous_day">Xem ngày trước</string>
+    <string name="cd_next_day">Xem ngày sau</string>
+    <string name="cd_open_date_picker">Mở bộ chọn ngày</string>
+
+    <!-- Custom food -->
+    <string name="custom_food_open">Tự nhập món mới</string>
+    <string name="custom_food_title">Tạo món ăn mới</string>
+    <string name="custom_food_name">Tên món</string>
+    <string name="custom_food_name_hint">Ví dụ: Cơm gà nhà làm</string>
+    <string name="custom_food_calories">Calo mỗi đơn vị</string>
+    <string name="custom_food_calories_hint">Ví dụ: 350</string>
+    <string name="custom_food_unit">Đơn vị</string>
+    <string name="custom_food_unit_hint">Ví dụ: phần, tô, ly</string>
+    <string name="custom_food_save_and_add">Lưu và thêm vào bữa</string>
+    <string name="custom_food_save_failed">
+        Không thể lưu món mới. Vui lòng thử lại.
+    </string>
+
+    <!-- Validation -->
+    <string name="error_required">
+        Vui lòng nhập thông tin này
+    </string>
+    <string name="error_invalid_number">
+        Vui lòng nhập một số hợp lệ
+    </string>
+    <string name="error_food_required">
+        Vui lòng chọn một món ăn
+    </string>
+    <string name="error_quantity_required">
+        Vui lòng nhập số lượng
+    </string>
+    <string name="error_quantity_invalid">
+        Số lượng không hợp lệ
+    </string>
+    <string name="error_quantity_out_of_range">
+        Số lượng phải lớn hơn 0 và không vượt quá 100
+    </string>
+    <string name="error_custom_calories_out_of_range">
+        Calo phải từ 1 đến 10.000 kcal
+    </string>
 
 </resources>
