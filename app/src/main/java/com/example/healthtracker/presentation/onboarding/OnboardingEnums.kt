@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.onboarding.ui
+package com.example.healthtracker.presentation.onboarding
 
 enum class OnboardingStep {
     NAME,

@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.onboarding.ui
+package com.example.healthtracker.presentation.onboarding
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons

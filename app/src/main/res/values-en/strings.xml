@@ -165,27 +165,27 @@
 
     <!-- Dashboard -->
     <string name="dashboard_title">Overview</string>
-    <string name="dashboard_greeting">Hello, %1$s!</string>
-    <string name="dashboard_today_summary">Today&apos;s overview</string>
+    <string name="dashboard_greeting">Hello, %1$s 👋</string>
+    <string name="dashboard_today_summary">Today\'s overview</string>
 
     <string name="dashboard_goal">Goal</string>
     <string name="dashboard_eaten">Eaten</string>
     <string name="dashboard_burned">Burned</string>
     <string name="dashboard_remaining">Remaining</string>
-    <string name="dashboard_balance">Balance</string>
+    <string name="dashboard_balance">Net Calories</string>
 
     <string name="dashboard_remaining_value">%1$d kcal remaining</string>
     <string name="dashboard_over_value">%1$d kcal over</string>
     <string name="dashboard_balance_value">%1$d kcal</string>
 
     <string name="dashboard_advice_need_more">
-        You have %1$d kcal remaining for today&apos;s goal
+        You have %1$d kcal remaining for today\'s goal
     </string>
     <string name="dashboard_advice_on_target">
-        You&apos;re very close to today&apos;s goal
+        You\'re very close to today\'s goal
     </string>
     <string name="dashboard_advice_over">
-        You&apos;re %1$d kcal over your goal. Consider balancing your meals or adding some activity
+        You\'re %1$d kcal over your goal. Consider balancing your meals or adding some activity
     </string>
 
     <string name="dashboard_shortcuts">Quick actions</string>

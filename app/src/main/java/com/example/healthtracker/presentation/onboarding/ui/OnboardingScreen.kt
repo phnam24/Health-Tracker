@@ -37,6 +37,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.healthtracker.R
 import com.example.healthtracker.presentation.components.PrimaryButton
 import com.example.healthtracker.presentation.components.StepProgressBar
+import com.example.healthtracker.presentation.onboarding.OnboardingStep
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.ui.step.ActivityLevelStep
 import com.example.healthtracker.presentation.onboarding.ui.step.BodyMetricsStep

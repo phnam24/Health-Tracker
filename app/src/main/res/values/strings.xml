@@ -2,7 +2,7 @@
 
 <resources>
     <string name="app_name">Health Tracker Application</string>
-    <string name="tab_dashboard">Dashboard</string>
+    <string name="tab_dashboard">Tổng quan</string>
     <string name="tab_diary">Bữa ăn</string>
     <string name="tab_activity">Hoạt động</string>
     <string name="tab_statistics">Thống kê</string>
@@ -167,14 +167,14 @@
 
     <!-- Dashboard -->
     <string name="dashboard_title">Tổng quan</string>
-    <string name="dashboard_greeting">Xin chào, %1$s!</string>
+    <string name="dashboard_greeting">Xin chào, %1$s 👋</string>
     <string name="dashboard_today_summary">Tổng quan hôm nay</string>
 
     <string name="dashboard_goal">Mục tiêu</string>
     <string name="dashboard_eaten">Đã nạp</string>
     <string name="dashboard_burned">Đã tiêu thụ</string>
     <string name="dashboard_remaining">Còn lại</string>
-    <string name="dashboard_balance">Cân bằng</string>
+    <string name="dashboard_balance">Thực nạp</string>
 
     <string name="dashboard_remaining_value">%1$d kcal còn lại</string>
     <string name="dashboard_over_value">Vượt %1$d kcal</string>

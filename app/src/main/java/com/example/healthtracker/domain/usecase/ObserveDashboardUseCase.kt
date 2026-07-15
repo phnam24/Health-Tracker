@@ -1,5 +1,7 @@
 package com.example.healthtracker.domain.usecase
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.healthtracker.domain.model.DashboardData
 import com.example.healthtracker.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
@@ -12,6 +14,7 @@ class ObserveDashboardUseCase @Inject constructor(
     private val observeDailySummary: ObserveDailySummaryUseCase,
     private val buildDailyAdvice: BuildDailyAdviceUseCase
 ) {
+    @RequiresApi(Build.VERSION_CODES.O)
     operator fun invoke(date: LocalDate): Flow<DashboardData?> =
         combine(
             userRepository.observeProfile(),

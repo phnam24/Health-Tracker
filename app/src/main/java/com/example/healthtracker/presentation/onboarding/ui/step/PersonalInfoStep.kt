@@ -30,7 +30,7 @@ import com.example.healthtracker.presentation.components.AppDatePickerField
 import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
-import com.example.healthtracker.presentation.onboarding.ui.toStringRes
+import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.ControlShape
