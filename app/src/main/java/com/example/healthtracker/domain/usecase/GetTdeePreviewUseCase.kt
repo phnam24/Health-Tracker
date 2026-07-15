@@ -1,10 +1,9 @@
-package com.example.healthtracker.domain.usecase.onboarding
+package com.example.healthtracker.domain.usecase
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.healthtracker.domain.model.OnboardingDraft
 import com.example.healthtracker.domain.model.TdeeBreakdown
-import com.example.healthtracker.domain.usecase.calculate.CalculateTdeeUseCase
 import javax.inject.Inject
 
 @RequiresApi(Build.VERSION_CODES.O)
