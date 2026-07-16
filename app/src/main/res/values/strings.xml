@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
     <string name="app_name">Health Tracker Application</string>
+
+    <!-- Bottom navigation -->
     <string name="tab_dashboard">Tổng quan</string>
     <string name="tab_diary">Bữa ăn</string>
     <string name="tab_activity">Hoạt động</string>
@@ -22,23 +23,19 @@
     <string name="action_save">Lưu</string>
     <string name="action_saving">Đang lưu…</string>
 
-    <!-- Progress -->
+    <!-- Onboarding progress -->
     <string name="onboarding_step">Bước %1$d/%2$d</string>
     <string name="onboarding_progress_description">Đã hoàn thành %1$d trên %2$d bước</string>
 
     <!-- Welcome / Name step -->
     <string name="onboarding_welcome_title">Chào mừng đến với Health Tracker!</string>
     <string name="onboarding_welcome_description">Hãy dành một chút thời gian để thiết lập hồ sơ sức khỏe cá nhân.</string>
-
     <string name="onboarding_benefit_tracking_title">Theo dõi dễ dàng</string>
     <string name="onboarding_benefit_tracking_description">Ghi lại dinh dưỡng và hoạt động hằng ngày.</string>
-
     <string name="onboarding_benefit_insight_title">Hiểu rõ cơ thể</string>
     <string name="onboarding_benefit_insight_description">Theo dõi BMI, calo và tiến trình sức khỏe.</string>
-
     <string name="onboarding_benefit_goal_title">Đạt mục tiêu</string>
     <string name="onboarding_benefit_goal_description">Nhận mục tiêu calo phù hợp với nhu cầu của bạn.</string>
-
     <string name="onboarding_name_title">Bạn tên là gì?</string>
     <string name="onboarding_name_description">Cung cấp họ và tên giúp chúng tôi cá nhân hóa trải nghiệm của bạn.</string>
     <string name="onboarding_name_label">Họ và tên</string>
@@ -47,12 +44,10 @@
     <!-- Personal information step -->
     <string name="onboarding_personal_info_title">Thông tin cá nhân</string>
     <string name="onboarding_personal_info_description">Thông tin này được dùng để tính nhu cầu năng lượng của bạn.</string>
-
     <string name="onboarding_birth_date_label">Ngày sinh</string>
     <string name="onboarding_birth_date_placeholder">Chọn ngày sinh</string>
     <string name="onboarding_birth_date_dialog_title">Chọn ngày sinh</string>
     <string name="onboarding_age_value">Bạn hiện tại đang %1$d tuổi</string>
-
     <string name="onboarding_gender_label">Giới tính sinh học</string>
     <string name="onboarding_gender_description">Được sử dụng trong công thức tính BMR và TDEE.</string>
     <string name="gender_male">Nam</string>
@@ -61,7 +56,6 @@
     <!-- Body metrics step -->
     <string name="onboarding_body_metrics_title">Chỉ số cơ thể</string>
     <string name="onboarding_body_metrics_description">Nhập cân nặng và chiều cao hiện tại của bạn.</string>
-
     <string name="onboarding_weight_label">Cân nặng</string>
     <string name="onboarding_weight_placeholder">Ví dụ: 70</string>
     <string name="onboarding_height_label">Chiều cao</string>
@@ -76,7 +70,6 @@
     <string name="bmi_category_normal">Bình thường</string>
     <string name="bmi_category_overweight">Thừa cân</string>
     <string name="bmi_category_obese">Béo phì</string>
-
     <string name="bmi_underweight_description">BMI của bạn thấp hơn khoảng khuyến nghị.</string>
     <string name="bmi_normal_description">BMI của bạn nằm trong khoảng khỏe mạnh.</string>
     <string name="bmi_overweight_description">BMI của bạn cao hơn khoảng khuyến nghị.</string>
@@ -85,32 +78,24 @@
     <!-- Activity level step -->
     <string name="onboarding_activity_title">Mức độ vận động</string>
     <string name="onboarding_activity_description">Chọn mức mô tả gần đúng nhất hoạt động thường ngày của bạn.</string>
-
     <string name="activity_sedentary_title">Ít vận động</string>
     <string name="activity_sedentary_description">Hầu như không tập luyện</string>
-
     <string name="activity_light_title">Vận động nhẹ</string>
     <string name="activity_light_description">Tập luyện 1–3 buổi mỗi tuần</string>
-
     <string name="activity_moderate_title">Vận động vừa</string>
     <string name="activity_moderate_description">Tập luyện 3–5 buổi mỗi tuần</string>
-
     <string name="activity_active_title">Vận động nhiều</string>
     <string name="activity_active_description">Tập luyện 6–7 buổi mỗi tuần</string>
-
     <string name="activity_very_active_title">Rất năng động</string>
     <string name="activity_very_active_description">Vận động cường độ cao hằng ngày</string>
 
     <!-- Goal step -->
     <string name="onboarding_goal_title">Mục tiêu của bạn</string>
     <string name="onboarding_goal_description">Chọn mục tiêu để chúng tôi đề xuất lượng calo phù hợp.</string>
-
     <string name="goal_lose_weight_title">Giảm cân</string>
     <string name="goal_lose_weight_description">Giảm cân từ từ và bền vững</string>
-
     <string name="goal_maintain_weight_title">Duy trì cân nặng</string>
     <string name="goal_maintain_weight_description">Giữ cân nặng hiện tại</string>
-
     <string name="goal_gain_weight_title">Tăng cân</string>
     <string name="goal_gain_weight_description">Tăng cân có kiểm soát</string>
 
@@ -120,17 +105,15 @@
     <string name="tdee_maintenance_label">Calo duy trì</string>
     <string name="tdee_goal_adjustment_label">Điều chỉnh theo mục tiêu</string>
     <string name="tdee_target_label">Mục tiêu mỗi ngày</string>
-
     <string name="calories_value">%1$d kcal</string>
     <string name="calories_per_day_unit">kcal/ngày</string>
     <string name="calories_per_day_value">%1$d kcal/ngày</string>
     <string name="calories_adjustment_positive">+%1$d kcal</string>
     <string name="calories_adjustment_negative">%1$d kcal</string>
     <string name="calories_adjustment_none">Không điều chỉnh</string>
-
     <string name="tdee_disclaimer">Kết quả chỉ mang tính tham khảo và không thay thế tư vấn từ chuyên gia y tế.</string>
 
-    <!-- Validation -->
+    <!-- Onboarding validation -->
     <string name="error_name_required">Vui lòng nhập họ và tên.</string>
     <string name="error_name_too_long">Tên không được vượt quá 50 ký tự.</string>
     <string name="error_birth_date_required">Vui lòng chọn ngày sinh.</string>
@@ -145,7 +128,7 @@
     <string name="error_goal_required">Vui lòng chọn mục tiêu.</string>
     <string name="error_save_profile">Không thể lưu hồ sơ. Vui lòng thử lại.</string>
 
-    <!-- Accessibility -->
+    <!-- Onboarding accessibility -->
     <string name="content_description_back">Quay lại bước trước</string>
     <string name="content_description_selected">Đã chọn</string>
 
@@ -168,46 +151,41 @@
     <!-- Dashboard -->
     <string name="dashboard_title">Tổng quan</string>
     <string name="dashboard_greeting">Xin chào, %1$s 👋</string>
+    <string name="dashboard_date_format">EEEE, dd/MM/yyyy</string>
     <string name="dashboard_today_summary">Tổng quan hôm nay</string>
-
     <string name="dashboard_goal">Mục tiêu</string>
     <string name="dashboard_eaten">Đã nạp</string>
-    <string name="dashboard_burned">Đã tiêu thụ</string>
+    <string name="dashboard_burned">Tiêu thụ</string>
     <string name="dashboard_remaining">Còn lại</string>
-    <string name="dashboard_balance">Thực nạp</string>
-
     <string name="dashboard_remaining_value">%1$d kcal còn lại</string>
     <string name="dashboard_over_value">Vượt %1$d kcal</string>
-    <string name="dashboard_balance_value">%1$d kcal</string>
 
-    <string name="dashboard_advice_need_more">
-        Bạn còn %1$d kcal cho mục tiêu hôm nay
-    </string>
-    <string name="dashboard_advice_on_target">
-        Bạn đang rất gần mục tiêu hôm nay
-    </string>
-    <string name="dashboard_advice_over">
-        Bạn đã vượt %1$d kcal, hãy cân đối bữa ăn hoặc vận động thêm
-    </string>
+    <!-- Dashboard analysis -->
+    <string name="dashboard_analysis_title">Phân tích hôm nay</string>
+    <string name="dashboard_goal_progress">mục tiêu đã nạp</string>
+    <string name="dashboard_energy_balance">Năng lượng thực nạp</string>
+    <string name="dashboard_balance_signed_value">%1$+d kcal</string>
+    <string name="dashboard_balance_positive">Nạp nhiều hơn tiêu thụ</string>
+    <string name="dashboard_balance_negative">Tiêu thụ nhiều hơn đã nạp</string>
+    <string name="dashboard_balance_equal">Năng lượng đang cân bằng</string>
+    <string name="dashboard_advice_need_more">Bạn còn %1$d kcal cho mục tiêu hôm nay</string>
+    <string name="dashboard_advice_on_target">Bạn đang rất gần mục tiêu hôm nay</string>
+    <string name="dashboard_advice_completed">Bạn đã hoàn thành mục tiêu hôm nay</string>
+    <string name="dashboard_advice_over">Bạn đã vượt %1$d kcal, hãy cân đối bữa ăn hoặc vận động thêm</string>
 
+    <!-- Dashboard quick actions and states -->
     <string name="dashboard_shortcuts">Thao tác nhanh</string>
     <string name="dashboard_add_meal">Thêm bữa ăn</string>
     <string name="dashboard_add_activity">Thêm hoạt động</string>
-
-    <string name="dashboard_profile_missing_title">
-        Chưa tìm thấy hồ sơ
-    </string>
-    <string name="dashboard_profile_missing_message">
-        Vui lòng hoàn tất hồ sơ để xem mục tiêu calo
-    </string>
-    <string name="dashboard_load_failed">
-        Không thể tải dữ liệu tổng quan
-    </string>
+    <string name="dashboard_profile_missing_title">Chưa tìm thấy hồ sơ</string>
+    <string name="dashboard_profile_missing_message">Vui lòng hoàn tất hồ sơ để xem mục tiêu calo</string>
+    <string name="dashboard_load_failed">Không thể tải dữ liệu tổng quan</string>
 
     <!-- Dashboard accessibility -->
-    <string name="cd_dashboard_calorie_progress">
-        Tiến độ calo: đã nạp %1$d trên mục tiêu %2$d kcal
-    </string>
+    <string name="cd_dashboard_calorie_progress">Tiến độ calo: đã nạp %1$d trên mục tiêu %2$d kcal</string>
+    <string name="cd_dashboard_remaining_calories">Còn lại %1$d kcal</string>
+    <string name="cd_dashboard_analysis">Phân tích năng lượng hôm nay</string>
+    <string name="cd_dashboard_energy_balance">Cân bằng năng lượng: %1$+d kcal</string>
     <string name="cd_open_meal_diary">Mở nhật ký bữa ăn</string>
     <string name="cd_open_activity_log">Mở nhật ký hoạt động</string>
 
@@ -216,52 +194,35 @@
     <string name="diary_day_total">Tổng trong ngày</string>
     <string name="diary_day_total_value">%1$d / %2$d kcal</string>
     <string name="diary_goal_unavailable">Chưa có mục tiêu calo</string>
-
     <string name="meal_breakfast">Bữa sáng</string>
     <string name="meal_lunch">Bữa trưa</string>
     <string name="meal_dinner">Bữa tối</string>
     <string name="meal_snack">Bữa phụ</string>
-
     <string name="diary_empty_meal">Chưa có món nào</string>
     <string name="diary_add_food">Thêm món</string>
     <string name="diary_add_food_to_meal">Thêm vào %1$s</string>
     <string name="diary_quantity_unit">%1$s × %2$s</string>
     <string name="diary_entry_calories">%1$d kcal</string>
-
-    <string name="diary_load_failed">
-        Không thể tải nhật ký bữa ăn
-    </string>
-    <string name="diary_delete_failed">
-        Không thể xóa món ăn
-    </string>
-    <string name="diary_restore_failed">
-        Không thể hoàn tác thao tác xóa
-    </string>
+    <string name="diary_load_failed">Không thể tải nhật ký bữa ăn</string>
+    <string name="diary_delete_failed">Không thể xóa món ăn</string>
+    <string name="diary_restore_failed">Không thể hoàn tác thao tác xóa</string>
     <string name="diary_entry_deleted">Đã xóa món ăn</string>
 
     <!-- Add food sheet -->
     <string name="add_food_title">Thêm món ăn</string>
     <string name="add_food_search_hint">Tìm món ăn…</string>
-    <string name="add_food_search_empty">
-        Không tìm thấy món phù hợp
-    </string>
+    <string name="add_food_search_empty">Không tìm thấy món phù hợp</string>
     <string name="add_food_popular">Món ăn phổ biến</string>
     <string name="add_food_results">Kết quả tìm kiếm</string>
-    <string name="add_food_select_prompt">
-        Chọn một món để nhập số lượng
-    </string>
+    <string name="add_food_select_prompt">Chọn một món để nhập số lượng</string>
     <string name="add_food_selected">Món đã chọn</string>
     <string name="add_food_quantity">Số lượng</string>
     <string name="add_food_quantity_hint">Ví dụ: 1,5</string>
     <string name="add_food_calories_per_unit">%1$d kcal/%2$s</string>
-    <string name="add_food_calculation">
-        %1$s × %2$d = %3$d kcal
-    </string>
+    <string name="add_food_calculation">%1$s × %2$d = %3$d kcal</string>
     <string name="add_food_confirm">Thêm món</string>
     <string name="add_food_submitting">Đang thêm…</string>
-    <string name="add_food_failed">
-        Không thể thêm món ăn. Vui lòng thử lại.
-    </string>
+    <string name="add_food_failed">Không thể thêm món ăn. Vui lòng thử lại.</string>
 
     <!-- Quantity stepper accessibility -->
     <string name="cd_decrease_quantity">Giảm số lượng</string>
@@ -281,31 +242,14 @@
     <string name="custom_food_unit">Đơn vị</string>
     <string name="custom_food_unit_hint">Ví dụ: phần, tô, ly</string>
     <string name="custom_food_save_and_add">Lưu và thêm vào bữa</string>
-    <string name="custom_food_save_failed">
-        Không thể lưu món mới. Vui lòng thử lại.
-    </string>
+    <string name="custom_food_save_failed">Không thể lưu món mới. Vui lòng thử lại.</string>
 
-    <!-- Validation -->
-    <string name="error_required">
-        Vui lòng nhập thông tin này
-    </string>
-    <string name="error_invalid_number">
-        Vui lòng nhập một số hợp lệ
-    </string>
-    <string name="error_food_required">
-        Vui lòng chọn một món ăn
-    </string>
-    <string name="error_quantity_required">
-        Vui lòng nhập số lượng
-    </string>
-    <string name="error_quantity_invalid">
-        Số lượng không hợp lệ
-    </string>
-    <string name="error_quantity_out_of_range">
-        Số lượng phải lớn hơn 0 và không vượt quá 100
-    </string>
-    <string name="error_custom_calories_out_of_range">
-        Calo phải từ 1 đến 10.000 kcal
-    </string>
-
+    <!-- Diary validation -->
+    <string name="error_required">Vui lòng nhập thông tin này</string>
+    <string name="error_invalid_number">Vui lòng nhập một số hợp lệ</string>
+    <string name="error_food_required">Vui lòng chọn một món ăn</string>
+    <string name="error_quantity_required">Vui lòng nhập số lượng</string>
+    <string name="error_quantity_invalid">Số lượng không hợp lệ</string>
+    <string name="error_quantity_out_of_range">Số lượng phải lớn hơn 0 và không vượt quá 100</string>
+    <string name="error_custom_calories_out_of_range">Calo phải từ 1 đến 10.000 kcal</string>
 </resources>

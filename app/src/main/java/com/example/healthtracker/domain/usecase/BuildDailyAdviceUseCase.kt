@@ -12,11 +12,11 @@ class BuildDailyAdviceUseCase @Inject constructor() {
         )
         remaining < -100 -> DailyAdvice(
             DailyAdviceType.OVER,
-            kotlin.math.abs(remaining)
+            remaining
         )
         else -> DailyAdvice(
             DailyAdviceType.ON_TARGET,
-            kotlin.math.abs(remaining)
+            remaining
         )
     }
 }

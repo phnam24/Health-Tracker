@@ -26,6 +26,8 @@ object AppDimensions {
     val ListItemHeight = 60.dp
     val BottomNavigationHeight = 80.dp
     val FabSize = 56.dp
+    val ButtonCardHeight = 64.dp
+    val LargeIconSize = 30.dp
     val StandardIconSize = 24.dp
     val SmallIconSize = 16.dp
     val MinimumTouchTarget = 48.dp
@@ -35,6 +37,7 @@ object AppDimensions {
     // Dashboard and charts
     val CalorieRingSize = 220.dp
     val CalorieRingStrokeWidth = 14.dp
+    val CaloriesRingGapSize = 0.dp
     val ChartHeight = 180.dp
     val ChartBarWidth = 24.dp
     val ChartPointSize = 6.dp
