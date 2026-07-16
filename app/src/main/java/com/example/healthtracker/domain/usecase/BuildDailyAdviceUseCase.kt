@@ -10,10 +10,12 @@ class BuildDailyAdviceUseCase @Inject constructor() {
             DailyAdviceType.NEED_MORE,
             remaining
         )
+
         remaining < -100 -> DailyAdvice(
             DailyAdviceType.OVER,
             remaining
         )
+
         else -> DailyAdvice(
             DailyAdviceType.ON_TARGET,
             remaining

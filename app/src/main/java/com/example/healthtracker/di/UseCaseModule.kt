@@ -3,12 +3,12 @@ package com.example.healthtracker.di
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.healthtracker.domain.repository.UserRepository
+import com.example.healthtracker.domain.usecase.BuildUserProfileUseCase
 import com.example.healthtracker.domain.usecase.CalculateAgeUseCase
 import com.example.healthtracker.domain.usecase.CalculateBmiUseCase
 import com.example.healthtracker.domain.usecase.CalculateBmrUseCase
 import com.example.healthtracker.domain.usecase.CalculateBurnedCaloriesUseCase
 import com.example.healthtracker.domain.usecase.CalculateTdeeUseCase
-import com.example.healthtracker.domain.usecase.BuildUserProfileUseCase
 import com.example.healthtracker.domain.usecase.CompleteOnboardingUseCase
 import com.example.healthtracker.domain.usecase.GetBmiPreviewUseCase
 import com.example.healthtracker.domain.usecase.GetTdeePreviewUseCase

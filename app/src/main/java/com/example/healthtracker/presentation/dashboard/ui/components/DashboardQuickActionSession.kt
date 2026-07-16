@@ -12,9 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.DirectionsRun
-import androidx.compose.material.icons.filled.DirectionsRun
 import androidx.compose.material.icons.filled.Restaurant
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -27,7 +25,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
-import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardEvent
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.BluePrimaryLight
 import com.example.healthtracker.presentation.theme.CaloriesConsumed
@@ -96,7 +93,7 @@ fun QuickActionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    OutlinedCard (
+    OutlinedCard(
         onClick = onClick,
         modifier = modifier.height(AppDimensions.ButtonCardHeight),
         colors = CardDefaults.cardColors(containerColor = containerColor)

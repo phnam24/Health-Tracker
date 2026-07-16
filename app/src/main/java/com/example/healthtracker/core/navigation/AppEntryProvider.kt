@@ -29,7 +29,7 @@ fun appEntryProvider(
 
             Dashboard -> NavEntry(key) {
                 DashboardRoute(
-                    onDiaryNavigate = {backStack.navigate(Diary)},
+                    onDiaryNavigate = { backStack.navigate(Diary) },
                     onActivityNavigate = { backStack.navigate(ActivityLog) }
                 )
             }

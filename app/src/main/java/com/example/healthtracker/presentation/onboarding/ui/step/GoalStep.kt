@@ -22,8 +22,8 @@ import com.example.healthtracker.domain.model.Goal
 import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.components.OptionCard
-import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.getUiData
+import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions

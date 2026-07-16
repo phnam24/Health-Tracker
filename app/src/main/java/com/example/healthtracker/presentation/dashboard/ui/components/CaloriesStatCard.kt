@@ -181,7 +181,7 @@ fun CaloriesStatAdvice(
 
             Spacer(modifier = Modifier.width(AppDimensions.SpacingSmall))
 
-            Column() {
+            Column {
                 Text(
                     text = stringResource(R.string.dashboard_energy_balance),
                     style = MaterialTheme.typography.bodyLarge,

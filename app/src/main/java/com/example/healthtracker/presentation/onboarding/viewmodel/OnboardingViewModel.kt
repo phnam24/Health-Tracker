@@ -16,8 +16,8 @@ import com.example.healthtracker.domain.usecase.CompleteOnboardingUseCase
 import com.example.healthtracker.domain.usecase.GetBmiPreviewUseCase
 import com.example.healthtracker.domain.usecase.GetTdeePreviewUseCase
 import com.example.healthtracker.domain.usecase.ValidateOnboardingUseCase
-import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.OnboardingStep
+import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow

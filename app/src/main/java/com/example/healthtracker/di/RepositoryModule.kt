@@ -21,8 +21,10 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindFoodRepository(impl: FoodRepositoryImpl): FoodRepository
+
     @Binds
     abstract fun bindDiaryRepository(impl: DiaryRepositoryImpl): DiaryRepository
+
     @Binds
     abstract fun bindActivityRepository(impl: ActivityRepositoryImpl): ActivityRepository
 }

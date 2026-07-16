@@ -1,7 +1,5 @@
 package com.example.healthtracker.presentation.dashboard.ui.components
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,14 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailySummary
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.GreenPrimaryLight
 import com.example.healthtracker.presentation.theme.OnSurfaceDark
 import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
-import java.time.LocalDate
 
 @Composable
 fun CaloriesProgressCircle(
