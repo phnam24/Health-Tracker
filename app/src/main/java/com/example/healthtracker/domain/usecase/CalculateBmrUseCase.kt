@@ -1,4 +1,4 @@
-package com.example.healthtracker.domain.usecase.calculate
+package com.example.healthtracker.domain.usecase
 
 import com.example.healthtracker.domain.model.Gender
 

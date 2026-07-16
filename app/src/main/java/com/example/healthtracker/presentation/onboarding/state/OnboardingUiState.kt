@@ -7,7 +7,7 @@ import com.example.healthtracker.domain.model.Goal
 import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.domain.model.OnboardingValidationError
 import com.example.healthtracker.domain.model.TdeeBreakdown
-import com.example.healthtracker.presentation.onboarding.ui.OnboardingStep
+import com.example.healthtracker.presentation.onboarding.OnboardingStep
 import java.time.LocalDate
 
 data class OnboardingUiState(

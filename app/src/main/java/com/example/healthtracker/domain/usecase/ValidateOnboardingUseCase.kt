@@ -1,4 +1,4 @@
-package com.example.healthtracker.domain.usecase.onboarding
+package com.example.healthtracker.domain.usecase
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -6,7 +6,6 @@ import com.example.healthtracker.domain.model.OnboardingDraft
 import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.domain.model.OnboardingPolicy
 import com.example.healthtracker.domain.model.OnboardingValidationError
-import com.example.healthtracker.domain.usecase.calculate.CalculateAgeUseCase
 import java.time.Clock
 import java.time.LocalDate
 import javax.inject.Inject

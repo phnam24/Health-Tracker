@@ -1,4 +1,4 @@
-package com.example.healthtracker.domain.usecase.onboarding
+package com.example.healthtracker.domain.usecase
 
 import com.example.healthtracker.domain.model.OnboardingDraft
 import com.example.healthtracker.domain.model.OnboardingPolicy

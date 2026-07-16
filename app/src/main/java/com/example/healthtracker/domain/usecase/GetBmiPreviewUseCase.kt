@@ -1,9 +1,8 @@
-package com.example.healthtracker.domain.usecase.onboarding
+package com.example.healthtracker.domain.usecase
 
 import com.example.healthtracker.domain.model.BmiResult
 import com.example.healthtracker.domain.model.OnboardingDraft
 import com.example.healthtracker.domain.model.OnboardingPolicy
-import com.example.healthtracker.domain.usecase.calculate.CalculateBmiUseCase
 import javax.inject.Inject
 
 class GetBmiPreviewUseCase @Inject constructor(

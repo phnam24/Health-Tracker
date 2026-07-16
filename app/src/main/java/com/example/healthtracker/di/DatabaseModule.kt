@@ -45,12 +45,16 @@ object DatabaseModule {
 
     @Provides
     fun provideUserProfileDao(db: HealthDatabase) = db.userProfileDao()
+
     @Provides
     fun provideFoodDao(db: HealthDatabase) = db.foodDao()
+
     @Provides
     fun provideActivityTypeDao(db: HealthDatabase) = db.activityTypeDao()
+
     @Provides
     fun provideMealEntryDao(db: HealthDatabase) = db.mealEntryDao()
+
     @Provides
     fun provideActivityEntryDao(db: HealthDatabase) = db.activityEntryDao()
 }

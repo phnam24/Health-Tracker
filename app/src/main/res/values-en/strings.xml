@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Health Tracker Application</string>
-    <string name="tab_dashboard">Dashboard</string>
+
+    <!-- Bottom navigation -->
+    <string name="tab_dashboard">Overview</string>
     <string name="tab_diary">Meals</string>
     <string name="tab_activity">Activity</string>
     <string name="tab_statistics">Statistics</string>
-    <string name="tab_settings">Setting</string>
+    <string name="tab_settings">Settings</string>
 
     <!-- Splash -->
-    <string name="splash_tagline">Eat right - Train smart - Live healthy</string>
+    <string name="splash_tagline">Eat well - Train right - Live healthy</string>
     <string name="splash_version">Version 1.0.0</string>
 
     <!-- Common actions -->
@@ -21,37 +23,31 @@
     <string name="action_save">Save</string>
     <string name="action_saving">Saving…</string>
 
-    <!-- Progress -->
-    <string name="onboarding_step">Step %1$d of %2$d</string>
-    <string name="onboarding_progress_description">%1$d of %2$d steps completed</string>
+    <!-- Onboarding progress -->
+    <string name="onboarding_step">Step %1$d/%2$d</string>
+    <string name="onboarding_progress_description">Completed %1$d of %2$d steps</string>
 
     <!-- Welcome / Name step -->
     <string name="onboarding_welcome_title">Welcome to Health Tracker!</string>
-    <string name="onboarding_welcome_description">Let\'s take a moment to set up your personal health profile.</string>
-
+    <string name="onboarding_welcome_description">Take a moment to set up your personal health profile.</string>
     <string name="onboarding_benefit_tracking_title">Track with ease</string>
-    <string name="onboarding_benefit_tracking_description">Log your daily nutrition and activities.</string>
-
+    <string name="onboarding_benefit_tracking_description">Log your daily nutrition and activity.</string>
     <string name="onboarding_benefit_insight_title">Understand your body</string>
     <string name="onboarding_benefit_insight_description">Monitor your BMI, calories, and health progress.</string>
-
     <string name="onboarding_benefit_goal_title">Reach your goals</string>
     <string name="onboarding_benefit_goal_description">Get a calorie target tailored to your needs.</string>
-
-    <string name="onboarding_name_title">What\'s your name?</string>
-    <string name="onboarding_name_description">Your name helps us personalize your experience.</string>
+    <string name="onboarding_name_title">What is your name?</string>
+    <string name="onboarding_name_description">Your full name helps us personalize your experience.</string>
     <string name="onboarding_name_label">Full name</string>
     <string name="onboarding_name_placeholder">Enter your full name</string>
 
     <!-- Personal information step -->
     <string name="onboarding_personal_info_title">Personal information</string>
     <string name="onboarding_personal_info_description">This information is used to calculate your energy needs.</string>
-
     <string name="onboarding_birth_date_label">Date of birth</string>
     <string name="onboarding_birth_date_placeholder">Select your date of birth</string>
-    <string name="onboarding_birth_date_dialog_title">Select your date of birth</string>
-    <string name="onboarding_age_value">You are %1$d years old</string>
-
+    <string name="onboarding_birth_date_dialog_title">Select date of birth</string>
+    <string name="onboarding_age_value">You are currently %1$d years old</string>
     <string name="onboarding_gender_label">Biological sex</string>
     <string name="onboarding_gender_description">Used in the BMR and TDEE calculations.</string>
     <string name="gender_male">Male</string>
@@ -60,11 +56,10 @@
     <!-- Body metrics step -->
     <string name="onboarding_body_metrics_title">Body measurements</string>
     <string name="onboarding_body_metrics_description">Enter your current weight and height.</string>
-
     <string name="onboarding_weight_label">Weight</string>
-    <string name="onboarding_weight_placeholder">For example: 70</string>
+    <string name="onboarding_weight_placeholder">Example: 70</string>
     <string name="onboarding_height_label">Height</string>
-    <string name="onboarding_height_placeholder">For example: 175</string>
+    <string name="onboarding_height_placeholder">Example: 175</string>
     <string name="unit_kilogram">kg</string>
     <string name="unit_centimeter">cm</string>
 
@@ -75,7 +70,6 @@
     <string name="bmi_category_normal">Normal</string>
     <string name="bmi_category_overweight">Overweight</string>
     <string name="bmi_category_obese">Obese</string>
-
     <string name="bmi_underweight_description">Your BMI is below the recommended range.</string>
     <string name="bmi_normal_description">Your BMI is within the healthy range.</string>
     <string name="bmi_overweight_description">Your BMI is above the recommended range.</string>
@@ -83,35 +77,27 @@
 
     <!-- Activity level step -->
     <string name="onboarding_activity_title">Activity level</string>
-    <string name="onboarding_activity_description">Choose the option that best describes your usual activity.</string>
-
+    <string name="onboarding_activity_description">Select the option that best describes your usual activity.</string>
     <string name="activity_sedentary_title">Sedentary</string>
     <string name="activity_sedentary_description">Little or no exercise</string>
-
     <string name="activity_light_title">Lightly active</string>
-    <string name="activity_light_description">Exercise 1–3 times per week</string>
-
+    <string name="activity_light_description">Exercise 1–3 days per week</string>
     <string name="activity_moderate_title">Moderately active</string>
-    <string name="activity_moderate_description">Exercise 3–5 times per week</string>
-
+    <string name="activity_moderate_description">Exercise 3–5 days per week</string>
     <string name="activity_active_title">Very active</string>
-    <string name="activity_active_description">Exercise 6–7 times per week</string>
-
+    <string name="activity_active_description">Exercise 6–7 days per week</string>
     <string name="activity_very_active_title">Extra active</string>
-    <string name="activity_very_active_description">Intense exercise every day</string>
+    <string name="activity_very_active_description">High-intensity activity every day</string>
 
     <!-- Goal step -->
-    <string name="onboarding_goal_title">What\'s your goal?</string>
-    <string name="onboarding_goal_description">Choose a goal so we can recommend a suitable calorie target.</string>
-
+    <string name="onboarding_goal_title">Your goal</string>
+    <string name="onboarding_goal_description">Select a goal so we can recommend a suitable calorie target.</string>
     <string name="goal_lose_weight_title">Lose weight</string>
     <string name="goal_lose_weight_description">Lose weight gradually and sustainably</string>
-
     <string name="goal_maintain_weight_title">Maintain weight</string>
-    <string name="goal_maintain_weight_description">Keep your current weight</string>
-
+    <string name="goal_maintain_weight_description">Maintain your current weight</string>
     <string name="goal_gain_weight_title">Gain weight</string>
-    <string name="goal_gain_weight_description">Gain weight at a controlled pace</string>
+    <string name="goal_gain_weight_description">Gain weight in a controlled way</string>
 
     <!-- TDEE preview -->
     <string name="tdee_preview_title">Daily energy target</string>
@@ -119,25 +105,21 @@
     <string name="tdee_maintenance_label">Maintenance calories</string>
     <string name="tdee_goal_adjustment_label">Goal adjustment</string>
     <string name="tdee_target_label">Daily target</string>
-
     <string name="calories_value">%1$d kcal</string>
     <string name="calories_per_day_unit">kcal/day</string>
     <string name="calories_per_day_value">%1$d kcal/day</string>
     <string name="calories_adjustment_positive">+%1$d kcal</string>
     <string name="calories_adjustment_negative">%1$d kcal</string>
     <string name="calories_adjustment_none">No adjustment</string>
+    <string name="tdee_disclaimer">These results are for reference only and do not replace advice from a healthcare professional.</string>
 
-    <string name="tdee_disclaimer">These results are estimates and do not replace advice from a healthcare professional.</string>
-
-    <!-- Validation -->
-    <string name="error_required">Please enter or select this information.</string>
+    <!-- Onboarding validation -->
     <string name="error_name_required">Please enter your full name.</string>
     <string name="error_name_too_long">Your name cannot exceed 50 characters.</string>
     <string name="error_birth_date_required">Please select your date of birth.</string>
-    <string name="error_birth_date_future">Your date of birth cannot be in the future.</string>
+    <string name="error_birth_date_future">The date of birth cannot be in the future.</string>
     <string name="error_age_range">Age must be between 10 and 100.</string>
     <string name="error_gender_required">Please select your biological sex.</string>
-    <string name="error_invalid_number">Please enter a valid number.</string>
     <string name="error_weight_required">Please enter your weight.</string>
     <string name="error_weight_range">Weight must be between 20 and 300 kg.</string>
     <string name="error_height_required">Please enter your height.</string>
@@ -146,8 +128,128 @@
     <string name="error_goal_required">Please select your goal.</string>
     <string name="error_save_profile">Unable to save your profile. Please try again.</string>
 
-    <!-- Accessibility -->
+    <!-- Onboarding accessibility -->
     <string name="content_description_back">Go back to the previous step</string>
     <string name="content_description_selected">Selected</string>
 
+    <!-- Common -->
+    <string name="common_kcal">kcal</string>
+    <string name="common_loading">Loading data…</string>
+    <string name="common_retry">Try again</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_close">Close</string>
+    <string name="common_save">Save</string>
+    <string name="common_add">Add</string>
+    <string name="common_delete">Delete</string>
+    <string name="common_undo">Undo</string>
+    <string name="common_today">Today</string>
+    <string name="common_previous_day">Previous day</string>
+    <string name="common_next_day">Next day</string>
+    <string name="common_select_date">Select date</string>
+    <string name="common_no_data">No data yet</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Overview</string>
+    <string name="dashboard_greeting">Hello, %1$s 👋</string>
+    <string name="dashboard_date_format">EEEE, MMMM d, yyyy</string>
+    <string name="dashboard_today_summary">Today’s overview</string>
+    <string name="dashboard_goal">Goal</string>
+    <string name="dashboard_eaten">Consumed</string>
+    <string name="dashboard_burned">Burned</string>
+    <string name="dashboard_remaining">Remaining</string>
+    <string name="dashboard_remaining_value">%1$d kcal remaining</string>
+    <string name="dashboard_over_value">%1$d kcal over</string>
+
+    <!-- Dashboard analysis -->
+    <string name="dashboard_analysis_title">Today’s analysis</string>
+    <string name="dashboard_goal_progress">%1$d%% of goal consumed</string>
+    <string name="dashboard_energy_balance">Energy balance</string>
+    <string name="dashboard_balance_signed_value">%1$+d kcal</string>
+    <string name="dashboard_balance_positive">Intake is higher than calories burned</string>
+    <string name="dashboard_balance_negative">Calories burned are higher than intake</string>
+    <string name="dashboard_balance_equal">Your energy is balanced</string>
+    <string name="dashboard_advice_need_more">You have %1$d kcal remaining for today’s goal</string>
+    <string name="dashboard_advice_on_target">You’re very close to today’s goal</string>
+    <string name="dashboard_advice_completed">You have achieved today’s goal</string>
+    <string name="dashboard_advice_over">You are %1$d kcal over your goal. Balance your meals or add more activity</string>
+
+    <!-- Dashboard quick actions and states -->
+    <string name="dashboard_shortcuts">Quick actions</string>
+    <string name="dashboard_add_meal">Add meal</string>
+    <string name="dashboard_add_activity">Add activity</string>
+    <string name="dashboard_profile_missing_title">Profile not found</string>
+    <string name="dashboard_profile_missing_message">Complete your profile to view your calorie goal</string>
+    <string name="dashboard_load_failed">Unable to load overview data</string>
+
+    <!-- Dashboard accessibility -->
+    <string name="cd_dashboard_calorie_progress">Calorie progress: %1$d consumed out of a %2$d kcal goal</string>
+    <string name="cd_dashboard_remaining_calories">%1$d kcal remaining</string>
+    <string name="cd_dashboard_analysis">Today’s energy analysis</string>
+    <string name="cd_dashboard_energy_balance">Energy balance: %1$+d kcal</string>
+    <string name="cd_open_meal_diary">Open meal diary</string>
+    <string name="cd_open_activity_log">Open activity log</string>
+
+    <!-- Diary -->
+    <string name="diary_title">Meal diary</string>
+    <string name="diary_day_total">Daily total</string>
+    <string name="diary_day_total_value">%1$d / %2$d kcal</string>
+    <string name="diary_goal_unavailable">Calorie goal unavailable</string>
+    <string name="meal_breakfast">Breakfast</string>
+    <string name="meal_lunch">Lunch</string>
+    <string name="meal_dinner">Dinner</string>
+    <string name="meal_snack">Snack</string>
+    <string name="diary_empty_meal">No items yet</string>
+    <string name="diary_add_food">Add food</string>
+    <string name="diary_add_food_to_meal">Add to %1$s</string>
+    <string name="diary_quantity_unit">%1$s × %2$s</string>
+    <string name="diary_entry_calories">%1$d kcal</string>
+    <string name="diary_load_failed">Unable to load the meal diary</string>
+    <string name="diary_delete_failed">Unable to delete the food item</string>
+    <string name="diary_restore_failed">Unable to undo the deletion</string>
+    <string name="diary_entry_deleted">Food item deleted</string>
+
+    <!-- Add food sheet -->
+    <string name="add_food_title">Add food</string>
+    <string name="add_food_search_hint">Search for food…</string>
+    <string name="add_food_search_empty">No matching food found</string>
+    <string name="add_food_popular">Popular foods</string>
+    <string name="add_food_results">Search results</string>
+    <string name="add_food_select_prompt">Select a food to enter the quantity</string>
+    <string name="add_food_selected">Selected food</string>
+    <string name="add_food_quantity">Quantity</string>
+    <string name="add_food_quantity_hint">Example: 1.5</string>
+    <string name="add_food_calories_per_unit">%1$d kcal/%2$s</string>
+    <string name="add_food_calculation">%1$s × %2$d = %3$d kcal</string>
+    <string name="add_food_confirm">Add food</string>
+    <string name="add_food_submitting">Adding…</string>
+    <string name="add_food_failed">Unable to add the food item. Please try again.</string>
+
+    <!-- Quantity stepper accessibility -->
+    <string name="cd_decrease_quantity">Decrease quantity</string>
+    <string name="cd_increase_quantity">Increase quantity</string>
+    <string name="cd_delete_meal_entry">Delete %1$s from the diary</string>
+    <string name="cd_previous_day">View previous day</string>
+    <string name="cd_next_day">View next day</string>
+    <string name="cd_open_date_picker">Open date picker</string>
+
+    <!-- Custom food -->
+    <string name="custom_food_open">Enter a custom food</string>
+    <string name="custom_food_title">Create a new food</string>
+    <string name="custom_food_name">Food name</string>
+    <string name="custom_food_name_hint">Example: Homemade chicken rice</string>
+    <string name="custom_food_calories">Calories per unit</string>
+    <string name="custom_food_calories_hint">Example: 350</string>
+    <string name="custom_food_unit">Unit</string>
+    <string name="custom_food_unit_hint">Example: serving, bowl, cup</string>
+    <string name="custom_food_save_and_add">Save and add to meal</string>
+    <string name="custom_food_save_failed">Unable to save the new food. Please try again.</string>
+
+    <!-- Diary validation -->
+    <string name="error_required">Please enter this information</string>
+    <string name="error_invalid_number">Please enter a valid number</string>
+    <string name="error_food_required">Please select a food</string>
+    <string name="error_quantity_required">Please enter a quantity</string>
+    <string name="error_quantity_invalid">Invalid quantity</string>
+    <string name="error_quantity_out_of_range">Quantity must be greater than 0 and no more than 100</string>
+    <string name="error_custom_calories_out_of_range">Calories must be between 1 and 10,000 kcal</string>
 </resources>

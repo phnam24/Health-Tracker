@@ -8,15 +8,21 @@ data object SplashArt : NavKey
 
 @Serializable
 data object Onboarding : NavKey
+
 @Serializable
 data object Dashboard : NavKey
+
 @Serializable
 data object Diary : NavKey
+
 @Serializable
 data object ActivityLog : NavKey
+
 @Serializable
 data object Statistics : NavKey
+
 @Serializable
 data object Settings : NavKey
+
 @Serializable
 data object EditProfile : NavKey

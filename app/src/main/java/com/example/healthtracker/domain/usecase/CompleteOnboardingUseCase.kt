@@ -1,4 +1,4 @@
-package com.example.healthtracker.domain.usecase.onboarding
+package com.example.healthtracker.domain.usecase
 
 import android.os.Build
 import androidx.annotation.RequiresApi
