@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.dashboard.ui.components
+package com.example.healthtracker.presentation.dashboard.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -36,7 +36,7 @@ fun CaloriesSummaryRow(
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
-            .padding(MaterialTheme.dimensions.SpacingSmall),
+            .padding(MaterialTheme.dimensions.spacingSmall),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         CaloriesRowItem(
@@ -51,8 +51,8 @@ fun CaloriesSummaryRow(
             modifier = Modifier
                 .fillMaxHeight()
                 .padding(
-                    horizontal = MaterialTheme.dimensions.SpacingMediumLarge,
-                    vertical = MaterialTheme.dimensions.SpacingSmall
+                    horizontal = MaterialTheme.dimensions.spacingMediumLarge,
+                    vertical = MaterialTheme.dimensions.spacingSmall
                 )
         )
 
@@ -68,8 +68,8 @@ fun CaloriesSummaryRow(
             modifier = Modifier
                 .fillMaxHeight()
                 .padding(
-                    horizontal = MaterialTheme.dimensions.SpacingMediumLarge,
-                    vertical = MaterialTheme.dimensions.SpacingSmall
+                    horizontal = MaterialTheme.dimensions.spacingMediumLarge,
+                    vertical = MaterialTheme.dimensions.spacingSmall
                 )
         )
 
@@ -92,14 +92,14 @@ fun CaloriesRowItem(
     modifier: Modifier = Modifier
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingExtraSmall),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingExtraSmall),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
             imageVector = icon,
             contentDescription = title,
             tint = tint,
-            modifier = Modifier.size(MaterialTheme.dimensions.LargeIconSize)
+            modifier = Modifier.size(MaterialTheme.dimensions.largeIconSize)
         )
 
         Text(

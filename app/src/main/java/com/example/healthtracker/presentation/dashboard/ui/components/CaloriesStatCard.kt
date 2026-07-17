@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.dashboard.ui.components
+package com.example.healthtracker.presentation.dashboard.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -49,8 +49,8 @@ fun CaloriesStatCard(
         ),
     ) {
         Column(
-            modifier = Modifier.padding(MaterialTheme.dimensions.SpacingLarge),
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingMedium)
+            modifier = Modifier.padding(MaterialTheme.dimensions.spacingLarge),
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
         ) {
             CaloriesStatCardHeader()
 
@@ -79,7 +79,7 @@ fun CaloriesStatCardHeader() {
     ) {
         Box(
             modifier = Modifier
-                .size(MaterialTheme.dimensions.SpacingDoubleExtraLarge)
+                .size(MaterialTheme.dimensions.spacingDoubleExtraLarge)
                 .background(color = MaterialTheme.colorScheme.primary, shape = CircleShape),
             contentAlignment = Alignment.Center
         ) {
@@ -87,11 +87,11 @@ fun CaloriesStatCardHeader() {
                 imageVector = Icons.Filled.BarChart,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onPrimary,
-                modifier = Modifier.size(MaterialTheme.dimensions.SpacingMediumLarge)
+                modifier = Modifier.size(MaterialTheme.dimensions.spacingMediumLarge)
             )
         }
 
-        Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingSmall))
+        Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingSmall))
 
         Text(
             text = stringResource(R.string.dashboard_analysis_title),
@@ -114,7 +114,7 @@ fun CaloriesStatEatenPercent(
 
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingSmall)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -130,7 +130,7 @@ fun CaloriesStatEatenPercent(
                 modifier = Modifier.alignByBaseline()
             )
 
-            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingExtraSmall))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingExtraSmall))
 
             Text(
                 text = stringResource(R.string.dashboard_goal_progress),
@@ -147,7 +147,7 @@ fun CaloriesStatEatenPercent(
                 progress = { 1f },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(MaterialTheme.dimensions.SpacingSmall),
+                    .height(MaterialTheme.dimensions.spacingSmall),
                 color = MaterialTheme.colorScheme.surfaceVariant
             )
 
@@ -155,7 +155,7 @@ fun CaloriesStatEatenPercent(
                 progress = { progress.indicatorFraction },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(MaterialTheme.dimensions.SpacingSmall),
+                    .height(MaterialTheme.dimensions.spacingSmall),
                 color = progressColor,
                 trackColor = MaterialTheme.healthColors.transparent,
                 strokeCap = StrokeCap.Round
@@ -171,7 +171,7 @@ fun CaloriesStatAdvice(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingSmall)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -180,11 +180,11 @@ fun CaloriesStatAdvice(
             Icon(
                 imageVector = Icons.Default.Balance,
                 contentDescription = "Balance Icon",
-                modifier = Modifier.size(MaterialTheme.dimensions.SpacingDoubleExtraLarge),
+                modifier = Modifier.size(MaterialTheme.dimensions.spacingDoubleExtraLarge),
                 tint = MaterialTheme.colorScheme.primary
             )
 
-            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingSmall))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingSmall))
 
             Column {
                 Text(
@@ -193,7 +193,7 @@ fun CaloriesStatAdvice(
                     color = MaterialTheme.colorScheme.onSurface
                 )
 
-                Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingExtraSmall))
+                Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingExtraSmall))
 
                 Text(
 
@@ -226,17 +226,17 @@ fun CaloriesStatAdvice(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(MaterialTheme.dimensions.SpacingSmall),
+                    .padding(MaterialTheme.dimensions.spacingSmall),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     imageVector = Icons.Default.Lightbulb,
                     contentDescription = "Advice Icon",
-                    modifier = Modifier.size(MaterialTheme.dimensions.SpacingDoubleExtraLarge),
+                    modifier = Modifier.size(MaterialTheme.dimensions.spacingDoubleExtraLarge),
                     tint = MaterialTheme.colorScheme.onPrimaryContainer
                 )
 
-                Spacer(Modifier.width(MaterialTheme.dimensions.SpacingMedium))
+                Spacer(Modifier.width(MaterialTheme.dimensions.spacingMedium))
 
                 Text(
                     text = when (dailyAdvice.type) {

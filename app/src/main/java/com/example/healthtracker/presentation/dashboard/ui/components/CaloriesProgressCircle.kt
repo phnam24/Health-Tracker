@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.dashboard.ui.components
+package com.example.healthtracker.presentation.dashboard.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -34,26 +34,26 @@ fun CaloriesProgressCircle(
         ) {
             CircularProgressIndicator(
                 progress = { 1f },
-                modifier = Modifier.size(MaterialTheme.dimensions.CalorieRingSize),
+                modifier = Modifier.size(MaterialTheme.dimensions.calorieRingSize),
                 color = MaterialTheme.colorScheme.surfaceVariant,
-                strokeWidth = MaterialTheme.dimensions.CalorieRingStrokeWidth,
+                strokeWidth = MaterialTheme.dimensions.calorieRingStrokeWidth,
             )
 
             CircularProgressIndicator(
                 progress = { progress.indicatorFraction },
-                modifier = Modifier.size(MaterialTheme.dimensions.CalorieRingSize),
+                modifier = Modifier.size(MaterialTheme.dimensions.calorieRingSize),
                 color = if (progress.isOverGoal) {
                     MaterialTheme.healthColors.warning
                 } else {
                     MaterialTheme.colorScheme.primary
                 },
-                strokeWidth = MaterialTheme.dimensions.CalorieRingStrokeWidth,
+                strokeWidth = MaterialTheme.dimensions.calorieRingStrokeWidth,
                 trackColor = MaterialTheme.healthColors.transparent,
                 strokeCap = StrokeCap.Round
             )
 
             Column(
-                verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingExtraSmall),
+                verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingExtraSmall),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(

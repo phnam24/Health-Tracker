@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.onboarding.ui
+package com.example.healthtracker.presentation.onboarding.ui
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -107,7 +107,7 @@ fun OnboardingScreen(
                 modifier = Modifier
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
-                    .padding(horizontal = MaterialTheme.dimensions.SpacingMediumLarge)
+                    .padding(horizontal = MaterialTheme.dimensions.spacingMediumLarge)
             ) {
                 when (uiState.currentStep) {
                     OnboardingStep.NAME -> NameStep(uiState, onEvent)
@@ -133,7 +133,7 @@ fun OnboardingScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(MaterialTheme.dimensions.SpacingMediumLarge)
+                    .padding(MaterialTheme.dimensions.spacingMediumLarge)
             )
         }
     }
@@ -149,12 +149,12 @@ fun OnboardingHeader(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(MaterialTheme.dimensions.SpacingMediumLarge),
+            .padding(MaterialTheme.dimensions.spacingMediumLarge),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .defaultMinSize(minHeight = MaterialTheme.dimensions.SpacingDoubleExtraLarge),
+                .defaultMinSize(minHeight = MaterialTheme.dimensions.spacingDoubleExtraLarge),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
@@ -168,10 +168,10 @@ fun OnboardingHeader(
                         contentDescription = "Back icon",
                         modifier = Modifier
                             .clickable { onEvent(OnboardingEvent.BackClicked) }
-                            .padding(MaterialTheme.dimensions.SpacingExtraSmall)
+                            .padding(MaterialTheme.dimensions.spacingExtraSmall)
                     )
                 } else {
-                    Spacer(modifier = Modifier.size(MaterialTheme.dimensions.SpacingDoubleExtraLarge))
+                    Spacer(modifier = Modifier.size(MaterialTheme.dimensions.spacingDoubleExtraLarge))
                 }
             }
 
@@ -183,11 +183,11 @@ fun OnboardingHeader(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
-                    .padding(MaterialTheme.dimensions.SpacingExtraSmall)
+                    .padding(MaterialTheme.dimensions.spacingExtraSmall)
             )
         }
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         StepProgressBar(
             currentStep = current,

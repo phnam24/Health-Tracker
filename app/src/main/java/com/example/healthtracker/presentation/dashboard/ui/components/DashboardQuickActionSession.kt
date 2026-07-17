@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.dashboard.ui.components
+package com.example.healthtracker.presentation.dashboard.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -34,14 +34,14 @@ fun DashboardQuickActionSession(
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingLarge)
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingLarge)
     ) {
         QuickActionButton(
             title = stringResource(R.string.dashboard_add_meal),
             icon = {
                 Box(
                     modifier = Modifier
-                        .size(MaterialTheme.dimensions.OptionIconContainerSize)
+                        .size(MaterialTheme.dimensions.optionIconContainerSize)
                         .clip(CircleShape)
                         .background(MaterialTheme.healthColors.caloriesConsumedContainer),
                     contentAlignment = Alignment.Center
@@ -63,7 +63,7 @@ fun DashboardQuickActionSession(
             icon = {
                 Box(
                     modifier = Modifier
-                        .size(MaterialTheme.dimensions.OptionIconContainerSize)
+                        .size(MaterialTheme.dimensions.optionIconContainerSize)
                         .clip(CircleShape)
                         .background(MaterialTheme.healthColors.caloriesBurnedContainer),
                     contentAlignment = Alignment.Center
@@ -72,7 +72,7 @@ fun DashboardQuickActionSession(
                         imageVector = Icons.AutoMirrored.Filled.DirectionsRun,
                         contentDescription = "Add activity icon",
                         tint = MaterialTheme.healthColors.onCaloriesBurnedContainer,
-                        modifier = Modifier.size(MaterialTheme.dimensions.LargeIconSize)
+                        modifier = Modifier.size(MaterialTheme.dimensions.largeIconSize)
                     )
                 }
             },
@@ -93,15 +93,15 @@ fun QuickActionButton(
 ) {
     OutlinedCard(
         onClick = onClick,
-        modifier = modifier.heightIn(min = MaterialTheme.dimensions.ButtonCardHeight),
+        modifier = modifier.heightIn(min = MaterialTheme.dimensions.buttonCardHeight),
         colors = CardDefaults.cardColors(containerColor = containerColor)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(MaterialTheme.dimensions.SpacingSmall),
+                .padding(MaterialTheme.dimensions.spacingSmall),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingSmall)
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall)
         ) {
             icon()
 

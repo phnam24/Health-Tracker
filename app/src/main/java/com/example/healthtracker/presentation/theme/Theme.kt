@@ -105,7 +105,7 @@ private val LocalHealthTrackerColors = staticCompositionLocalOf {
 }
 
 private val LocalHealthTrackerDimensions = staticCompositionLocalOf {
-    DefaultHealthTrackerDimensions
+    defaultHealthTrackerDimensions
 }
 
 val MaterialTheme.healthColors: HealthTrackerColorScheme
@@ -187,7 +187,7 @@ fun HealthTrackerTheme(
     themeMode: ThemeMode = ThemeMode.SYSTEM,
     palette: ThemePalette = ThemePalette.GREEN,
     fontScale: AppFontScale = AppFontScale.MEDIUM,
-    dimensions: HealthTrackerDimensions = DefaultHealthTrackerDimensions,
+    dimensions: HealthTrackerDimensions = defaultHealthTrackerDimensions,
     content: @Composable () -> Unit,
 ) {
     val darkTheme = when (themeMode) {

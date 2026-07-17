@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.components
+package com.example.healthtracker.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
@@ -58,7 +58,7 @@ fun AppTextField(
                     imageVector = it,
                     contentDescription = null,
                     modifier = Modifier.size(
-                        MaterialTheme.dimensions.StandardIconSize
+                        MaterialTheme.dimensions.standardIconSize
                     ),
                 )
             }

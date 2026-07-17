@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.onboarding.ui.step
+package com.example.healthtracker.presentation.onboarding.ui.step
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -36,7 +36,7 @@ fun ActivityLevelStep(
             description = stringResource(R.string.onboarding_activity_description)
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         ActivityLevelSelectSession(
             uiState = uiState,
@@ -46,7 +46,7 @@ fun ActivityLevelStep(
         )
 
         uiState.errors[OnboardingField.ACTIVITY_LEVEL]?.let {
-            Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
             Text(
                 text = stringResource(it.toStringRes()),
                 style = MaterialTheme.typography.bodyMedium,
@@ -63,7 +63,7 @@ fun ActivityLevelSelectSession(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingSmall)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall)
     ) {
         ActivityLevel.entries.forEach { level ->
             val uiData = level.getUiData()

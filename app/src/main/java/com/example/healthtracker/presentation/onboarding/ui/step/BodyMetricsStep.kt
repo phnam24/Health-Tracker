@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.onboarding.ui.step
+package com.example.healthtracker.presentation.onboarding.ui.step
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -57,21 +57,21 @@ fun BodyMetricsStep(
             description = stringResource(R.string.onboarding_body_metrics_description)
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         WeightInputSession(
             uiState = uiState,
             onEvent = onEvent
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         HeightInputSession(
             uiState = uiState,
             onEvent = onEvent
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         BmiResultSession(
             uiState = uiState
@@ -123,11 +123,11 @@ fun BmiResultSession(
         modifier = Modifier
             .fillMaxWidth()
             .border(
-                width = MaterialTheme.dimensions.FocusedBorderThickness,
+                width = MaterialTheme.dimensions.focusedBorderThickness,
                 shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.outline
             )
-            .padding(MaterialTheme.dimensions.SpacingMedium),
+            .padding(MaterialTheme.dimensions.spacingMedium),
         verticalArrangement = Arrangement.Center
     ) {
         Text(
@@ -136,7 +136,7 @@ fun BmiResultSession(
             color = MaterialTheme.colorScheme.onSurface
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -146,7 +146,7 @@ fun BmiResultSession(
                 style = MaterialTheme.typography.headlineLarge
             )
 
-            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingMedium))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingMedium))
 
             Text(
                 text = when (uiState.bmiPreview?.category) {
@@ -167,7 +167,7 @@ fun BmiResultSession(
             )
         }
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Text(
             text = when (uiState.bmiPreview?.category) {
@@ -180,7 +180,7 @@ fun BmiResultSession(
             style = MaterialTheme.typography.bodyMedium,
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         BmiScaleBar(
             bmi = uiState.bmiPreview?.value?.toFloat() ?: 10f
@@ -220,20 +220,20 @@ fun BodyMetricsInput(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingMedium)
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
         ) {
             suggestions.forEach { suggestion ->
                 Box(
                     modifier = Modifier
                         .weight(1f)
-                        .height(MaterialTheme.dimensions.OptionIconContainerSize)
+                        .height(MaterialTheme.dimensions.optionIconContainerSize)
                         .clip(MaterialTheme.shapes.medium)
                         .border(
-                            width = MaterialTheme.dimensions.DividerThickness,
+                            width = MaterialTheme.dimensions.dividerThickness,
                             shape = MaterialTheme.shapes.medium,
                             color = MaterialTheme.colorScheme.outline
                         )
@@ -270,14 +270,14 @@ fun BmiScaleBar(
         modifier = modifier.fillMaxWidth()
     ) {
         BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
-            val indicatorOffset = (maxWidth * percentage) - MaterialTheme.dimensions.SpacingMedium
+            val indicatorOffset = (maxWidth * percentage) - MaterialTheme.dimensions.spacingMedium
 
             Icon(
                 imageVector = Icons.Filled.ArrowDropDown,
                 contentDescription = "Indicator",
                 tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
-                    .size(MaterialTheme.dimensions.SpacingDoubleExtraLarge)
+                    .size(MaterialTheme.dimensions.spacingDoubleExtraLarge)
                     .offset(x = indicatorOffset)
             )
         }
@@ -285,7 +285,7 @@ fun BmiScaleBar(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(MaterialTheme.dimensions.SpacingSmall)
+                .height(MaterialTheme.dimensions.spacingSmall)
                 .clip(CircleShape)
                 .background(Brush.horizontalGradient(gradientColors))
         )

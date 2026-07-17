@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.onboarding.ui.step
+package com.example.healthtracker.presentation.onboarding.ui.step
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -50,11 +50,11 @@ fun NameStep(
     ) {
         NameStepHeader()
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         ActivityColumn()
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         NameStepInputField(
             uiState = uiState,
@@ -77,7 +77,7 @@ fun NameStepHeader() {
         ) {
             Box(
                 modifier = Modifier
-                    .size(MaterialTheme.dimensions.SplashLogoSize)
+                    .size(MaterialTheme.dimensions.splashLogoSize)
                     .clip(CircleShape)
                     .background(MaterialTheme.colorScheme.primaryContainer),
                 contentAlignment = Alignment.Center
@@ -85,13 +85,13 @@ fun NameStepHeader() {
                 Icon(
                     painterResource(R.drawable.ic_healthtracker_logo),
                     contentDescription = "Health Tracker Logo",
-                    modifier = Modifier.size(MaterialTheme.dimensions.SplashLogoMediumSize),
+                    modifier = Modifier.size(MaterialTheme.dimensions.splashLogoMediumSize),
                     tint = MaterialTheme.colorScheme.onPrimaryContainer,
                 )
             }
         }
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         Text(
             text = stringResource(R.string.onboarding_welcome_title),
@@ -99,7 +99,7 @@ fun NameStepHeader() {
             color = MaterialTheme.colorScheme.onBackground
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Text(
             text = stringResource(R.string.onboarding_welcome_description),
@@ -125,7 +125,7 @@ fun NameStepInputField(
             description = stringResource(R.string.onboarding_name_description)
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMedium))
 
         AppTextField(
             value = uiState.name,
@@ -148,7 +148,7 @@ fun ActivityColumn() {
             .fillMaxWidth()
             .border(
                 shape = MaterialTheme.shapes.medium,
-                width = MaterialTheme.dimensions.DividerThickness,
+                width = MaterialTheme.dimensions.dividerThickness,
                 color = MaterialTheme.colorScheme.outline
             )
             .background(color = MaterialTheme.colorScheme.surface),
@@ -161,7 +161,7 @@ fun ActivityColumn() {
         )
 
         HorizontalDivider(
-            thickness = MaterialTheme.dimensions.DividerThickness,
+            thickness = MaterialTheme.dimensions.dividerThickness,
             color = MaterialTheme.colorScheme.outlineVariant,
         )
 
@@ -172,7 +172,7 @@ fun ActivityColumn() {
         )
 
         HorizontalDivider(
-            thickness = MaterialTheme.dimensions.DividerThickness,
+            thickness = MaterialTheme.dimensions.dividerThickness,
             color = MaterialTheme.colorScheme.outlineVariant,
         )
 
@@ -193,13 +193,13 @@ fun ActivityRowIcon(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(MaterialTheme.dimensions.SpacingMedium),
+            .padding(MaterialTheme.dimensions.spacingMedium),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
             modifier = Modifier
-                .size(MaterialTheme.dimensions.OptionIconContainerSize)
+                .size(MaterialTheme.dimensions.optionIconContainerSize)
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.primaryContainer),
             contentAlignment = Alignment.Center
@@ -207,12 +207,12 @@ fun ActivityRowIcon(
             Icon(
                 imageVector = icon,
                 contentDescription = label,
-                modifier = Modifier.size(MaterialTheme.dimensions.StandardIconSize),
+                modifier = Modifier.size(MaterialTheme.dimensions.standardIconSize),
                 tint = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
 
-        Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingSmall))
+        Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingSmall))
 
         Column(
             verticalArrangement = Arrangement.Center
@@ -223,7 +223,7 @@ fun ActivityRowIcon(
                 color = MaterialTheme.colorScheme.onBackground,
             )
 
-            Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingExtraSmall))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingExtraSmall))
 
             Text(
                 text = description,

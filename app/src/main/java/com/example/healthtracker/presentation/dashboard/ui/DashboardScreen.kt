@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.dashboard.ui
+package com.example.healthtracker.presentation.dashboard.ui
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -72,8 +72,8 @@ fun DashboardScreen(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(MaterialTheme.dimensions.SpacingLarge),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingMediumLarge),
+            .padding(MaterialTheme.dimensions.spacingLarge),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMediumLarge),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DashboardHeader(
@@ -102,7 +102,7 @@ fun DashboardCaloriesStatSession(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingMedium),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CaloriesProgressCircle(

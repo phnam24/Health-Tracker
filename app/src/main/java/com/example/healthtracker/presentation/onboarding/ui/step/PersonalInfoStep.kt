@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.onboarding.ui.step
+package com.example.healthtracker.presentation.onboarding.ui.step
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -49,14 +49,14 @@ fun PersonalInfoStep(
             description = stringResource(R.string.onboarding_personal_info_description)
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         DatePickerSession(
             uiState = uiState,
             onDateSelected = onEvent
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         GenderSelectSession(
             uiState = uiState,
@@ -83,7 +83,7 @@ fun DatePickerSession(
             label = stringResource(R.string.onboarding_birth_date_label),
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMedium))
 
         uiState.age?.let {
             Row(
@@ -94,11 +94,11 @@ fun DatePickerSession(
                         color = MaterialTheme.colorScheme.primaryContainer
                     )
                     .border(
-                        width = MaterialTheme.dimensions.DividerThickness,
+                        width = MaterialTheme.dimensions.dividerThickness,
                         shape = MaterialTheme.shapes.medium,
                         color = MaterialTheme.colorScheme.outline
                     )
-                    .padding(MaterialTheme.dimensions.SpacingMediumLarge),
+                    .padding(MaterialTheme.dimensions.spacingMediumLarge),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
@@ -107,7 +107,7 @@ fun DatePickerSession(
                     tint = MaterialTheme.colorScheme.onPrimaryContainer
                 )
 
-                Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingMediumLarge))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingMediumLarge))
 
                 Text(
                     text = stringResource(R.string.onboarding_age_value, it),
@@ -131,7 +131,7 @@ fun GenderSelectSession(
             description = stringResource(R.string.onboarding_gender_description)
         )
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMedium))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -145,7 +145,7 @@ fun GenderSelectSession(
                 modifier = Modifier.weight(1f)
             )
 
-            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingSmall))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingSmall))
 
             OptionCard(
                 title = stringResource(R.string.gender_female),
@@ -156,7 +156,7 @@ fun GenderSelectSession(
             )
         }
 
-        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMedium))
 
         uiState.errors[OnboardingField.GENDER]?.let {
             Text(

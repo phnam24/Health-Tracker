@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.components
+package com.example.healthtracker.presentation.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -36,7 +36,7 @@ fun StepProgressBar(
         progress = { progress },
         modifier = modifier
             .fillMaxWidth()
-            .height(MaterialTheme.dimensions.ProgressIndicatorHeight)
+            .height(MaterialTheme.dimensions.progressIndicatorHeight)
             .clip(CircleShape),
         color = MaterialTheme.colorScheme.primary,
         trackColor = MaterialTheme.colorScheme.surfaceVariant,

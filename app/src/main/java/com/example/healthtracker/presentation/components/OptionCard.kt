@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.components
+package com.example.healthtracker.presentation.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -62,21 +62,21 @@ fun OptionCard(
         color = containerColor,
         border = BorderStroke(
             width = if (selected) {
-                MaterialTheme.dimensions.FocusedBorderThickness
+                MaterialTheme.dimensions.focusedBorderThickness
             } else {
-                MaterialTheme.dimensions.DividerThickness
+                MaterialTheme.dimensions.dividerThickness
             },
             color = borderColor,
         ),
     ) {
         Row(
-            modifier = Modifier.padding(MaterialTheme.dimensions.CardPadding),
+            modifier = Modifier.padding(MaterialTheme.dimensions.cardPadding),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             if (icon != null) {
                 Box(
                     modifier = Modifier
-                        .size(MaterialTheme.dimensions.OptionIconContainerSize)
+                        .size(MaterialTheme.dimensions.optionIconContainerSize)
                         .clip(CircleShape)
                         .background(
                             iconContainerColor ?: if (selected) {
@@ -96,12 +96,12 @@ fun OptionCard(
                             MaterialTheme.colorScheme.onSurfaceVariant
                         },
                         modifier = Modifier.size(
-                            MaterialTheme.dimensions.StandardIconSize
+                            MaterialTheme.dimensions.standardIconSize
                         ),
                     )
                 }
 
-                Spacer(Modifier.width(MaterialTheme.dimensions.SpacingMedium))
+                Spacer(Modifier.width(MaterialTheme.dimensions.spacingMedium))
             }
 
             Column(modifier = Modifier.weight(1f)) {
@@ -112,7 +112,7 @@ fun OptionCard(
                 )
 
                 if (description != null) {
-                    Spacer(Modifier.height(MaterialTheme.dimensions.FocusedBorderThickness))
+                    Spacer(Modifier.height(MaterialTheme.dimensions.focusedBorderThickness))
 
                     Text(
                         text = description,

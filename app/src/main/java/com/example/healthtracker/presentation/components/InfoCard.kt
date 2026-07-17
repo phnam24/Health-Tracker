@@ -1,4 +1,4 @@
-﻿package com.example.healthtracker.presentation.components
+package com.example.healthtracker.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -33,7 +33,7 @@ fun InfoCard(
         contentColor = contentColor,
     ) {
         Row(
-            modifier = Modifier.padding(MaterialTheme.dimensions.CardPadding),
+            modifier = Modifier.padding(MaterialTheme.dimensions.cardPadding),
             verticalAlignment = Alignment.Top,
         ) {
             if (icon != null) {
@@ -42,11 +42,11 @@ fun InfoCard(
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(
-                        MaterialTheme.dimensions.StandardIconSize
+                        MaterialTheme.dimensions.standardIconSize
                     ),
                 )
 
-                Spacer(Modifier.width(MaterialTheme.dimensions.SpacingMedium))
+                Spacer(Modifier.width(MaterialTheme.dimensions.spacingMedium))
             }
 
             Column(
