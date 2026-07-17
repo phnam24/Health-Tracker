@@ -41,7 +41,7 @@ fun CaloriesSummaryRow(
     ) {
         CaloriesRowItem(
             title = stringResource(R.string.dashboard_goal),
-            value = dailySummary.goalCalories ?: 0,
+            value = dailySummary.goalCalories,
             icon = Icons.Filled.GolfCourse,
             tint = MaterialTheme.colorScheme.secondary,
             modifier = Modifier.weight(1f)
@@ -58,7 +58,7 @@ fun CaloriesSummaryRow(
 
         CaloriesRowItem(
             title = stringResource(R.string.dashboard_eaten),
-            value = dailySummary.eatenCalories ?: 0,
+            value = dailySummary.eatenCalories,
             icon = Icons.Filled.Restaurant,
             tint = MaterialTheme.healthColors.caloriesConsumed,
             modifier = Modifier.weight(1f)
@@ -75,7 +75,7 @@ fun CaloriesSummaryRow(
 
         CaloriesRowItem(
             title = stringResource(R.string.dashboard_burned),
-            value = dailySummary.burnedCalories ?: 0,
+            value = dailySummary.burnedCalories,
             icon = Icons.Filled.LocalFireDepartment,
             tint = MaterialTheme.healthColors.caloriesBurned,
             modifier = Modifier.weight(1f)
