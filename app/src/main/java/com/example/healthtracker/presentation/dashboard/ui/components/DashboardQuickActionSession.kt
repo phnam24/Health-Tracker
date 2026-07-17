@@ -4,9 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -50,7 +49,7 @@ fun DashboardQuickActionSession(
                     Icon(
                         imageVector = Icons.Default.Restaurant,
                         contentDescription = "Add meal icon",
-                        tint = MaterialTheme.healthColors.caloriesConsumed,
+                        tint = MaterialTheme.healthColors.onCaloriesConsumedContainer,
                     )
                 }
             },
@@ -72,7 +71,7 @@ fun DashboardQuickActionSession(
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.DirectionsRun,
                         contentDescription = "Add activity icon",
-                        tint = MaterialTheme.healthColors.caloriesBurned,
+                        tint = MaterialTheme.healthColors.onCaloriesBurnedContainer,
                         modifier = Modifier.size(MaterialTheme.dimensions.LargeIconSize)
                     )
                 }
@@ -94,12 +93,12 @@ fun QuickActionButton(
 ) {
     OutlinedCard(
         onClick = onClick,
-        modifier = modifier.height(MaterialTheme.dimensions.ButtonCardHeight),
+        modifier = modifier.heightIn(min = MaterialTheme.dimensions.ButtonCardHeight),
         colors = CardDefaults.cardColors(containerColor = containerColor)
     ) {
         Row(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(MaterialTheme.dimensions.SpacingSmall),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingSmall)

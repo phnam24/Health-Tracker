@@ -25,6 +25,16 @@ internal val OnSecondaryDark = Color(0xFF042F2E)
 internal val SecondaryContainerDark = Color(0xFF115E59)
 internal val OnSecondaryContainerDark = Color(0xFFCCFBF1)
 
+// Shared tertiary palette
+internal val TertiaryLight = Color(0xFFB45309)
+internal val OnTertiaryLight = Color(0xFFFFFFFF)
+internal val TertiaryContainerLight = Color(0xFFFFEDD5)
+internal val OnTertiaryContainerLight = Color(0xFF7C2D12)
+internal val TertiaryDark = Color(0xFFFDBA74)
+internal val OnTertiaryDark = Color(0xFF431407)
+internal val TertiaryContainerDark = Color(0xFF7C2D12)
+internal val OnTertiaryContainerDark = Color(0xFFFFEDD5)
+
 // Neutral palette — Light
 internal val BackgroundLight = Color(0xFFF8FCF9)
 internal val OnBackgroundLight = Color(0xFF132017)

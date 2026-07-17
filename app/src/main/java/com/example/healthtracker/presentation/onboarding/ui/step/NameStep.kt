@@ -86,7 +86,7 @@ fun NameStepHeader() {
                     painterResource(R.drawable.ic_healthtracker_logo),
                     contentDescription = "Health Tracker Logo",
                     modifier = Modifier.size(MaterialTheme.dimensions.SplashLogoMediumSize),
-                    tint = MaterialTheme.colorScheme.primary,
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
                 )
             }
         }
@@ -208,7 +208,7 @@ fun ActivityRowIcon(
                 imageVector = icon,
                 contentDescription = label,
                 modifier = Modifier.size(MaterialTheme.dimensions.StandardIconSize),
-                tint = MaterialTheme.colorScheme.primary
+                tint = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
 

@@ -48,6 +48,11 @@ fun OptionCard(
     } else {
         MaterialTheme.colorScheme.surface
     }
+    val contentColor = if (selected) {
+        MaterialTheme.colorScheme.onPrimaryContainer
+    } else {
+        MaterialTheme.colorScheme.onSurface
+    }
 
     Surface(
         onClick = onClick,
@@ -103,7 +108,7 @@ fun OptionCard(
                 Text(
                     text = title,
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = contentColor,
                 )
 
                 if (description != null) {
@@ -112,7 +117,11 @@ fun OptionCard(
                     Text(
                         text = description,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = if (selected) {
+                            MaterialTheme.colorScheme.onPrimaryContainer
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
                     )
                 }
             }

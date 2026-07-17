@@ -104,13 +104,14 @@ fun DatePickerSession(
                 Icon(
                     imageVector = Icons.Default.Cake,
                     contentDescription = "Birthday cake icon",
-                    tint = MaterialTheme.colorScheme.primary
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer
                 )
 
                 Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingMediumLarge))
 
                 Text(
-                    text = stringResource(R.string.onboarding_age_value, it)
+                    text = stringResource(R.string.onboarding_age_value, it),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
         }

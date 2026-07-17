@@ -105,6 +105,13 @@ fun CaloriesStatCardHeader() {
 fun CaloriesStatEatenPercent(
     dailySummary: DailySummary
 ) {
+    val progress = dailySummary.toCalorieProgressUi()
+    val progressColor = if (progress.isOverGoal) {
+        MaterialTheme.healthColors.warning
+    } else {
+        MaterialTheme.colorScheme.primary
+    }
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingSmall)
@@ -114,9 +121,12 @@ fun CaloriesStatEatenPercent(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "${dailySummary.eatenCalories.toFloat() / dailySummary.goalCalories}%",
+                text = stringResource(
+                    R.string.dashboard_percentage_value,
+                    progress.percentage
+                ),
                 style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.primary,
+                color = progressColor,
                 modifier = Modifier.alignByBaseline()
             )
 
@@ -142,11 +152,11 @@ fun CaloriesStatEatenPercent(
             )
 
             LinearProgressIndicator(
-                progress = { dailySummary.eatenCalories.toFloat() / dailySummary.goalCalories },
+                progress = { progress.indicatorFraction },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(MaterialTheme.dimensions.SpacingSmall),
-                color = MaterialTheme.colorScheme.primary,
+                color = progressColor,
                 trackColor = MaterialTheme.healthColors.transparent,
                 strokeCap = StrokeCap.Round
             )

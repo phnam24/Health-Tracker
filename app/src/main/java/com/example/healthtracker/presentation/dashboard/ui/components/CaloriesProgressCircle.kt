@@ -23,6 +23,8 @@ import com.example.healthtracker.presentation.theme.healthColors
 fun CaloriesProgressCircle(
     dailySummary: DailySummary
 ) {
+    val progress = dailySummary.toCalorieProgressUi()
+
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
@@ -38,11 +40,9 @@ fun CaloriesProgressCircle(
             )
 
             CircularProgressIndicator(
-                progress = {
-                    dailySummary.balanceCalories.toFloat() / dailySummary.goalCalories
-                },
+                progress = { progress.indicatorFraction },
                 modifier = Modifier.size(MaterialTheme.dimensions.CalorieRingSize),
-                color = if (dailySummary.eatenCalories > dailySummary.goalCalories) {
+                color = if (progress.isOverGoal) {
                     MaterialTheme.healthColors.warning
                 } else {
                     MaterialTheme.colorScheme.primary

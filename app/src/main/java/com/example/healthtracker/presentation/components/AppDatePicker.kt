@@ -22,12 +22,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
-import java.time.Instant
+import com.example.healthtracker.helper.toLocalDateFromPicker
+import com.example.healthtracker.helper.toLocalizedDateString
 import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,9 +41,11 @@ fun AppDatePickerField(
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
-    val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+    val locale = LocalConfiguration.current.locales[0]
+    val datePattern = stringResource(R.string.date_format_short)
     val displayValue =
-        value?.format(formatter) ?: stringResource(R.string.onboarding_birth_date_dialog_title)
+        value?.toLocalizedDateString(datePattern, locale)
+            ?: stringResource(R.string.onboarding_birth_date_dialog_title)
 
     Box(modifier = modifier) {
         AppTextField(
@@ -55,7 +57,7 @@ fun AppDatePickerField(
             trailingContent = {
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowDown,
-                    contentDescription = "Dropdown icon"
+                    contentDescription = stringResource(R.string.cd_open_date_picker)
                 )
             },
             isError = errorText?.isNotBlank() == true,
@@ -84,20 +86,17 @@ fun AppDatePickerField(
                 TextButton(
                     onClick = {
                         datePickerState.selectedDateMillis?.let { millis ->
-                            val localDate = Instant.ofEpochMilli(millis)
-                                .atZone(ZoneId.of("UTC"))
-                                .toLocalDate()
-                            onDateSelected(localDate)
+                            onDateSelected(millis.toLocalDateFromPicker())
                         }
                         showDialog = false
                     }
                 ) {
-                    Text("OK")
+                    Text(stringResource(R.string.common_confirm))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDialog = false }) {
-                    Text("HỦY")
+                    Text(stringResource(R.string.common_cancel))
                 }
             }
         ) {

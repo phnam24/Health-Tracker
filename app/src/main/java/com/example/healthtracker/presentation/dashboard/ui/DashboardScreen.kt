@@ -15,11 +15,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailyAdvice
 import com.example.healthtracker.domain.model.DailySummary
-import com.example.healthtracker.helper.toVietnameseDateString
+import com.example.healthtracker.helper.toLocalizedDateString
 import com.example.healthtracker.presentation.dashboard.state.DashboardUiState
 import com.example.healthtracker.presentation.dashboard.ui.components.CaloriesProgressCircle
 import com.example.healthtracker.presentation.dashboard.ui.components.CaloriesStatCard
@@ -62,6 +65,8 @@ fun DashboardScreen(
     onEvent: (DashboardEvent) -> Unit
 ) {
     val scrollState = rememberScrollState()
+    val locale = LocalConfiguration.current.locales[0]
+    val datePattern = stringResource(R.string.dashboard_date_format)
 
     Column(
         modifier = Modifier
@@ -73,7 +78,7 @@ fun DashboardScreen(
     ) {
         DashboardHeader(
             userName = uiState.userName,
-            dateString = uiState.date?.toVietnameseDateString() ?: "",
+            dateString = uiState.date?.toLocalizedDateString(datePattern, locale) ?: "",
         )
 
         if (uiState.summary != null && uiState.advice != null) {
