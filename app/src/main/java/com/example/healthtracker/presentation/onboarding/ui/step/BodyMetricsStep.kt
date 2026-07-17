@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.onboarding.ui.step
+﻿package com.example.healthtracker.presentation.onboarding.ui.step
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -40,8 +40,7 @@ import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
@@ -58,21 +57,21 @@ fun BodyMetricsStep(
             description = stringResource(R.string.onboarding_body_metrics_description)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
         WeightInputSession(
             uiState = uiState,
             onEvent = onEvent
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
         HeightInputSession(
             uiState = uiState,
             onEvent = onEvent
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
         BmiResultSession(
             uiState = uiState
@@ -124,11 +123,11 @@ fun BmiResultSession(
         modifier = Modifier
             .fillMaxWidth()
             .border(
-                width = AppDimensions.FocusedBorderThickness,
-                shape = ControlShape,
+                width = MaterialTheme.dimensions.FocusedBorderThickness,
+                shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.outline
             )
-            .padding(AppDimensions.SpacingMedium),
+            .padding(MaterialTheme.dimensions.SpacingMedium),
         verticalArrangement = Arrangement.Center
     ) {
         Text(
@@ -137,7 +136,7 @@ fun BmiResultSession(
             color = MaterialTheme.colorScheme.onSurface
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
 
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -147,7 +146,7 @@ fun BmiResultSession(
                 style = MaterialTheme.typography.headlineLarge
             )
 
-            Spacer(modifier = Modifier.width(AppDimensions.SpacingMedium))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingMedium))
 
             Text(
                 text = when (uiState.bmiPreview?.category) {
@@ -168,7 +167,7 @@ fun BmiResultSession(
             )
         }
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
 
         Text(
             text = when (uiState.bmiPreview?.category) {
@@ -181,7 +180,7 @@ fun BmiResultSession(
             style = MaterialTheme.typography.bodyMedium,
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
 
         BmiScaleBar(
             bmi = uiState.bmiPreview?.value?.toFloat() ?: 10f
@@ -221,21 +220,21 @@ fun BodyMetricsInput(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(AppDimensions.SpacingMedium)
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingMedium)
         ) {
             suggestions.forEach { suggestion ->
                 Box(
                     modifier = Modifier
                         .weight(1f)
-                        .height(AppDimensions.OptionIconContainerSize)
-                        .clip(ControlShape)
+                        .height(MaterialTheme.dimensions.OptionIconContainerSize)
+                        .clip(MaterialTheme.shapes.medium)
                         .border(
-                            width = AppDimensions.DividerThickness,
-                            shape = ControlShape,
+                            width = MaterialTheme.dimensions.DividerThickness,
+                            shape = MaterialTheme.shapes.medium,
                             color = MaterialTheme.colorScheme.outline
                         )
                         .clickable {
@@ -271,14 +270,14 @@ fun BmiScaleBar(
         modifier = modifier.fillMaxWidth()
     ) {
         BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
-            val indicatorOffset = (maxWidth * percentage) - AppDimensions.SpacingMedium
+            val indicatorOffset = (maxWidth * percentage) - MaterialTheme.dimensions.SpacingMedium
 
             Icon(
                 imageVector = Icons.Filled.ArrowDropDown,
                 contentDescription = "Indicator",
                 tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
-                    .size(AppDimensions.SpacingDoubleExtraLarge)
+                    .size(MaterialTheme.dimensions.SpacingDoubleExtraLarge)
                     .offset(x = indicatorOffset)
             )
         }
@@ -286,7 +285,7 @@ fun BmiScaleBar(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(AppDimensions.SpacingSmall)
+                .height(MaterialTheme.dimensions.SpacingSmall)
                 .clip(CircleShape)
                 .background(Brush.horizontalGradient(gradientColors))
         )

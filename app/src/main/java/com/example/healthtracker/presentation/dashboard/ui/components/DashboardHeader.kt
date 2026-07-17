@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.dashboard.ui.components
+﻿package com.example.healthtracker.presentation.dashboard.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
-import com.example.healthtracker.presentation.theme.AppDimensions
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun DashboardHeader(
@@ -43,7 +43,7 @@ fun DashboardHeader(
 
         Box(
             modifier = Modifier
-                .size(AppDimensions.MinimumTouchTarget)
+                .size(MaterialTheme.dimensions.MinimumTouchTarget)
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.secondaryContainer),
             contentAlignment = Alignment.Center

@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.dashboard.ui
+﻿package com.example.healthtracker.presentation.dashboard.ui
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -28,7 +29,7 @@ import com.example.healthtracker.presentation.dashboard.ui.components.DashboardQ
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardEffect
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardEvent
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardViewModel
-import com.example.healthtracker.presentation.theme.AppDimensions
+import com.example.healthtracker.presentation.theme.dimensions
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -66,8 +67,8 @@ fun DashboardScreen(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(AppDimensions.SpacingLarge),
-        verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingMediumLarge),
+            .padding(MaterialTheme.dimensions.SpacingLarge),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingMediumLarge),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DashboardHeader(
@@ -96,7 +97,7 @@ fun DashboardCaloriesStatSession(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingMedium),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingMedium),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CaloriesProgressCircle(

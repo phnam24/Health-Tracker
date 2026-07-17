@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.components
+﻿package com.example.healthtracker.presentation.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -11,8 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun PrimaryButton(
@@ -25,23 +24,23 @@ fun PrimaryButton(
     Button(
         onClick = onClick,
         enabled = enabled && !loading,
-        modifier = modifier.height(AppDimensions.PrimaryButtonHeight),
-        shape = ControlShape,
-        contentPadding = PaddingValues(horizontal = AppDimensions.SpacingMediumLarge),
+        modifier = modifier.height(MaterialTheme.dimensions.PrimaryButtonHeight),
+        shape = MaterialTheme.shapes.medium,
+        contentPadding = PaddingValues(horizontal = MaterialTheme.dimensions.SpacingMediumLarge),
     ) {
         if (loading) {
             CircularProgressIndicator(
-                modifier = Modifier.size(AppDimensions.SpacingMediumLarge),
-                strokeWidth = AppDimensions.FocusedBorderThickness,
+                modifier = Modifier.size(MaterialTheme.dimensions.SpacingMediumLarge),
+                strokeWidth = MaterialTheme.dimensions.FocusedBorderThickness,
                 color = MaterialTheme.colorScheme.onPrimary,
             )
 
-            Spacer(Modifier.width(AppDimensions.SpacingSmall))
+            Spacer(Modifier.width(MaterialTheme.dimensions.SpacingSmall))
         }
 
         Text(
             text = text,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.labelLarge,
             maxLines = 1,
         )
     }

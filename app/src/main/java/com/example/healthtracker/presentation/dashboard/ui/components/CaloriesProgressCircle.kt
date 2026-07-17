@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.dashboard.ui.components
+﻿package com.example.healthtracker.presentation.dashboard.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailySummary
-import com.example.healthtracker.presentation.theme.AppDimensions
+import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
@@ -32,28 +32,28 @@ fun CaloriesProgressCircle(
         ) {
             CircularProgressIndicator(
                 progress = { 1f },
-                modifier = Modifier.size(AppDimensions.CalorieRingSize),
+                modifier = Modifier.size(MaterialTheme.dimensions.CalorieRingSize),
                 color = MaterialTheme.colorScheme.surfaceVariant,
-                strokeWidth = AppDimensions.CalorieRingStrokeWidth,
+                strokeWidth = MaterialTheme.dimensions.CalorieRingStrokeWidth,
             )
 
             CircularProgressIndicator(
                 progress = {
                     dailySummary.balanceCalories.toFloat() / dailySummary.goalCalories
                 },
-                modifier = Modifier.size(AppDimensions.CalorieRingSize),
+                modifier = Modifier.size(MaterialTheme.dimensions.CalorieRingSize),
                 color = if (dailySummary.eatenCalories > dailySummary.goalCalories) {
                     MaterialTheme.healthColors.warning
                 } else {
                     MaterialTheme.colorScheme.primary
                 },
-                strokeWidth = AppDimensions.CalorieRingStrokeWidth,
+                strokeWidth = MaterialTheme.dimensions.CalorieRingStrokeWidth,
                 trackColor = MaterialTheme.healthColors.transparent,
                 strokeCap = StrokeCap.Round
             )
 
             Column(
-                verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingExtraSmall),
+                verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingExtraSmall),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(

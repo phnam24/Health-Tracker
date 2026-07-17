@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.components
+﻿package com.example.healthtracker.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.healthtracker.presentation.theme.AppDimensions
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun DescriptionText(
@@ -26,7 +26,7 @@ fun DescriptionText(
             color = MaterialTheme.colorScheme.onBackground
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
 
         Text(
             text = description,

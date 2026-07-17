@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.onboarding.ui.step
+﻿package com.example.healthtracker.presentation.onboarding.ui.step
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -37,8 +37,7 @@ import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun NameStep(
@@ -51,11 +50,11 @@ fun NameStep(
     ) {
         NameStepHeader()
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
         ActivityColumn()
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
         NameStepInputField(
             uiState = uiState,
@@ -78,7 +77,7 @@ fun NameStepHeader() {
         ) {
             Box(
                 modifier = Modifier
-                    .size(AppDimensions.SplashLogoSize)
+                    .size(MaterialTheme.dimensions.SplashLogoSize)
                     .clip(CircleShape)
                     .background(MaterialTheme.colorScheme.primaryContainer),
                 contentAlignment = Alignment.Center
@@ -86,13 +85,13 @@ fun NameStepHeader() {
                 Icon(
                     painterResource(R.drawable.ic_healthtracker_logo),
                     contentDescription = "Health Tracker Logo",
-                    modifier = Modifier.size(AppDimensions.SplashLogoMediumSize),
+                    modifier = Modifier.size(MaterialTheme.dimensions.SplashLogoMediumSize),
                     tint = MaterialTheme.colorScheme.primary,
                 )
             }
         }
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
         Text(
             text = stringResource(R.string.onboarding_welcome_title),
@@ -100,7 +99,7 @@ fun NameStepHeader() {
             color = MaterialTheme.colorScheme.onBackground
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingSmall))
 
         Text(
             text = stringResource(R.string.onboarding_welcome_description),
@@ -126,7 +125,7 @@ fun NameStepInputField(
             description = stringResource(R.string.onboarding_name_description)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMedium))
 
         AppTextField(
             value = uiState.name,
@@ -148,8 +147,8 @@ fun ActivityColumn() {
         modifier = Modifier
             .fillMaxWidth()
             .border(
-                shape = ControlShape,
-                width = AppDimensions.DividerThickness,
+                shape = MaterialTheme.shapes.medium,
+                width = MaterialTheme.dimensions.DividerThickness,
                 color = MaterialTheme.colorScheme.outline
             )
             .background(color = MaterialTheme.colorScheme.surface),
@@ -162,7 +161,7 @@ fun ActivityColumn() {
         )
 
         HorizontalDivider(
-            thickness = AppDimensions.DividerThickness,
+            thickness = MaterialTheme.dimensions.DividerThickness,
             color = MaterialTheme.colorScheme.outlineVariant,
         )
 
@@ -173,7 +172,7 @@ fun ActivityColumn() {
         )
 
         HorizontalDivider(
-            thickness = AppDimensions.DividerThickness,
+            thickness = MaterialTheme.dimensions.DividerThickness,
             color = MaterialTheme.colorScheme.outlineVariant,
         )
 
@@ -194,13 +193,13 @@ fun ActivityRowIcon(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(AppDimensions.SpacingMedium),
+            .padding(MaterialTheme.dimensions.SpacingMedium),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
             modifier = Modifier
-                .size(AppDimensions.OptionIconContainerSize)
+                .size(MaterialTheme.dimensions.OptionIconContainerSize)
                 .clip(CircleShape)
                 .background(MaterialTheme.colorScheme.primaryContainer),
             contentAlignment = Alignment.Center
@@ -208,23 +207,23 @@ fun ActivityRowIcon(
             Icon(
                 imageVector = icon,
                 contentDescription = label,
-                modifier = Modifier.size(AppDimensions.StandardIconSize),
+                modifier = Modifier.size(MaterialTheme.dimensions.StandardIconSize),
                 tint = MaterialTheme.colorScheme.primary
             )
         }
 
-        Spacer(modifier = Modifier.width(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingSmall))
 
         Column(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
                 text = label,
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onBackground,
             )
 
-            Spacer(modifier = Modifier.height(AppDimensions.SpacingExtraSmall))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingExtraSmall))
 
             Text(
                 text = description,

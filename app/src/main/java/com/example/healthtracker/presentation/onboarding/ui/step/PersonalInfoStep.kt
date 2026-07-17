@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.onboarding.ui.step
+﻿package com.example.healthtracker.presentation.onboarding.ui.step
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -32,8 +32,7 @@ import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.dimensions
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -50,14 +49,14 @@ fun PersonalInfoStep(
             description = stringResource(R.string.onboarding_personal_info_description)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
         DatePickerSession(
             uiState = uiState,
             onDateSelected = onEvent
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
         GenderSelectSession(
             uiState = uiState,
@@ -84,22 +83,22 @@ fun DatePickerSession(
             label = stringResource(R.string.onboarding_birth_date_label),
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMedium))
 
         uiState.age?.let {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        shape = ControlShape,
+                        shape = MaterialTheme.shapes.medium,
                         color = MaterialTheme.colorScheme.primaryContainer
                     )
                     .border(
-                        width = AppDimensions.DividerThickness,
-                        shape = ControlShape,
+                        width = MaterialTheme.dimensions.DividerThickness,
+                        shape = MaterialTheme.shapes.medium,
                         color = MaterialTheme.colorScheme.outline
                     )
-                    .padding(AppDimensions.SpacingMediumLarge),
+                    .padding(MaterialTheme.dimensions.SpacingMediumLarge),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
@@ -108,7 +107,7 @@ fun DatePickerSession(
                     tint = MaterialTheme.colorScheme.primary
                 )
 
-                Spacer(modifier = Modifier.width(AppDimensions.SpacingMediumLarge))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingMediumLarge))
 
                 Text(
                     text = stringResource(R.string.onboarding_age_value, it)
@@ -131,7 +130,7 @@ fun GenderSelectSession(
             description = stringResource(R.string.onboarding_gender_description)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMedium))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -145,7 +144,7 @@ fun GenderSelectSession(
                 modifier = Modifier.weight(1f)
             )
 
-            Spacer(modifier = Modifier.width(AppDimensions.SpacingSmall))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingSmall))
 
             OptionCard(
                 title = stringResource(R.string.gender_female),
@@ -156,7 +155,7 @@ fun GenderSelectSession(
             )
         }
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMedium))
 
         uiState.errors[OnboardingField.GENDER]?.let {
             Text(

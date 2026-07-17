@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.components
+﻿package com.example.healthtracker.presentation.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -23,8 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun OptionCard(
@@ -54,25 +53,25 @@ fun OptionCard(
         onClick = onClick,
         enabled = enabled,
         modifier = modifier.fillMaxWidth(),
-        shape = ControlShape,
+        shape = MaterialTheme.shapes.medium,
         color = containerColor,
         border = BorderStroke(
             width = if (selected) {
-                AppDimensions.FocusedBorderThickness
+                MaterialTheme.dimensions.FocusedBorderThickness
             } else {
-                AppDimensions.DividerThickness
+                MaterialTheme.dimensions.DividerThickness
             },
             color = borderColor,
         ),
     ) {
         Row(
-            modifier = Modifier.padding(AppDimensions.CardPadding),
+            modifier = Modifier.padding(MaterialTheme.dimensions.CardPadding),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             if (icon != null) {
                 Box(
                     modifier = Modifier
-                        .size(AppDimensions.OptionIconContainerSize)
+                        .size(MaterialTheme.dimensions.OptionIconContainerSize)
                         .clip(CircleShape)
                         .background(
                             iconContainerColor ?: if (selected) {
@@ -92,12 +91,12 @@ fun OptionCard(
                             MaterialTheme.colorScheme.onSurfaceVariant
                         },
                         modifier = Modifier.size(
-                            AppDimensions.StandardIconSize
+                            MaterialTheme.dimensions.StandardIconSize
                         ),
                     )
                 }
 
-                Spacer(Modifier.width(AppDimensions.SpacingMedium))
+                Spacer(Modifier.width(MaterialTheme.dimensions.SpacingMedium))
             }
 
             Column(modifier = Modifier.weight(1f)) {
@@ -108,7 +107,7 @@ fun OptionCard(
                 )
 
                 if (description != null) {
-                    Spacer(Modifier.height(AppDimensions.FocusedBorderThickness))
+                    Spacer(Modifier.height(MaterialTheme.dimensions.FocusedBorderThickness))
 
                     Text(
                         text = description,

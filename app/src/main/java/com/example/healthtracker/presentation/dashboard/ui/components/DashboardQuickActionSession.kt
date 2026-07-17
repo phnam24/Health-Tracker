@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.dashboard.ui.components
+﻿package com.example.healthtracker.presentation.dashboard.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
-import com.example.healthtracker.presentation.theme.AppDimensions
+import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
@@ -35,14 +35,14 @@ fun DashboardQuickActionSession(
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(AppDimensions.SpacingLarge)
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingLarge)
     ) {
         QuickActionButton(
             title = stringResource(R.string.dashboard_add_meal),
             icon = {
                 Box(
                     modifier = Modifier
-                        .size(AppDimensions.OptionIconContainerSize)
+                        .size(MaterialTheme.dimensions.OptionIconContainerSize)
                         .clip(CircleShape)
                         .background(MaterialTheme.healthColors.caloriesConsumedContainer),
                     contentAlignment = Alignment.Center
@@ -64,7 +64,7 @@ fun DashboardQuickActionSession(
             icon = {
                 Box(
                     modifier = Modifier
-                        .size(AppDimensions.OptionIconContainerSize)
+                        .size(MaterialTheme.dimensions.OptionIconContainerSize)
                         .clip(CircleShape)
                         .background(MaterialTheme.healthColors.caloriesBurnedContainer),
                     contentAlignment = Alignment.Center
@@ -73,7 +73,7 @@ fun DashboardQuickActionSession(
                         imageVector = Icons.AutoMirrored.Filled.DirectionsRun,
                         contentDescription = "Add activity icon",
                         tint = MaterialTheme.healthColors.caloriesBurned,
-                        modifier = Modifier.size(AppDimensions.LargeIconSize)
+                        modifier = Modifier.size(MaterialTheme.dimensions.LargeIconSize)
                     )
                 }
             },
@@ -94,21 +94,21 @@ fun QuickActionButton(
 ) {
     OutlinedCard(
         onClick = onClick,
-        modifier = modifier.height(AppDimensions.ButtonCardHeight),
+        modifier = modifier.height(MaterialTheme.dimensions.ButtonCardHeight),
         colors = CardDefaults.cardColors(containerColor = containerColor)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(AppDimensions.SpacingSmall),
+                .padding(MaterialTheme.dimensions.SpacingSmall),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(AppDimensions.SpacingSmall)
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingSmall)
         ) {
             icon()
 
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onSurface
             )
         }

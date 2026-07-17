@@ -8,6 +8,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 
 enum class ThemePalette {
@@ -95,10 +96,19 @@ private val LocalHealthTrackerColors = staticCompositionLocalOf {
     LightHealthTrackerColorScheme
 }
 
+private val LocalHealthTrackerDimensions = staticCompositionLocalOf {
+    DefaultHealthTrackerDimensions
+}
+
 val MaterialTheme.healthColors: HealthTrackerColorScheme
     @Composable
     @ReadOnlyComposable
     get() = LocalHealthTrackerColors.current
+
+val MaterialTheme.dimensions: HealthTrackerDimensions
+    @Composable
+    @ReadOnlyComposable
+    get() = LocalHealthTrackerDimensions.current
 
 private val BlueLightColorScheme = GreenLightColorScheme.copy(
     primary = BluePrimaryLight,
@@ -168,6 +178,8 @@ fun colorSchemeFor(
 fun HealthTrackerTheme(
     themeMode: ThemeMode = ThemeMode.SYSTEM,
     palette: ThemePalette = ThemePalette.GREEN,
+    fontScale: AppFontScale = AppFontScale.MEDIUM,
+    dimensions: HealthTrackerDimensions = DefaultHealthTrackerDimensions,
     content: @Composable () -> Unit,
 ) {
     val darkTheme = when (themeMode) {
@@ -181,12 +193,17 @@ fun HealthTrackerTheme(
     } else {
         LightHealthTrackerColorScheme
     }
+    val typography = remember(fontScale) { healthTrackerTypography(fontScale) }
+    val shapes = remember(dimensions) { healthTrackerShapes(dimensions) }
 
-    CompositionLocalProvider(LocalHealthTrackerColors provides healthColors) {
+    CompositionLocalProvider(
+        LocalHealthTrackerColors provides healthColors,
+        LocalHealthTrackerDimensions provides dimensions,
+    ) {
         MaterialTheme(
             colorScheme = colorSchemeFor(palette, darkTheme),
-            typography = HealthTrackerTypography,
-            shapes = HealthTrackerShapes,
+            typography = typography,
+            shapes = shapes,
             content = content,
         )
     }

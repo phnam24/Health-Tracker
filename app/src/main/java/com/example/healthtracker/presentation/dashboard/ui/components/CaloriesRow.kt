@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.dashboard.ui.components
+﻿package com.example.healthtracker.presentation.dashboard.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,7 +25,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailySummary
-import com.example.healthtracker.presentation.theme.AppDimensions
+import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
@@ -36,7 +36,7 @@ fun CaloriesSummaryRow(
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
-            .padding(AppDimensions.SpacingSmall),
+            .padding(MaterialTheme.dimensions.SpacingSmall),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         CaloriesRowItem(
@@ -51,8 +51,8 @@ fun CaloriesSummaryRow(
             modifier = Modifier
                 .fillMaxHeight()
                 .padding(
-                    horizontal = AppDimensions.SpacingMediumLarge,
-                    vertical = AppDimensions.SpacingSmall
+                    horizontal = MaterialTheme.dimensions.SpacingMediumLarge,
+                    vertical = MaterialTheme.dimensions.SpacingSmall
                 )
         )
 
@@ -68,8 +68,8 @@ fun CaloriesSummaryRow(
             modifier = Modifier
                 .fillMaxHeight()
                 .padding(
-                    horizontal = AppDimensions.SpacingMediumLarge,
-                    vertical = AppDimensions.SpacingSmall
+                    horizontal = MaterialTheme.dimensions.SpacingMediumLarge,
+                    vertical = MaterialTheme.dimensions.SpacingSmall
                 )
         )
 
@@ -92,14 +92,14 @@ fun CaloriesRowItem(
     modifier: Modifier = Modifier
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingExtraSmall),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingExtraSmall),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
             imageVector = icon,
             contentDescription = title,
             tint = tint,
-            modifier = Modifier.size(AppDimensions.LargeIconSize)
+            modifier = Modifier.size(MaterialTheme.dimensions.LargeIconSize)
         )
 
         Text(

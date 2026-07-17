@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.onboarding.ui.step
+﻿package com.example.healthtracker.presentation.onboarding.ui.step
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -27,8 +27,7 @@ import com.example.healthtracker.presentation.onboarding.resolveColor
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun GoalStep(
@@ -45,7 +44,7 @@ fun GoalStep(
             description = stringResource(R.string.onboarding_goal_description)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
         GoalSelectSession(
             uiState = uiState,
@@ -54,10 +53,10 @@ fun GoalStep(
             }
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
         uiState.errors[OnboardingField.GOAL]?.let {
-            Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
             Text(
                 text = stringResource(it.toStringRes()),
                 style = MaterialTheme.typography.bodyMedium,
@@ -70,7 +69,7 @@ fun GoalStep(
                 uiState = uiState
             )
 
-            Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingMediumLarge))
 
             Text(
                 text = stringResource(R.string.tdee_disclaimer),
@@ -78,7 +77,7 @@ fun GoalStep(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(AppDimensions.SpacingMedium)
+                modifier = Modifier.padding(MaterialTheme.dimensions.SpacingMedium)
             )
         }
     }
@@ -91,7 +90,7 @@ fun GoalSelectSession(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingSmall)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingSmall)
     ) {
         Goal.entries.forEach { goal ->
             val uiData = goal.getUiData()
@@ -118,12 +117,12 @@ fun TdeeResultSession(
         modifier = Modifier
             .fillMaxWidth()
             .border(
-                width = AppDimensions.FocusedBorderThickness,
-                shape = ControlShape,
+                width = MaterialTheme.dimensions.FocusedBorderThickness,
+                shape = MaterialTheme.shapes.medium,
                 color = MaterialTheme.colorScheme.outline
             )
-            .padding(AppDimensions.SpacingMedium),
-        verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingMedium)
+            .padding(MaterialTheme.dimensions.SpacingMedium),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingMedium)
     ) {
         Text(
             text = stringResource(R.string.tdee_preview_title),
@@ -139,7 +138,7 @@ fun TdeeResultSession(
                 style = MaterialTheme.typography.headlineLarge
             )
 
-            Spacer(modifier = Modifier.width(AppDimensions.SpacingSmall))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingSmall))
 
             Text(
                 text = stringResource(R.string.calories_per_day_unit),

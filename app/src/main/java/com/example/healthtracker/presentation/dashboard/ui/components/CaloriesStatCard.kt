@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.dashboard.ui.components
+﻿package com.example.healthtracker.presentation.dashboard.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,8 +32,7 @@ import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailyAdvice
 import com.example.healthtracker.domain.model.DailyAdviceType
 import com.example.healthtracker.domain.model.DailySummary
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.CardShape
+import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 import kotlin.math.abs
 
@@ -44,14 +43,14 @@ fun CaloriesStatCard(
 ) {
     OutlinedCard(
         modifier = Modifier.fillMaxWidth(),
-        shape = CardShape,
+        shape = MaterialTheme.shapes.large,
         colors = CardDefaults.outlinedCardColors(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
     ) {
         Column(
-            modifier = Modifier.padding(AppDimensions.SpacingLarge),
-            verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingMedium)
+            modifier = Modifier.padding(MaterialTheme.dimensions.SpacingLarge),
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingMedium)
         ) {
             CaloriesStatCardHeader()
 
@@ -80,7 +79,7 @@ fun CaloriesStatCardHeader() {
     ) {
         Box(
             modifier = Modifier
-                .size(AppDimensions.SpacingDoubleExtraLarge)
+                .size(MaterialTheme.dimensions.SpacingDoubleExtraLarge)
                 .background(color = MaterialTheme.colorScheme.primary, shape = CircleShape),
             contentAlignment = Alignment.Center
         ) {
@@ -88,11 +87,11 @@ fun CaloriesStatCardHeader() {
                 imageVector = Icons.Filled.BarChart,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onPrimary,
-                modifier = Modifier.size(AppDimensions.SpacingMediumLarge)
+                modifier = Modifier.size(MaterialTheme.dimensions.SpacingMediumLarge)
             )
         }
 
-        Spacer(modifier = Modifier.width(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingSmall))
 
         Text(
             text = stringResource(R.string.dashboard_analysis_title),
@@ -108,7 +107,7 @@ fun CaloriesStatEatenPercent(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingSmall)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingSmall)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -116,12 +115,12 @@ fun CaloriesStatEatenPercent(
         ) {
             Text(
                 text = "${dailySummary.eatenCalories.toFloat() / dailySummary.goalCalories}%",
-                style = MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.alignByBaseline()
             )
 
-            Spacer(modifier = Modifier.width(AppDimensions.SpacingExtraSmall))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingExtraSmall))
 
             Text(
                 text = stringResource(R.string.dashboard_goal_progress),
@@ -138,7 +137,7 @@ fun CaloriesStatEatenPercent(
                 progress = { 1f },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(AppDimensions.SpacingSmall),
+                    .height(MaterialTheme.dimensions.SpacingSmall),
                 color = MaterialTheme.colorScheme.surfaceVariant
             )
 
@@ -146,7 +145,7 @@ fun CaloriesStatEatenPercent(
                 progress = { dailySummary.eatenCalories.toFloat() / dailySummary.goalCalories },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(AppDimensions.SpacingSmall),
+                    .height(MaterialTheme.dimensions.SpacingSmall),
                 color = MaterialTheme.colorScheme.primary,
                 trackColor = MaterialTheme.healthColors.transparent,
                 strokeCap = StrokeCap.Round
@@ -162,7 +161,7 @@ fun CaloriesStatAdvice(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingSmall)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.SpacingSmall)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -171,11 +170,11 @@ fun CaloriesStatAdvice(
             Icon(
                 imageVector = Icons.Default.Balance,
                 contentDescription = "Balance Icon",
-                modifier = Modifier.size(AppDimensions.SpacingDoubleExtraLarge),
+                modifier = Modifier.size(MaterialTheme.dimensions.SpacingDoubleExtraLarge),
                 tint = MaterialTheme.colorScheme.primary
             )
 
-            Spacer(modifier = Modifier.width(AppDimensions.SpacingSmall))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.SpacingSmall))
 
             Column {
                 Text(
@@ -184,7 +183,7 @@ fun CaloriesStatAdvice(
                     color = MaterialTheme.colorScheme.onSurface
                 )
 
-                Spacer(modifier = Modifier.height(AppDimensions.SpacingExtraSmall))
+                Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingExtraSmall))
 
                 Text(
 
@@ -209,7 +208,7 @@ fun CaloriesStatAdvice(
         }
 
         OutlinedCard(
-            shape = CardShape,
+            shape = MaterialTheme.shapes.large,
             colors = CardDefaults.outlinedCardColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
             ),
@@ -217,17 +216,17 @@ fun CaloriesStatAdvice(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(AppDimensions.SpacingSmall),
+                    .padding(MaterialTheme.dimensions.SpacingSmall),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     imageVector = Icons.Default.Lightbulb,
                     contentDescription = "Advice Icon",
-                    modifier = Modifier.size(AppDimensions.SpacingDoubleExtraLarge),
+                    modifier = Modifier.size(MaterialTheme.dimensions.SpacingDoubleExtraLarge),
                     tint = MaterialTheme.colorScheme.onPrimaryContainer
                 )
 
-                Spacer(Modifier.width(AppDimensions.SpacingMedium))
+                Spacer(Modifier.width(MaterialTheme.dimensions.SpacingMedium))
 
                 Text(
                     text = when (dailyAdvice.type) {

@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.splash
+﻿package com.example.healthtracker.presentation.splash
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
-import com.example.healthtracker.presentation.theme.AppDimensions
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun SplashScreen() {
@@ -65,11 +65,11 @@ fun SplashScreen() {
             Icon(
                 painter = painterResource(R.drawable.ic_healthtracker_logo),
                 contentDescription = "Splash Art Logo",
-                modifier = Modifier.size(AppDimensions.SplashLogoSize),
+                modifier = Modifier.size(MaterialTheme.dimensions.SplashLogoSize),
                 tint = MaterialTheme.colorScheme.primary,
             )
 
-            Spacer(modifier = Modifier.height(AppDimensions.SpacingLarge))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingLarge))
 
             Text(
                 text = "Health Tracker",
@@ -77,7 +77,7 @@ fun SplashScreen() {
                 color = MaterialTheme.colorScheme.onBackground
             )
 
-            Spacer(modifier = Modifier.height(AppDimensions.SpacingLarge))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimensions.SpacingLarge))
 
             Text(
                 text = stringResource(R.string.splash_tagline),
@@ -92,7 +92,7 @@ fun SplashScreen() {
             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f),
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = AppDimensions.SplashVersionBottomPadding)
+                .padding(bottom = MaterialTheme.dimensions.SplashVersionBottomPadding)
                 .alpha(alphaAnimation)
         )
     }
