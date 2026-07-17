@@ -12,7 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.StrokeCap
-import com.example.healthtracker.presentation.theme.AppDimensions
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun StepProgressBar(
@@ -36,7 +36,7 @@ fun StepProgressBar(
         progress = { progress },
         modifier = modifier
             .fillMaxWidth()
-            .height(AppDimensions.ProgressIndicatorHeight)
+            .height(MaterialTheme.dimensions.progressIndicatorHeight)
             .clip(CircleShape),
         color = MaterialTheme.colorScheme.primary,
         trackColor = MaterialTheme.colorScheme.surfaceVariant,

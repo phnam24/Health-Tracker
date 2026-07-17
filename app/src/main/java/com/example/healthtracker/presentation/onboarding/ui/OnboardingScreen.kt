@@ -47,8 +47,7 @@ import com.example.healthtracker.presentation.onboarding.ui.step.PersonalInfoSte
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEffect
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingViewModel
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
+import com.example.healthtracker.presentation.theme.dimensions
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -84,6 +83,8 @@ fun OnboardingScreen(
     snackbarHostState: SnackbarHostState,
     onEvent: (OnboardingEvent) -> Unit
 ) {
+    val scrollState = rememberScrollState()
+
     Scaffold(
         topBar = {
             OnboardingHeader(
@@ -98,6 +99,7 @@ fun OnboardingScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(scrollState)
                 .padding(paddingValues)
                 .imePadding()
         ) {
@@ -105,7 +107,7 @@ fun OnboardingScreen(
                 modifier = Modifier
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
-                    .padding(horizontal = AppDimensions.SpacingMediumLarge)
+                    .padding(horizontal = MaterialTheme.dimensions.spacingMediumLarge)
             ) {
                 when (uiState.currentStep) {
                     OnboardingStep.NAME -> NameStep(uiState, onEvent)
@@ -131,7 +133,7 @@ fun OnboardingScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(AppDimensions.SpacingMediumLarge)
+                    .padding(MaterialTheme.dimensions.spacingMediumLarge)
             )
         }
     }
@@ -147,12 +149,12 @@ fun OnboardingHeader(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(AppDimensions.SpacingMediumLarge),
+            .padding(MaterialTheme.dimensions.spacingMediumLarge),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .defaultMinSize(minHeight = AppDimensions.SpacingDoubleExtraLarge),
+                .defaultMinSize(minHeight = MaterialTheme.dimensions.spacingDoubleExtraLarge),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
@@ -166,10 +168,10 @@ fun OnboardingHeader(
                         contentDescription = "Back icon",
                         modifier = Modifier
                             .clickable { onEvent(OnboardingEvent.BackClicked) }
-                            .padding(AppDimensions.SpacingExtraSmall)
+                            .padding(MaterialTheme.dimensions.spacingExtraSmall)
                     )
                 } else {
-                    Spacer(modifier = Modifier.size(AppDimensions.SpacingDoubleExtraLarge))
+                    Spacer(modifier = Modifier.size(MaterialTheme.dimensions.spacingDoubleExtraLarge))
                 }
             }
 
@@ -178,14 +180,14 @@ fun OnboardingHeader(
             Text(
                 text = stringResource(R.string.onboarding_step, current, total),
                 style = MaterialTheme.typography.labelLarge,
-                color = OnSurfaceVariantLight,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
-                    .padding(AppDimensions.SpacingExtraSmall)
+                    .padding(MaterialTheme.dimensions.spacingExtraSmall)
             )
         }
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         StepProgressBar(
             currentStep = current,

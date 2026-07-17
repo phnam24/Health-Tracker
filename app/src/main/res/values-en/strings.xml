@@ -137,6 +137,7 @@
     <string name="common_loading">Loading data…</string>
     <string name="common_retry">Try again</string>
     <string name="common_cancel">Cancel</string>
+    <string name="common_confirm">OK</string>
     <string name="common_close">Close</string>
     <string name="common_save">Save</string>
     <string name="common_add">Add</string>
@@ -151,6 +152,7 @@
     <!-- Dashboard -->
     <string name="dashboard_title">Overview</string>
     <string name="dashboard_greeting">Hello, %1$s 👋</string>
+    <string name="date_format_short">MMM d, yyyy</string>
     <string name="dashboard_date_format">EEEE, MMMM d, yyyy</string>
     <string name="dashboard_today_summary">Today’s overview</string>
     <string name="dashboard_goal">Goal</string>
@@ -162,7 +164,8 @@
 
     <!-- Dashboard analysis -->
     <string name="dashboard_analysis_title">Today’s analysis</string>
-    <string name="dashboard_goal_progress">%1$d%% of goal consumed</string>
+    <string name="dashboard_percentage_value">%1$d%%</string>
+    <string name="dashboard_goal_progress">of goal consumed</string>
     <string name="dashboard_energy_balance">Energy balance</string>
     <string name="dashboard_balance_signed_value">%1$+d kcal</string>
     <string name="dashboard_balance_positive">Intake is higher than calories burned</string>

@@ -11,8 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun AppTextField(
@@ -59,7 +58,7 @@ fun AppTextField(
                     imageVector = it,
                     contentDescription = null,
                     modifier = Modifier.size(
-                        AppDimensions.StandardIconSize
+                        MaterialTheme.dimensions.standardIconSize
                     ),
                 )
             }
@@ -75,6 +74,6 @@ fun AppTextField(
         },
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
-        shape = ControlShape,
+        shape = MaterialTheme.shapes.medium,
     )
 }

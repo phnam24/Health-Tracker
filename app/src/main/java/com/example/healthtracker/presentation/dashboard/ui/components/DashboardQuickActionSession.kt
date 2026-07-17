@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -25,9 +26,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.BluePrimaryLight
-import com.example.healthtracker.presentation.theme.CaloriesConsumed
+import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun DashboardQuickActionSession(
@@ -36,22 +36,22 @@ fun DashboardQuickActionSession(
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(AppDimensions.SpacingLarge)
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingLarge)
     ) {
         QuickActionButton(
             title = stringResource(R.string.dashboard_add_meal),
             icon = {
                 Box(
                     modifier = Modifier
-                        .size(AppDimensions.OptionIconContainerSize)
+                        .size(MaterialTheme.dimensions.optionIconContainerSize)
                         .clip(CircleShape)
-                        .background(CaloriesConsumed.copy(alpha = 0.2f)),
+                        .background(MaterialTheme.healthColors.caloriesConsumedContainer),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.Default.Restaurant,
                         contentDescription = "Add meal icon",
-                        tint = CaloriesConsumed,
+                        tint = MaterialTheme.healthColors.caloriesConsumed,
                     )
                 }
             },
@@ -65,16 +65,16 @@ fun DashboardQuickActionSession(
             icon = {
                 Box(
                     modifier = Modifier
-                        .size(AppDimensions.OptionIconContainerSize)
+                        .size(MaterialTheme.dimensions.optionIconContainerSize)
                         .clip(CircleShape)
-                        .background(BluePrimaryLight.copy(alpha = 0.2f)),
+                        .background(MaterialTheme.healthColors.caloriesBurnedContainer),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.DirectionsRun,
                         contentDescription = "Add activity icon",
-                        tint = BluePrimaryLight,
-                        modifier = Modifier.size(AppDimensions.LargeIconSize)
+                        tint = MaterialTheme.healthColors.caloriesBurned,
+                        modifier = Modifier.size(MaterialTheme.dimensions.largeIconSize)
                     )
                 }
             },
@@ -95,21 +95,25 @@ fun QuickActionButton(
 ) {
     OutlinedCard(
         onClick = onClick,
-        modifier = modifier.height(AppDimensions.ButtonCardHeight),
+        modifier = modifier.height(MaterialTheme.dimensions.buttonCardHeight),
         colors = CardDefaults.cardColors(containerColor = containerColor)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(AppDimensions.SpacingSmall),
+                .padding(MaterialTheme.dimensions.spacingSmall),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(AppDimensions.SpacingSmall)
+
+            horizontalArrangement = Arrangement.spacedBy(
+                space = MaterialTheme.dimensions.spacingSmall,
+                alignment = Alignment.CenterHorizontally
+            )
         ) {
             icon()
 
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onSurface
             )
         }

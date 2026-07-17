@@ -15,11 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import com.example.healthtracker.R
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.GreenOnPrimaryContainerLight
-import com.example.healthtracker.presentation.theme.SecondaryContainerLight
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun DashboardHeader(
@@ -35,8 +32,7 @@ fun DashboardHeader(
         Column {
             Text(
                 text = stringResource(R.string.dashboard_greeting, userName.split(" ").first()),
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold
+                style = MaterialTheme.typography.titleLarge,
             )
             Text(
                 text = dateString,
@@ -47,15 +43,15 @@ fun DashboardHeader(
 
         Box(
             modifier = Modifier
-                .size(AppDimensions.MinimumTouchTarget)
+                .size(MaterialTheme.dimensions.minimumTouchTarget)
                 .clip(CircleShape)
-                .background(SecondaryContainerLight),
+                .background(MaterialTheme.colorScheme.secondaryContainer),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = userName.firstOrNull()?.toString()?.uppercase() ?: "",
                 style = MaterialTheme.typography.titleMedium,
-                color = GreenOnPrimaryContainerLight
+                color = MaterialTheme.colorScheme.onSecondaryContainer
             )
         }
     }

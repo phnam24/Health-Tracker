@@ -25,9 +25,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailySummary
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.BluePrimaryLight
-import com.example.healthtracker.presentation.theme.CaloriesConsumed
+import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun CaloriesSummaryRow(
@@ -37,12 +36,12 @@ fun CaloriesSummaryRow(
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
-            .padding(AppDimensions.SpacingSmall),
+            .padding(MaterialTheme.dimensions.spacingSmall),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
         CaloriesRowItem(
             title = stringResource(R.string.dashboard_goal),
-            value = dailySummary.goalCalories ?: 0,
+            value = dailySummary.goalCalories,
             icon = Icons.Filled.GolfCourse,
             tint = MaterialTheme.colorScheme.secondary,
             modifier = Modifier.weight(1f)
@@ -52,16 +51,16 @@ fun CaloriesSummaryRow(
             modifier = Modifier
                 .fillMaxHeight()
                 .padding(
-                    horizontal = AppDimensions.SpacingMediumLarge,
-                    vertical = AppDimensions.SpacingSmall
+                    horizontal = MaterialTheme.dimensions.spacingMediumLarge,
+                    vertical = MaterialTheme.dimensions.spacingSmall
                 )
         )
 
         CaloriesRowItem(
             title = stringResource(R.string.dashboard_eaten),
-            value = dailySummary.eatenCalories ?: 0,
+            value = dailySummary.eatenCalories,
             icon = Icons.Filled.Restaurant,
-            tint = CaloriesConsumed,
+            tint = MaterialTheme.healthColors.caloriesConsumed,
             modifier = Modifier.weight(1f)
         )
 
@@ -69,16 +68,16 @@ fun CaloriesSummaryRow(
             modifier = Modifier
                 .fillMaxHeight()
                 .padding(
-                    horizontal = AppDimensions.SpacingMediumLarge,
-                    vertical = AppDimensions.SpacingSmall
+                    horizontal = MaterialTheme.dimensions.spacingMediumLarge,
+                    vertical = MaterialTheme.dimensions.spacingSmall
                 )
         )
 
         CaloriesRowItem(
             title = stringResource(R.string.dashboard_burned),
-            value = dailySummary.burnedCalories ?: 0,
+            value = dailySummary.burnedCalories,
             icon = Icons.Filled.LocalFireDepartment,
-            tint = BluePrimaryLight,
+            tint = MaterialTheme.healthColors.caloriesBurned,
             modifier = Modifier.weight(1f)
         )
     }
@@ -93,14 +92,14 @@ fun CaloriesRowItem(
     modifier: Modifier = Modifier
 ) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingExtraSmall),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingExtraSmall),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
             imageVector = icon,
             contentDescription = title,
             tint = tint,
-            modifier = Modifier.size(AppDimensions.LargeIconSize)
+            modifier = Modifier.size(MaterialTheme.dimensions.largeIconSize)
         )
 
         Text(

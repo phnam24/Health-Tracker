@@ -40,17 +40,8 @@ import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.BmiNormal
-import com.example.healthtracker.presentation.theme.BmiObese
-import com.example.healthtracker.presentation.theme.BmiOverweight
-import com.example.healthtracker.presentation.theme.BmiUnderweight
-import com.example.healthtracker.presentation.theme.ControlShape
-import com.example.healthtracker.presentation.theme.GreenOnPrimaryLight
-import com.example.healthtracker.presentation.theme.GreenPrimaryContainerDark
-import com.example.healthtracker.presentation.theme.GreenPrimaryLight
-import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
-import com.example.healthtracker.presentation.theme.OutlineLight
+import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun BodyMetricsStep(
@@ -66,21 +57,21 @@ fun BodyMetricsStep(
             description = stringResource(R.string.onboarding_body_metrics_description)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         WeightInputSession(
             uiState = uiState,
             onEvent = onEvent
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         HeightInputSession(
             uiState = uiState,
             onEvent = onEvent
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         BmiResultSession(
             uiState = uiState
@@ -132,20 +123,20 @@ fun BmiResultSession(
         modifier = Modifier
             .fillMaxWidth()
             .border(
-                width = AppDimensions.FocusedBorderThickness,
-                shape = ControlShape,
-                color = OutlineLight
+                width = MaterialTheme.dimensions.focusedBorderThickness,
+                shape = MaterialTheme.shapes.medium,
+                color = MaterialTheme.colorScheme.outline
             )
-            .padding(AppDimensions.SpacingMedium),
+            .padding(MaterialTheme.dimensions.spacingMedium),
         verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = stringResource(R.string.bmi_preview_title),
             style = MaterialTheme.typography.titleMedium,
-            color = GreenPrimaryContainerDark
+            color = MaterialTheme.colorScheme.onSurface
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -155,7 +146,7 @@ fun BmiResultSession(
                 style = MaterialTheme.typography.headlineLarge
             )
 
-            Spacer(modifier = Modifier.width(AppDimensions.SpacingMedium))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingMedium))
 
             Text(
                 text = when (uiState.bmiPreview?.category) {
@@ -166,11 +157,17 @@ fun BmiResultSession(
                     else -> ""
                 },
                 style = MaterialTheme.typography.titleMedium,
-                color = GreenPrimaryLight
+                color = when (uiState.bmiPreview?.category) {
+                    BmiCategory.UNDERWEIGHT -> MaterialTheme.healthColors.bmiUnderweight
+                    BmiCategory.NORMAL -> MaterialTheme.healthColors.bmiNormal
+                    BmiCategory.OVERWEIGHT -> MaterialTheme.healthColors.bmiOverweight
+                    BmiCategory.OBESE -> MaterialTheme.healthColors.bmiObese
+                    null -> MaterialTheme.colorScheme.onSurface
+                }
             )
         }
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Text(
             text = when (uiState.bmiPreview?.category) {
@@ -183,7 +180,7 @@ fun BmiResultSession(
             style = MaterialTheme.typography.bodyMedium,
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         BmiScaleBar(
             bmi = uiState.bmiPreview?.value?.toFloat() ?: 10f
@@ -215,7 +212,7 @@ fun BodyMetricsInput(
                 Text(
                     text = unit,
                     style = MaterialTheme.typography.labelLarge,
-                    color = OnSurfaceVariantLight
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             },
             isError = !errorText.isNullOrBlank(),
@@ -223,22 +220,22 @@ fun BodyMetricsInput(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(AppDimensions.SpacingMedium)
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
         ) {
             suggestions.forEach { suggestion ->
                 Box(
                     modifier = Modifier
                         .weight(1f)
-                        .height(AppDimensions.OptionIconContainerSize)
-                        .clip(ControlShape)
+                        .height(MaterialTheme.dimensions.optionIconContainerSize)
+                        .clip(MaterialTheme.shapes.medium)
                         .border(
-                            width = AppDimensions.DividerThickness,
-                            shape = ControlShape,
-                            color = OutlineLight
+                            width = MaterialTheme.dimensions.dividerThickness,
+                            shape = MaterialTheme.shapes.medium,
+                            color = MaterialTheme.colorScheme.outline
                         )
                         .clickable {
                             onValueChange(suggestion)
@@ -258,10 +255,10 @@ fun BmiScaleBar(
     modifier: Modifier = Modifier
 ) {
     val gradientColors = listOf(
-        BmiUnderweight,
-        BmiNormal,
-        BmiOverweight,
-        BmiObese
+        MaterialTheme.healthColors.bmiUnderweight,
+        MaterialTheme.healthColors.bmiNormal,
+        MaterialTheme.healthColors.bmiOverweight,
+        MaterialTheme.healthColors.bmiObese,
     )
 
     val minBmi = 16f
@@ -273,14 +270,14 @@ fun BmiScaleBar(
         modifier = modifier.fillMaxWidth()
     ) {
         BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
-            val indicatorOffset = (maxWidth * percentage) - AppDimensions.SpacingMedium
+            val indicatorOffset = (maxWidth * percentage) - MaterialTheme.dimensions.spacingMedium
 
             Icon(
                 imageVector = Icons.Filled.ArrowDropDown,
                 contentDescription = "Indicator",
-                tint = GreenOnPrimaryLight,
+                tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
-                    .size(AppDimensions.SpacingDoubleExtraLarge)
+                    .size(MaterialTheme.dimensions.spacingDoubleExtraLarge)
                     .offset(x = indicatorOffset)
             )
         }
@@ -288,7 +285,7 @@ fun BmiScaleBar(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(AppDimensions.SpacingSmall)
+                .height(MaterialTheme.dimensions.spacingSmall)
                 .clip(CircleShape)
                 .background(Brush.horizontalGradient(gradientColors))
         )

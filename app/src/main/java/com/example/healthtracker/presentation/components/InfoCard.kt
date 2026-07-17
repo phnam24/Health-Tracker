@@ -16,8 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun InfoCard(
@@ -29,12 +28,12 @@ fun InfoCard(
 ) {
     Surface(
         modifier = modifier.fillMaxWidth(),
-        shape = ControlShape,
+        shape = MaterialTheme.shapes.medium,
         color = containerColor,
         contentColor = contentColor,
     ) {
         Row(
-            modifier = Modifier.padding(AppDimensions.CardPadding),
+            modifier = Modifier.padding(MaterialTheme.dimensions.cardPadding),
             verticalAlignment = Alignment.Top,
         ) {
             if (icon != null) {
@@ -43,11 +42,11 @@ fun InfoCard(
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(
-                        AppDimensions.StandardIconSize
+                        MaterialTheme.dimensions.standardIconSize
                     ),
                 )
 
-                Spacer(Modifier.width(AppDimensions.SpacingMedium))
+                Spacer(Modifier.width(MaterialTheme.dimensions.spacingMedium))
             }
 
             Column(

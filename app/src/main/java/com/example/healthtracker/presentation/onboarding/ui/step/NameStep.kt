@@ -1,6 +1,5 @@
 package com.example.healthtracker.presentation.onboarding.ui.step
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -38,14 +37,7 @@ import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
-import com.example.healthtracker.presentation.theme.GreenPrimaryContainerLight
-import com.example.healthtracker.presentation.theme.GreenPrimaryLight
-import com.example.healthtracker.presentation.theme.OnBackgroundLight
-import com.example.healthtracker.presentation.theme.OnSecondaryLight
-import com.example.healthtracker.presentation.theme.OnSurfaceVariantDark
-import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun NameStep(
@@ -58,11 +50,11 @@ fun NameStep(
     ) {
         NameStepHeader()
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         ActivityColumn()
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         NameStepInputField(
             uiState = uiState,
@@ -85,33 +77,34 @@ fun NameStepHeader() {
         ) {
             Box(
                 modifier = Modifier
-                    .size(AppDimensions.SplashLogoSize)
+                    .size(MaterialTheme.dimensions.splashLogoSize)
                     .clip(CircleShape)
-                    .background(GreenPrimaryContainerLight),
+                    .background(MaterialTheme.colorScheme.primaryContainer),
                 contentAlignment = Alignment.Center
             ) {
-                Image(
+                Icon(
                     painterResource(R.drawable.ic_healthtracker_logo),
                     contentDescription = "Health Tracker Logo",
-                    modifier = Modifier.size(AppDimensions.SplashLogoMediumSize)
+                    modifier = Modifier.size(MaterialTheme.dimensions.splashLogoMediumSize),
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
                 )
             }
         }
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         Text(
             text = stringResource(R.string.onboarding_welcome_title),
             style = MaterialTheme.typography.titleLarge,
-            color = OnBackgroundLight
+            color = MaterialTheme.colorScheme.onBackground
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Text(
             text = stringResource(R.string.onboarding_welcome_description),
             style = MaterialTheme.typography.bodyLarge,
-            color = OnSurfaceVariantLight,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 2,
             textAlign = TextAlign.Center
         )
@@ -132,7 +125,7 @@ fun NameStepInputField(
             description = stringResource(R.string.onboarding_name_description)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMedium))
 
         AppTextField(
             value = uiState.name,
@@ -154,11 +147,11 @@ fun ActivityColumn() {
         modifier = Modifier
             .fillMaxWidth()
             .border(
-                shape = ControlShape,
-                width = AppDimensions.DividerThickness,
-                color = OnSurfaceVariantDark
+                shape = MaterialTheme.shapes.medium,
+                width = MaterialTheme.dimensions.dividerThickness,
+                color = MaterialTheme.colorScheme.outline
             )
-            .background(color = OnSecondaryLight),
+            .background(color = MaterialTheme.colorScheme.surface),
         verticalArrangement = Arrangement.Center
     ) {
         ActivityRowIcon(
@@ -167,7 +160,10 @@ fun ActivityColumn() {
             icon = Icons.AutoMirrored.Filled.MenuBook
         )
 
-        HorizontalDivider(thickness = AppDimensions.DividerThickness, color = OnSurfaceVariantDark)
+        HorizontalDivider(
+            thickness = MaterialTheme.dimensions.dividerThickness,
+            color = MaterialTheme.colorScheme.outlineVariant,
+        )
 
         ActivityRowIcon(
             label = stringResource(R.string.onboarding_benefit_insight_title),
@@ -175,7 +171,10 @@ fun ActivityColumn() {
             icon = Icons.Filled.CoPresent
         )
 
-        HorizontalDivider(thickness = AppDimensions.DividerThickness, color = OnSurfaceVariantDark)
+        HorizontalDivider(
+            thickness = MaterialTheme.dimensions.dividerThickness,
+            color = MaterialTheme.colorScheme.outlineVariant,
+        )
 
         ActivityRowIcon(
             label = stringResource(R.string.onboarding_benefit_goal_title),
@@ -194,42 +193,42 @@ fun ActivityRowIcon(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(AppDimensions.SpacingMedium),
+            .padding(MaterialTheme.dimensions.spacingMedium),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
             modifier = Modifier
-                .size(AppDimensions.OptionIconContainerSize)
+                .size(MaterialTheme.dimensions.optionIconContainerSize)
                 .clip(CircleShape)
-                .background(GreenPrimaryContainerLight),
+                .background(MaterialTheme.colorScheme.primaryContainer),
             contentAlignment = Alignment.Center
         ) {
             Icon(
                 imageVector = icon,
                 contentDescription = label,
-                modifier = Modifier.size(AppDimensions.StandardIconSize),
-                tint = GreenPrimaryLight
+                modifier = Modifier.size(MaterialTheme.dimensions.standardIconSize),
+                tint = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
 
-        Spacer(modifier = Modifier.width(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingSmall))
 
         Column(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
                 text = label,
-                style = MaterialTheme.typography.titleSmall,
-                color = OnBackgroundLight,
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onBackground,
             )
 
-            Spacer(modifier = Modifier.height(AppDimensions.SpacingExtraSmall))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingExtraSmall))
 
             Text(
                 text = description,
                 style = MaterialTheme.typography.bodyMedium,
-                color = OnSurfaceVariantLight,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2
             )
         }

@@ -6,59 +6,41 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-val HealthTrackerTypography = Typography(
-    displayLarge = TextStyle(
+enum class AppFontScale(val multiplier: Float) {
+    SMALL(0.85f),
+    MEDIUM(1f),
+    LARGE(1.15f),
+}
+
+internal fun healthTrackerTypography(fontScale: AppFontScale): Typography {
+    val multiplier = fontScale.multiplier
+
+    fun style(
+        fontSize: Float,
+        lineHeight: Float,
+        fontWeight: FontWeight,
+    ) = TextStyle(
         fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Bold,
-        fontSize = 48.sp,
-        lineHeight = 56.sp,
-    ),
-    headlineLarge = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 28.sp,
-        lineHeight = 36.sp,
-    ),
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-    ),
-    titleMedium = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 17.sp,
-        lineHeight = 24.sp,
-    ),
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-    ),
-    bodyMedium = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-    ),
-    labelLarge = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
-        lineHeight = 20.sp,
-    ),
-    labelMedium = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
-        lineHeight = 16.sp,
-    ),
-    bodySmall = TextStyle(
-        fontFamily = FontFamily.SansSerif,
-        fontWeight = FontWeight.Normal,
-        fontSize = 11.sp,
-        lineHeight = 14.sp,
-    ),
-)
+        fontWeight = fontWeight,
+        fontSize = (fontSize * multiplier).sp,
+        lineHeight = (lineHeight * multiplier).sp,
+    )
+
+    return Typography(
+        displayLarge = style(48f, 56f, FontWeight.Bold),
+        displayMedium = style(40f, 48f, FontWeight.Bold),
+        displaySmall = style(32f, 40f, FontWeight.Bold),
+        headlineLarge = style(28f, 36f, FontWeight.SemiBold),
+        headlineMedium = style(24f, 32f, FontWeight.SemiBold),
+        headlineSmall = style(20f, 28f, FontWeight.SemiBold),
+        titleLarge = style(22f, 28f, FontWeight.SemiBold),
+        titleMedium = style(17f, 24f, FontWeight.SemiBold),
+        titleSmall = style(14f, 20f, FontWeight.SemiBold),
+        bodyLarge = style(16f, 24f, FontWeight.Normal),
+        bodyMedium = style(14f, 20f, FontWeight.Normal),
+        bodySmall = style(11f, 14f, FontWeight.Normal),
+        labelLarge = style(14f, 20f, FontWeight.Medium),
+        labelMedium = style(12f, 16f, FontWeight.Medium),
+        labelSmall = style(11f, 14f, FontWeight.Medium),
+    )
+}

@@ -32,12 +32,7 @@ import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
-import com.example.healthtracker.presentation.theme.ErrorLight
-import com.example.healthtracker.presentation.theme.GreenPrimaryContainerLight
-import com.example.healthtracker.presentation.theme.GreenPrimaryLight
-import com.example.healthtracker.presentation.theme.OutlineLight
+import com.example.healthtracker.presentation.theme.dimensions
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -54,14 +49,14 @@ fun PersonalInfoStep(
             description = stringResource(R.string.onboarding_personal_info_description)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         DatePickerSession(
             uiState = uiState,
             onDateSelected = onEvent
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMediumLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
         GenderSelectSession(
             uiState = uiState,
@@ -88,34 +83,35 @@ fun DatePickerSession(
             label = stringResource(R.string.onboarding_birth_date_label),
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMedium))
 
         uiState.age?.let {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
-                        shape = ControlShape,
-                        color = GreenPrimaryContainerLight
+                        shape = MaterialTheme.shapes.medium,
+                        color = MaterialTheme.colorScheme.primaryContainer
                     )
                     .border(
-                        width = AppDimensions.DividerThickness,
-                        shape = ControlShape,
-                        color = OutlineLight
+                        width = MaterialTheme.dimensions.dividerThickness,
+                        shape = MaterialTheme.shapes.medium,
+                        color = MaterialTheme.colorScheme.outline
                     )
-                    .padding(AppDimensions.SpacingMediumLarge),
+                    .padding(MaterialTheme.dimensions.spacingMediumLarge),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     imageVector = Icons.Default.Cake,
                     contentDescription = "Birthday cake icon",
-                    tint = GreenPrimaryLight
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer
                 )
 
-                Spacer(modifier = Modifier.width(AppDimensions.SpacingMediumLarge))
+                Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingMediumLarge))
 
                 Text(
-                    text = stringResource(R.string.onboarding_age_value, it)
+                    text = stringResource(R.string.onboarding_age_value, it),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
         }
@@ -135,7 +131,7 @@ fun GenderSelectSession(
             description = stringResource(R.string.onboarding_gender_description)
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMedium))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -149,7 +145,7 @@ fun GenderSelectSession(
                 modifier = Modifier.weight(1f)
             )
 
-            Spacer(modifier = Modifier.width(AppDimensions.SpacingSmall))
+            Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingSmall))
 
             OptionCard(
                 title = stringResource(R.string.gender_female),
@@ -160,13 +156,13 @@ fun GenderSelectSession(
             )
         }
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingMedium))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMedium))
 
         uiState.errors[OnboardingField.GENDER]?.let {
             Text(
                 text = stringResource(it.toStringRes()),
                 style = MaterialTheme.typography.bodyMedium,
-                color = ErrorLight
+                color = MaterialTheme.colorScheme.error
             )
         }
     }

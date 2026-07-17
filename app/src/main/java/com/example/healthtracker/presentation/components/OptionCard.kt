@@ -23,8 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun OptionCard(
@@ -49,30 +48,35 @@ fun OptionCard(
     } else {
         MaterialTheme.colorScheme.surface
     }
+    val contentColor = if (selected) {
+        MaterialTheme.colorScheme.onPrimaryContainer
+    } else {
+        MaterialTheme.colorScheme.onSurface
+    }
 
     Surface(
         onClick = onClick,
         enabled = enabled,
         modifier = modifier.fillMaxWidth(),
-        shape = ControlShape,
+        shape = MaterialTheme.shapes.medium,
         color = containerColor,
         border = BorderStroke(
             width = if (selected) {
-                AppDimensions.FocusedBorderThickness
+                MaterialTheme.dimensions.focusedBorderThickness
             } else {
-                AppDimensions.DividerThickness
+                MaterialTheme.dimensions.dividerThickness
             },
             color = borderColor,
         ),
     ) {
         Row(
-            modifier = Modifier.padding(AppDimensions.CardPadding),
+            modifier = Modifier.padding(MaterialTheme.dimensions.cardPadding),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             if (icon != null) {
                 Box(
                     modifier = Modifier
-                        .size(AppDimensions.OptionIconContainerSize)
+                        .size(MaterialTheme.dimensions.optionIconContainerSize)
                         .clip(CircleShape)
                         .background(
                             iconContainerColor ?: if (selected) {
@@ -92,28 +96,32 @@ fun OptionCard(
                             MaterialTheme.colorScheme.onSurfaceVariant
                         },
                         modifier = Modifier.size(
-                            AppDimensions.StandardIconSize
+                            MaterialTheme.dimensions.standardIconSize
                         ),
                     )
                 }
 
-                Spacer(Modifier.width(AppDimensions.SpacingMedium))
+                Spacer(Modifier.width(MaterialTheme.dimensions.spacingMedium))
             }
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = contentColor,
                 )
 
                 if (description != null) {
-                    Spacer(Modifier.height(AppDimensions.FocusedBorderThickness))
+                    Spacer(Modifier.height(MaterialTheme.dimensions.focusedBorderThickness))
 
                     Text(
                         text = description,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = if (selected) {
+                            MaterialTheme.colorScheme.onPrimaryContainer
+                        } else {
+                            MaterialTheme.colorScheme.onSurfaceVariant
+                        },
                     )
                 }
             }

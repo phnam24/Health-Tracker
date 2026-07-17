@@ -137,6 +137,7 @@
     <string name="common_loading">Đang tải dữ liệu…</string>
     <string name="common_retry">Thử lại</string>
     <string name="common_cancel">Hủy</string>
+    <string name="common_confirm">OK</string>
     <string name="common_close">Đóng</string>
     <string name="common_save">Lưu</string>
     <string name="common_add">Thêm</string>
@@ -151,6 +152,7 @@
     <!-- Dashboard -->
     <string name="dashboard_title">Tổng quan</string>
     <string name="dashboard_greeting">Xin chào, %1$s 👋</string>
+    <string name="date_format_short">dd/MM/yyyy</string>
     <string name="dashboard_date_format">EEEE, dd/MM/yyyy</string>
     <string name="dashboard_today_summary">Tổng quan hôm nay</string>
     <string name="dashboard_goal">Mục tiêu</string>
@@ -162,6 +164,7 @@
 
     <!-- Dashboard analysis -->
     <string name="dashboard_analysis_title">Phân tích hôm nay</string>
+    <string name="dashboard_percentage_value">%1$d%%</string>
     <string name="dashboard_goal_progress">mục tiêu đã nạp</string>
     <string name="dashboard_energy_balance">Năng lượng thực nạp</string>
     <string name="dashboard_balance_signed_value">%1$+d kcal</string>

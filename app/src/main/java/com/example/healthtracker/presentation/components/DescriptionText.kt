@@ -9,9 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.OnBackgroundLight
-import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun DescriptionText(
@@ -25,15 +23,15 @@ fun DescriptionText(
         Text(
             text = label,
             style = MaterialTheme.typography.titleLarge,
-            color = OnBackgroundLight
+            color = MaterialTheme.colorScheme.onBackground
         )
 
-        Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Text(
             text = description,
             style = MaterialTheme.typography.bodyLarge,
-            color = OnSurfaceVariantLight,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 2
         )
     }

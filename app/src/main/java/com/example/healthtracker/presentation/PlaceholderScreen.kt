@@ -2,12 +2,11 @@ package com.example.healthtracker.presentation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import com.example.healthtracker.presentation.theme.HealthTrackerTypography
 
 @Composable
 fun PlaceholderScreen(tab: String) {
@@ -17,8 +16,8 @@ fun PlaceholderScreen(tab: String) {
     ) {
         Text(
             text = tab,
-            style = HealthTrackerTypography.displayLarge,
-            color = Color.Black
+            style = MaterialTheme.typography.displayLarge,
+            color = MaterialTheme.colorScheme.onBackground
         )
     }
 }

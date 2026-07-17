@@ -2,17 +2,20 @@ package com.example.healthtracker.presentation.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes
-import androidx.compose.ui.unit.dp
 
-val ControlShape = RoundedCornerShape(12.dp)
-val CardShape = RoundedCornerShape(16.dp)
-val BottomSheetShape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
-val PillShape = RoundedCornerShape(percent = 50)
+internal fun healthTrackerShapes(dimensions: HealthTrackerDimensions): Shapes {
+    val controlShape = RoundedCornerShape(dimensions.controlCornerRadius)
+    val cardShape = RoundedCornerShape(dimensions.cardCornerRadius)
+    val bottomSheetShape = RoundedCornerShape(
+        topStart = dimensions.bottomSheetCornerRadius,
+        topEnd = dimensions.bottomSheetCornerRadius,
+    )
 
-val HealthTrackerShapes = Shapes(
-    extraSmall = ControlShape,
-    small = ControlShape,
-    medium = ControlShape,
-    large = CardShape,
-    extraLarge = BottomSheetShape,
-)
+    return Shapes(
+        extraSmall = controlShape,
+        small = controlShape,
+        medium = controlShape,
+        large = cardShape,
+        extraLarge = bottomSheetShape,
+    )
+}

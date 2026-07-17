@@ -1,61 +1,58 @@
 package com.example.healthtracker.presentation.theme
 
+import androidx.compose.runtime.Immutable
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-object AppDimensions {
-    // Reference viewport
-    val ScreenWidth = 360.dp
-    val ScreenHeight = 800.dp
+@Immutable
+data class HealthTrackerDimensions(
+    val screenWidth: Dp = 360.dp,
+    val screenHeight: Dp = 800.dp,
+    val grid: Dp = 4.dp,
+    val spacingExtraSmall: Dp = 4.dp,
+    val spacingSmall: Dp = 8.dp,
+    val spacingMedium: Dp = 12.dp,
+    val spacingLarge: Dp = 16.dp,
+    val spacingMediumLarge: Dp = 20.dp,
+    val spacingExtraLarge: Dp = 24.dp,
+    val spacingDoubleExtraLarge: Dp = 32.dp,
+    val screenPadding: Dp = 16.dp,
+    val cardSpacing: Dp = 12.dp,
+    val cardPadding: Dp = 16.dp,
+    val controlCornerRadius: Dp = 12.dp,
+    val cardCornerRadius: Dp = 16.dp,
+    val bottomSheetCornerRadius: Dp = 24.dp,
+    val primaryButtonHeight: Dp = 52.dp,
+    val textFieldHeight: Dp = 56.dp,
+    val listItemHeight: Dp = 60.dp,
+    val bottomNavigationHeight: Dp = 80.dp,
+    val fabSize: Dp = 56.dp,
+    val buttonCardHeight: Dp = 64.dp,
+    val largeIconSize: Dp = 30.dp,
+    val standardIconSize: Dp = 24.dp,
+    val smallIconSize: Dp = 16.dp,
+    val minimumTouchTarget: Dp = 48.dp,
+    val emptyStateIconSize: Dp = 64.dp,
+    val optionIconContainerSize: Dp = 40.dp,
+    val statChipHeight: Dp = 28.dp,
+    val calorieRingSize: Dp = 200.dp,
+    val calorieRingStrokeWidth: Dp = 12.dp,
+    val caloriesRingGapSize: Dp = 0.dp,
+    val chartHeight: Dp = 180.dp,
+    val chartBarWidth: Dp = 24.dp,
+    val chartPointSize: Dp = 6.dp,
+    val progressIndicatorHeight: Dp = 6.dp,
+    val bmiIndicatorHeight: Dp = 8.dp,
+    val dividerThickness: Dp = 1.dp,
+    val focusedBorderThickness: Dp = 2.dp,
+    val bottomSheetDragHandleWidth: Dp = 32.dp,
+    val bottomSheetDragHandleHeight: Dp = 4.dp,
+    val cardElevation: Dp = 1.dp,
+    val raisedComponentElevation: Dp = 2.dp,
+    val bottomSheetElevation: Dp = 3.dp,
+    val splashLogoSize: Dp = 128.dp,
+    val splashLogoMediumSize: Dp = 96.dp,
+    val splashVersionBottomPadding: Dp = 48.dp,
+)
 
-    // Grid and spacing
-    val Grid = 4.dp
-    val SpacingExtraSmall = 4.dp
-    val SpacingSmall = 8.dp
-    val SpacingMedium = 12.dp
-    val SpacingLarge = 16.dp
-    val SpacingMediumLarge = 20.dp
-    val SpacingExtraLarge = 24.dp
-    val SpacingDoubleExtraLarge = 32.dp
-    val ScreenPadding = 16.dp
-    val CardSpacing = 12.dp
-    val CardPadding = 16.dp
-
-    // Component sizes
-    val PrimaryButtonHeight = 52.dp
-    val TextFieldHeight = 56.dp
-    val ListItemHeight = 60.dp
-    val BottomNavigationHeight = 80.dp
-    val FabSize = 56.dp
-    val ButtonCardHeight = 64.dp
-    val LargeIconSize = 30.dp
-    val StandardIconSize = 24.dp
-    val SmallIconSize = 16.dp
-    val MinimumTouchTarget = 48.dp
-    val OptionIconContainerSize = 40.dp
-    val StatChipHeight = 28.dp
-
-    // Dashboard and charts
-    val CalorieRingSize = 220.dp
-    val CalorieRingStrokeWidth = 14.dp
-    val CaloriesRingGapSize = 0.dp
-    val ChartHeight = 180.dp
-    val ChartBarWidth = 24.dp
-    val ChartPointSize = 6.dp
-
-    // Indicators and dividers
-    val ProgressIndicatorHeight = 6.dp
-    val BmiIndicatorHeight = 8.dp
-    val DividerThickness = 1.dp
-    val FocusedBorderThickness = 2.dp
-    val BottomSheetDragHandleWidth = 32.dp
-    val BottomSheetDragHandleHeight = 4.dp
-
-    // Elevation
-    val CardElevation = 1.dp
-    val RaisedComponentElevation = 2.dp
-    val BottomSheetElevation = 3.dp
-
-    val SplashLogoSize = 128.dp
-    val SplashLogoMediumSize = 96.dp
-    val SplashVersionBottomPadding = 48.dp
-}
+internal val defaultHealthTrackerDimensions = HealthTrackerDimensions()

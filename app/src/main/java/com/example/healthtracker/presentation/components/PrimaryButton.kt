@@ -2,7 +2,7 @@ package com.example.healthtracker.presentation.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
@@ -11,8 +11,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ControlShape
+import androidx.compose.ui.text.style.TextAlign
+import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
 fun PrimaryButton(
@@ -25,24 +25,25 @@ fun PrimaryButton(
     Button(
         onClick = onClick,
         enabled = enabled && !loading,
-        modifier = modifier.height(AppDimensions.PrimaryButtonHeight),
-        shape = ControlShape,
-        contentPadding = PaddingValues(horizontal = AppDimensions.SpacingMediumLarge),
+        modifier = modifier.heightIn(min = MaterialTheme.dimensions.primaryButtonHeight),
+        shape = MaterialTheme.shapes.medium,
+        contentPadding = PaddingValues(horizontal = MaterialTheme.dimensions.spacingMediumLarge),
     ) {
         if (loading) {
             CircularProgressIndicator(
-                modifier = Modifier.size(AppDimensions.SpacingMediumLarge),
-                strokeWidth = AppDimensions.FocusedBorderThickness,
+                modifier = Modifier.size(MaterialTheme.dimensions.spacingMediumLarge),
+                strokeWidth = MaterialTheme.dimensions.focusedBorderThickness,
                 color = MaterialTheme.colorScheme.onPrimary,
             )
 
-            Spacer(Modifier.width(AppDimensions.SpacingSmall))
+            Spacer(Modifier.width(MaterialTheme.dimensions.spacingSmall))
         }
 
         Text(
             text = text,
-            style = MaterialTheme.typography.titleMedium,
-            maxLines = 1,
+            style = MaterialTheme.typography.labelLarge,
+            maxLines = 2,
+            textAlign = TextAlign.Center,
         )
     }
 }
