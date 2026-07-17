@@ -48,7 +48,6 @@ import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEff
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingViewModel
 import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -84,6 +83,8 @@ fun OnboardingScreen(
     snackbarHostState: SnackbarHostState,
     onEvent: (OnboardingEvent) -> Unit
 ) {
+    val scrollState = rememberScrollState()
+
     Scaffold(
         topBar = {
             OnboardingHeader(
@@ -98,6 +99,7 @@ fun OnboardingScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(scrollState)
                 .padding(paddingValues)
                 .imePadding()
         ) {
@@ -178,7 +180,7 @@ fun OnboardingHeader(
             Text(
                 text = stringResource(R.string.onboarding_step, current, total),
                 style = MaterialTheme.typography.labelLarge,
-                color = OnSurfaceVariantLight,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .padding(AppDimensions.SpacingExtraSmall)

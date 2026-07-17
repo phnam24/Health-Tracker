@@ -41,16 +41,8 @@ import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.BmiNormal
-import com.example.healthtracker.presentation.theme.BmiObese
-import com.example.healthtracker.presentation.theme.BmiOverweight
-import com.example.healthtracker.presentation.theme.BmiUnderweight
 import com.example.healthtracker.presentation.theme.ControlShape
-import com.example.healthtracker.presentation.theme.GreenOnPrimaryLight
-import com.example.healthtracker.presentation.theme.GreenPrimaryContainerDark
-import com.example.healthtracker.presentation.theme.GreenPrimaryLight
-import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
-import com.example.healthtracker.presentation.theme.OutlineLight
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun BodyMetricsStep(
@@ -134,7 +126,7 @@ fun BmiResultSession(
             .border(
                 width = AppDimensions.FocusedBorderThickness,
                 shape = ControlShape,
-                color = OutlineLight
+                color = MaterialTheme.colorScheme.outline
             )
             .padding(AppDimensions.SpacingMedium),
         verticalArrangement = Arrangement.Center
@@ -142,7 +134,7 @@ fun BmiResultSession(
         Text(
             text = stringResource(R.string.bmi_preview_title),
             style = MaterialTheme.typography.titleMedium,
-            color = GreenPrimaryContainerDark
+            color = MaterialTheme.colorScheme.onSurface
         )
 
         Spacer(modifier = Modifier.height(AppDimensions.SpacingSmall))
@@ -166,7 +158,13 @@ fun BmiResultSession(
                     else -> ""
                 },
                 style = MaterialTheme.typography.titleMedium,
-                color = GreenPrimaryLight
+                color = when (uiState.bmiPreview?.category) {
+                    BmiCategory.UNDERWEIGHT -> MaterialTheme.healthColors.bmiUnderweight
+                    BmiCategory.NORMAL -> MaterialTheme.healthColors.bmiNormal
+                    BmiCategory.OVERWEIGHT -> MaterialTheme.healthColors.bmiOverweight
+                    BmiCategory.OBESE -> MaterialTheme.healthColors.bmiObese
+                    null -> MaterialTheme.colorScheme.onSurface
+                }
             )
         }
 
@@ -215,7 +213,7 @@ fun BodyMetricsInput(
                 Text(
                     text = unit,
                     style = MaterialTheme.typography.labelLarge,
-                    color = OnSurfaceVariantLight
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             },
             isError = !errorText.isNullOrBlank(),
@@ -238,7 +236,7 @@ fun BodyMetricsInput(
                         .border(
                             width = AppDimensions.DividerThickness,
                             shape = ControlShape,
-                            color = OutlineLight
+                            color = MaterialTheme.colorScheme.outline
                         )
                         .clickable {
                             onValueChange(suggestion)
@@ -258,10 +256,10 @@ fun BmiScaleBar(
     modifier: Modifier = Modifier
 ) {
     val gradientColors = listOf(
-        BmiUnderweight,
-        BmiNormal,
-        BmiOverweight,
-        BmiObese
+        MaterialTheme.healthColors.bmiUnderweight,
+        MaterialTheme.healthColors.bmiNormal,
+        MaterialTheme.healthColors.bmiOverweight,
+        MaterialTheme.healthColors.bmiObese,
     )
 
     val minBmi = 16f
@@ -278,7 +276,7 @@ fun BmiScaleBar(
             Icon(
                 imageVector = Icons.Filled.ArrowDropDown,
                 contentDescription = "Indicator",
-                tint = GreenOnPrimaryLight,
+                tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .size(AppDimensions.SpacingDoubleExtraLarge)
                     .offset(x = indicatorOffset)

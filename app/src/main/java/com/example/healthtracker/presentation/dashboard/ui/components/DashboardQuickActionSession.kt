@@ -26,8 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.BluePrimaryLight
-import com.example.healthtracker.presentation.theme.CaloriesConsumed
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun DashboardQuickActionSession(
@@ -45,13 +44,13 @@ fun DashboardQuickActionSession(
                     modifier = Modifier
                         .size(AppDimensions.OptionIconContainerSize)
                         .clip(CircleShape)
-                        .background(CaloriesConsumed.copy(alpha = 0.2f)),
+                        .background(MaterialTheme.healthColors.caloriesConsumedContainer),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.Default.Restaurant,
                         contentDescription = "Add meal icon",
-                        tint = CaloriesConsumed,
+                        tint = MaterialTheme.healthColors.caloriesConsumed,
                     )
                 }
             },
@@ -67,13 +66,13 @@ fun DashboardQuickActionSession(
                     modifier = Modifier
                         .size(AppDimensions.OptionIconContainerSize)
                         .clip(CircleShape)
-                        .background(BluePrimaryLight.copy(alpha = 0.2f)),
+                        .background(MaterialTheme.healthColors.caloriesBurnedContainer),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.DirectionsRun,
                         contentDescription = "Add activity icon",
-                        tint = BluePrimaryLight,
+                        tint = MaterialTheme.healthColors.caloriesBurned,
                         modifier = Modifier.size(AppDimensions.LargeIconSize)
                     )
                 }

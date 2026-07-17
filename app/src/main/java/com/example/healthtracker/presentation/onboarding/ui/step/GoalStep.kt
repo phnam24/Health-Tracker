@@ -23,15 +23,12 @@ import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.getUiData
+import com.example.healthtracker.presentation.onboarding.resolveColor
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.ControlShape
-import com.example.healthtracker.presentation.theme.ErrorLight
-import com.example.healthtracker.presentation.theme.GreenOnPrimaryContainerLight
-import com.example.healthtracker.presentation.theme.OutlineLight
-import com.example.healthtracker.presentation.theme.SurfaceVariantDark
 
 @Composable
 fun GoalStep(
@@ -64,7 +61,7 @@ fun GoalStep(
             Text(
                 text = stringResource(it.toStringRes()),
                 style = MaterialTheme.typography.bodyMedium,
-                color = ErrorLight
+                color = MaterialTheme.colorScheme.error
             )
         }
 
@@ -78,7 +75,7 @@ fun GoalStep(
             Text(
                 text = stringResource(R.string.tdee_disclaimer),
                 style = MaterialTheme.typography.bodyMedium,
-                color = SurfaceVariantDark,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(AppDimensions.SpacingMedium)
@@ -98,6 +95,7 @@ fun GoalSelectSession(
     ) {
         Goal.entries.forEach { goal ->
             val uiData = goal.getUiData()
+            val tintColor = uiData.colorRole.resolveColor()
 
             OptionCard(
                 title = stringResource(id = uiData.titleRes),
@@ -105,8 +103,8 @@ fun GoalSelectSession(
                 selected = uiState.goal == goal,
                 onClick = { onEvent(goal) },
                 icon = uiData.icon,
-                iconTintColor = uiData.tintColor,
-                iconContainerColor = uiData.tintColor.copy(alpha = 0.15f),
+                iconTintColor = tintColor,
+                iconContainerColor = tintColor.copy(alpha = 0.15f),
             )
         }
     }
@@ -122,7 +120,7 @@ fun TdeeResultSession(
             .border(
                 width = AppDimensions.FocusedBorderThickness,
                 shape = ControlShape,
-                color = OutlineLight
+                color = MaterialTheme.colorScheme.outline
             )
             .padding(AppDimensions.SpacingMedium),
         verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingMedium)
@@ -130,7 +128,7 @@ fun TdeeResultSession(
         Text(
             text = stringResource(R.string.tdee_preview_title),
             style = MaterialTheme.typography.titleMedium,
-            color = GreenOnPrimaryContainerLight
+            color = MaterialTheme.colorScheme.onPrimaryContainer
         )
 
         Row(
@@ -146,7 +144,7 @@ fun TdeeResultSession(
             Text(
                 text = stringResource(R.string.calories_per_day_unit),
                 style = MaterialTheme.typography.bodyLarge,
-                color = SurfaceVariantDark
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
 
@@ -198,7 +196,7 @@ fun CaloriesInfoRow(
         Text(
             text = value,
             style = MaterialTheme.typography.bodyMedium,
-            color = SurfaceVariantDark
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
 }

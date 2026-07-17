@@ -26,8 +26,7 @@ import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailySummary
 import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.BluePrimaryLight
-import com.example.healthtracker.presentation.theme.CaloriesConsumed
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun CaloriesSummaryRow(
@@ -61,7 +60,7 @@ fun CaloriesSummaryRow(
             title = stringResource(R.string.dashboard_eaten),
             value = dailySummary.eatenCalories ?: 0,
             icon = Icons.Filled.Restaurant,
-            tint = CaloriesConsumed,
+            tint = MaterialTheme.healthColors.caloriesConsumed,
             modifier = Modifier.weight(1f)
         )
 
@@ -78,7 +77,7 @@ fun CaloriesSummaryRow(
             title = stringResource(R.string.dashboard_burned),
             value = dailySummary.burnedCalories ?: 0,
             icon = Icons.Filled.LocalFireDepartment,
-            tint = BluePrimaryLight,
+            tint = MaterialTheme.healthColors.caloriesBurned,
             modifier = Modifier.weight(1f)
         )
     }

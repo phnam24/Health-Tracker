@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -58,9 +60,12 @@ fun DashboardScreen(
     uiState: DashboardUiState,
     onEvent: (DashboardEvent) -> Unit
 ) {
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(scrollState)
             .padding(AppDimensions.SpacingLarge),
         verticalArrangement = Arrangement.spacedBy(AppDimensions.SpacingMediumLarge),
         horizontalAlignment = Alignment.CenterHorizontally

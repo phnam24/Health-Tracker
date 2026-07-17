@@ -34,10 +34,6 @@ import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions
 import com.example.healthtracker.presentation.theme.ControlShape
-import com.example.healthtracker.presentation.theme.ErrorLight
-import com.example.healthtracker.presentation.theme.GreenPrimaryContainerLight
-import com.example.healthtracker.presentation.theme.GreenPrimaryLight
-import com.example.healthtracker.presentation.theme.OutlineLight
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -96,12 +92,12 @@ fun DatePickerSession(
                     .fillMaxWidth()
                     .background(
                         shape = ControlShape,
-                        color = GreenPrimaryContainerLight
+                        color = MaterialTheme.colorScheme.primaryContainer
                     )
                     .border(
                         width = AppDimensions.DividerThickness,
                         shape = ControlShape,
-                        color = OutlineLight
+                        color = MaterialTheme.colorScheme.outline
                     )
                     .padding(AppDimensions.SpacingMediumLarge),
                 verticalAlignment = Alignment.CenterVertically
@@ -109,7 +105,7 @@ fun DatePickerSession(
                 Icon(
                     imageVector = Icons.Default.Cake,
                     contentDescription = "Birthday cake icon",
-                    tint = GreenPrimaryLight
+                    tint = MaterialTheme.colorScheme.primary
                 )
 
                 Spacer(modifier = Modifier.width(AppDimensions.SpacingMediumLarge))
@@ -166,7 +162,7 @@ fun GenderSelectSession(
             Text(
                 text = stringResource(it.toStringRes()),
                 style = MaterialTheme.typography.bodyMedium,
-                color = ErrorLight
+                color = MaterialTheme.colorScheme.error
             )
         }
     }

@@ -16,11 +16,11 @@ import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.getUiData
+import com.example.healthtracker.presentation.onboarding.resolveColor
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.ErrorLight
 
 @Composable
 fun ActivityLevelStep(
@@ -50,7 +50,7 @@ fun ActivityLevelStep(
             Text(
                 text = stringResource(it.toStringRes()),
                 style = MaterialTheme.typography.bodyMedium,
-                color = ErrorLight
+                color = MaterialTheme.colorScheme.error
             )
         }
     }
@@ -67,6 +67,7 @@ fun ActivityLevelSelectSession(
     ) {
         ActivityLevel.entries.forEach { level ->
             val uiData = level.getUiData()
+            val tintColor = uiData.colorRole.resolveColor()
 
             OptionCard(
                 title = stringResource(id = uiData.titleRes),
@@ -74,8 +75,8 @@ fun ActivityLevelSelectSession(
                 selected = uiState.activityLevel == level,
                 onClick = { onEvent(level) },
                 icon = uiData.icon,
-                iconTintColor = uiData.tintColor,
-                iconContainerColor = uiData.tintColor.copy(alpha = 0.15f),
+                iconTintColor = tintColor,
+                iconContainerColor = tintColor.copy(alpha = 0.15f),
             )
         }
     }

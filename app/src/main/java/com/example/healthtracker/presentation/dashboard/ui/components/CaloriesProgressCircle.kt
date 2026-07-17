@@ -12,15 +12,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailySummary
 import com.example.healthtracker.presentation.theme.AppDimensions
-import com.example.healthtracker.presentation.theme.GreenPrimaryLight
-import com.example.healthtracker.presentation.theme.OnSurfaceDark
-import com.example.healthtracker.presentation.theme.OnSurfaceVariantLight
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun CaloriesProgressCircle(
@@ -36,7 +33,7 @@ fun CaloriesProgressCircle(
             CircularProgressIndicator(
                 progress = { 1f },
                 modifier = Modifier.size(AppDimensions.CalorieRingSize),
-                color = OnSurfaceDark,
+                color = MaterialTheme.colorScheme.surfaceVariant,
                 strokeWidth = AppDimensions.CalorieRingStrokeWidth,
             )
 
@@ -45,9 +42,13 @@ fun CaloriesProgressCircle(
                     dailySummary.balanceCalories.toFloat() / dailySummary.goalCalories
                 },
                 modifier = Modifier.size(AppDimensions.CalorieRingSize),
-                color = GreenPrimaryLight,
+                color = if (dailySummary.eatenCalories > dailySummary.goalCalories) {
+                    MaterialTheme.healthColors.warning
+                } else {
+                    MaterialTheme.colorScheme.primary
+                },
                 strokeWidth = AppDimensions.CalorieRingStrokeWidth,
-                trackColor = Color.Transparent,
+                trackColor = MaterialTheme.healthColors.transparent,
                 strokeCap = StrokeCap.Round
             )
 
@@ -63,13 +64,13 @@ fun CaloriesProgressCircle(
                 Text(
                     text = stringResource(R.string.dashboard_remaining),
                     style = MaterialTheme.typography.bodyLarge,
-                    color = OnSurfaceVariantLight
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
 
                 Text(
                     text = stringResource(R.string.common_kcal),
                     style = MaterialTheme.typography.bodyLarge,
-                    color = OnSurfaceVariantLight
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
