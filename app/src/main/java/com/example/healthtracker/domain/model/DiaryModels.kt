@@ -33,7 +33,7 @@ sealed interface AddMealResult {
     data object Failure : AddMealResult
 }
 
-enum class CustomFoodField { NAME, CALORIES, UNIT }
+enum class  CustomFoodField { NAME, CALORIES, UNIT }
 enum class CustomFoodError { REQUIRED, INVALID_NUMBER, OUT_OF_RANGE }
 
 sealed interface AddCustomFoodResult {
