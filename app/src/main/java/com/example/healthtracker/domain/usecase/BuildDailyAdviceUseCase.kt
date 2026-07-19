@@ -3,6 +3,7 @@ package com.example.healthtracker.domain.usecase
 import com.example.healthtracker.domain.model.DailyAdvice
 import com.example.healthtracker.domain.model.DailyAdviceType
 import javax.inject.Inject
+import kotlin.math.abs
 
 class BuildDailyAdviceUseCase @Inject constructor() {
     operator fun invoke(remaining: Int): DailyAdvice = when {
@@ -13,12 +14,15 @@ class BuildDailyAdviceUseCase @Inject constructor() {
 
         remaining < -100 -> DailyAdvice(
             DailyAdviceType.OVER,
-            remaining
+            remaining.magnitude()
         )
 
         else -> DailyAdvice(
             DailyAdviceType.ON_TARGET,
-            remaining
+            remaining.magnitude()
         )
     }
+
+    private fun Int.magnitude(): Int =
+        if (this == Int.MIN_VALUE) Int.MAX_VALUE else abs(this)
 }

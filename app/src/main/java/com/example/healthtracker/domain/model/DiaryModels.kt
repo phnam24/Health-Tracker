@@ -43,3 +43,18 @@ sealed interface AddCustomFoodResult {
     ) : AddCustomFoodResult
     data object Failure : AddCustomFoodResult
 }
+
+data class AddMealInput(
+    val date: LocalDate,
+    val mealType: MealType,
+    val food: Food?,
+    val quantityInput: String
+)
+
+data class AddCustomFoodInput(
+    val date: LocalDate,
+    val mealType: MealType,
+    val name: String,
+    val caloriesInput: String,
+    val unit: String
+)
