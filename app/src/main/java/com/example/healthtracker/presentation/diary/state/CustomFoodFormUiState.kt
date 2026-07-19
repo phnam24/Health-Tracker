@@ -7,5 +7,6 @@ data class CustomFoodFormUiState(
     val nameInput: String = "",
     val caloriesInput: String = "",
     val unitInput: String = "",
+    val quantityInput: String = "1",
     val errors: Map<CustomFoodField, CustomFoodError> = emptyMap()
 )

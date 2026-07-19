@@ -8,6 +8,7 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import com.example.healthtracker.presentation.PlaceholderScreen
 import com.example.healthtracker.presentation.dashboard.ui.DashboardRoute
+import com.example.healthtracker.presentation.diary.ui.DiaryRoute
 import com.example.healthtracker.presentation.onboarding.ui.OnboardingRoute
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -35,7 +36,7 @@ fun appEntryProvider(
             }
 
             Diary -> NavEntry(key) {
-                PlaceholderScreen("Diary")
+                DiaryRoute()
             }
 
             ActivityLog -> NavEntry(key) {

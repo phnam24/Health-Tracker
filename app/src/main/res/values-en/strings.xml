@@ -194,6 +194,7 @@
 
     <!-- Diary -->
     <string name="diary_title">Meal diary</string>
+    <string name="diary_weekday_format">EEEE</string>
     <string name="diary_day_total">Daily total</string>
     <string name="diary_day_total_value">%1$d / %2$d kcal</string>
     <string name="diary_goal_unavailable">Calorie goal unavailable</string>
@@ -206,6 +207,7 @@
     <string name="diary_add_food_to_meal">Add to %1$s</string>
     <string name="diary_quantity_unit">%1$s × %2$s</string>
     <string name="diary_entry_calories">%1$d kcal</string>
+    <string name="diary_entry_quantity_value">Quantity: %1$s</string>
     <string name="diary_load_failed">Unable to load the meal diary</string>
     <string name="diary_delete_failed">Unable to delete the food item</string>
     <string name="diary_restore_failed">Unable to undo the deletion</string>
@@ -215,6 +217,7 @@
     <string name="add_food_title">Add food</string>
     <string name="add_food_search_hint">Search for food…</string>
     <string name="add_food_search_empty">No matching food found</string>
+    <string name="add_food_search_failed">Unable to search for food. Please try again.</string>
     <string name="add_food_popular">Popular foods</string>
     <string name="add_food_results">Search results</string>
     <string name="add_food_select_prompt">Select a food to enter the quantity</string>
@@ -251,6 +254,9 @@
     <string name="error_required">Please enter this information</string>
     <string name="error_invalid_number">Please enter a valid number</string>
     <string name="error_food_required">Please select a food</string>
+    <string name="error_custom_name_required">Please enter a food name</string>
+    <string name="error_custom_calories_required">Please enter calories per unit</string>
+    <string name="error_custom_unit_required">Please enter a unit</string>
     <string name="error_quantity_required">Please enter a quantity</string>
     <string name="error_quantity_invalid">Invalid quantity</string>
     <string name="error_quantity_out_of_range">Quantity must be greater than 0 and no more than 100</string>

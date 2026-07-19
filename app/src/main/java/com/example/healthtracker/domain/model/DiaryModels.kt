@@ -33,7 +33,7 @@ sealed interface AddMealResult {
     data object Failure : AddMealResult
 }
 
-enum class  CustomFoodField { NAME, CALORIES, UNIT }
+enum class CustomFoodField { NAME, CALORIES, UNIT, QUANTITY }
 enum class CustomFoodError { REQUIRED, INVALID_NUMBER, OUT_OF_RANGE }
 
 sealed interface AddCustomFoodResult {
@@ -56,5 +56,6 @@ data class AddCustomFoodInput(
     val mealType: MealType,
     val name: String,
     val caloriesInput: String,
-    val unit: String
+    val unit: String,
+    val quantityInput: String
 )

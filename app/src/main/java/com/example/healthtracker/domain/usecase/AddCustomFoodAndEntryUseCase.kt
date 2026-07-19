@@ -10,6 +10,7 @@ import com.example.healthtracker.domain.repository.DiaryRepository
 import com.example.healthtracker.domain.repository.FoodRepository
 import kotlinx.coroutines.CancellationException
 import javax.inject.Inject
+import kotlin.math.roundToInt
 
 class AddCustomFoodAndEntryUseCase @Inject constructor(
     private val foodRepository: FoodRepository,
@@ -20,6 +21,8 @@ class AddCustomFoodAndEntryUseCase @Inject constructor(
         val unit = input.unit.trim()
         val caloriesText = input.caloriesInput.trim()
         val parsedCalories = caloriesText.toIntOrNull()
+        val quantityText = input.quantityInput.trim()
+        val parsedQuantity = quantityText.replace(',', '.').toDoubleOrNull()
         val errors = buildMap<CustomFoodField, CustomFoodError> {
             if (name.isEmpty()) put(CustomFoodField.NAME, CustomFoodError.REQUIRED)
             if (unit.isEmpty()) put(CustomFoodField.UNIT, CustomFoodError.REQUIRED)
@@ -33,10 +36,21 @@ class AddCustomFoodAndEntryUseCase @Inject constructor(
                 parsedCalories !in MIN_CALORIES..MAX_CALORIES ->
                     put(CustomFoodField.CALORIES, CustomFoodError.OUT_OF_RANGE)
             }
+            when {
+                quantityText.isEmpty() ->
+                    put(CustomFoodField.QUANTITY, CustomFoodError.REQUIRED)
+
+                parsedQuantity == null || !parsedQuantity.isFinite() ->
+                    put(CustomFoodField.QUANTITY, CustomFoodError.INVALID_NUMBER)
+
+                parsedQuantity <= 0.0 || parsedQuantity > MAX_QUANTITY ->
+                    put(CustomFoodField.QUANTITY, CustomFoodError.OUT_OF_RANGE)
+            }
         }
         if (errors.isNotEmpty()) return AddCustomFoodResult.Invalid(errors)
 
         val calories = requireNotNull(parsedCalories)
+        val quantity = requireNotNull(parsedQuantity)
         return try {
             val foodId = foodRepository.addCustomFood(
                 Food(
@@ -55,8 +69,8 @@ class AddCustomFoodAndEntryUseCase @Inject constructor(
                     mealType = input.mealType,
                     foodId = foodId,
                     foodName = name,
-                    quantity = 1.0,
-                    calories = calories
+                    quantity = quantity,
+                    calories = (quantity * calories).roundToInt()
                 )
             )
             AddCustomFoodResult.Success(entryId)
@@ -70,5 +84,6 @@ class AddCustomFoodAndEntryUseCase @Inject constructor(
     private companion object {
         const val MIN_CALORIES = 1
         const val MAX_CALORIES = 10_000
+        const val MAX_QUANTITY = 100.0
     }
 }

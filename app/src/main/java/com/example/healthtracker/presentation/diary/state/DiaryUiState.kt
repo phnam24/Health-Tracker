@@ -4,6 +4,7 @@ import com.example.healthtracker.domain.model.DiaryDay
 import java.time.LocalDate
 
 data class DiaryUiState(
+    val today: LocalDate? = null,
     val selectedDate: LocalDate? = null,
     val day: DiaryDay? = null,
     val isLoading: Boolean = true,
