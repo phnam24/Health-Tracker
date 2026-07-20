@@ -5,6 +5,7 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import com.example.healthtracker.presentation.PlaceholderScreen
+import com.example.healthtracker.presentation.activity.ui.ActivityRoute
 import com.example.healthtracker.presentation.dashboard.ui.DashboardRoute
 import com.example.healthtracker.presentation.diary.ui.DiaryRoute
 import com.example.healthtracker.presentation.onboarding.ui.OnboardingRoute
@@ -37,7 +38,7 @@ fun appEntryProvider(
             }
 
             ActivityLog -> NavEntry(key) {
-                PlaceholderScreen("Activity Log")
+                ActivityRoute()
             }
 
             Statistics -> NavEntry(key) {

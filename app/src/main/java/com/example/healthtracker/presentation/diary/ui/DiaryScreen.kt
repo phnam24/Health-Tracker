@@ -112,7 +112,7 @@ fun DiaryScreen(
         Column(modifier = Modifier.fillMaxSize()) {
             AppTopBar(
                 title = stringResource(R.string.diary_title),
-                windowInsets = WindowInsets(0),
+                windowInsets = WindowInsets(0)
             )
 
             when {
