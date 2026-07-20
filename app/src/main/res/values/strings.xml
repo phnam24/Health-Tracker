@@ -198,6 +198,10 @@
     <string name="diary_day_total">Tổng trong ngày</string>
     <string name="diary_day_total_value">%1$d / %2$d kcal</string>
     <string name="diary_goal_unavailable">Chưa có mục tiêu calo</string>
+    <string name="diary_progress_percentage">%1$d%%</string>
+    <string name="diary_over_goal">Vượt mục tiêu %1$d kcal</string>
+    <string name="diary_read_only">Chỉ xem</string>
+    <string name="cd_diary_calorie_progress">Đã nạp %1$d trên mục tiêu %2$d kcal</string>
     <string name="meal_breakfast">Bữa sáng</string>
     <string name="meal_lunch">Bữa trưa</string>
     <string name="meal_dinner">Bữa tối</string>
@@ -212,6 +216,7 @@
     <string name="diary_delete_failed">Không thể xóa món ăn</string>
     <string name="diary_restore_failed">Không thể hoàn tác thao tác xóa</string>
     <string name="diary_entry_deleted">Đã xóa món ăn</string>
+    <string name="diary_add_today_only">Chỉ có thể thêm món ăn cho hôm nay</string>
 
     <!-- Add food sheet -->
     <string name="add_food_title">Thêm món ăn</string>

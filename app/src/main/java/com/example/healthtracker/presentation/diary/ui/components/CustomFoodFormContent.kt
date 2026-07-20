@@ -24,7 +24,6 @@ import com.example.healthtracker.presentation.diary.message
 import com.example.healthtracker.presentation.diary.state.AddFoodSheetUiState
 import com.example.healthtracker.presentation.diary.viewmodel.DiaryEvent
 import com.example.healthtracker.presentation.theme.dimensions
-import kotlin.math.roundToInt
 
 @Composable
 fun CustomFoodFormContent(
@@ -42,15 +41,6 @@ fun CustomFoodFormContent(
         CustomFoodField.QUANTITY
     )
     val caloriesPerUnit = form.caloriesInput.trim().toIntOrNull()
-    val quantity = form.quantityInput.trim().replace(',', '.').toDoubleOrNull()
-    val caloriesPreview = if (
-        caloriesPerUnit != null && caloriesPerUnit in 1..10_000 &&
-        quantity != null && quantity.isFinite() && quantity > 0 && quantity <= 100
-    ) {
-        (caloriesPerUnit * quantity).roundToInt()
-    } else {
-        null
-    }
 
     Column(
         modifier = modifier.verticalScroll(rememberScrollState()),
@@ -102,7 +92,7 @@ fun CustomFoodFormContent(
             enabled = !state.isSubmitting,
         )
 
-        if (caloriesPreview != null && caloriesPerUnit != null) {
+        if (form.caloriesPreview != null && caloriesPerUnit != null) {
             AppCard(
                 containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.25f),
                 contentPadding = PaddingValues(MaterialTheme.dimensions.spacingMedium),
@@ -113,7 +103,7 @@ fun CustomFoodFormContent(
                         R.string.add_food_calculation,
                         form.quantityInput,
                         caloriesPerUnit,
-                        caloriesPreview,
+                        form.caloriesPreview,
                     ),
                     modifier = Modifier.fillMaxWidth(),
                     style = MaterialTheme.typography.titleMedium,
@@ -131,6 +121,10 @@ fun CustomFoodFormContent(
             },
             onClick = { onEvent(DiaryEvent.ConfirmCustomFoodClicked) },
             modifier = Modifier.fillMaxWidth(),
+            enabled = !state.isSubmitting &&
+                    form.nameInput.isNotBlank() &&
+                    form.unitInput.isNotBlank() &&
+                    form.caloriesPreview != null,
             loading = state.isSubmitting,
         )
     }

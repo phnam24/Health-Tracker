@@ -16,6 +16,7 @@ data class DiaryDay(
 )
 
 enum class AddMealError {
+    DATE_NOT_TODAY,
     FOOD_REQUIRED,
     QUANTITY_REQUIRED,
     QUANTITY_INVALID,
@@ -41,6 +42,7 @@ sealed interface AddCustomFoodResult {
     data class Invalid(
         val errors: Map<CustomFoodField, CustomFoodError>
     ) : AddCustomFoodResult
+    data object DateNotAllowed : AddCustomFoodResult
     data object Failure : AddCustomFoodResult
 }
 

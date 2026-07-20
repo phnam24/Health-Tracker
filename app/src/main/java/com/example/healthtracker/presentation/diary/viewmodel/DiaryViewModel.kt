@@ -7,11 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.healthtracker.domain.model.AddCustomFoodInput
 import com.example.healthtracker.domain.model.AddCustomFoodResult
 import com.example.healthtracker.domain.model.AddMealInput
+import com.example.healthtracker.domain.model.AddMealError
 import com.example.healthtracker.domain.model.AddMealResult
 import com.example.healthtracker.domain.model.CustomFoodField
 import com.example.healthtracker.domain.model.Food
 import com.example.healthtracker.domain.model.MealEntry
 import com.example.healthtracker.domain.model.MealPreviewResult
+import com.example.healthtracker.domain.model.MealQuantityRules
 import com.example.healthtracker.domain.model.MealType
 import com.example.healthtracker.domain.usecase.AddCustomFoodAndEntryUseCase
 import com.example.healthtracker.domain.usecase.AddMealEntryUseCase
@@ -81,6 +83,7 @@ sealed interface DiaryEffect {
     data object ShowCustomFoodSaveFailed : DiaryEffect
     data object ShowDeleteFailed : DiaryEffect
     data object ShowRestoreFailed : DiaryEffect
+    data object ShowAddTodayOnly : DiaryEffect
 }
 
 @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
@@ -133,8 +136,11 @@ class DiaryViewModel @Inject constructor(
             DiaryEvent.RetrySearchClicked -> searchRetryTrigger.update { it + 1 }
             is DiaryEvent.FoodSelected -> selectFood(event.food)
             DiaryEvent.BackToFoodSearchClicked -> clearSelectedFood()
-            DiaryEvent.DecreaseQuantityClicked -> adjustQuantity(-QUANTITY_STEP)
-            DiaryEvent.IncreaseQuantityClicked -> adjustQuantity(QUANTITY_STEP)
+            DiaryEvent.DecreaseQuantityClicked ->
+                adjustQuantity(-MealQuantityRules.STEPPER_STEP)
+
+            DiaryEvent.IncreaseQuantityClicked ->
+                adjustQuantity(MealQuantityRules.STEPPER_STEP)
             is DiaryEvent.QuantityChanged -> updateQuantity(event.value)
             DiaryEvent.ConfirmAddFoodClicked -> submitSelectedFood()
             DiaryEvent.OpenCustomFoodClicked -> openCustomFoodForm()
@@ -144,10 +150,10 @@ class DiaryViewModel @Inject constructor(
             is DiaryEvent.CustomFoodUnitChanged -> updateCustomUnit(event.value)
             is DiaryEvent.CustomFoodQuantityChanged -> updateCustomQuantity(event.value)
             DiaryEvent.DecreaseCustomFoodQuantityClicked ->
-                adjustCustomQuantity(-QUANTITY_STEP)
+                adjustCustomQuantity(-MealQuantityRules.STEPPER_STEP)
 
             DiaryEvent.IncreaseCustomFoodQuantityClicked ->
-                adjustCustomQuantity(QUANTITY_STEP)
+                adjustCustomQuantity(MealQuantityRules.STEPPER_STEP)
 
             DiaryEvent.ConfirmCustomFoodClicked -> submitCustomFood()
             is DiaryEvent.DeleteEntryClicked -> deleteEntry(event.entry)
@@ -299,7 +305,7 @@ class DiaryViewModel @Inject constructor(
                     state = state,
                     sheet = sheet.copy(
                         selectedFood = food,
-                        quantityInput = "1",
+                        quantityInput = MealQuantityRules.DEFAULT_INPUT,
                         quantityError = null
                     )
                 )
@@ -329,7 +335,7 @@ class DiaryViewModel @Inject constructor(
             state.copy(
                 addFoodSheet = sheet.copy(
                     selectedFood = null,
-                    quantityInput = DEFAULT_QUANTITY_INPUT,
+                    quantityInput = MealQuantityRules.DEFAULT_INPUT,
                     caloriesPreview = null,
                     quantityError = null
                 )
@@ -341,18 +347,7 @@ class DiaryViewModel @Inject constructor(
         val sheet = _uiState.value.addFoodSheet ?: return
         if (sheet.isSubmitting || sheet.customForm != null) return
 
-        val current = sheet.quantityInput
-            .trim()
-            .replace(',', '.')
-            .toDoubleOrNull()
-            ?: DEFAULT_QUANTITY
-        val adjusted = (current + delta).coerceIn(MIN_QUANTITY, MAX_QUANTITY)
-        val value = if (adjusted % 1.0 == 0.0) {
-            adjusted.toInt().toString()
-        } else {
-            adjusted.toString()
-        }
-        updateQuantity(value)
+        updateQuantity(MealQuantityRules.adjust(sheet.quantityInput, delta))
     }
 
     private fun applyPreview(
@@ -410,6 +405,11 @@ class DiaryViewModel @Inject constructor(
                 when (val result = addMealEntry(input)) {
                     is AddMealResult.Success -> closeSheetAfterSuccess()
                     is AddMealResult.Invalid -> {
+                        if (result.error == AddMealError.DATE_NOT_TODAY) {
+                            setSubmitting(false)
+                            _effects.send(DiaryEffect.ShowAddTodayOnly)
+                            return@launch
+                        }
                         _uiState.update { current ->
                             val currentSheet = current.addFoodSheet
                                 ?: return@update current
@@ -508,18 +508,7 @@ class DiaryViewModel @Inject constructor(
         val form = sheet.customForm ?: return
         if (sheet.isSubmitting) return
 
-        val current = form.quantityInput
-            .trim()
-            .replace(',', '.')
-            .toDoubleOrNull()
-            ?: DEFAULT_QUANTITY
-        val adjusted = (current + delta).coerceIn(MIN_QUANTITY, MAX_QUANTITY)
-        val value = if (adjusted % 1.0 == 0.0) {
-            adjusted.toInt().toString()
-        } else {
-            adjusted.toString()
-        }
-        updateCustomQuantity(value)
+        updateCustomQuantity(MealQuantityRules.adjust(form.quantityInput, delta))
     }
 
     private fun updateCustomForm(
@@ -530,8 +519,16 @@ class DiaryViewModel @Inject constructor(
             val form = sheet.customForm ?: return@update state
             if (sheet.isSubmitting) return@update state
 
+            val updatedForm = transform(form)
             state.copy(
-                addFoodSheet = sheet.copy(customForm = transform(form))
+                addFoodSheet = sheet.copy(
+                    customForm = updatedForm.copy(
+                        caloriesPreview = addCustomFoodAndEntry.previewCalories(
+                            caloriesInput = updatedForm.caloriesInput,
+                            quantityInput = updatedForm.quantityInput,
+                        )
+                    )
+                )
             )
         }
     }
@@ -570,6 +567,11 @@ class DiaryViewModel @Inject constructor(
                                 )
                             )
                         }
+                    }
+
+                    AddCustomFoodResult.DateNotAllowed -> {
+                        setSubmitting(false)
+                        _effects.send(DiaryEffect.ShowAddTodayOnly)
                     }
 
                     AddCustomFoodResult.Failure -> {
@@ -654,10 +656,5 @@ class DiaryViewModel @Inject constructor(
 
     private companion object {
         const val SEARCH_DEBOUNCE_MILLIS = 300L
-        const val QUANTITY_STEP = 0.5
-        const val MIN_QUANTITY = 0.5
-        const val MAX_QUANTITY = 100.0
-        const val DEFAULT_QUANTITY = 1.0
-        const val DEFAULT_QUANTITY_INPUT = "1"
     }
 }

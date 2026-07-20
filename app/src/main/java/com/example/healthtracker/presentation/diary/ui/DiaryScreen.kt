@@ -60,6 +60,7 @@ fun DiaryRoute(
     val customFoodFailedMessage = stringResource(R.string.custom_food_save_failed)
     val deleteFailedMessage = stringResource(R.string.diary_delete_failed)
     val restoreFailedMessage = stringResource(R.string.diary_restore_failed)
+    val addTodayOnlyMessage = stringResource(R.string.diary_add_today_only)
 
     LaunchedEffect(viewModel, snackbarHostState) {
         viewModel.effects.collectLatest { effect ->
@@ -87,6 +88,9 @@ fun DiaryRoute(
 
                 DiaryEffect.ShowRestoreFailed ->
                     snackbarHostState.showSnackbar(restoreFailedMessage)
+
+                DiaryEffect.ShowAddTodayOnly ->
+                    snackbarHostState.showSnackbar(addTodayOnlyMessage)
             }
         }
     }

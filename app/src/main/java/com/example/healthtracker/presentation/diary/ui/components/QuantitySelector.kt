@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import com.example.healthtracker.R
+import com.example.healthtracker.domain.model.MealQuantityRules
 import com.example.healthtracker.presentation.components.AppTextField
 import com.example.healthtracker.presentation.theme.dimensions
 
@@ -31,7 +32,7 @@ fun QuantitySelector(
     error: String? = null,
     enabled: Boolean = true,
 ) {
-    val parsedQuantity = value.trim().replace(',', '.').toDoubleOrNull()
+    val parsedQuantity = MealQuantityRules.parse(value)
 
     Column(
         modifier = modifier,
@@ -50,7 +51,9 @@ fun QuantitySelector(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             FilledTonalIconButton(
-                enabled = enabled && (parsedQuantity ?: DEFAULT_QUANTITY) > MIN_QUANTITY,
+                enabled = enabled &&
+                        (parsedQuantity ?: MealQuantityRules.DEFAULT_VALUE) >
+                        MealQuantityRules.STEPPER_MIN,
                 onClick = onDecrease,
             ) {
                 Icon(
@@ -70,7 +73,9 @@ fun QuantitySelector(
             )
 
             FilledTonalIconButton(
-                enabled = enabled && (parsedQuantity ?: DEFAULT_QUANTITY) < MAX_QUANTITY,
+                enabled = enabled &&
+                        (parsedQuantity ?: MealQuantityRules.DEFAULT_VALUE) <
+                        MealQuantityRules.MAX_VALUE,
                 onClick = onIncrease,
             ) {
                 Icon(
@@ -89,7 +94,3 @@ fun QuantitySelector(
         }
     }
 }
-
-private const val MIN_QUANTITY = 0.5
-private const val MAX_QUANTITY = 100.0
-private const val DEFAULT_QUANTITY = 1.0

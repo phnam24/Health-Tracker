@@ -18,6 +18,7 @@ fun MealType.titleRes(): Int = when (this) {
 @Composable
 fun AddMealError.message(): String = stringResource(
     when (this) {
+        AddMealError.DATE_NOT_TODAY -> R.string.diary_add_today_only
         AddMealError.FOOD_REQUIRED -> R.string.error_food_required
         AddMealError.QUANTITY_REQUIRED -> R.string.error_quantity_required
         AddMealError.QUANTITY_INVALID -> R.string.error_quantity_invalid

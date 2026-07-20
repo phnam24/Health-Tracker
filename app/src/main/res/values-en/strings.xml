@@ -198,6 +198,10 @@
     <string name="diary_day_total">Daily total</string>
     <string name="diary_day_total_value">%1$d / %2$d kcal</string>
     <string name="diary_goal_unavailable">Calorie goal unavailable</string>
+    <string name="diary_progress_percentage">%1$d%%</string>
+    <string name="diary_over_goal">%1$d kcal over goal</string>
+    <string name="diary_read_only">Read only</string>
+    <string name="cd_diary_calorie_progress">Consumed %1$d of %2$d kcal</string>
     <string name="meal_breakfast">Breakfast</string>
     <string name="meal_lunch">Lunch</string>
     <string name="meal_dinner">Dinner</string>
@@ -212,6 +216,7 @@
     <string name="diary_delete_failed">Unable to delete the food item</string>
     <string name="diary_restore_failed">Unable to undo the deletion</string>
     <string name="diary_entry_deleted">Food item deleted</string>
+    <string name="diary_add_today_only">Food can only be added for today</string>
 
     <!-- Add food sheet -->
     <string name="add_food_title">Add food</string>

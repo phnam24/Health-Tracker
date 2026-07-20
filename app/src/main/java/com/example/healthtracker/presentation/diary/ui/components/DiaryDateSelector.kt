@@ -1,8 +1,7 @@
 package com.example.healthtracker.presentation.diary.ui.components
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +14,7 @@ import androidx.compose.material.icons.outlined.ChevronRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -36,7 +36,6 @@ import com.example.healthtracker.presentation.components.AppDatePickerDialog
 import com.example.healthtracker.presentation.theme.dimensions
 import java.time.LocalDate
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DiaryDateSelector(
     selectedDate: LocalDate,
@@ -107,26 +106,49 @@ fun DiaryDateSelector(
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.onSurface
                     )
-                    Row(
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(
+                            MaterialTheme.dimensions.spacingExtraSmall
+                        ),
                     ) {
-                        if (!isToday) {
+                        Row(
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            if (!isToday) {
+                                Text(
+                                    text = "${selectedDate.toLocalizedDateString(weekdayPattern, locale)}, ",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                            }
                             Text(
-                                text = "${selectedDate.toLocalizedDateString(weekdayPattern, locale)}, ",
+                                text = if (isToday) {
+                                    stringResource(R.string.common_today)
+                                } else {
+                                    selectedDate.toLocalizedDateString(datePattern, locale)
+                                },
                                 style = MaterialTheme.typography.titleMedium,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                         }
-                        Text(
-                            text = if (isToday) {
-                                stringResource(R.string.common_today)
-                            } else {
-                                selectedDate.toLocalizedDateString(datePattern, locale)
-                            },
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
+                        if (!isToday) {
+                            Surface(
+                                shape = MaterialTheme.shapes.small,
+                                color = MaterialTheme.colorScheme.primaryContainer,
+                                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.diary_read_only),
+                                    modifier = Modifier.padding(
+                                        horizontal = MaterialTheme.dimensions.spacingSmall,
+                                        vertical = MaterialTheme.dimensions.spacingExtraSmall,
+                                    ),
+                                    style = MaterialTheme.typography.labelSmall,
+                                )
+                            }
+                        }
                     }
                 }
             }
