@@ -266,4 +266,82 @@
     <string name="error_quantity_invalid">Invalid quantity</string>
     <string name="error_quantity_out_of_range">Quantity must be greater than 0 and no more than 100</string>
     <string name="error_custom_calories_out_of_range">Calories must be between 1 and 10,000 kcal</string>
+
+    <!-- Activity log -->
+    <string name="activity_log_title">Activity log</string>
+    <string name="activity_total_burned">Calories burned</string>
+    <string name="activity_total_burned_value">%1$d kcal</string>
+    <string name="activity_entry_duration">%1$d min</string>
+    <string name="activity_entry_calories">%1$d kcal</string>
+    <string name="activity_read_only">Read only</string>
+    <string name="activity_empty_title">No activity logged today</string>
+    <string name="activity_empty_message">Log an activity to track the calories you burn.</string>
+    <string name="activity_empty_history_title">No activity logged on this day</string>
+    <string name="activity_empty_history_message">You did not log any activity on the selected day.</string>
+    <string name="activity_add">Add activity</string>
+    <string name="activity_load_failed">Unable to load the activity log</string>
+    <string name="activity_add_failed">Unable to add the activity. Please try again.</string>
+    <string name="activity_delete_failed">Unable to delete the activity</string>
+    <string name="activity_restore_failed">Unable to undo the deletion</string>
+    <string name="activity_deleted">Activity deleted</string>
+    <string name="activity_profile_required">Complete your profile before adding an activity.</string>
+    <string name="activity_add_today_only">Activities can only be added for today</string>
+
+    <!-- Add activity sheet -->
+    <string name="add_activity_title">Add activity</string>
+    <string name="add_activity_search_hint">Search activities…</string>
+    <string name="add_activity_search_empty">No matching activity found</string>
+    <string name="add_activity_search_failed">Unable to search activities. Please try again.</string>
+    <string name="add_activity_suggestions">Suggested activities</string>
+    <string name="add_activity_results">Search results</string>
+    <string name="add_activity_select_prompt">Select an activity to enter its duration</string>
+    <string name="add_activity_selected">Selected activity</string>
+    <string name="add_activity_met_value">MET %1$.1f</string>
+    <string name="add_activity_duration">Duration</string>
+    <string name="add_activity_duration_label">Duration (minutes)</string>
+    <string name="add_activity_duration_hint">Example: 30</string>
+    <string name="add_activity_quick_duration">Quick duration</string>
+    <string name="add_activity_quick_minutes">%1$d min</string>
+    <string name="add_activity_estimated_calories">Estimated calories burned</string>
+    <string name="add_activity_estimated_value">≈ %1$d kcal</string>
+    <string name="add_activity_calculation">MET %1$.1f × %2$.1f kg × %3$d min = about %4$d kcal</string>
+    <string name="add_activity_confirm">Add activity</string>
+    <string name="add_activity_submitting">Adding…</string>
+
+    <!-- Activity validation and accessibility -->
+    <string name="error_activity_type_required">Please select an activity</string>
+    <string name="error_duration_required">Please enter the activity duration</string>
+    <string name="error_duration_invalid">Duration must be a valid whole number of minutes</string>
+    <string name="error_duration_out_of_range">Duration must be between 1 and 1,440 minutes</string>
+    <string name="cd_add_activity">Add an activity to the log</string>
+    <string name="cd_delete_activity">Delete %1$s from the activity log</string>
+    <string name="cd_activity_total_burned">Total calories burned today: %1$d kcal</string>
+    <string name="cd_activity_entry">%1$s, %2$d minutes, %3$d kcal burned</string>
+    <string name="cd_select_activity_type">Select %1$s, MET %2$.1f</string>
+
+    <!-- Weekly statistics -->
+    <string name="statistics_title">Statistics</string>
+    <string name="statistics_last_seven_days">Last 7 days</string>
+    <string name="statistics_date_range">%1$s – %2$s</string>
+    <string name="statistics_intake_chart_title">Calorie intake over the last 7 days</string>
+    <string name="statistics_trend_chart_title">Weekly calorie trend</string>
+    <string name="statistics_goal_label">Goal</string>
+    <string name="statistics_eaten_legend">Consumed</string>
+    <string name="statistics_burned_legend">Burned</string>
+    <string name="statistics_average_eaten">Avg. intake/day</string>
+    <string name="statistics_average_burned">Avg. burned/day</string>
+    <string name="statistics_goal_days">Goal days</string>
+    <string name="statistics_average_value">%1$d kcal</string>
+    <string name="statistics_goal_days_value">%1$d/7</string>
+    <string name="statistics_empty_title">No statistics yet</string>
+    <string name="statistics_empty_message">Log a meal or activity to see your calorie trends.</string>
+    <string name="statistics_load_failed">Unable to load statistics</string>
+    <string name="statistics_retry">Try again</string>
+
+    <!-- Statistics accessibility -->
+    <string name="cd_statistics_intake_chart">Calorie intake chart for the last 7 days</string>
+    <string name="cd_statistics_trend_chart">Calorie intake and calories burned trend chart for the last 7 days</string>
+    <string name="cd_statistics_day_point">%1$s: %2$d kcal consumed, %3$d kcal burned, %4$d kcal goal</string>
+    <string name="cd_statistics_goal_line">Goal line at %1$d kcal</string>
+    <string name="cd_statistics_goal_days">Goal reached on %1$d of 7 days</string>
 </resources>

@@ -266,4 +266,82 @@
     <string name="error_quantity_invalid">Số lượng không hợp lệ</string>
     <string name="error_quantity_out_of_range">Số lượng phải lớn hơn 0 và không vượt quá 100</string>
     <string name="error_custom_calories_out_of_range">Calo phải từ 1 đến 10.000 kcal</string>
+
+    <!-- Activity log -->
+    <string name="activity_log_title">Nhật ký hoạt động</string>
+    <string name="activity_total_burned">Đã tiêu thụ</string>
+    <string name="activity_total_burned_value">%1$d kcal</string>
+    <string name="activity_entry_duration">%1$d phút</string>
+    <string name="activity_entry_calories">%1$d kcal</string>
+    <string name="activity_read_only">Chỉ xem</string>
+    <string name="activity_empty_title">Chưa có hoạt động nào hôm nay</string>
+    <string name="activity_empty_message">Hãy ghi lại một hoạt động để theo dõi lượng calo đã tiêu thụ.</string>
+    <string name="activity_empty_history_title">Không có hoạt động trong ngày này</string>
+    <string name="activity_empty_history_message">Bạn chưa ghi hoạt động nào vào ngày đã chọn.</string>
+    <string name="activity_add">Thêm hoạt động</string>
+    <string name="activity_load_failed">Không thể tải nhật ký hoạt động</string>
+    <string name="activity_add_failed">Không thể thêm hoạt động. Vui lòng thử lại.</string>
+    <string name="activity_delete_failed">Không thể xóa hoạt động</string>
+    <string name="activity_restore_failed">Không thể hoàn tác thao tác xóa</string>
+    <string name="activity_deleted">Đã xóa hoạt động</string>
+    <string name="activity_profile_required">Vui lòng hoàn tất hồ sơ trước khi thêm hoạt động.</string>
+    <string name="activity_add_today_only">Chỉ có thể thêm hoạt động cho hôm nay</string>
+
+    <!-- Add activity sheet -->
+    <string name="add_activity_title">Thêm hoạt động</string>
+    <string name="add_activity_search_hint">Tìm hoạt động…</string>
+    <string name="add_activity_search_empty">Không tìm thấy hoạt động phù hợp</string>
+    <string name="add_activity_search_failed">Không thể tìm hoạt động. Vui lòng thử lại.</string>
+    <string name="add_activity_suggestions">Hoạt động gợi ý</string>
+    <string name="add_activity_results">Kết quả tìm kiếm</string>
+    <string name="add_activity_select_prompt">Chọn một hoạt động để nhập thời gian</string>
+    <string name="add_activity_selected">Hoạt động đã chọn</string>
+    <string name="add_activity_met_value">MET %1$.1f</string>
+    <string name="add_activity_duration">Thời gian</string>
+    <string name="add_activity_duration_label">Thời gian (phút)</string>
+    <string name="add_activity_duration_hint">Ví dụ: 30</string>
+    <string name="add_activity_quick_duration">Chọn nhanh thời gian</string>
+    <string name="add_activity_quick_minutes">%1$d phút</string>
+    <string name="add_activity_estimated_calories">Calo tiêu thụ ước tính</string>
+    <string name="add_activity_estimated_value">≈ %1$d kcal</string>
+    <string name="add_activity_calculation">MET %1$.1f × %2$.1f kg × %3$d phút = khoảng %4$d kcal</string>
+    <string name="add_activity_confirm">Thêm hoạt động</string>
+    <string name="add_activity_submitting">Đang thêm…</string>
+
+    <!-- Activity validation and accessibility -->
+    <string name="error_activity_type_required">Vui lòng chọn một hoạt động</string>
+    <string name="error_duration_required">Vui lòng nhập thời gian hoạt động</string>
+    <string name="error_duration_invalid">Thời gian phải là số phút nguyên hợp lệ</string>
+    <string name="error_duration_out_of_range">Thời gian phải từ 1 đến 1.440 phút</string>
+    <string name="cd_add_activity">Thêm hoạt động vào nhật ký</string>
+    <string name="cd_delete_activity">Xóa %1$s khỏi nhật ký hoạt động</string>
+    <string name="cd_activity_total_burned">Tổng calo đã tiêu thụ trong ngày: %1$d kcal</string>
+    <string name="cd_activity_entry">%1$s, %2$d phút, tiêu thụ %3$d kcal</string>
+    <string name="cd_select_activity_type">Chọn hoạt động %1$s, MET %2$.1f</string>
+
+    <!-- Weekly statistics -->
+    <string name="statistics_title">Thống kê</string>
+    <string name="statistics_last_seven_days">7 ngày gần nhất</string>
+    <string name="statistics_date_range">%1$s – %2$s</string>
+    <string name="statistics_intake_chart_title">Calo nạp vào 7 ngày qua</string>
+    <string name="statistics_trend_chart_title">Xu hướng calo theo tuần</string>
+    <string name="statistics_goal_label">Mục tiêu</string>
+    <string name="statistics_eaten_legend">Nạp vào</string>
+    <string name="statistics_burned_legend">Tiêu thụ</string>
+    <string name="statistics_average_eaten">TB nạp/ngày</string>
+    <string name="statistics_average_burned">TB tiêu thụ/ngày</string>
+    <string name="statistics_goal_days">Ngày đạt mục tiêu</string>
+    <string name="statistics_average_value">%1$d kcal</string>
+    <string name="statistics_goal_days_value">%1$d/7</string>
+    <string name="statistics_empty_title">Chưa có dữ liệu thống kê</string>
+    <string name="statistics_empty_message">Hãy ghi bữa ăn hoặc hoạt động để xem xu hướng calo của bạn.</string>
+    <string name="statistics_load_failed">Không thể tải thống kê</string>
+    <string name="statistics_retry">Thử lại</string>
+
+    <!-- Statistics accessibility -->
+    <string name="cd_statistics_intake_chart">Biểu đồ calo nạp vào trong 7 ngày gần nhất</string>
+    <string name="cd_statistics_trend_chart">Biểu đồ xu hướng calo nạp vào và tiêu thụ trong 7 ngày gần nhất</string>
+    <string name="cd_statistics_day_point">%1$s: nạp %2$d kcal, tiêu thụ %3$d kcal, mục tiêu %4$d kcal</string>
+    <string name="cd_statistics_goal_line">Đường mục tiêu %1$d kcal</string>
+    <string name="cd_statistics_goal_days">Đạt mục tiêu %1$d trên 7 ngày</string>
 </resources>
