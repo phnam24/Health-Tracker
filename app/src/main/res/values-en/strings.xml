@@ -62,6 +62,7 @@
     <string name="onboarding_height_placeholder">Example: 175</string>
     <string name="unit_kilogram">kg</string>
     <string name="unit_centimeter">cm</string>
+    <string name="unit_minutes">min</string>
 
     <!-- BMI preview -->
     <string name="bmi_preview_title">Your BMI</string>
@@ -271,7 +272,12 @@
     <string name="activity_log_title">Activity log</string>
     <string name="activity_total_burned">Calories burned</string>
     <string name="activity_total_burned_value">%1$d kcal</string>
+    <string name="activity_total_duration_value">%1$d min</string>
+    <string name="activity_count_value">%1$d activities</string>
+    <string name="activity_section_today">Today’s activities</string>
+    <string name="activity_section_day">Activities on this day</string>
     <string name="activity_entry_duration">%1$d min</string>
+    <string name="activity_entry_metadata">%1$d min · MET %2$.1f</string>
     <string name="activity_entry_calories">%1$d kcal</string>
     <string name="activity_read_only">Read only</string>
     <string name="activity_empty_title">No activity logged today</string>
@@ -296,6 +302,7 @@
     <string name="add_activity_results">Search results</string>
     <string name="add_activity_select_prompt">Select an activity to enter its duration</string>
     <string name="add_activity_selected">Selected activity</string>
+    <string name="add_activity_change">Change</string>
     <string name="add_activity_met_value">MET %1$.1f</string>
     <string name="add_activity_duration">Duration</string>
     <string name="add_activity_duration_label">Duration (minutes)</string>
@@ -304,6 +311,7 @@
     <string name="add_activity_quick_minutes">%1$d min</string>
     <string name="add_activity_estimated_calories">Estimated calories burned</string>
     <string name="add_activity_estimated_value">≈ %1$d kcal</string>
+    <string name="add_activity_estimated_formula">Calculated using MET %1$.1f and your current weight</string>
     <string name="add_activity_calculation">MET %1$.1f × %2$.1f kg × %3$d min = about %4$d kcal</string>
     <string name="add_activity_confirm">Add activity</string>
     <string name="add_activity_submitting">Adding…</string>
@@ -318,6 +326,7 @@
     <string name="cd_activity_total_burned">Total calories burned today: %1$d kcal</string>
     <string name="cd_activity_entry">%1$s, %2$d minutes, %3$d kcal burned</string>
     <string name="cd_select_activity_type">Select %1$s, MET %2$.1f</string>
+    <string name="cd_activity_total_summary">%1$d kilocalories burned in %2$d minutes across %3$d activities</string>
 
     <!-- Weekly statistics -->
     <string name="statistics_title">Statistics</string>

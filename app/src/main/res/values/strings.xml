@@ -62,6 +62,7 @@
     <string name="onboarding_height_placeholder">Ví dụ: 175</string>
     <string name="unit_kilogram">kg</string>
     <string name="unit_centimeter">cm</string>
+    <string name="unit_minutes">phút</string>
 
     <!-- BMI preview -->
     <string name="bmi_preview_title">Chỉ số BMI của bạn</string>
@@ -271,7 +272,12 @@
     <string name="activity_log_title">Nhật ký hoạt động</string>
     <string name="activity_total_burned">Đã tiêu thụ</string>
     <string name="activity_total_burned_value">%1$d kcal</string>
+    <string name="activity_total_duration_value">%1$d phút</string>
+    <string name="activity_count_value">%1$d hoạt động</string>
+    <string name="activity_section_today">Hoạt động hôm nay</string>
+    <string name="activity_section_day">Hoạt động trong ngày</string>
     <string name="activity_entry_duration">%1$d phút</string>
+    <string name="activity_entry_metadata">%1$d phút · MET %2$.1f</string>
     <string name="activity_entry_calories">%1$d kcal</string>
     <string name="activity_read_only">Chỉ xem</string>
     <string name="activity_empty_title">Chưa có hoạt động nào hôm nay</string>
@@ -296,6 +302,7 @@
     <string name="add_activity_results">Kết quả tìm kiếm</string>
     <string name="add_activity_select_prompt">Chọn một hoạt động để nhập thời gian</string>
     <string name="add_activity_selected">Hoạt động đã chọn</string>
+    <string name="add_activity_change">Thay đổi</string>
     <string name="add_activity_met_value">MET %1$.1f</string>
     <string name="add_activity_duration">Thời gian</string>
     <string name="add_activity_duration_label">Thời gian (phút)</string>
@@ -304,6 +311,7 @@
     <string name="add_activity_quick_minutes">%1$d phút</string>
     <string name="add_activity_estimated_calories">Calo tiêu thụ ước tính</string>
     <string name="add_activity_estimated_value">≈ %1$d kcal</string>
+    <string name="add_activity_estimated_formula">Tính theo MET %1$.1f và cân nặng hiện tại</string>
     <string name="add_activity_calculation">MET %1$.1f × %2$.1f kg × %3$d phút = khoảng %4$d kcal</string>
     <string name="add_activity_confirm">Thêm hoạt động</string>
     <string name="add_activity_submitting">Đang thêm…</string>
@@ -318,6 +326,7 @@
     <string name="cd_activity_total_burned">Tổng calo đã tiêu thụ trong ngày: %1$d kcal</string>
     <string name="cd_activity_entry">%1$s, %2$d phút, tiêu thụ %3$d kcal</string>
     <string name="cd_select_activity_type">Chọn hoạt động %1$s, MET %2$.1f</string>
+    <string name="cd_activity_total_summary">Đã tiêu thụ %1$d kilocalories trong %2$d phút với %3$d hoạt động</string>
 
     <!-- Weekly statistics -->
     <string name="statistics_title">Thống kê</string>

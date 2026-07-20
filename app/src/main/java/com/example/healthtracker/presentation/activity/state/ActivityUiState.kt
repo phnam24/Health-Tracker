@@ -9,6 +9,7 @@ data class ActivityUiState(
     val day: ActivityDay? = null,
     val isLoading: Boolean = true,
     val loadFailed: Boolean = false,
+    val isMutating: Boolean = false,
     val addSheet: AddActivitySheetUiState? = null
 ) {
     val isToday: Boolean

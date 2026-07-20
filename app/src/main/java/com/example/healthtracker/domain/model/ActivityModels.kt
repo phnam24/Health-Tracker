@@ -5,7 +5,10 @@ import java.time.LocalDate
 data class ActivityDay(
     val date: LocalDate,
     val entries: List<ActivityEntry>,
-    val totalBurnedCalories: Int
+    val totalBurnedCalories: Int,
+    val totalDurationMinutes: Int,
+    val activityCount: Int,
+    val metByActivityTypeId: Map<Long, Double> = emptyMap()
 )
 
 data class AddActivityInput(

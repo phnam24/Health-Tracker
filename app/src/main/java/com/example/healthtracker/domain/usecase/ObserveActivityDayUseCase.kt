@@ -13,12 +13,16 @@ class ObserveActivityDayUseCase @Inject constructor(
     operator fun invoke(date: LocalDate): Flow<ActivityDay> =
         combine(
             activityRepository.observeEntries(date),
-            activityRepository.observeTotalBurned(date)
-        ) { entries, total ->
+            activityRepository.observeTotalBurned(date),
+            activityRepository.observeTypes()
+        ) { entries, total, types ->
             ActivityDay(
                 date = date,
                 entries = entries,
-                totalBurnedCalories = total
+                totalBurnedCalories = total,
+                totalDurationMinutes = entries.sumOf { it.durationMinutes },
+                activityCount = entries.size,
+                metByActivityTypeId = types.associate { it.id to it.met }
             )
         }
 }
