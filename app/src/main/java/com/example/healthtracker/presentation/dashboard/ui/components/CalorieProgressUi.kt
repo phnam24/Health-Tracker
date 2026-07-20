@@ -11,7 +11,7 @@ internal data class CalorieProgressUi(
 
 internal fun DailySummary.toCalorieProgressUi(): CalorieProgressUi {
     val rawFraction = if (goalCalories > 0) {
-        eatenCalories.toFloat() / goalCalories
+        (eatenCalories.toFloat() - burnedCalories.toFloat()) / goalCalories
     } else {
         0f
     }
@@ -19,6 +19,6 @@ internal fun DailySummary.toCalorieProgressUi(): CalorieProgressUi {
     return CalorieProgressUi(
         indicatorFraction = rawFraction.coerceIn(0f, 1f),
         percentage = (rawFraction.coerceAtLeast(0f) * 100).roundToInt(),
-        isOverGoal = goalCalories > 0 && eatenCalories > goalCalories,
+        isOverGoal = goalCalories > 0 && eatenCalories - burnedCalories > goalCalories,
     )
 }
