@@ -75,7 +75,7 @@ fun QuantitySelector(
             FilledTonalIconButton(
                 enabled = enabled &&
                         (parsedQuantity ?: MealQuantityRules.DEFAULT_VALUE) <
-                        MealQuantityRules.MAX_VALUE,
+                            MealQuantityRules.MAX_VALUE,
                 onClick = onIncrease,
             ) {
                 Icon(

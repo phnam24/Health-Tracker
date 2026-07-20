@@ -2,6 +2,7 @@ package com.example.healthtracker.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -42,6 +43,7 @@ fun AppTopBar(
     navigation: AppTopBarNavigation? = null,
     titleMaxLines: Int = 1,
     scrollBehavior: TopAppBarScrollBehavior? = null,
+    windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
     colors: TopAppBarColors = TopAppBarDefaults.topAppBarColors(
         containerColor = MaterialTheme.colorScheme.background,
         scrolledContainerColor = MaterialTheme.colorScheme.surfaceContainer
@@ -88,7 +90,8 @@ fun AppTopBar(
             navigationIcon = navigationContent,
             actions = actions,
             colors = colors,
-            scrollBehavior = scrollBehavior
+            scrollBehavior = scrollBehavior,
+            windowInsets = windowInsets,
         )
 
         AppTopBarAlignment.CENTER -> CenterAlignedTopAppBar(
@@ -97,7 +100,8 @@ fun AppTopBar(
             navigationIcon = navigationContent,
             actions = actions,
             colors = colors,
-            scrollBehavior = scrollBehavior
+            scrollBehavior = scrollBehavior,
+            windowInsets = windowInsets,
         )
     }
 }
