@@ -2,6 +2,7 @@ package com.example.healthtracker.domain.model
 
 import java.time.LocalDate
 import kotlin.math.roundToInt
+
 data class MealSectionData(
     val type: MealType,
     val entries: List<MealEntry>,
@@ -10,9 +11,10 @@ data class MealSectionData(
 
 data class DiaryDay(
     val date: LocalDate,
-    val goalCalories: Int,
     val sections: List<MealSectionData>,
-    val totalCalories: Int
+    val totalCalories: Int,
+    val foodCount: Int,
+    val mealCount: Int,
 )
 
 enum class AddMealError {

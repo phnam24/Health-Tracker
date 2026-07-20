@@ -196,13 +196,11 @@
     <!-- Diary -->
     <string name="diary_title">Nhật ký bữa ăn</string>
     <string name="diary_weekday_format">EEEE</string>
-    <string name="diary_day_total">Tổng trong ngày</string>
-    <string name="diary_day_total_value">%1$d / %2$d kcal</string>
-    <string name="diary_goal_unavailable">Chưa có mục tiêu calo</string>
-    <string name="diary_progress_percentage">%1$d%%</string>
-    <string name="diary_over_goal">Vượt mục tiêu %1$d kcal</string>
+    <string name="diary_day_total">Tổng calo đã nạp</string>
+    <string name="diary_food_count_value">%1$d món ăn</string>
+    <string name="diary_meal_count_value">%1$d bữa ăn</string>
+    <string name="cd_diary_total_summary">Đã nạp %1$d kilocalo từ %2$d món trong %3$d bữa ăn</string>
     <string name="diary_read_only">Chỉ xem</string>
-    <string name="cd_diary_calorie_progress">Đã nạp %1$d trên mục tiêu %2$d kcal</string>
     <string name="meal_breakfast">Bữa sáng</string>
     <string name="meal_lunch">Bữa trưa</string>
     <string name="meal_dinner">Bữa tối</string>

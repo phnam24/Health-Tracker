@@ -196,13 +196,11 @@
     <!-- Diary -->
     <string name="diary_title">Meal diary</string>
     <string name="diary_weekday_format">EEEE</string>
-    <string name="diary_day_total">Daily total</string>
-    <string name="diary_day_total_value">%1$d / %2$d kcal</string>
-    <string name="diary_goal_unavailable">Calorie goal unavailable</string>
-    <string name="diary_progress_percentage">%1$d%%</string>
-    <string name="diary_over_goal">%1$d kcal over goal</string>
+    <string name="diary_day_total">Total calories consumed</string>
+    <string name="diary_food_count_value">%1$d food items</string>
+    <string name="diary_meal_count_value">%1$d meals</string>
+    <string name="cd_diary_total_summary">%1$d kilocalories consumed from %2$d food items across %3$d meals</string>
     <string name="diary_read_only">Read only</string>
-    <string name="cd_diary_calorie_progress">Consumed %1$d of %2$d kcal</string>
     <string name="meal_breakfast">Breakfast</string>
     <string name="meal_lunch">Lunch</string>
     <string name="meal_dinner">Dinner</string>

@@ -1,6 +1,7 @@
 package com.example.healthtracker.presentation.activity.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -123,7 +124,7 @@ private fun ActivitySummaryMetric(
             color = MaterialTheme.colorScheme.primaryContainer,
             contentColor = MaterialTheme.colorScheme.primary,
         ) {
-            androidx.compose.foundation.layout.Box(
+            Box(
                 modifier = Modifier.padding(MaterialTheme.dimensions.spacingSmall),
                 contentAlignment = Alignment.Center,
             ) { icon() }

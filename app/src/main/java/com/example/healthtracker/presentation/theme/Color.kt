@@ -3,19 +3,16 @@ package com.example.healthtracker.presentation.theme
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
-// Fresh Emerald — Light
 internal val GreenPrimaryLight = Color(0xFF22C55E)
 internal val GreenOnPrimaryLight = Color(0xFF052E16)
 internal val GreenPrimaryContainerLight = Color(0xFFDCFCE7)
 internal val GreenOnPrimaryContainerLight = Color(0xFF14532D)
 
-// Fresh Emerald — Dark
 internal val GreenPrimaryDark = Color(0xFF4ADE80)
 internal val GreenOnPrimaryDark = Color(0xFF052E16)
 internal val GreenPrimaryContainerDark = Color(0xFF166534)
 internal val GreenOnPrimaryContainerDark = Color(0xFFDCFCE7)
 
-// Shared secondary palette
 internal val SecondaryLight = Color(0xFF0F766E)
 internal val OnSecondaryLight = Color(0xFFFFFFFF)
 internal val SecondaryContainerLight = Color(0xFFCCFBF1)
@@ -25,7 +22,6 @@ internal val OnSecondaryDark = Color(0xFF042F2E)
 internal val SecondaryContainerDark = Color(0xFF115E59)
 internal val OnSecondaryContainerDark = Color(0xFFCCFBF1)
 
-// Shared tertiary palette
 internal val TertiaryLight = Color(0xFFB45309)
 internal val OnTertiaryLight = Color(0xFFFFFFFF)
 internal val TertiaryContainerLight = Color(0xFFFFEDD5)
@@ -35,7 +31,6 @@ internal val OnTertiaryDark = Color(0xFF431407)
 internal val TertiaryContainerDark = Color(0xFF7C2D12)
 internal val OnTertiaryContainerDark = Color(0xFFFFEDD5)
 
-// Neutral palette — Light
 internal val BackgroundLight = Color(0xFFF8FCF9)
 internal val OnBackgroundLight = Color(0xFF132017)
 internal val SurfaceLight = Color(0xFFFFFFFF)
@@ -54,7 +49,6 @@ internal val OutlineVariantLight = Color(0xFFD5E2D7)
 internal val InverseSurfaceLight = Color(0xFF29352C)
 internal val InverseOnSurfaceLight = Color(0xFFF0F8F2)
 
-// Neutral palette — Dark
 internal val BackgroundDark = Color(0xFF09120C)
 internal val OnBackgroundDark = Color(0xFFE4F0E7)
 internal val SurfaceDark = Color(0xFF101A13)
@@ -73,7 +67,6 @@ internal val OutlineVariantDark = Color(0xFF2E4033)
 internal val InverseSurfaceDark = Color(0xFFE4F0E7)
 internal val InverseOnSurfaceDark = Color(0xFF29352C)
 
-// Error palette from ui_design_prompt.md
 internal val ErrorLight = Color(0xFFDC2626)
 internal val OnErrorLight = Color(0xFFFFFFFF)
 internal val ErrorContainerLight = Color(0xFFFEE2E2)
@@ -83,7 +76,6 @@ internal val OnErrorDark = Color(0xFF450A0A)
 internal val ErrorContainerDark = Color(0xFF7F1D1D)
 internal val OnErrorContainerDark = Color(0xFFFEE2E2)
 
-// Alternate primary palettes
 internal val BluePrimaryLight = Color(0xFF2196F3)
 internal val BlueOnPrimaryLight = Color(0xFFFFFFFF)
 internal val BluePrimaryContainerLight = Color(0xFFBBDEFB)
@@ -111,7 +103,6 @@ internal val PurpleOnPrimaryDark = Color(0xFF2F1065)
 internal val PurplePrimaryContainerDark = Color(0xFF493783)
 internal val PurpleOnPrimaryContainerDark = Color(0xFFD1C4E9)
 
-/** Colors with product-specific meaning that Material 3's ColorScheme does not model. */
 @Immutable
 data class HealthTrackerColorScheme(
     val caloriesConsumed: Color,
