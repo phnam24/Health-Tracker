@@ -1,7 +1,5 @@
 package com.example.healthtracker.presentation.components
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -31,7 +29,6 @@ import com.example.healthtracker.helper.toLocalizedDateString
 import com.example.healthtracker.helper.toPickerMillis
 import java.time.LocalDate
 
-@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppDatePickerField(
@@ -87,7 +84,6 @@ fun AppDatePickerField(
     )
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppDatePickerDialog(

@@ -118,7 +118,12 @@ fun DiaryDateSelector(
                         ) {
                             if (!isToday) {
                                 Text(
-                                    text = "${selectedDate.toLocalizedDateString(weekdayPattern, locale)}, ",
+                                    text = "${
+                                        selectedDate.toLocalizedDateString(
+                                            weekdayPattern,
+                                            locale
+                                        )
+                                    }, ",
                                     style = MaterialTheme.typography.titleMedium,
                                     color = MaterialTheme.colorScheme.onSurface
                                 )

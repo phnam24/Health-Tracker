@@ -1,11 +1,11 @@
 package com.example.healthtracker.domain.usecase
 
+import com.example.healthtracker.domain.model.AddMealError
 import com.example.healthtracker.domain.model.AddMealInput
 import com.example.healthtracker.domain.model.AddMealResult
-import com.example.healthtracker.domain.model.AddMealError
 import com.example.healthtracker.domain.model.MealEntry
-import com.example.healthtracker.domain.model.MealQuantityRules
 import com.example.healthtracker.domain.model.MealPreviewResult
+import com.example.healthtracker.domain.model.MealQuantityRules
 import com.example.healthtracker.domain.repository.DiaryRepository
 import kotlinx.coroutines.CancellationException
 import java.time.Clock

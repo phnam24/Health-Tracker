@@ -1,7 +1,5 @@
 package com.example.healthtracker.domain.usecase
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.healthtracker.domain.model.Goal
 import com.example.healthtracker.domain.model.TdeeBreakdown
 import com.example.healthtracker.domain.model.UserProfile
@@ -12,7 +10,6 @@ class CalculateTdeeUseCase(
     private val calculateAge: CalculateAgeUseCase,
     private val calculateBmr: CalculateBmrUseCase
 ) {
-    @RequiresApi(Build.VERSION_CODES.O)
     operator fun invoke(
         profile: UserProfile,
         today: LocalDate = LocalDate.now()

@@ -1,7 +1,5 @@
 package com.example.healthtracker.domain.usecase
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.healthtracker.domain.model.DiaryDay
 import com.example.healthtracker.domain.model.MealSectionData
 import com.example.healthtracker.domain.model.MealType
@@ -17,7 +15,6 @@ class ObserveDiaryDayUseCase @Inject constructor(
     private val userRepository: UserRepository,
     private val calculateTdee: CalculateTdeeUseCase
 ) {
-    @RequiresApi(Build.VERSION_CODES.O)
     operator fun invoke(date: LocalDate): Flow<DiaryDay> =
         combine(
             diaryRepository.observeEntries(date),

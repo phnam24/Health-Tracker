@@ -1,7 +1,5 @@
 package com.example.healthtracker.presentation.onboarding.ui
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,7 +47,6 @@ import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEve
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingViewModel
 import com.example.healthtracker.presentation.theme.dimensions
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun OnboardingRoute(
     onCompleted: () -> Unit,
@@ -76,7 +73,6 @@ fun OnboardingRoute(
     )
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun OnboardingScreen(
     uiState: OnboardingUiState,

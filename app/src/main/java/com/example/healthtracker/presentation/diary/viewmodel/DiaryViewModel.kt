@@ -1,13 +1,11 @@
 package com.example.healthtracker.presentation.diary.viewmodel
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.healthtracker.domain.model.AddCustomFoodInput
 import com.example.healthtracker.domain.model.AddCustomFoodResult
-import com.example.healthtracker.domain.model.AddMealInput
 import com.example.healthtracker.domain.model.AddMealError
+import com.example.healthtracker.domain.model.AddMealInput
 import com.example.healthtracker.domain.model.AddMealResult
 import com.example.healthtracker.domain.model.CustomFoodField
 import com.example.healthtracker.domain.model.Food
@@ -87,7 +85,6 @@ sealed interface DiaryEffect {
 }
 
 @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
-@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class DiaryViewModel @Inject constructor(
     private val observeDiaryDay: ObserveDiaryDayUseCase,
@@ -141,6 +138,7 @@ class DiaryViewModel @Inject constructor(
 
             DiaryEvent.IncreaseQuantityClicked ->
                 adjustQuantity(MealQuantityRules.STEPPER_STEP)
+
             is DiaryEvent.QuantityChanged -> updateQuantity(event.value)
             DiaryEvent.ConfirmAddFoodClicked -> submitSelectedFood()
             DiaryEvent.OpenCustomFoodClicked -> openCustomFoodForm()

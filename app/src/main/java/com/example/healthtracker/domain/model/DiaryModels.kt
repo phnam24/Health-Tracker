@@ -42,6 +42,7 @@ sealed interface AddCustomFoodResult {
     data class Invalid(
         val errors: Map<CustomFoodField, CustomFoodError>
     ) : AddCustomFoodResult
+
     data object DateNotAllowed : AddCustomFoodResult
     data object Failure : AddCustomFoodResult
 }

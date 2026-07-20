@@ -1,7 +1,5 @@
 package com.example.healthtracker.presentation.onboarding.viewmodel
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.healthtracker.domain.model.ActivityLevel
@@ -49,7 +47,6 @@ sealed interface OnboardingEffect {
     data object SaveFailed : OnboardingEffect
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class OnboardingViewModel @Inject constructor(
     private val calculateAge: CalculateAgeUseCase,

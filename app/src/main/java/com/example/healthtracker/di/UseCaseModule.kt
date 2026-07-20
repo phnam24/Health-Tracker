@@ -1,7 +1,5 @@
 package com.example.healthtracker.di
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.healthtracker.domain.repository.UserRepository
 import com.example.healthtracker.domain.usecase.BuildUserProfileUseCase
 import com.example.healthtracker.domain.usecase.CalculateAgeUseCase
@@ -23,7 +21,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
-    @RequiresApi(Build.VERSION_CODES.O)
     @Provides
     @Singleton
     fun provideClock(): Clock =
@@ -61,7 +58,6 @@ object UseCaseModule {
             calculateBmr = calculateBmrUseCase
         )
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @Provides
     @Singleton
     fun provideValidateOnboardingUseCase(
@@ -88,7 +84,6 @@ object UseCaseModule {
             calculateBmi = calculateBmiUseCase
         )
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @Provides
     @Singleton
     fun provideGetTdeePreviewUseCase(
@@ -100,7 +95,6 @@ object UseCaseModule {
             calculateTdee = calculateTdeeUseCase
         )
 
-    @RequiresApi(Build.VERSION_CODES.O)
     @Provides
     @Singleton
     fun provideCompleteOnboardingUseCase(

@@ -2,8 +2,8 @@ package com.example.healthtracker.presentation.diary.state
 
 import com.example.healthtracker.domain.model.AddMealError
 import com.example.healthtracker.domain.model.Food
-import com.example.healthtracker.domain.model.MealType
 import com.example.healthtracker.domain.model.MealQuantityRules
+import com.example.healthtracker.domain.model.MealType
 
 data class AddFoodSheetUiState(
     val targetMeal: MealType,

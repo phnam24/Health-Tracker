@@ -1,12 +1,11 @@
 package com.example.healthtracker.presentation.dashboard.viewmodel
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.healthtracker.domain.usecase.ObserveDashboardUseCase
 import com.example.healthtracker.presentation.dashboard.state.DashboardUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -35,7 +34,6 @@ sealed interface DashboardEffect {
     data object NavigateToActivity : DashboardEffect
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     private val observeDashboard: ObserveDashboardUseCase,
@@ -44,6 +42,7 @@ class DashboardViewModel @Inject constructor(
     private val today = LocalDate.now(clock)
     private val retryTrigger = MutableStateFlow(0)
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<DashboardUiState> =
         retryTrigger
             .flatMapLatest {
