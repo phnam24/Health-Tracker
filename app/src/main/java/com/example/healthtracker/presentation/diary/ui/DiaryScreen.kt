@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -11,10 +12,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -98,53 +97,56 @@ fun DiaryRoute(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DiaryScreen(
     uiState: DiaryUiState,
     snackbarHostState: SnackbarHostState,
     onEvent: (DiaryEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val day = uiState.day
 
-    Scaffold(
-        modifier = modifier.fillMaxSize(),
-        topBar = {
+    Box(modifier = modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
             AppTopBar(
-                title = stringResource(R.string.diary_title)
-            )
-        },
-        snackbarHost = { SnackbarHost(snackbarHostState) }
-    ) { paddingValues ->
-        when {
-            uiState.isLoading && day == null -> DiaryLoadingState(
-                modifier = Modifier.padding(paddingValues)
+                title = stringResource(R.string.diary_title),
+                windowInsets = WindowInsets(0),
             )
 
-            uiState.loadFailed && day == null -> DiaryLoadFailedState(
-                onRetry = { onEvent(DiaryEvent.RetryClicked) },
-                modifier = Modifier.padding(paddingValues)
-            )
+            when {
+                uiState.isLoading && day == null -> {
+                    DiaryLoadingState(modifier = Modifier.weight(1f))
+                }
 
-            day != null -> DiaryContent(
-                day = day,
-                today = uiState.today ?: day.date,
-                isMutating = uiState.isMutating,
-                onEvent = onEvent,
-                modifier = Modifier.padding(paddingValues)
-            )
+                uiState.loadFailed && day == null -> {
+                    DiaryLoadFailedState(
+                        onRetry = { onEvent(DiaryEvent.RetryClicked) },
+                        modifier = Modifier.weight(1f),
+                    )
+                }
 
-            else -> DiaryLoadingState(
-                modifier = Modifier.padding(paddingValues)
-            )
+                day != null -> {
+                    DiaryContent(
+                        day = day,
+                        today = uiState.today ?: day.date,
+                        isMutating = uiState.isMutating,
+                        onEvent = onEvent,
+                        modifier = Modifier.weight(1f),
+                    )
+                }
+            }
         }
+
+        SnackbarHost(
+            hostState = snackbarHostState,
+            modifier = Modifier.align(Alignment.BottomCenter),
+        )
     }
 
     uiState.addFoodSheet?.let { sheet ->
         DiaryAddFoodSheet(
             state = sheet,
-            onEvent = onEvent
+            onEvent = onEvent,
         )
     }
 }
