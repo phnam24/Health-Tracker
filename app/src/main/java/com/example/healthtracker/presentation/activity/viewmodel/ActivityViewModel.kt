@@ -67,6 +67,7 @@ sealed interface ActivityEffect {
     data object ShowAddFailed : ActivityEffect
     data object ShowDeleteFailed : ActivityEffect
     data object ShowRestoreFailed : ActivityEffect
+    data object ShowRefreshFailed : ActivityEffect
     data object ShowProfileRequired : ActivityEffect
     data object ShowAddTodayOnly : ActivityEffect
 }
@@ -142,12 +143,16 @@ class ActivityViewModel @Inject constructor(
                             }
                         }
                         .catch {
+                            val hasCachedDay = _uiState.value.day?.date == date
                             _uiState.update {
                                 it.copy(
                                     selectedDate = date,
                                     isLoading = false,
                                     loadFailed = true,
                                 )
+                            }
+                            if (hasCachedDay) {
+                                _effects.send(ActivityEffect.ShowRefreshFailed)
                             }
                         }
                 }

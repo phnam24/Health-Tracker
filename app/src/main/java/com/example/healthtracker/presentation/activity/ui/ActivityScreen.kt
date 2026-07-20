@@ -59,6 +59,8 @@ fun ActivityRoute(
     val addFailedMessage = stringResource(R.string.activity_add_failed)
     val deleteFailedMessage = stringResource(R.string.activity_delete_failed)
     val restoreFailedMessage = stringResource(R.string.activity_restore_failed)
+    val refreshFailedMessage = stringResource(R.string.activity_load_failed)
+    val retryLabel = stringResource(R.string.common_retry)
     val profileRequiredMessage = stringResource(R.string.activity_profile_required)
     val addTodayOnlyMessage = stringResource(R.string.activity_add_today_only)
 
@@ -85,6 +87,18 @@ fun ActivityRoute(
 
                 ActivityEffect.ShowRestoreFailed ->
                     snackbarHostState.showSnackbar(restoreFailedMessage)
+
+                ActivityEffect.ShowRefreshFailed -> {
+                    val result = snackbarHostState.showSnackbar(
+                        message = refreshFailedMessage,
+                        actionLabel = retryLabel,
+                        withDismissAction = true,
+                        duration = SnackbarDuration.Long,
+                    )
+                    if (result == SnackbarResult.ActionPerformed) {
+                        viewModel.onEvent(ActivityEvent.RetryClicked)
+                    }
+                }
 
                 ActivityEffect.ShowProfileRequired ->
                     snackbarHostState.showSnackbar(profileRequiredMessage)
