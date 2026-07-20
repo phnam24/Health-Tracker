@@ -66,6 +66,7 @@ class AddMealEntryUseCase @Inject constructor(
                 mealType = input.mealType,
                 foodId = food.id,
                 foodName = food.name,
+                foodNameEn = food.nameEn.ifBlank { food.name },
                 quantity = quantity,
                 calories = calories
             )

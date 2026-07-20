@@ -38,6 +38,7 @@ class AddActivityEntryUseCase @Inject constructor(
                 date = input.date,
                 activityTypeId = type.id,
                 activityName = type.name,
+                activityNameEn = type.nameEn.ifBlank { type.name },
                 durationMinutes = minutes,
                 caloriesBurned = calories
             )

@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -24,6 +25,7 @@ import com.example.healthtracker.R
 import com.example.healthtracker.presentation.components.AppCard
 import com.example.healthtracker.presentation.components.PrimaryButton
 import com.example.healthtracker.presentation.diary.message
+import com.example.healthtracker.presentation.diary.localizedName
 import com.example.healthtracker.presentation.diary.state.AddFoodSheetUiState
 import com.example.healthtracker.presentation.diary.titleRes
 import com.example.healthtracker.presentation.diary.viewmodel.DiaryEvent
@@ -36,6 +38,9 @@ fun SelectedFoodContent(
     modifier: Modifier = Modifier,
 ) {
     val food = state.selectedFood ?: return
+    val displayName = food.localizedName(
+        LocalConfiguration.current.locales[0].language
+    )
     val quantityError = state.quantityError?.message()
     val mealName = stringResource(state.targetMeal.titleRes())
 
@@ -65,7 +70,7 @@ fun SelectedFoodContent(
                 )
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = food.name,
+                        text = displayName,
                         style = MaterialTheme.typography.titleMedium,
                     )
                     Text(

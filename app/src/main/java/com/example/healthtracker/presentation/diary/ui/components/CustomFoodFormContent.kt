@@ -47,12 +47,20 @@ fun CustomFoodFormContent(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingLarge),
     ) {
         AppTextField(
-            value = form.nameInput,
-            onValueChange = { onEvent(DiaryEvent.CustomFoodNameChanged(it)) },
-            label = stringResource(R.string.custom_food_name),
-            placeholder = stringResource(R.string.custom_food_name_hint),
+            value = form.nameViInput,
+            onValueChange = { onEvent(DiaryEvent.CustomFoodNameViChanged(it)) },
+            label = stringResource(R.string.custom_food_name_vi),
+            placeholder = stringResource(R.string.custom_food_name_vi_hint),
             supportingText = nameError,
             isError = nameError != null,
+            enabled = !state.isSubmitting,
+        )
+
+        AppTextField(
+            value = form.nameEnInput,
+            onValueChange = { onEvent(DiaryEvent.CustomFoodNameEnChanged(it)) },
+            label = stringResource(R.string.custom_food_name_en),
+            placeholder = stringResource(R.string.custom_food_name_en_hint),
             enabled = !state.isSubmitting,
         )
 
@@ -122,7 +130,7 @@ fun CustomFoodFormContent(
             onClick = { onEvent(DiaryEvent.ConfirmCustomFoodClicked) },
             modifier = Modifier.fillMaxWidth(),
             enabled = !state.isSubmitting &&
-                    form.nameInput.isNotBlank() &&
+                    form.nameViInput.isNotBlank() &&
                     form.unitInput.isNotBlank() &&
                     form.caloriesPreview != null,
             loading = state.isSubmitting,

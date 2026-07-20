@@ -25,14 +25,15 @@ class AddCustomFoodAndEntryUseCase @Inject constructor(
         if (input.date != LocalDate.now(clock)) {
             return AddCustomFoodResult.DateNotAllowed
         }
-        val name = input.name.trim()
+        val nameVi = input.nameVi.trim()
+        val nameEn = input.nameEn.trim().ifBlank { nameVi }
         val unit = input.unit.trim()
         val caloriesText = input.caloriesInput.trim()
         val parsedCalories = caloriesText.toIntOrNull()
         val quantityText = input.quantityInput.trim()
         val parsedQuantity = MealQuantityRules.parse(quantityText)
         val errors = buildMap<CustomFoodField, CustomFoodError> {
-            if (name.isEmpty()) put(CustomFoodField.NAME, CustomFoodError.REQUIRED)
+            if (nameVi.isEmpty()) put(CustomFoodField.NAME, CustomFoodError.REQUIRED)
             if (unit.isEmpty()) put(CustomFoodField.UNIT, CustomFoodError.REQUIRED)
             when {
                 caloriesText.isEmpty() ->
@@ -64,8 +65,8 @@ class AddCustomFoodAndEntryUseCase @Inject constructor(
                 val foodId = foodRepository.addCustomFood(
                     Food(
                         id = 0,
-                        name = name,
-                        nameEn = name,
+                        name = nameVi,
+                        nameEn = nameEn,
                         caloriesPerUnit = calories,
                         unit = unit,
                         isCustom = true
@@ -77,7 +78,8 @@ class AddCustomFoodAndEntryUseCase @Inject constructor(
                         date = input.date,
                         mealType = input.mealType,
                         foodId = foodId,
-                        foodName = name,
+                        foodName = nameVi,
+                        foodNameEn = nameEn,
                         quantity = quantity,
                         calories = MealQuantityRules.calculateCalories(
                             quantity = quantity,

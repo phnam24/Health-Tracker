@@ -34,6 +34,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -41,6 +42,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.ActivityType
 import com.example.healthtracker.domain.model.AddActivityError
+import com.example.healthtracker.presentation.activity.localizedName
 import com.example.healthtracker.presentation.activity.state.AddActivitySheetUiState
 import com.example.healthtracker.presentation.activity.viewmodel.ActivityEvent
 import com.example.healthtracker.presentation.components.AppCard
@@ -194,6 +196,9 @@ private fun ActivityTypeRow(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val displayName = type.localizedName(
+        LocalConfiguration.current.locales[0].language
+    )
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -216,7 +221,7 @@ private fun ActivityTypeRow(
             )
         }
         Text(
-            text = type.name,
+            text = displayName,
             modifier = Modifier.weight(1f),
             style = MaterialTheme.typography.bodyLarge,
         )
@@ -244,6 +249,9 @@ private fun ActivityDurationEditor(
     modifier: Modifier = Modifier,
 ) {
     val type = requireNotNull(state.selectedType)
+    val displayName = type.localizedName(
+        LocalConfiguration.current.locales[0].language
+    )
     val errorText = activityDurationErrorText(state.durationError)
 
     Column(
@@ -272,7 +280,7 @@ private fun ActivityDurationEditor(
                     )
                 }
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(type.name, style = MaterialTheme.typography.titleMedium)
+                    Text(displayName, style = MaterialTheme.typography.titleMedium)
                     Text(
                         stringResource(R.string.add_activity_met_value, type.met),
                         style = MaterialTheme.typography.labelMedium,

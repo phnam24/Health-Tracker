@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.Food
 import com.example.healthtracker.presentation.components.AppCard
+import com.example.healthtracker.presentation.diary.localizedName
 import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
@@ -36,6 +38,9 @@ fun FoodSearchResultItem(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 ) {
+    val displayName = food.localizedName(
+        LocalConfiguration.current.locales[0].language
+    )
     val containerColor = MaterialTheme.colorScheme.surface
     val contentColor = MaterialTheme.colorScheme.onSurface
 
@@ -65,7 +70,7 @@ fun FoodSearchResultItem(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = food.name,
+                    text = displayName,
                     style = MaterialTheme.typography.bodyLarge,
                     color = contentColor,
                     fontWeight = FontWeight.Normal,
