@@ -8,6 +8,7 @@ data class MealEntry(
     val mealType: MealType,
     val foodId: Long,
     val foodName: String,
+    val foodNameEn: String,
     val quantity: Double,
     val calories: Int
 )

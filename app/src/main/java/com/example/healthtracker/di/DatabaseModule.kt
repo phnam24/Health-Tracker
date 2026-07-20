@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.healthtracker.data.local.HealthDatabase
+import com.example.healthtracker.data.local.migration.MIGRATION_1_2
 import com.example.healthtracker.data.local.seed.ActivitySeedData
 import com.example.healthtracker.data.local.seed.FoodSeedData
 import dagger.Module
@@ -30,15 +31,20 @@ object DatabaseModule {
             context,
             HealthDatabase::class.java,
             "health_tracker.db"
-        ).addCallback(object : RoomDatabase.Callback() {
-            override fun onCreate(db: SupportSQLiteDatabase) {
-                super.onCreate(db)
-                CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
-                    database.foodDao().insertAll(FoodSeedData.items)
-                    database.activityTypeDao().insertAll(ActivitySeedData.items)
+        )
+            .addMigrations(MIGRATION_1_2)
+            .addCallback(
+                object : RoomDatabase.Callback() {
+                    override fun onCreate(db: SupportSQLiteDatabase) {
+                        super.onCreate(db)
+                        CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
+                            database.foodDao().insertAll(FoodSeedData.items)
+                            database.activityTypeDao().insertAll(ActivitySeedData.items)
+                        }
+                    }
                 }
-            }
-        }).build()
+            )
+            .build()
 
         return database
     }

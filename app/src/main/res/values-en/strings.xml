@@ -247,8 +247,10 @@
     <!-- Custom food -->
     <string name="custom_food_open">Enter a custom food</string>
     <string name="custom_food_title">Create a new food</string>
-    <string name="custom_food_name">Food name</string>
-    <string name="custom_food_name_hint">Example: Homemade chicken rice</string>
+    <string name="custom_food_name_vi">Food name (Vietnamese)</string>
+    <string name="custom_food_name_vi_hint">Example: Cơm gà nhà làm</string>
+    <string name="custom_food_name_en">Food name (English, optional)</string>
+    <string name="custom_food_name_en_hint">Example: Homemade chicken rice</string>
     <string name="custom_food_calories">Calories per unit</string>
     <string name="custom_food_calories_hint">Example: 350</string>
     <string name="custom_food_unit">Unit</string>

@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -29,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.ActivityEntry
+import com.example.healthtracker.presentation.activity.localizedName
 import com.example.healthtracker.presentation.components.AppCard
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
@@ -75,9 +77,12 @@ private fun ActivityEntryRow(
     onDelete: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val displayName = entry.localizedName(
+        LocalConfiguration.current.locales[0].language
+    )
     val rowDescription = stringResource(
         R.string.cd_activity_entry,
-        entry.activityName,
+        displayName,
         entry.durationMinutes,
         entry.caloriesBurned,
     )
@@ -111,7 +116,7 @@ private fun ActivityEntryRow(
 
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = entry.activityName,
+                text = displayName,
                 style = MaterialTheme.typography.bodyLarge,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
@@ -144,7 +149,7 @@ private fun ActivityEntryRow(
                     imageVector = Icons.Outlined.DeleteOutline,
                     contentDescription = stringResource(
                         R.string.cd_delete_activity,
-                        entry.activityName,
+                        displayName,
                     ),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

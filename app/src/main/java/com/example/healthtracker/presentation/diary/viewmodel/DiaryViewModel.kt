@@ -64,7 +64,8 @@ sealed interface DiaryEvent {
     data object ConfirmAddFoodClicked : DiaryEvent
     data object OpenCustomFoodClicked : DiaryEvent
     data object CloseCustomFoodClicked : DiaryEvent
-    data class CustomFoodNameChanged(val value: String) : DiaryEvent
+    data class CustomFoodNameViChanged(val value: String) : DiaryEvent
+    data class CustomFoodNameEnChanged(val value: String) : DiaryEvent
     data class CustomFoodCaloriesChanged(val value: String) : DiaryEvent
     data class CustomFoodUnitChanged(val value: String) : DiaryEvent
     data class CustomFoodQuantityChanged(val value: String) : DiaryEvent
@@ -143,7 +144,8 @@ class DiaryViewModel @Inject constructor(
             DiaryEvent.ConfirmAddFoodClicked -> submitSelectedFood()
             DiaryEvent.OpenCustomFoodClicked -> openCustomFoodForm()
             DiaryEvent.CloseCustomFoodClicked -> closeCustomFoodForm()
-            is DiaryEvent.CustomFoodNameChanged -> updateCustomName(event.value)
+            is DiaryEvent.CustomFoodNameViChanged -> updateCustomNameVi(event.value)
+            is DiaryEvent.CustomFoodNameEnChanged -> updateCustomNameEn(event.value)
             is DiaryEvent.CustomFoodCaloriesChanged -> updateCustomCalories(event.value)
             is DiaryEvent.CustomFoodUnitChanged -> updateCustomUnit(event.value)
             is DiaryEvent.CustomFoodQuantityChanged -> updateCustomQuantity(event.value)
@@ -465,13 +467,17 @@ class DiaryViewModel @Inject constructor(
         searchQuery.value = sheet.query
     }
 
-    private fun updateCustomName(value: String) {
+    private fun updateCustomNameVi(value: String) {
         updateCustomForm { form ->
             form.copy(
-                nameInput = value,
+                nameViInput = value,
                 errors = form.errors - CustomFoodField.NAME
             )
         }
+    }
+
+    private fun updateCustomNameEn(value: String) {
+        updateCustomForm { form -> form.copy(nameEnInput = value) }
     }
 
     private fun updateCustomCalories(value: String) {
@@ -541,7 +547,8 @@ class DiaryViewModel @Inject constructor(
         val input = AddCustomFoodInput(
             date = date,
             mealType = sheet.targetMeal,
-            name = form.nameInput,
+            nameVi = form.nameViInput,
+            nameEn = form.nameEnInput,
             caloriesInput = form.caloriesInput,
             unit = form.unitInput,
             quantityInput = form.quantityInput

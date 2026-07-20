@@ -247,8 +247,10 @@
     <!-- Custom food -->
     <string name="custom_food_open">Tự nhập món mới</string>
     <string name="custom_food_title">Tạo món ăn mới</string>
-    <string name="custom_food_name">Tên món</string>
-    <string name="custom_food_name_hint">Ví dụ: Cơm gà nhà làm</string>
+    <string name="custom_food_name_vi">Tên món (Tiếng Việt)</string>
+    <string name="custom_food_name_vi_hint">Ví dụ: Cơm gà nhà làm</string>
+    <string name="custom_food_name_en">Tên món (Tiếng Anh, không bắt buộc)</string>
+    <string name="custom_food_name_en_hint">Ví dụ: Homemade chicken rice</string>
     <string name="custom_food_calories">Calo mỗi đơn vị</string>
     <string name="custom_food_calories_hint">Ví dụ: 350</string>
     <string name="custom_food_unit">Đơn vị</string>

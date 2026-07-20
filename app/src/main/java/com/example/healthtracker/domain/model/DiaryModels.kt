@@ -57,7 +57,8 @@ data class AddMealInput(
 data class AddCustomFoodInput(
     val date: LocalDate,
     val mealType: MealType,
-    val name: String,
+    val nameVi: String,
+    val nameEn: String,
     val caloriesInput: String,
     val unit: String,
     val quantityInput: String

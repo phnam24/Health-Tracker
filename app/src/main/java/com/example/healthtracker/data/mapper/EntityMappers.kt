@@ -69,6 +69,7 @@ fun ActivityEntryEntity.toDomain() = ActivityEntry(
     date = date,
     activityTypeId = activityTypeId,
     activityName = activityName,
+    activityNameEn = activityNameEn,
     durationMinutes = durationMinutes,
     caloriesBurned = caloriesBurned
 )
@@ -78,6 +79,7 @@ fun ActivityEntry.toEntity() = ActivityEntryEntity(
     date = date,
     activityTypeId = activityTypeId,
     activityName = activityName,
+    activityNameEn = activityNameEn,
     durationMinutes = durationMinutes,
     caloriesBurned = caloriesBurned
 )
@@ -88,6 +90,7 @@ fun MealEntryEntity.toDomain() = MealEntry(
     mealType = mealType,
     foodId = foodId,
     foodName = foodName,
+    foodNameEn = foodNameEn,
     quantity = quantity,
     calories = calories
 )
@@ -98,6 +101,7 @@ fun MealEntry.toEntity() = MealEntryEntity(
     mealType = mealType,
     foodId = foodId,
     foodName = foodName,
+    foodNameEn = foodNameEn,
     quantity = quantity,
     calories = calories
 )

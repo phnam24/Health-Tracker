@@ -11,6 +11,7 @@ data class ActivityEntryEntity(
     val date: LocalDate,
     val activityTypeId: Long,
     val activityName: String,
+    val activityNameEn: String,
     val durationMinutes: Int,
     val caloriesBurned: Int
 )
