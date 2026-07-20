@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.healthtracker"
-        minSdk = 24
+        minSdk = 26
         //noinspection OldTargetApi
         targetSdk = 36
         versionCode = 1
@@ -38,10 +38,6 @@ android {
         compose = true
     }
 }
-
-//kapt {
-//    correctErrorTypes = true
-//}
 
 dependencies {
     implementation(platform(libs.androidx.compose.bom))

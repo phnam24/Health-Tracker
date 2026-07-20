@@ -1,7 +1,5 @@
 package com.example.healthtracker.presentation.components
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -13,6 +11,7 @@ import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
@@ -27,9 +26,9 @@ import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.helper.toLocalDateFromPicker
 import com.example.healthtracker.helper.toLocalizedDateString
+import com.example.healthtracker.helper.toPickerMillis
 import java.time.LocalDate
 
-@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppDatePickerField(
@@ -77,30 +76,74 @@ fun AppDatePickerField(
         )
     }
 
-    if (showDialog) {
-        val datePickerState = rememberDatePickerState()
+    AppDatePickerDialog(
+        visible = showDialog,
+        selectedDate = value,
+        onDateSelected = onDateSelected,
+        onDismissRequest = { showDialog = false }
+    )
+}
 
-        DatePickerDialog(
-            onDismissRequest = { showDialog = false },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        datePickerState.selectedDateMillis?.let { millis ->
-                            onDateSelected(millis.toLocalDateFromPicker())
-                        }
-                        showDialog = false
-                    }
-                ) {
-                    Text(stringResource(R.string.common_confirm))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showDialog = false }) {
-                    Text(stringResource(R.string.common_cancel))
-                }
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppDatePickerDialog(
+    visible: Boolean,
+    selectedDate: LocalDate?,
+    onDateSelected: (LocalDate) -> Unit,
+    onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier,
+    minDate: LocalDate? = null,
+    maxDate: LocalDate? = null
+) {
+    if (!visible) return
+
+    val selectableDates = remember(minDate, maxDate) {
+        object : SelectableDates {
+            override fun isSelectableDate(utcTimeMillis: Long): Boolean {
+                val date = utcTimeMillis.toLocalDateFromPicker()
+                return (minDate == null || !date.isBefore(minDate)) &&
+                        (maxDate == null || !date.isAfter(maxDate))
             }
-        ) {
-            DatePicker(state = datePickerState)
+
+            override fun isSelectableYear(year: Int): Boolean =
+                (minDate == null || year >= minDate.year) &&
+                        (maxDate == null || year <= maxDate.year)
         }
+    }
+    val initialDateMillis = selectedDate?.toPickerMillis()
+    val datePickerState = rememberDatePickerState(
+        initialSelectedDateMillis = initialDateMillis,
+        initialDisplayedMonthMillis = initialDateMillis,
+        selectableDates = selectableDates
+    )
+    val selectedValue = datePickerState.selectedDateMillis
+        ?.toLocalDateFromPicker()
+    val canConfirm = selectedValue != null &&
+            (minDate == null || !selectedValue.isBefore(minDate)) &&
+            (maxDate == null || !selectedValue.isAfter(maxDate))
+
+    DatePickerDialog(
+        onDismissRequest = onDismissRequest,
+        confirmButton = {
+            TextButton(
+                enabled = canConfirm,
+                onClick = {
+                    selectedValue?.let(onDateSelected)
+                    onDismissRequest()
+                }
+            ) {
+                Text(stringResource(R.string.common_confirm))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismissRequest) {
+                Text(stringResource(R.string.common_cancel))
+            }
+        }
+    ) {
+        DatePicker(
+            state = datePickerState,
+            modifier = modifier
+        )
     }
 }

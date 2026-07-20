@@ -194,9 +194,14 @@
 
     <!-- Diary -->
     <string name="diary_title">Nhật ký bữa ăn</string>
+    <string name="diary_weekday_format">EEEE</string>
     <string name="diary_day_total">Tổng trong ngày</string>
     <string name="diary_day_total_value">%1$d / %2$d kcal</string>
     <string name="diary_goal_unavailable">Chưa có mục tiêu calo</string>
+    <string name="diary_progress_percentage">%1$d%%</string>
+    <string name="diary_over_goal">Vượt mục tiêu %1$d kcal</string>
+    <string name="diary_read_only">Chỉ xem</string>
+    <string name="cd_diary_calorie_progress">Đã nạp %1$d trên mục tiêu %2$d kcal</string>
     <string name="meal_breakfast">Bữa sáng</string>
     <string name="meal_lunch">Bữa trưa</string>
     <string name="meal_dinner">Bữa tối</string>
@@ -206,16 +211,19 @@
     <string name="diary_add_food_to_meal">Thêm vào %1$s</string>
     <string name="diary_quantity_unit">%1$s × %2$s</string>
     <string name="diary_entry_calories">%1$d kcal</string>
+    <string name="diary_entry_quantity_value">Số lượng: %1$s</string>
     <string name="diary_load_failed">Không thể tải nhật ký bữa ăn</string>
     <string name="diary_delete_failed">Không thể xóa món ăn</string>
     <string name="diary_restore_failed">Không thể hoàn tác thao tác xóa</string>
     <string name="diary_entry_deleted">Đã xóa món ăn</string>
+    <string name="diary_add_today_only">Chỉ có thể thêm món ăn cho hôm nay</string>
 
     <!-- Add food sheet -->
     <string name="add_food_title">Thêm món ăn</string>
     <string name="add_food_search_hint">Tìm món ăn…</string>
     <string name="add_food_search_empty">Không tìm thấy món phù hợp</string>
-    <string name="add_food_popular">Món ăn phổ biến</string>
+    <string name="add_food_search_failed">Không thể tìm món ăn. Vui lòng thử lại.</string>
+    <string name="add_food_popular">Món ăn gợi ý</string>
     <string name="add_food_results">Kết quả tìm kiếm</string>
     <string name="add_food_select_prompt">Chọn một món để nhập số lượng</string>
     <string name="add_food_selected">Món đã chọn</string>
@@ -251,6 +259,9 @@
     <string name="error_required">Vui lòng nhập thông tin này</string>
     <string name="error_invalid_number">Vui lòng nhập một số hợp lệ</string>
     <string name="error_food_required">Vui lòng chọn một món ăn</string>
+    <string name="error_custom_name_required">Vui lòng nhập tên món</string>
+    <string name="error_custom_calories_required">Vui lòng nhập calo mỗi đơn vị</string>
+    <string name="error_custom_unit_required">Vui lòng nhập đơn vị</string>
     <string name="error_quantity_required">Vui lòng nhập số lượng</string>
     <string name="error_quantity_invalid">Số lượng không hợp lệ</string>
     <string name="error_quantity_out_of_range">Số lượng phải lớn hơn 0 và không vượt quá 100</string>

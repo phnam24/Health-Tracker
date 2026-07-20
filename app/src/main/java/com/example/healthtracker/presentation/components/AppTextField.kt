@@ -17,7 +17,7 @@ import com.example.healthtracker.presentation.theme.dimensions
 fun AppTextField(
     value: String,
     onValueChange: (String) -> Unit,
-    label: String,
+    label: String? = null,
     modifier: Modifier = Modifier,
     placeholder: String? = null,
     leadingIcon: ImageVector? = null,
@@ -38,11 +38,13 @@ fun AppTextField(
         readOnly = readOnly,
         singleLine = singleLine,
         isError = isError,
-        label = {
-            Text(
-                text = label,
-                style = MaterialTheme.typography.bodyMedium,
-            )
+        label = label?.let {
+            {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
         },
         placeholder = placeholder?.let {
             {

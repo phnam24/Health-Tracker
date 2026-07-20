@@ -1,7 +1,5 @@
 package com.example.healthtracker.domain.usecase
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.healthtracker.domain.model.DailySummary
 import com.example.healthtracker.domain.repository.ActivityRepository
 import com.example.healthtracker.domain.repository.DiaryRepository
@@ -11,7 +9,6 @@ import kotlinx.coroutines.flow.combine
 import java.time.LocalDate
 import javax.inject.Inject
 
-@RequiresApi(Build.VERSION_CODES.O)
 class ObserveDailySummaryUseCase @Inject constructor(
     private val userRepository: UserRepository,
     private val diaryRepository: DiaryRepository,

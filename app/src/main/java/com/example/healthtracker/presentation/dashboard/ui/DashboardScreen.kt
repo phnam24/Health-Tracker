@@ -1,7 +1,5 @@
 package com.example.healthtracker.presentation.dashboard.ui
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,7 +47,6 @@ import com.example.healthtracker.presentation.theme.HealthTrackerTheme
 import com.example.healthtracker.presentation.theme.ThemeMode
 import com.example.healthtracker.presentation.theme.dimensions
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DashboardRoute(
     onDiaryNavigate: () -> Unit,
@@ -73,7 +70,6 @@ fun DashboardRoute(
     )
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DashboardScreen(
     uiState: DashboardUiState,
@@ -87,6 +83,7 @@ fun DashboardScreen(
         uiState.loadFailed -> DashboardLoadFailedState(
             onRetryClick = { onEvent(DashboardEvent.RetryClicked) }
         )
+
         summary == null || advice == null -> DashboardProfileMissingState()
         else -> DashboardContent(
             userName = uiState.userName,
@@ -97,7 +94,6 @@ fun DashboardScreen(
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 private fun DashboardContent(
     userName: String,
@@ -252,7 +248,6 @@ fun DashboardCaloriesStatSession(
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(name = "Dashboard - Loading", showBackground = true)
 @Composable
 private fun DashboardLoadingPreview() {
@@ -266,7 +261,6 @@ private fun DashboardLoadingPreview() {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Preview(name = "Dashboard - Load failed", showBackground = true)
 @Composable
 private fun DashboardLoadFailedPreview() {

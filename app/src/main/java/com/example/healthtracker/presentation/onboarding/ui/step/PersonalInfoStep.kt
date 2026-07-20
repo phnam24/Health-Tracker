@@ -1,7 +1,5 @@
 package com.example.healthtracker.presentation.onboarding.ui.step
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -34,7 +32,6 @@ import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.dimensions
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun PersonalInfoStep(
     uiState: OnboardingUiState,
@@ -65,7 +62,6 @@ fun PersonalInfoStep(
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DatePickerSession(
     uiState: OnboardingUiState,

@@ -1,7 +1,5 @@
 package com.example.healthtracker.domain.usecase
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.healthtracker.domain.model.OnboardingDraft
 import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.domain.model.OnboardingValidationError
@@ -17,7 +15,6 @@ sealed interface CompleteOnboardingResult {
     ) : CompleteOnboardingResult
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 class CompleteOnboardingUseCase @Inject constructor(
     private val validateOnboarding: ValidateOnboardingUseCase,
     private val buildUserProfile: BuildUserProfileUseCase,

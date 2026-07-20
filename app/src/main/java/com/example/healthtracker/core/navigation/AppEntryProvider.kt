@@ -1,16 +1,14 @@
 package com.example.healthtracker.core.navigation
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import com.example.healthtracker.presentation.PlaceholderScreen
 import com.example.healthtracker.presentation.dashboard.ui.DashboardRoute
+import com.example.healthtracker.presentation.diary.ui.DiaryRoute
 import com.example.healthtracker.presentation.onboarding.ui.OnboardingRoute
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun appEntryProvider(
     backStack: NavBackStack<NavKey>
@@ -35,7 +33,7 @@ fun appEntryProvider(
             }
 
             Diary -> NavEntry(key) {
-                PlaceholderScreen("Diary")
+                DiaryRoute()
             }
 
             ActivityLog -> NavEntry(key) {

@@ -1,12 +1,9 @@
 package com.example.healthtracker.domain.usecase
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.time.LocalDate
 import java.time.Period
 
 class CalculateAgeUseCase {
-    @RequiresApi(Build.VERSION_CODES.O)
     operator fun invoke(
         birthDate: LocalDate,
         today: LocalDate = LocalDate.now()
