@@ -1,5 +1,6 @@
 package com.example.healthtracker.di
 
+import com.example.healthtracker.data.datastore.SettingsRepositoryImpl
 import com.example.healthtracker.data.repository.ActivityRepositoryImpl
 import com.example.healthtracker.data.repository.DiaryRepositoryImpl
 import com.example.healthtracker.data.repository.FoodRepositoryImpl
@@ -8,6 +9,7 @@ import com.example.healthtracker.data.repository.UserRepositoryImpl
 import com.example.healthtracker.domain.repository.ActivityRepository
 import com.example.healthtracker.domain.repository.DiaryRepository
 import com.example.healthtracker.domain.repository.FoodRepository
+import com.example.healthtracker.domain.repository.SettingsRepository
 import com.example.healthtracker.domain.repository.UnitOfWork
 import com.example.healthtracker.domain.repository.UserRepository
 import dagger.Binds
@@ -32,4 +34,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindUnitOfWork(impl: RoomUnitOfWork): UnitOfWork
+
+    @Binds
+    abstract fun bindSettingsRepository(impl: SettingsRepositoryImpl): SettingsRepository
 }

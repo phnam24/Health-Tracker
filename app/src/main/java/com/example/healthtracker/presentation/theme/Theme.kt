@@ -10,19 +10,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
-
-enum class ThemePalette {
-    FOREST,
-    TEAL,
-    INDIGO,
-    VIOLET,
-}
-
-enum class ThemeMode {
-    LIGHT,
-    DARK,
-    SYSTEM,
-}
+import com.example.healthtracker.domain.model.AppFontScale
+import com.example.healthtracker.domain.model.ThemeMode
+import com.example.healthtracker.domain.model.ThemePalette
 
 private val ForestLightColorScheme = lightColorScheme(
     primary = ForestPrimaryLight,
@@ -235,7 +225,7 @@ fun healthColorSchemeFor(darkTheme: Boolean): HealthTrackerColorScheme =
 
 @Composable
 fun HealthTrackerTheme(
-    themeMode: ThemeMode = ThemeMode.DARK,
+    themeMode: ThemeMode = ThemeMode.SYSTEM,
     palette: ThemePalette = ThemePalette.FOREST,
     fontScale: AppFontScale = AppFontScale.MEDIUM,
     dimensions: HealthTrackerDimensions = defaultHealthTrackerDimensions,

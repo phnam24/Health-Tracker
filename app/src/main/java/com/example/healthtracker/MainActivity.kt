@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.healthtracker.presentation.root.ui.RootScreen
-import com.example.healthtracker.presentation.theme.HealthTrackerTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,9 +13,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            HealthTrackerTheme {
-                RootScreen()
-            }
+            RootScreen()
         }
     }
 }
