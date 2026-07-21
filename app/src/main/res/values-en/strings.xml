@@ -332,6 +332,10 @@
     <string name="statistics_title">Statistics</string>
     <string name="statistics_last_seven_days">Last 7 days</string>
     <string name="statistics_date_range">%1$s – %2$s</string>
+    <string name="statistics_current_week">This week</string>
+    <string name="statistics_week_overview">Week overview</string>
+    <string name="statistics_previous_week">Previous week</string>
+    <string name="statistics_next_week">Next week</string>
     <string name="statistics_intake_chart_title">Calorie intake over the last 7 days</string>
     <string name="statistics_trend_chart_title">Weekly calorie trend</string>
     <string name="statistics_goal_label">Goal</string>
@@ -341,7 +345,7 @@
     <string name="statistics_average_burned">Avg. burned/day</string>
     <string name="statistics_goal_days">Goal days</string>
     <string name="statistics_average_value">%1$d kcal</string>
-    <string name="statistics_goal_days_value">%1$d/7</string>
+    <string name="statistics_goal_days_value">%1$d/%2$d</string>
     <string name="statistics_empty_title">No statistics yet</string>
     <string name="statistics_empty_message">Log a meal or activity to see your calorie trends.</string>
     <string name="statistics_load_failed">Unable to load statistics</string>
@@ -349,8 +353,12 @@
 
     <!-- Statistics accessibility -->
     <string name="cd_statistics_intake_chart">Calorie intake chart for the last 7 days</string>
-    <string name="cd_statistics_trend_chart">Calorie intake and calories burned trend chart for the last 7 days</string>
+    <string name="cd_statistics_trend_chart">Calorie intake and calories burned trend chart from Monday to Sunday of the selected week</string>
+    <string name="cd_statistics_previous_week">View previous week</string>
+    <string name="cd_statistics_next_week">View next week</string>
+    <string name="cd_statistics_current_week">Return to the current week</string>
+    <string name="cd_statistics_future_day">%1$s: not occurred yet</string>
     <string name="cd_statistics_day_point">%1$s: %2$d kcal consumed, %3$d kcal burned, %4$d kcal goal</string>
     <string name="cd_statistics_goal_line">Goal line at %1$d kcal</string>
-    <string name="cd_statistics_goal_days">Goal reached on %1$d of 7 days</string>
+    <string name="cd_statistics_goal_days">Goal reached on %1$d of %2$d elapsed days</string>
 </resources>
