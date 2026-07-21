@@ -114,6 +114,12 @@ internal val PurpleOnPrimaryContainerDark = Color(0xFFEDE9FE)
 
 @Immutable
 data class HealthTrackerColorScheme(
+    val cardContainer: Color,
+    val onCardContainer: Color,
+    val subtleContainer: Color,
+    val onSubtleContainer: Color,
+    val neutralIconContainer: Color,
+    val onNeutralIconContainer: Color,
     val caloriesConsumed: Color,
     val onCaloriesConsumed: Color,
     val caloriesConsumedContainer: Color,
@@ -143,6 +149,12 @@ data class HealthTrackerColorScheme(
 )
 
 internal val LightHealthTrackerColorScheme = HealthTrackerColorScheme(
+    cardContainer = SurfaceLight,
+    onCardContainer = OnSurfaceLight,
+    subtleContainer = SurfaceContainerLight,
+    onSubtleContainer = OnSurfaceLight,
+    neutralIconContainer = SurfaceContainerHighestLight,
+    onNeutralIconContainer = OnSurfaceVariantLight,
     caloriesConsumed = Color(0xFFFF7A45),
     onCaloriesConsumed = Color(0xFFFFFFFF),
     caloriesConsumedContainer = Color(0xFFFFE8DE),
@@ -172,6 +184,12 @@ internal val LightHealthTrackerColorScheme = HealthTrackerColorScheme(
 )
 
 internal val DarkHealthTrackerColorScheme = HealthTrackerColorScheme(
+    cardContainer = SurfaceContainerDark,
+    onCardContainer = OnSurfaceDark,
+    subtleContainer = SurfaceContainerHighDark,
+    onSubtleContainer = OnSurfaceDark,
+    neutralIconContainer = SurfaceContainerHighestDark,
+    onNeutralIconContainer = OnSurfaceVariantDark,
     caloriesConsumed = Color(0xFFFB923C),
     onCaloriesConsumed = Color(0xFF431407),
     caloriesConsumedContainer = Color(0xFF4A2516),

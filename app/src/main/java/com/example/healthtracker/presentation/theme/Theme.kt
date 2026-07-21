@@ -187,7 +187,7 @@ fun healthColorSchemeFor(darkTheme: Boolean): HealthTrackerColorScheme =
 
 @Composable
 fun HealthTrackerTheme(
-    themeMode: ThemeMode = ThemeMode.LIGHT,
+    themeMode: ThemeMode = ThemeMode.DARK,
     palette: ThemePalette = ThemePalette.GREEN,
     fontScale: AppFontScale = AppFontScale.MEDIUM,
     dimensions: HealthTrackerDimensions = defaultHealthTrackerDimensions,

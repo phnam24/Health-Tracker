@@ -19,6 +19,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
+import com.example.healthtracker.presentation.theme.healthColors
 
 enum class AppTopBarAlignment {
     START,
@@ -46,7 +47,7 @@ fun AppTopBar(
     windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
     colors: TopAppBarColors = TopAppBarDefaults.topAppBarColors(
         containerColor = MaterialTheme.colorScheme.background,
-        scrolledContainerColor = MaterialTheme.colorScheme.surfaceContainer
+        scrolledContainerColor = MaterialTheme.healthColors.cardContainer,
     ),
     actions: @Composable RowScope.() -> Unit = {}
 ) {

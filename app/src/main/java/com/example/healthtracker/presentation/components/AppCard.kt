@@ -13,13 +13,14 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun AppCard(
     modifier: Modifier = Modifier,
     shape: Shape = MaterialTheme.shapes.medium,
-    containerColor: Color = MaterialTheme.colorScheme.surfaceContainer,
-    contentColor: Color = MaterialTheme.colorScheme.onSurface,
+    containerColor: Color = MaterialTheme.healthColors.cardContainer,
+    contentColor: Color = MaterialTheme.healthColors.onCardContainer,
     contentPadding: PaddingValues = PaddingValues(MaterialTheme.dimensions.cardPadding),
     tonalElevation: Dp = 0.dp,
     shadowElevation: Dp = MaterialTheme.dimensions.cardElevation,
