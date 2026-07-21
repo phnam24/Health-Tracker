@@ -39,7 +39,8 @@ fun StatisticsRecentEmptyContent(
         icon = Icons.Outlined.Restaurant,
         title = stringResource(R.string.statistics_recent_empty_title),
         message = stringResource(R.string.statistics_recent_empty_message),
-        accent = MaterialTheme.healthColors.caloriesConsumed,
+        iconContainerColor = MaterialTheme.healthColors.caloriesConsumedContainer,
+        iconContentColor = MaterialTheme.healthColors.onCaloriesConsumedContainer,
         modifier = modifier,
     )
 }
@@ -61,7 +62,8 @@ fun StatisticsWeekEmptyCard(
                 else R.string.statistics_week_empty_history_title,
             ),
             message = stringResource(R.string.statistics_week_empty_message),
-            accent = MaterialTheme.colorScheme.primary,
+            iconContainerColor = MaterialTheme.healthColors.neutralIconContainer,
+            iconContentColor = MaterialTheme.healthColors.onNeutralIconContainer,
             modifier = Modifier.fillMaxSize(),
         )
     }
@@ -80,7 +82,8 @@ fun StatisticsFullEmptyState(
             icon = Icons.Outlined.CalendarMonth,
             title = stringResource(R.string.statistics_empty_title),
             message = stringResource(R.string.statistics_empty_message),
-            accent = MaterialTheme.colorScheme.primary,
+            iconContainerColor = MaterialTheme.healthColors.neutralIconContainer,
+            iconContentColor = MaterialTheme.healthColors.onNeutralIconContainer,
             modifier = Modifier.fillMaxSize(),
         )
     }
@@ -165,7 +168,8 @@ private fun StatisticsEmptyContent(
     icon: ImageVector,
     title: String,
     message: String,
-    accent: Color,
+    iconContainerColor: Color,
+    iconContentColor: Color,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -177,8 +181,8 @@ private fun StatisticsEmptyContent(
     ) {
         Surface(
             shape = MaterialTheme.shapes.large,
-            color = accent.copy(alpha = 0.12f),
-            contentColor = accent,
+            color = iconContainerColor,
+            contentColor = iconContentColor,
         ) {
             Icon(
                 imageVector = icon,
@@ -212,7 +216,7 @@ private fun SkeletonCard(
             .fillMaxWidth()
             .height(height),
         shape = MaterialTheme.shapes.medium,
-        color = MaterialTheme.colorScheme.surfaceContainer,
+        color = MaterialTheme.healthColors.subtleContainer,
     ) {
         Box(Modifier.fillMaxSize())
     }

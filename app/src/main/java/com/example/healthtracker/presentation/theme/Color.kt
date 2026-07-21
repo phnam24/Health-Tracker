@@ -140,11 +140,6 @@ data class HealthTrackerColorScheme(
     val bmiNormal: Color,
     val bmiOverweight: Color,
     val bmiObese: Color,
-    val activitySedentary: Color,
-    val activityLight: Color,
-    val activityModerate: Color,
-    val activityActive: Color,
-    val activityVeryActive: Color,
     val transparent: Color,
 )
 
@@ -175,11 +170,6 @@ internal val LightHealthTrackerColorScheme = HealthTrackerColorScheme(
     bmiNormal = Color(0xFF22C55E),
     bmiOverweight = Color(0xFFF59E0B),
     bmiObese = Color(0xFFEF4444),
-    activitySedentary = Color(0xFF0F766E),
-    activityLight = Color(0xFF22C55E),
-    activityModerate = Color(0xFF2E7D32),
-    activityActive = Color(0xFF2196F3),
-    activityVeryActive = Color(0xFFFF7A45),
     transparent = Color.Transparent,
 )
 
@@ -210,10 +200,5 @@ internal val DarkHealthTrackerColorScheme = HealthTrackerColorScheme(
     bmiNormal = Color(0xFF4ADE80),
     bmiOverweight = Color(0xFFFBBF24),
     bmiObese = Color(0xFFFF8A80),
-    activitySedentary = Color(0xFF5EEAD4),
-    activityLight = Color(0xFF4ADE80),
-    activityModerate = Color(0xFF86EFAC),
-    activityActive = Color(0xFF60A5FA),
-    activityVeryActive = Color(0xFFFB923C),
     transparent = Color.Transparent,
 )

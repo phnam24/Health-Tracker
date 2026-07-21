@@ -45,7 +45,8 @@ fun CaloriesStatCard(
         modifier = Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
         colors = CardDefaults.outlinedCardColors(
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = MaterialTheme.healthColors.cardContainer,
+            contentColor = MaterialTheme.healthColors.onCardContainer,
         ),
     ) {
         Column(
@@ -80,13 +81,16 @@ fun CaloriesStatCardHeader() {
         Box(
             modifier = Modifier
                 .size(MaterialTheme.dimensions.spacingDoubleExtraLarge)
-                .background(color = MaterialTheme.colorScheme.primary, shape = CircleShape),
+                .background(
+                    color = MaterialTheme.healthColors.neutralIconContainer,
+                    shape = CircleShape,
+                ),
             contentAlignment = Alignment.Center
         ) {
             Icon(
                 imageVector = Icons.Filled.BarChart,
                 contentDescription = null,
-                tint = MaterialTheme.colorScheme.onPrimary,
+                tint = MaterialTheme.healthColors.onNeutralIconContainer,
                 modifier = Modifier.size(MaterialTheme.dimensions.spacingMediumLarge)
             )
         }
@@ -148,7 +152,7 @@ fun CaloriesStatEatenPercent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(MaterialTheme.dimensions.spacingSmall),
-                color = MaterialTheme.colorScheme.surfaceVariant
+                color = MaterialTheme.colorScheme.outlineVariant,
             )
 
             LinearProgressIndicator(
@@ -169,6 +173,17 @@ fun CaloriesStatAdvice(
     dailySummary: DailySummary,
     dailyAdvice: DailyAdvice
 ) {
+    val adviceContainerColor = if (dailyAdvice.type == DailyAdviceType.OVER) {
+        MaterialTheme.healthColors.warningContainer
+    } else {
+        MaterialTheme.healthColors.subtleContainer
+    }
+    val adviceContentColor = if (dailyAdvice.type == DailyAdviceType.OVER) {
+        MaterialTheme.healthColors.onWarningContainer
+    } else {
+        MaterialTheme.healthColors.onSubtleContainer
+    }
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall)
@@ -181,7 +196,7 @@ fun CaloriesStatAdvice(
                 imageVector = Icons.Default.Balance,
                 contentDescription = "Balance Icon",
                 modifier = Modifier.size(MaterialTheme.dimensions.spacingDoubleExtraLarge),
-                tint = MaterialTheme.colorScheme.primary
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
             Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingSmall))
@@ -213,14 +228,15 @@ fun CaloriesStatAdvice(
                     dailySummary.balanceCalories
                 ),
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.onSurface,
             )
         }
 
         OutlinedCard(
             shape = MaterialTheme.shapes.large,
             colors = CardDefaults.outlinedCardColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                containerColor = adviceContainerColor,
+                contentColor = adviceContentColor,
             ),
         ) {
             Row(
@@ -233,7 +249,7 @@ fun CaloriesStatAdvice(
                     imageVector = Icons.Default.Lightbulb,
                     contentDescription = "Advice Icon",
                     modifier = Modifier.size(MaterialTheme.dimensions.spacingDoubleExtraLarge),
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    tint = adviceContentColor,
                 )
 
                 Spacer(Modifier.width(MaterialTheme.dimensions.spacingMedium))
@@ -252,7 +268,7 @@ fun CaloriesStatAdvice(
                         )
                     },
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                    color = adviceContentColor,
                 )
             }
         }

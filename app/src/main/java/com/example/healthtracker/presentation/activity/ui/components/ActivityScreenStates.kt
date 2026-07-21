@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import com.example.healthtracker.R
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun ActivityEmptyState(
@@ -45,7 +46,7 @@ fun ActivityEmptyState(
             imageVector = Icons.Outlined.DirectionsRun,
             contentDescription = null,
             modifier = Modifier.size(MaterialTheme.dimensions.emptyStateIconSize),
-            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.55f),
+            tint = MaterialTheme.colorScheme.outline,
         )
         Text(
             text = stringResource(
@@ -92,7 +93,7 @@ fun ActivityLoadFailedState(
             imageVector = Icons.Outlined.CloudOff,
             contentDescription = null,
             modifier = Modifier.size(MaterialTheme.dimensions.emptyStateIconSize),
-            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
+            tint = MaterialTheme.colorScheme.error,
         )
         Text(
             text = stringResource(R.string.activity_load_failed),
@@ -126,6 +127,6 @@ private fun SkeletonBlock(height: Dp) {
             .fillMaxWidth()
             .height(height),
         shape = MaterialTheme.shapes.medium,
-        color = MaterialTheme.colorScheme.surfaceContainer,
+        color = MaterialTheme.healthColors.subtleContainer,
     ) { Box(Modifier.fillMaxWidth()) }
 }

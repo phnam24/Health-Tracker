@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun DashboardHeader(
@@ -45,13 +46,13 @@ fun DashboardHeader(
             modifier = Modifier
                 .size(MaterialTheme.dimensions.minimumTouchTarget)
                 .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.secondaryContainer),
+                .background(MaterialTheme.healthColors.neutralIconContainer),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = userName.firstOrNull()?.toString()?.uppercase() ?: "",
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSecondaryContainer
+                color = MaterialTheme.healthColors.onNeutralIconContainer,
             )
         }
     }

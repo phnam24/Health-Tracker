@@ -24,6 +24,7 @@ import com.example.healthtracker.presentation.diary.message
 import com.example.healthtracker.presentation.diary.state.AddFoodSheetUiState
 import com.example.healthtracker.presentation.diary.viewmodel.DiaryEvent
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun CustomFoodFormContent(
@@ -102,7 +103,8 @@ fun CustomFoodFormContent(
 
         if (form.caloriesPreview != null && caloriesPerUnit != null) {
             AppCard(
-                containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.25f),
+                containerColor = MaterialTheme.healthColors.caloriesConsumedContainer,
+                contentColor = MaterialTheme.healthColors.onCaloriesConsumedContainer,
                 contentPadding = PaddingValues(MaterialTheme.dimensions.spacingMedium),
                 shadowElevation = 0.dp,
             ) {
@@ -115,7 +117,7 @@ fun CustomFoodFormContent(
                     ),
                     modifier = Modifier.fillMaxWidth(),
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    color = MaterialTheme.healthColors.onCaloriesConsumedContainer,
                     textAlign = TextAlign.Center,
                 )
             }

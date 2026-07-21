@@ -145,6 +145,7 @@
     <string name="common_delete">Xóa</string>
     <string name="common_undo">Hoàn tác</string>
     <string name="common_today">Hôm nay</string>
+    <string name="common_day">Ngày</string>
     <string name="common_previous_day">Ngày trước</string>
     <string name="common_next_day">Ngày sau</string>
     <string name="common_select_date">Chọn ngày</string>

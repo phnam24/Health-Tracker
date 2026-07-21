@@ -19,6 +19,6 @@ internal fun DailySummary.toCalorieProgressUi(): CalorieProgressUi {
     return CalorieProgressUi(
         indicatorFraction = rawFraction.coerceIn(0f, 1f),
         percentage = (rawFraction.coerceAtLeast(0f) * 100).roundToInt(),
-        isOverGoal = goalCalories > 0 && eatenCalories - burnedCalories > goalCalories,
+        isOverGoal = goalCalories > 0 && (eatenCalories - burnedCalories) > goalCalories,
     )
 }

@@ -44,7 +44,6 @@ fun ActivityEntryList(
 ) {
     AppCard(
         modifier = modifier.fillMaxWidth(),
-        containerColor = MaterialTheme.colorScheme.surface,
         contentPadding = PaddingValues(),
     ) {
         Column {
@@ -103,8 +102,8 @@ private fun ActivityEntryRow(
         Surface(
             modifier = Modifier.size(MaterialTheme.dimensions.optionIconContainerSize),
             shape = CircleShape,
-            color = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.healthColors.caloriesBurnedContainer,
+            contentColor = MaterialTheme.healthColors.onCaloriesBurnedContainer,
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Outlined.DirectionsRun,

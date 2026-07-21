@@ -201,7 +201,7 @@ fun MealTypeIcon(
         modifier = modifier
             .size(MaterialTheme.dimensions.optionIconContainerSize)
             .background(
-                color = MaterialTheme.colorScheme.primaryContainer,
+                color = MaterialTheme.healthColors.neutralIconContainer,
                 shape = CircleShape,
             )
             .clearAndSetSemantics { },
@@ -211,7 +211,7 @@ fun MealTypeIcon(
             imageVector = imageVector,
             contentDescription = null,
             modifier = Modifier.size(MaterialTheme.dimensions.standardIconSize),
-            tint = MaterialTheme.colorScheme.primary,
+            tint = MaterialTheme.healthColors.onNeutralIconContainer,
         )
     }
 }

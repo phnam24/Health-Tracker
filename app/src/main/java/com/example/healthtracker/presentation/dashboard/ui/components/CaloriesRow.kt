@@ -43,7 +43,7 @@ fun CaloriesSummaryRow(
             title = stringResource(R.string.dashboard_goal),
             value = dailySummary.goalCalories,
             icon = Icons.Filled.GolfCourse,
-            tint = MaterialTheme.colorScheme.secondary,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.weight(1f)
         )
 

@@ -133,11 +133,11 @@ fun StatisticsWeeklySummary(
             value = stringResource(
                 R.string.statistics_goal_days_value,
                 stats.goalDaysHit,
-                stats.observedDayCount,
+                7,
             ),
-            supportingText = null,
+            supportingText = stringResource(R.string.common_day),
             icon = Icons.Filled.TrackChanges,
-            accent = MaterialTheme.healthColors.success,
+            accent = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.weight(1f),
         )
     }
@@ -229,11 +229,11 @@ fun WeeklyIntakeBarChart(
     val targetCalories = points.maxOfOrNull { it.goalCalories }?.toFloat() ?: 0f
     val maxPointValue = points.maxOfOrNull { it.eatenCalories }?.toFloat() ?: 0f
     val maxY = maxOf(targetCalories, maxPointValue, 1f) * 1.25f
-    val barPastColor = MaterialTheme.healthColors.caloriesConsumed.copy(alpha = 0.28f)
+    val barPastColor = MaterialTheme.healthColors.caloriesConsumedContainer
     val barTodayColor = MaterialTheme.healthColors.caloriesConsumed
-    val valuePastColor = MaterialTheme.healthColors.caloriesConsumed.copy(alpha = 0.72f)
+    val valuePastColor = MaterialTheme.healthColors.onCaloriesConsumedContainer
     val valueTodayColor = MaterialTheme.healthColors.caloriesConsumed
-    val targetLineColor = MaterialTheme.colorScheme.primary
+    val targetLineColor = MaterialTheme.colorScheme.outline
     val axisTextColor = MaterialTheme.colorScheme.onSurfaceVariant
     val axisTextStyle = MaterialTheme.typography.labelSmall
     val valueTextStyle = MaterialTheme.typography.labelSmall
@@ -372,7 +372,7 @@ fun WeeklyTrendLineChart(
     val burnedColor = MaterialTheme.healthColors.caloriesBurned
     val axisTextColor = MaterialTheme.colorScheme.onSurfaceVariant
     val gridColor = MaterialTheme.colorScheme.outlineVariant
-    val markerBackgroundColor = MaterialTheme.colorScheme.surfaceContainer
+    val markerBackgroundColor = MaterialTheme.healthColors.cardContainer
     val emptyMarkerColor = MaterialTheme.colorScheme.outline
     val axisTextStyle = MaterialTheme.typography.labelSmall
     val valueTextStyle = MaterialTheme.typography.labelSmall
@@ -647,7 +647,7 @@ private fun ChartLegend(
     val markerSize = MaterialTheme.dimensions.standardIconSize
     val lineWidth = MaterialTheme.dimensions.focusedBorderThickness
     val markerRadius = MaterialTheme.dimensions.chartPointSize / 2
-    val markerBackgroundColor = MaterialTheme.colorScheme.surfaceContainer
+    val markerBackgroundColor = MaterialTheme.healthColors.cardContainer
 
     Row(
         modifier = Modifier
@@ -761,11 +761,11 @@ private fun StatisticsGoalChip(
     Surface(
         modifier = modifier.heightIn(min = MaterialTheme.dimensions.statChipHeight),
         shape = MaterialTheme.shapes.small,
-        color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.45f),
-        contentColor = MaterialTheme.colorScheme.primary,
+        color = MaterialTheme.healthColors.subtleContainer,
+        contentColor = MaterialTheme.healthColors.onSubtleContainer,
         border = BorderStroke(
             width = MaterialTheme.dimensions.dividerThickness,
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.outlineVariant,
         ),
     ) {
         Text(

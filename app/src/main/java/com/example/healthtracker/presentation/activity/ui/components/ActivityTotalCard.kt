@@ -48,7 +48,6 @@ fun ActivityTotalCard(
             .fillMaxWidth()
             .heightIn(min = MaterialTheme.dimensions.activityTotalCardMinHeight)
             .clearAndSetSemantics { contentDescription = summaryDescription },
-        containerColor = MaterialTheme.colorScheme.surface,
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)) {
             Row(
@@ -121,8 +120,8 @@ private fun ActivitySummaryMetric(
         Surface(
             modifier = Modifier.size(MaterialTheme.dimensions.activitySummaryIconSize),
             shape = CircleShape,
-            color = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.healthColors.neutralIconContainer,
+            contentColor = MaterialTheme.healthColors.onNeutralIconContainer,
         ) {
             Box(
                 modifier = Modifier.padding(MaterialTheme.dimensions.spacingSmall),

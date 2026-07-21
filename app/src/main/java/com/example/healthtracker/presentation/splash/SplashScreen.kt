@@ -89,7 +89,7 @@ fun SplashScreen() {
         Text(
             text = stringResource(R.string.splash_version),
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.75f),
+            color = MaterialTheme.colorScheme.outline,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = MaterialTheme.dimensions.splashVersionBottomPadding)
