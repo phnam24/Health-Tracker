@@ -24,8 +24,8 @@ import androidx.compose.ui.unit.dp
 import com.example.healthtracker.R
 import com.example.healthtracker.presentation.components.AppCard
 import com.example.healthtracker.presentation.components.PrimaryButton
-import com.example.healthtracker.presentation.diary.message
 import com.example.healthtracker.presentation.diary.localizedName
+import com.example.healthtracker.presentation.diary.message
 import com.example.healthtracker.presentation.diary.state.AddFoodSheetUiState
 import com.example.healthtracker.presentation.diary.titleRes
 import com.example.healthtracker.presentation.diary.viewmodel.DiaryEvent

@@ -105,9 +105,9 @@ class ObserveWeeklyStatsUseCase @Inject constructor(
                     endDate = selectedWeekEnd,
                     points = weekPoints,
                     averageEatenCalories = elapsedWeekPoints
-                    .map { it.eatenCalories }.average().roundToInt(),
+                        .map { it.eatenCalories }.average().roundToInt(),
                     averageBurnedCalories = elapsedWeekPoints
-                    .map { it.burnedCalories }.average().roundToInt(),
+                        .map { it.burnedCalories }.average().roundToInt(),
                     goalDaysHit = elapsedWeekPoints.count { it.isGoalHit },
                     observedDayCount = elapsedWeekPoints.size
                 )

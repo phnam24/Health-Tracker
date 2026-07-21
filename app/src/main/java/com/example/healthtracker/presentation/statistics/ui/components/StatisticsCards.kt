@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -47,14 +48,15 @@ import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailyCaloriePoint
 import com.example.healthtracker.domain.model.RecentIntakeStats
 import com.example.healthtracker.domain.model.WeeklyStats
+import com.example.healthtracker.helper.toLocalizedDateString
 import com.example.healthtracker.presentation.components.AppCard
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 import java.text.NumberFormat
 import java.time.LocalDate
-import java.time.format.TextStyle as JavaTextStyle
 import kotlin.math.ceil
 import kotlin.math.roundToInt
+import java.time.format.TextStyle as JavaTextStyle
 
 @Composable
 fun StatisticsRecentIntakeCard(
@@ -212,7 +214,10 @@ fun WeeklyIntakeBarChart(
     points: List<DailyCaloriePoint>,
     modifier: Modifier = Modifier,
 ) {
-    val description = stringResource(R.string.cd_statistics_intake_chart)
+    val description = statisticsChartContentDescription(
+        chartDescription = stringResource(R.string.cd_statistics_intake_chart),
+        points = points,
+    )
     val textMeasurer = rememberTextMeasurer()
     val locale = LocalConfiguration.current.locales[0]
     val numberFormat = remember(locale) { NumberFormat.getIntegerInstance(locale) }
@@ -300,7 +305,7 @@ fun WeeklyIntakeBarChart(
                     cornerRadius = CornerRadius(barWidthPx / 2f, barWidthPx / 2f),
                 )
 
-                if (point.eatenCalories > 0 || point.hasData) {
+                if (point.eatenCalories > 0) {
                     val valueText = numberFormat.format(point.eatenCalories)
                     val valueTextLayout = textMeasurer.measure(
                         text = valueText,
@@ -344,7 +349,10 @@ fun WeeklyTrendLineChart(
     points: List<DailyCaloriePoint>,
     modifier: Modifier = Modifier,
 ) {
-    val description = stringResource(R.string.cd_statistics_trend_chart)
+    val description = statisticsChartContentDescription(
+        chartDescription = stringResource(R.string.cd_statistics_trend_chart),
+        points = points,
+    )
     val textMeasurer = rememberTextMeasurer()
     val locale = LocalConfiguration.current.locales[0]
     val numberFormat = remember(locale) { NumberFormat.getIntegerInstance(locale) }
@@ -370,7 +378,7 @@ fun WeeklyTrendLineChart(
     val valueTextStyle = MaterialTheme.typography.labelSmall
     val chartHeight = MaterialTheme.dimensions.chartHeight
     val yAxisLabelWidth = MaterialTheme.dimensions.spacingDoubleExtraLarge +
-        MaterialTheme.dimensions.spacingSmall
+            MaterialTheme.dimensions.spacingSmall
     val xAxisLabelHeight = MaterialTheme.dimensions.spacingExtraLarge
     val valueGap = MaterialTheme.dimensions.spacingSmall
     val markerRadius = MaterialTheme.dimensions.chartPointSize / 2
@@ -568,6 +576,45 @@ fun WeeklyTrendLineChart(
             burnedColor = burnedColor,
         )
     }
+}
+
+@Composable
+private fun statisticsChartContentDescription(
+    chartDescription: String,
+    points: List<DailyCaloriePoint>,
+): String {
+    val context = LocalContext.current
+    val locale = LocalConfiguration.current.locales[0]
+    val datePattern = stringResource(R.string.date_format_short)
+    val rangeDescription = points.firstOrNull()?.let { firstPoint ->
+        points.lastOrNull()?.let { lastPoint ->
+            stringResource(
+                R.string.cd_statistics_week_range,
+                firstPoint.date.toLocalizedDateString(datePattern, locale),
+                lastPoint.date.toLocalizedDateString(datePattern, locale),
+            )
+        }
+    }
+    val pointDescriptions = points.map { point ->
+        val day = point.date.dayOfWeek.getDisplayName(JavaTextStyle.FULL, locale)
+        if (point.isFuture) {
+            stringResource(R.string.cd_statistics_future_day, day)
+        } else {
+            stringResource(
+                R.string.cd_statistics_day_point,
+                day,
+                point.eatenCalories,
+                point.burnedCalories,
+                point.goalCalories,
+            )
+        }
+    }
+
+    return buildList {
+        add(chartDescription)
+        rangeDescription?.let(::add)
+        addAll(pointDescriptions)
+    }.joinToString(separator = ". ")
 }
 
 private fun DrawScope.drawDiamondMarker(

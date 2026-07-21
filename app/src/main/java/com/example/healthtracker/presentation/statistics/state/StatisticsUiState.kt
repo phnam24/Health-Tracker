@@ -15,6 +15,6 @@ data class StatisticsUiState(
 ) {
     val canGoNext: Boolean
         get() = selectedWeekStart != null &&
-            currentWeekStart != null &&
-            selectedWeekStart.isBefore(currentWeekStart)
+                currentWeekStart != null &&
+                selectedWeekStart.isBefore(currentWeekStart)
 }

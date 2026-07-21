@@ -10,12 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -34,8 +32,6 @@ import com.example.healthtracker.presentation.statistics.ui.components.WeeklyTre
 import com.example.healthtracker.presentation.statistics.viewmodel.StatisticsEvent
 import com.example.healthtracker.presentation.statistics.viewmodel.StatisticsViewModel
 import com.example.healthtracker.presentation.theme.dimensions
-import com.example.healthtracker.presentation.theme.HealthTrackerTheme
-import com.example.healthtracker.presentation.theme.ThemeMode
 import java.time.LocalDate
 
 @Composable

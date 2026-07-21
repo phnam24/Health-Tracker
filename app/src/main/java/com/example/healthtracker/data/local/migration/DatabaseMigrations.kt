@@ -52,7 +52,7 @@ private fun migrateActivityEntries(db: SupportSQLiteDatabase) {
     db.execSQL("ALTER TABLE `activity_entry_new` RENAME TO `activity_entry`")
     db.execSQL(
         "CREATE INDEX IF NOT EXISTS `index_activity_entry_date` " +
-            "ON `activity_entry` (`date`)"
+                "ON `activity_entry` (`date`)"
     )
 }
 
@@ -101,6 +101,6 @@ private fun migrateMealEntries(db: SupportSQLiteDatabase) {
     db.execSQL("ALTER TABLE `meal_entry_new` RENAME TO `meal_entry`")
     db.execSQL(
         "CREATE INDEX IF NOT EXISTS `index_meal_entry_date` " +
-            "ON `meal_entry` (`date`)"
+                "ON `meal_entry` (`date`)"
     )
 }

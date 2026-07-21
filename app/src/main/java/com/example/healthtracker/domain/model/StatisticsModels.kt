@@ -16,7 +16,7 @@ data class RecentIntakeStats(
     val points: List<DailyCaloriePoint>
 ) {
     val hasAnyData: Boolean
-        get() = points.any(DailyCaloriePoint::hasData)
+        get() = points.any { it.eatenCalories > 0 }
 }
 
 data class WeeklyStats(

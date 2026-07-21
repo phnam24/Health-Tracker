@@ -38,8 +38,8 @@ import com.example.healthtracker.domain.model.MealEntry
 import com.example.healthtracker.domain.model.MealSectionData
 import com.example.healthtracker.domain.model.MealType
 import com.example.healthtracker.presentation.components.AppCard
-import com.example.healthtracker.presentation.diary.titleRes
 import com.example.healthtracker.presentation.diary.localizedName
+import com.example.healthtracker.presentation.diary.titleRes
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 import java.text.NumberFormat
