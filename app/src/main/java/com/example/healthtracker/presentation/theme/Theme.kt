@@ -182,6 +182,9 @@ fun colorSchemeFor(
     ThemePalette.PURPLE -> if (darkTheme) PurpleDarkColorScheme else PurpleLightColorScheme
 }
 
+fun healthColorSchemeFor(darkTheme: Boolean): HealthTrackerColorScheme =
+    if (darkTheme) DarkHealthTrackerColorScheme else LightHealthTrackerColorScheme
+
 @Composable
 fun HealthTrackerTheme(
     themeMode: ThemeMode = ThemeMode.LIGHT,
@@ -196,11 +199,7 @@ fun HealthTrackerTheme(
         ThemeMode.SYSTEM -> isSystemInDarkTheme()
     }
 
-    val healthColors = if (darkTheme) {
-        DarkHealthTrackerColorScheme
-    } else {
-        LightHealthTrackerColorScheme
-    }
+    val healthColors = healthColorSchemeFor(darkTheme)
     val typography = remember(fontScale) { healthTrackerTypography(fontScale) }
     val shapes = remember(dimensions) { healthTrackerShapes(dimensions) }
 
