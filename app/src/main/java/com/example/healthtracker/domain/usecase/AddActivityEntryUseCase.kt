@@ -6,9 +6,9 @@ import com.example.healthtracker.domain.model.AddActivityInput
 import com.example.healthtracker.domain.model.AddActivityResult
 import com.example.healthtracker.domain.repository.ActivityRepository
 import com.example.healthtracker.domain.repository.UserRepository
+import java.time.Clock
 import java.time.LocalDate
 import javax.inject.Inject
-import java.time.Clock
 
 class AddActivityEntryUseCase @Inject constructor(
     private val userRepository: UserRepository,

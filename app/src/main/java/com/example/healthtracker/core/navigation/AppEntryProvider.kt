@@ -9,6 +9,7 @@ import com.example.healthtracker.presentation.activity.ui.ActivityRoute
 import com.example.healthtracker.presentation.dashboard.ui.DashboardRoute
 import com.example.healthtracker.presentation.diary.ui.DiaryRoute
 import com.example.healthtracker.presentation.onboarding.ui.OnboardingRoute
+import com.example.healthtracker.presentation.statistics.ui.StatisticsRoute
 
 @Composable
 fun appEntryProvider(
@@ -42,7 +43,7 @@ fun appEntryProvider(
             }
 
             Statistics -> NavEntry(key) {
-                PlaceholderScreen("Statistics")
+                StatisticsRoute()
             }
 
             Settings -> NavEntry(key) {

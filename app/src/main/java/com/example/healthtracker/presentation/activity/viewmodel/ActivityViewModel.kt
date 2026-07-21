@@ -521,8 +521,8 @@ class ActivityViewModel @Inject constructor(
 
     private fun AddActivityError.isDurationError(): Boolean =
         this == AddActivityError.DURATION_REQUIRED ||
-            this == AddActivityError.DURATION_INVALID ||
-            this == AddActivityError.DURATION_OUT_OF_RANGE
+                this == AddActivityError.DURATION_INVALID ||
+                this == AddActivityError.DURATION_OUT_OF_RANGE
 
     private fun MutableStateFlow<ActivityUiState>.updatePreviewIfCurrent(
         type: ActivityType,

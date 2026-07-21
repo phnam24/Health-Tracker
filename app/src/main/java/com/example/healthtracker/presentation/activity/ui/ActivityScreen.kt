@@ -127,10 +127,10 @@ fun ActivityScreen(
     val day = uiState.day
     val today = uiState.today
     val showFab = uiState.isToday &&
-        day?.entries?.isNotEmpty() == true &&
-        !uiState.isLoading &&
-        !uiState.loadFailed &&
-        !uiState.isMutating
+            day?.entries?.isNotEmpty() == true &&
+            !uiState.isLoading &&
+            !uiState.loadFailed &&
+            !uiState.isMutating
 
     Box(modifier = modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
