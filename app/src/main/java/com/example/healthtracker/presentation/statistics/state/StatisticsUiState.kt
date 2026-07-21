@@ -4,6 +4,7 @@ import com.example.healthtracker.domain.model.StatisticsSnapshot
 import java.time.LocalDate
 
 data class StatisticsUiState(
+    val today: LocalDate? = null,
     val selectedWeekStart: LocalDate? = null,
     val currentWeekStart: LocalDate? = null,
     val snapshot: StatisticsSnapshot? = null,

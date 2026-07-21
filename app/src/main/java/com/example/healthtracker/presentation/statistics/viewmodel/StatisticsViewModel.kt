@@ -52,11 +52,12 @@ class StatisticsViewModel @Inject constructor(
         .flatMapLatest { weekStart ->
             observeWeeklyStats(weekStart, today)
                 .map { snapshot ->
-                    uiMapper.map(snapshot, weekStart, currentWeekStart)
+                    uiMapper.map(snapshot, today, weekStart, currentWeekStart)
                 }
                 .onStart {
                     emit(
                         StatisticsUiState(
+                            today = today,
                             selectedWeekStart = weekStart,
                             currentWeekStart = currentWeekStart,
                             isLoading = true
@@ -67,6 +68,7 @@ class StatisticsViewModel @Inject constructor(
                     if (error is CancellationException) throw error
                     emit(
                         StatisticsUiState(
+                            today = today,
                             selectedWeekStart = weekStart,
                             currentWeekStart = currentWeekStart,
                             isLoading = false,

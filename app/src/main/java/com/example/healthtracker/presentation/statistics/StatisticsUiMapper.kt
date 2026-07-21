@@ -8,11 +8,13 @@ import javax.inject.Inject
 class StatisticsUiMapper @Inject constructor() {
     fun map(
         snapshot: StatisticsSnapshot?,
+        today: LocalDate,
         selectedWeekStart: LocalDate,
         currentWeekStart: LocalDate
     ): StatisticsUiState {
         if (snapshot == null) {
             return StatisticsUiState(
+                today = today,
                 selectedWeekStart = selectedWeekStart,
                 currentWeekStart = currentWeekStart,
                 isLoading = false,
@@ -23,6 +25,7 @@ class StatisticsUiMapper @Inject constructor() {
         }
 
         return StatisticsUiState(
+            today = today,
             selectedWeekStart = snapshot.selectedWeek.startDate,
             currentWeekStart = currentWeekStart,
             snapshot = snapshot,

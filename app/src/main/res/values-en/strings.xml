@@ -339,6 +339,7 @@
     <string name="statistics_intake_chart_title">Calorie intake over the last 7 days</string>
     <string name="statistics_trend_chart_title">Weekly calorie trend</string>
     <string name="statistics_goal_label">Goal</string>
+    <string name="statistics_goal_chip">Goal %1$s kcal</string>
     <string name="statistics_eaten_legend">Consumed</string>
     <string name="statistics_burned_legend">Burned</string>
     <string name="statistics_average_eaten">Avg. intake/day</string>
@@ -348,7 +349,13 @@
     <string name="statistics_goal_days_value">%1$d/%2$d</string>
     <string name="statistics_empty_title">No statistics yet</string>
     <string name="statistics_empty_message">Log a meal or activity to see your calorie trends.</string>
+    <string name="statistics_recent_empty_title">No recent intake data</string>
+    <string name="statistics_recent_empty_message">No meals were logged during the last 7 days.</string>
+    <string name="statistics_week_empty_title">No data this week</string>
+    <string name="statistics_week_empty_history_title">No data for this week</string>
+    <string name="statistics_week_empty_message">Choose another week or start logging your meals and activities.</string>
     <string name="statistics_load_failed">Unable to load statistics</string>
+    <string name="statistics_load_failed_message">An error occurred while loading data. Please try again.</string>
     <string name="statistics_retry">Try again</string>
 
     <!-- Statistics accessibility -->
@@ -361,4 +368,5 @@
     <string name="cd_statistics_day_point">%1$s: %2$d kcal consumed, %3$d kcal burned, %4$d kcal goal</string>
     <string name="cd_statistics_goal_line">Goal line at %1$d kcal</string>
     <string name="cd_statistics_goal_days">Goal reached on %1$d of %2$d elapsed days</string>
+    <string name="cd_statistics_week_range">Week from %1$s to %2$s</string>
 </resources>
