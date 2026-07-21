@@ -16,7 +16,6 @@ import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.getUiData
-import com.example.healthtracker.presentation.onboarding.resolveColor
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
@@ -67,7 +66,6 @@ fun ActivityLevelSelectSession(
     ) {
         ActivityLevel.entries.forEach { level ->
             val uiData = level.getUiData()
-            val tintColor = uiData.colorRole.resolveColor()
 
             OptionCard(
                 title = stringResource(id = uiData.titleRes),
@@ -75,8 +73,6 @@ fun ActivityLevelSelectSession(
                 selected = uiState.activityLevel == level,
                 onClick = { onEvent(level) },
                 icon = uiData.icon,
-                iconTintColor = tintColor,
-                iconContainerColor = tintColor.copy(alpha = 0.15f),
             )
         }
     }

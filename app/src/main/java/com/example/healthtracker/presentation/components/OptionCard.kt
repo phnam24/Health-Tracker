@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun OptionCard(
@@ -46,12 +47,12 @@ fun OptionCard(
     val containerColor = if (selected) {
         MaterialTheme.colorScheme.primaryContainer
     } else {
-        MaterialTheme.colorScheme.surface
+        MaterialTheme.healthColors.cardContainer
     }
     val contentColor = if (selected) {
         MaterialTheme.colorScheme.onPrimaryContainer
     } else {
-        MaterialTheme.colorScheme.onSurface
+        MaterialTheme.healthColors.onCardContainer
     }
 
     Surface(
@@ -82,7 +83,7 @@ fun OptionCard(
                             iconContainerColor ?: if (selected) {
                                 MaterialTheme.colorScheme.primary
                             } else {
-                                MaterialTheme.colorScheme.surfaceVariant
+                                MaterialTheme.healthColors.neutralIconContainer
                             }
                         ),
                     contentAlignment = Alignment.Center,
@@ -93,7 +94,7 @@ fun OptionCard(
                         tint = iconTintColor ?: if (selected) {
                             MaterialTheme.colorScheme.onPrimary
                         } else {
-                            MaterialTheme.colorScheme.onSurfaceVariant
+                            MaterialTheme.healthColors.onNeutralIconContainer
                         },
                         modifier = Modifier.size(
                             MaterialTheme.dimensions.standardIconSize

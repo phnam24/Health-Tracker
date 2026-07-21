@@ -30,6 +30,7 @@ import com.example.healthtracker.presentation.diary.state.AddFoodSheetUiState
 import com.example.healthtracker.presentation.diary.titleRes
 import com.example.healthtracker.presentation.diary.viewmodel.DiaryEvent
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun SelectedFoodContent(
@@ -49,10 +50,11 @@ fun SelectedFoodContent(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingLarge),
     ) {
         AppCard(
-            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.35f),
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
             border = BorderStroke(
                 MaterialTheme.dimensions.dividerThickness,
-                MaterialTheme.colorScheme.primary.copy(alpha = 0.35f),
+                MaterialTheme.colorScheme.primary,
             ),
             shadowElevation = 0.dp,
         ) {
@@ -80,7 +82,7 @@ fun SelectedFoodContent(
                             food.unit,
                         ),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
                 }
             }
@@ -97,7 +99,8 @@ fun SelectedFoodContent(
 
         state.caloriesPreview?.let { calories ->
             AppCard(
-                containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.25f),
+                containerColor = MaterialTheme.healthColors.caloriesConsumedContainer,
+                contentColor = MaterialTheme.healthColors.onCaloriesConsumedContainer,
                 contentPadding = PaddingValues(MaterialTheme.dimensions.spacingMedium),
                 shadowElevation = 0.dp,
             ) {
@@ -110,7 +113,7 @@ fun SelectedFoodContent(
                     ),
                     modifier = Modifier.fillMaxWidth(),
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    color = MaterialTheme.healthColors.onCaloriesConsumedContainer,
                     textAlign = TextAlign.Center,
                 )
             }

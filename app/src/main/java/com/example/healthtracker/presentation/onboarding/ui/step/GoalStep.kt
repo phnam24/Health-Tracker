@@ -1,5 +1,6 @@
 package com.example.healthtracker.presentation.onboarding.ui.step
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,11 +24,11 @@ import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.DescriptionText
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.getUiData
-import com.example.healthtracker.presentation.onboarding.resolveColor
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun GoalStep(
@@ -94,7 +95,6 @@ fun GoalSelectSession(
     ) {
         Goal.entries.forEach { goal ->
             val uiData = goal.getUiData()
-            val tintColor = uiData.colorRole.resolveColor()
 
             OptionCard(
                 title = stringResource(id = uiData.titleRes),
@@ -102,8 +102,6 @@ fun GoalSelectSession(
                 selected = uiState.goal == goal,
                 onClick = { onEvent(goal) },
                 icon = uiData.icon,
-                iconTintColor = tintColor,
-                iconContainerColor = tintColor.copy(alpha = 0.15f),
             )
         }
     }
@@ -116,6 +114,10 @@ fun TdeeResultSession(
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .background(
+                color = MaterialTheme.healthColors.subtleContainer,
+                shape = MaterialTheme.shapes.medium,
+            )
             .border(
                 width = MaterialTheme.dimensions.focusedBorderThickness,
                 shape = MaterialTheme.shapes.medium,
@@ -127,7 +129,7 @@ fun TdeeResultSession(
         Text(
             text = stringResource(R.string.tdee_preview_title),
             style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onPrimaryContainer
+            color = MaterialTheme.healthColors.onSubtleContainer,
         )
 
         Row(

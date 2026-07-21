@@ -212,8 +212,8 @@ private fun ActivityTypeRow(
         Surface(
             modifier = Modifier.size(MaterialTheme.dimensions.optionIconContainerSize),
             shape = CircleShape,
-            color = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.healthColors.caloriesBurnedContainer,
+            contentColor = MaterialTheme.healthColors.onCaloriesBurnedContainer,
         ) {
             Icon(
                 imageVector = Icons.Outlined.DirectionsRun,
@@ -228,8 +228,8 @@ private fun ActivityTypeRow(
         )
         Surface(
             shape = MaterialTheme.shapes.small,
-            color = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            color = MaterialTheme.healthColors.neutralIconContainer,
+            contentColor = MaterialTheme.healthColors.onNeutralIconContainer,
         ) {
             Text(
                 text = stringResource(R.string.add_activity_met_value, type.met),
@@ -260,7 +260,8 @@ private fun ActivityDurationEditor(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium),
     ) {
         AppCard(
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = MaterialTheme.healthColors.caloriesBurnedContainer,
+            contentColor = MaterialTheme.healthColors.onCaloriesBurnedContainer,
             modifier = Modifier.fillMaxWidth(),
         ) {
             Row(
@@ -271,8 +272,8 @@ private fun ActivityDurationEditor(
                 Surface(
                     modifier = Modifier.size(MaterialTheme.dimensions.optionIconContainerSize),
                     shape = CircleShape,
-                    color = MaterialTheme.colorScheme.primaryContainer,
-                    contentColor = MaterialTheme.colorScheme.primary,
+                    color = MaterialTheme.healthColors.caloriesBurned,
+                    contentColor = MaterialTheme.healthColors.onCaloriesBurned,
                 ) {
                     Icon(
                         Icons.Outlined.DirectionsRun,
@@ -285,7 +286,7 @@ private fun ActivityDurationEditor(
                     Text(
                         stringResource(R.string.add_activity_met_value, type.met),
                         style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.primary,
+                        color = MaterialTheme.healthColors.onCaloriesBurnedContainer,
                     )
                 }
                 TextButton(
@@ -337,8 +338,8 @@ private fun ActivityDurationEditor(
                 Surface(
                     modifier = Modifier.size(MaterialTheme.dimensions.activityPreviewIconSize),
                     shape = CircleShape,
-                    color = MaterialTheme.healthColors.caloriesBurned.copy(alpha = 0.12f),
-                    contentColor = MaterialTheme.healthColors.caloriesBurned,
+                    color = MaterialTheme.healthColors.neutralIconContainer,
+                    contentColor = MaterialTheme.healthColors.onNeutralIconContainer,
                 ) {
                     Icon(
                         Icons.Outlined.DirectionsRun,
@@ -362,7 +363,7 @@ private fun ActivityDurationEditor(
                     Text(
                         stringResource(R.string.add_activity_estimated_formula, type.met),
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        color = MaterialTheme.healthColors.onCaloriesBurnedContainer,
                     )
                 }
             }

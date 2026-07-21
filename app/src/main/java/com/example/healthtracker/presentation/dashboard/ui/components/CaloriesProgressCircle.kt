@@ -35,7 +35,7 @@ fun CaloriesProgressCircle(
             CircularProgressIndicator(
                 progress = { 1f },
                 modifier = Modifier.size(MaterialTheme.dimensions.calorieRingSize),
-                color = MaterialTheme.colorScheme.surfaceVariant,
+                color = MaterialTheme.healthColors.neutralIconContainer,
                 strokeWidth = MaterialTheme.dimensions.calorieRingStrokeWidth,
             )
 

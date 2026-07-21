@@ -54,7 +54,7 @@ fun DashboardQuickActionSession(
                     )
                 }
             },
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = MaterialTheme.healthColors.cardContainer,
             onClick = onAddMealClick,
             modifier = Modifier.weight(1f)
         )
@@ -77,7 +77,7 @@ fun DashboardQuickActionSession(
                     )
                 }
             },
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = MaterialTheme.healthColors.cardContainer,
             onClick = onAddActivityClick,
             modifier = Modifier.weight(1f)
         )
@@ -113,7 +113,7 @@ fun QuickActionButton(
             Text(
                 text = title,
                 style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.healthColors.onCardContainer,
             )
         }
     }

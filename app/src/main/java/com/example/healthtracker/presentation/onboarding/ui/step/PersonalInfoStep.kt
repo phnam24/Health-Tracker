@@ -31,6 +31,7 @@ import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun PersonalInfoStep(
@@ -87,7 +88,7 @@ fun DatePickerSession(
                     .fillMaxWidth()
                     .background(
                         shape = MaterialTheme.shapes.medium,
-                        color = MaterialTheme.colorScheme.primaryContainer
+                        color = MaterialTheme.healthColors.subtleContainer,
                     )
                     .border(
                         width = MaterialTheme.dimensions.dividerThickness,
@@ -100,14 +101,14 @@ fun DatePickerSession(
                 Icon(
                     imageVector = Icons.Default.Cake,
                     contentDescription = "Birthday cake icon",
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer
+                    tint = MaterialTheme.healthColors.onSubtleContainer,
                 )
 
                 Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingMediumLarge))
 
                 Text(
                     text = stringResource(R.string.onboarding_age_value, it),
-                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                    color = MaterialTheme.healthColors.onSubtleContainer,
                 )
             }
         }

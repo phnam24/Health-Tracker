@@ -41,17 +41,12 @@ fun FoodSearchResultItem(
     val displayName = food.localizedName(
         LocalConfiguration.current.locales[0].language
     )
-    val containerColor = MaterialTheme.colorScheme.surface
-    val contentColor = MaterialTheme.colorScheme.onSurface
-
     AppCard(
         modifier = modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick)
+            .clickable(enabled = enabled, onClick = onClick)
             .padding(MaterialTheme.dimensions.spacingExtraSmall),
         shape = MaterialTheme.shapes.medium,
-        containerColor = containerColor,
-        contentColor = contentColor,
         contentPadding = PaddingValues(0.dp),
         shadowElevation = 0.dp,
     ) {
@@ -72,7 +67,6 @@ fun FoodSearchResultItem(
                 Text(
                     text = displayName,
                     style = MaterialTheme.typography.bodyLarge,
-                    color = contentColor,
                     fontWeight = FontWeight.Normal,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

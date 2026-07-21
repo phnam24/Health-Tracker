@@ -27,6 +27,7 @@ import androidx.compose.ui.semantics.semantics
 import com.example.healthtracker.R
 import com.example.healthtracker.helper.toLocalizedDateString
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 import java.time.LocalDate
 
 @Composable
@@ -65,12 +66,11 @@ fun StatisticsWeekSelector(
                     onClick = onCurrentWeek,
                 ),
             shape = MaterialTheme.shapes.large,
-            color = MaterialTheme.colorScheme.surfaceContainerLow,
-            contentColor = MaterialTheme.colorScheme.onSurface,
+            color = MaterialTheme.healthColors.subtleContainer,
+            contentColor = MaterialTheme.healthColors.onSubtleContainer,
             border = BorderStroke(
                 MaterialTheme.dimensions.dividerThickness,
-                if (enabled) MaterialTheme.colorScheme.primary
-                else MaterialTheme.colorScheme.outlineVariant,
+                MaterialTheme.colorScheme.outlineVariant,
             ),
         ) {
             Column(
@@ -86,7 +86,7 @@ fun StatisticsWeekSelector(
                     Text(
                         text = stringResource(R.string.statistics_current_week),
                         style = MaterialTheme.typography.labelLarge,
-                        color = if (enabled) MaterialTheme.colorScheme.primary
+                        color = if (enabled) MaterialTheme.healthColors.onSubtleContainer
                         else MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
@@ -121,7 +121,7 @@ private fun WeekNavigationButton(
             minHeight = MaterialTheme.dimensions.statisticsSelectorMinHeight,
         ),
         shape = MaterialTheme.shapes.large,
-        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        color = MaterialTheme.healthColors.subtleContainer,
         border = BorderStroke(
             MaterialTheme.dimensions.dividerThickness,
             MaterialTheme.colorScheme.outlineVariant,
@@ -134,8 +134,8 @@ private fun WeekNavigationButton(
             Icon(
                 imageVector = icon,
                 contentDescription = contentDescription,
-                tint = if (enabled) MaterialTheme.colorScheme.primary
-                else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+                tint = if (enabled) MaterialTheme.healthColors.onSubtleContainer
+                else MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }

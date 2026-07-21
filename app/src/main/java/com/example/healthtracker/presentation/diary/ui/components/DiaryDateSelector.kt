@@ -34,6 +34,7 @@ import com.example.healthtracker.helper.toLocalizedDateString
 import com.example.healthtracker.presentation.components.AppCard
 import com.example.healthtracker.presentation.components.AppDatePickerDialog
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 import java.time.LocalDate
 
 @Composable
@@ -62,7 +63,8 @@ fun DiaryDateSelector(
             .fillMaxWidth()
             .heightIn(min = MaterialTheme.dimensions.textFieldHeight),
         shape = MaterialTheme.shapes.large,
-        containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+        containerColor = MaterialTheme.healthColors.subtleContainer,
+        contentColor = MaterialTheme.healthColors.onSubtleContainer,
         contentPadding = PaddingValues(0.dp),
     ) {
         Row(
@@ -83,7 +85,7 @@ fun DiaryDateSelector(
                     tint = if (previousEnabled) {
                         MaterialTheme.colorScheme.primary
                     } else {
-                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                        MaterialTheme.colorScheme.onSurfaceVariant
                     }
                 )
             }

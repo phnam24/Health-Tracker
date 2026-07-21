@@ -38,6 +38,7 @@ import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.dimensions
+import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun NameStep(
@@ -151,7 +152,10 @@ fun ActivityColumn() {
                 width = MaterialTheme.dimensions.dividerThickness,
                 color = MaterialTheme.colorScheme.outline
             )
-            .background(color = MaterialTheme.colorScheme.surface),
+            .background(
+                color = MaterialTheme.healthColors.cardContainer,
+                shape = MaterialTheme.shapes.medium,
+            ),
         verticalArrangement = Arrangement.Center
     ) {
         ActivityRowIcon(
@@ -201,14 +205,14 @@ fun ActivityRowIcon(
             modifier = Modifier
                 .size(MaterialTheme.dimensions.optionIconContainerSize)
                 .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.primaryContainer),
+                .background(MaterialTheme.healthColors.neutralIconContainer),
             contentAlignment = Alignment.Center
         ) {
             Icon(
                 imageVector = icon,
                 contentDescription = label,
                 modifier = Modifier.size(MaterialTheme.dimensions.standardIconSize),
-                tint = MaterialTheme.colorScheme.onPrimaryContainer
+                tint = MaterialTheme.healthColors.onNeutralIconContainer,
             )
         }
 

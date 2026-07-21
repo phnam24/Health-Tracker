@@ -48,7 +48,6 @@ fun CaloriesSummaryCard(
             .fillMaxWidth()
             .heightIn(min = MaterialTheme.dimensions.diaryTotalCardMinHeight)
             .clearAndSetSemantics { contentDescription = summaryDescription },
-        containerColor = MaterialTheme.colorScheme.surface,
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)) {
             Row(
@@ -120,8 +119,8 @@ private fun DiarySummaryMetric(
         Surface(
             modifier = Modifier.size(MaterialTheme.dimensions.diarySummaryIconSize),
             shape = CircleShape,
-            color = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.healthColors.neutralIconContainer,
+            contentColor = MaterialTheme.healthColors.onNeutralIconContainer,
         ) {
             Box(
                 modifier = Modifier.padding(MaterialTheme.dimensions.spacingSmall),

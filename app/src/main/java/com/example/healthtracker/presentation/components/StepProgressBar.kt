@@ -39,7 +39,7 @@ fun StepProgressBar(
             .height(MaterialTheme.dimensions.progressIndicatorHeight)
             .clip(CircleShape),
         color = MaterialTheme.colorScheme.primary,
-        trackColor = MaterialTheme.colorScheme.surfaceVariant,
+        trackColor = MaterialTheme.colorScheme.outlineVariant,
         strokeCap = StrokeCap.Round,
     )
 }
