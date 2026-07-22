@@ -96,14 +96,13 @@ fun OnboardingScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(scrollState)
                 .padding(paddingValues)
                 .imePadding()
         ) {
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .verticalScroll(rememberScrollState())
+                    .verticalScroll(scrollState)
                     .padding(horizontal = MaterialTheme.dimensions.spacingMediumLarge)
             ) {
                 when (uiState.currentStep) {
