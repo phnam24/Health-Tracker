@@ -13,6 +13,7 @@ import com.example.healthtracker.domain.usecase.CompleteOnboardingUseCase
 import com.example.healthtracker.domain.usecase.GetBmiPreviewUseCase
 import com.example.healthtracker.domain.usecase.GetTdeePreviewUseCase
 import com.example.healthtracker.domain.usecase.ValidateOnboardingUseCase
+import com.example.healthtracker.presentation.components.normalizeDecimalInput
 import com.example.healthtracker.presentation.onboarding.OnboardingStep
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.state.toDraft
@@ -279,15 +280,4 @@ class OnboardingViewModel @Inject constructor(
             step.fields.any(errors::containsKey)
         }
 
-    private fun normalizeDecimalInput(value: String): String =
-        value.replace(',', '.')
-            .filterIndexed { index, char ->
-                char.isDigit() || (char == '.' && index > 0)
-            }
-            .let { filtered ->
-                val firstDot = filtered.indexOf('.')
-                if (firstDot == -1) filtered
-                else filtered.take(firstDot + 1) +
-                        filtered.drop(firstDot + 1).replace(".", "")
-            }
 }
