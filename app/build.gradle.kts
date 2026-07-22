@@ -7,6 +7,12 @@ plugins {
 }
 
 android {
+
+ androidResources {
+        generateLocaleConfig = true
+        localeFilters.addAll(listOf("vi", "en"))
+    }
+    
     namespace = "com.example.healthtracker"
     compileSdk {
         version = release(37)
