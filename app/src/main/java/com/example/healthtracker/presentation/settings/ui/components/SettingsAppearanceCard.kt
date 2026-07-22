@@ -31,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextOverflow
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.AppFontScale
 import com.example.healthtracker.domain.model.AppSettings
@@ -135,7 +136,13 @@ private fun ThemeModeSelector(
                 },
                 enabled = enabled,
                 shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
-                label = { Text(option.label()) },
+                label = {
+                    Text(
+                        text = option.label(),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                },
             )
         }
     }
@@ -217,7 +224,13 @@ private fun FontScaleSelector(
                 },
                 enabled = enabled,
                 shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
-                label = { Text(option.label()) },
+                label = {
+                    Text(
+                        text = option.label(),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                },
             )
         }
     }

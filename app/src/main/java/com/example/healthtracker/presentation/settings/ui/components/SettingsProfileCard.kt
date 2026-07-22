@@ -33,6 +33,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -48,6 +49,7 @@ import com.example.healthtracker.presentation.components.AppCard
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 import java.text.NumberFormat
+import java.util.Locale
 
 @Composable
 fun SettingsProfileCard(
@@ -91,11 +93,12 @@ private fun ProfileSummary(
     modifier: Modifier = Modifier,
 ) {
     val initial = profile.name.trim().firstOrNull()?.uppercaseChar()?.toString() ?: "?"
+    val locale = LocalConfiguration.current.locales[0]
     val metadata = stringResource(
         R.string.settings_profile_metadata,
         age,
-        profile.weightKg.localizedMeasurement(),
-        profile.heightCm.localizedMeasurement(),
+        profile.weightKg.localizedMeasurement(locale),
+        profile.heightCm.localizedMeasurement(locale),
     )
 
     Row(
@@ -328,8 +331,8 @@ private fun BmiCategory.onContainerColor(): Color = when (this) {
     BmiCategory.OBESE -> MaterialTheme.colorScheme.onErrorContainer
 }
 
-private fun Double.localizedMeasurement(): String =
-    NumberFormat.getNumberInstance().apply {
+private fun Double.localizedMeasurement(locale: Locale): String =
+    NumberFormat.getNumberInstance(locale).apply {
         minimumFractionDigits = 0
         maximumFractionDigits = 1
     }.format(this)

@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -54,7 +55,7 @@ fun OnboardingRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
-    val saveFailedMessage = stringResource(R.string.error_save_profile)
+    val saveFailedMessage by rememberUpdatedState(stringResource(R.string.error_save_profile))
 
     LaunchedEffect(viewModel) {
         viewModel.effects.collect { effect ->

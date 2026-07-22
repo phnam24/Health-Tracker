@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Health Tracker Application</string>
+    <string name="app_name">HealthTracker</string>
 
     <!-- Bottom navigation -->
     <string name="tab_dashboard">Tổng quan</string>
@@ -345,7 +345,7 @@
     <string name="statistics_burned_legend">Tiêu thụ</string>
     <string name="statistics_average_eaten">TB nạp/ngày</string>
     <string name="statistics_average_burned">TB tiêu thụ/ngày</string>
-    <string name="statistics_goal_days">Ngày đạt mục tiêu</string>
+    <string name="statistics_goal_days">Đạt mục tiêu</string>
     <string name="statistics_average_value">%1$d kcal</string>
     <string name="statistics_goal_days_value">%1$d/%2$d</string>
     <string name="statistics_empty_title">Chưa có dữ liệu thống kê</string>
@@ -396,4 +396,10 @@
     <string name="settings_font_large">Lớn</string>
     <string name="settings_font_preview_title">Xem trước cỡ chữ</string>
     <string name="settings_font_preview_text">Ăn đúng, vận động đều và sống khỏe mỗi ngày.</string>
+    <string name="settings_language_section">Ngôn ngữ</string>
+    <string name="settings_language_vietnamese">Tiếng Việt</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_about_section">Thông tin</string>
+    <string name="settings_version">Phiên bản %1$s</string>
+    <string name="settings_about_credit">Người bạn đồng hành sức khỏe mỗi ngày.</string>
 </resources>

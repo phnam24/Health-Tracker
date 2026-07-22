@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Health Tracker Application</string>
+    <string name="app_name">HealthTracker</string>
 
     <!-- Bottom navigation -->
     <string name="tab_dashboard">Overview</string>
@@ -396,4 +396,10 @@
     <string name="settings_font_large">Large</string>
     <string name="settings_font_preview_title">Font size preview</string>
     <string name="settings_font_preview_text">Eat well, stay active, and live healthier every day.</string>
+    <string name="settings_language_section">Language</string>
+    <string name="settings_language_vietnamese">Vietnamese</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_about_section">About</string>
+    <string name="settings_version">Version %1$s</string>
+    <string name="settings_about_credit">Your everyday health companion.</string>
 </resources>

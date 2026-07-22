@@ -18,9 +18,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.healthtracker.R
@@ -29,6 +32,8 @@ import com.example.healthtracker.presentation.settings.state.SettingsUiState
 import com.example.healthtracker.presentation.settings.ui.components.SettingsLoadFailedState
 import com.example.healthtracker.presentation.settings.ui.components.SettingsLoadingSkeleton
 import com.example.healthtracker.presentation.settings.ui.components.SettingsAppearanceCard
+import com.example.healthtracker.presentation.settings.ui.components.SettingsAboutCard
+import com.example.healthtracker.presentation.settings.ui.components.SettingsLanguageCard
 import com.example.healthtracker.presentation.settings.ui.components.SettingsProfileCard
 import com.example.healthtracker.presentation.settings.viewmodel.SettingsEffect
 import com.example.healthtracker.presentation.settings.viewmodel.SettingsEvent
@@ -43,7 +48,9 @@ fun SettingsRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
-    val updateFailedMessage = stringResource(R.string.settings_preference_update_failed)
+    val updateFailedMessage by rememberUpdatedState(
+        stringResource(R.string.settings_preference_update_failed),
+    )
 
     LaunchedEffect(viewModel, snackbarHostState) {
         viewModel.effects.collectLatest { effect ->
@@ -130,11 +137,7 @@ private fun SettingsContent(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.cardSpacing),
     ) {
         item(key = "profile-heading") {
-            Text(
-                text = stringResource(R.string.settings_profile_section).uppercase(),
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+            SettingsSectionHeader(text = stringResource(R.string.settings_profile_section))
         }
 
         item(key = "profile-card") {
@@ -147,10 +150,8 @@ private fun SettingsContent(
         }
 
         item(key = "appearance-heading") {
-            Text(
-                text = stringResource(R.string.settings_appearance_section).uppercase(),
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            SettingsSectionHeader(
+                text = stringResource(R.string.settings_appearance_section),
                 modifier = Modifier.padding(top = MaterialTheme.dimensions.spacingMedium),
             )
         }
@@ -165,8 +166,47 @@ private fun SettingsContent(
             )
         }
 
+        item(key = "language-heading") {
+            SettingsSectionHeader(
+                text = stringResource(R.string.settings_language_section),
+                modifier = Modifier.padding(top = MaterialTheme.dimensions.spacingMedium),
+            )
+        }
+
+        item(key = "language-card") {
+            SettingsLanguageCard(
+                selectedLanguage = uiState.language,
+                updateInProgress = uiState.preferenceUpdateInProgress,
+                onLanguageChange = { onEvent(SettingsEvent.LanguageChanged(it)) },
+            )
+        }
+
+        item(key = "about-heading") {
+            SettingsSectionHeader(
+                text = stringResource(R.string.settings_about_section),
+                modifier = Modifier.padding(top = MaterialTheme.dimensions.spacingMedium),
+            )
+        }
+
+        item(key = "about-card") {
+            SettingsAboutCard(versionName = stringResource(R.string.splash_version))
+        }
+
         item(key = "bottom-space") {
             Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingExtraLarge))
         }
     }
+}
+
+@Composable
+private fun SettingsSectionHeader(
+    text: String,
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        text = text.uppercase(),
+        style = MaterialTheme.typography.labelLarge,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = modifier.semantics { heading() },
+    )
 }
