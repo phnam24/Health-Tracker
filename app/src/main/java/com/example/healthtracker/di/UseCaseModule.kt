@@ -10,6 +10,7 @@ import com.example.healthtracker.domain.usecase.CalculateTdeeUseCase
 import com.example.healthtracker.domain.usecase.CompleteOnboardingUseCase
 import com.example.healthtracker.domain.usecase.GetBmiPreviewUseCase
 import com.example.healthtracker.domain.usecase.GetTdeePreviewUseCase
+import com.example.healthtracker.domain.usecase.UpdateUserProfileUseCase
 import com.example.healthtracker.domain.usecase.ValidateOnboardingUseCase
 import dagger.Module
 import dagger.Provides
@@ -106,5 +107,22 @@ object UseCaseModule {
             validateOnboarding = validateOnboardingUseCase,
             buildUserProfile = buildUserProfileUseCase,
             userRepository = userRepository
+        )
+
+    @Provides
+    @Singleton
+    fun provideUpdateUserProfileUseCase(
+        validateOnboardingUseCase: ValidateOnboardingUseCase,
+        buildUserProfileUseCase: BuildUserProfileUseCase,
+        userRepository: UserRepository,
+        calculateTdeeUseCase: CalculateTdeeUseCase,
+        clock: Clock,
+    ): UpdateUserProfileUseCase =
+        UpdateUserProfileUseCase(
+            validate = validateOnboardingUseCase,
+            buildProfile = buildUserProfileUseCase,
+            userRepository = userRepository,
+            calculateTdee = calculateTdeeUseCase,
+            clock = clock,
         )
 }

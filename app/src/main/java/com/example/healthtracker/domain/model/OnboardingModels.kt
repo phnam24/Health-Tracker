@@ -1,6 +1,5 @@
 package com.example.healthtracker.domain.model
 
-import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import java.time.LocalDate
 
 data class OnboardingDraft(
@@ -45,14 +44,3 @@ enum class OnboardingValidationError {
     WEIGHT_OUT_OF_RANGE,
     HEIGHT_OUT_OF_RANGE
 }
-
-fun OnboardingUiState.toDraft(): OnboardingDraft =
-    OnboardingDraft(
-        name = name,
-        birthDate = birthDate,
-        gender = gender,
-        weightInput = weightInput,
-        heightInput = heightInput,
-        activityLevel = activityLevel,
-        goal = goal
-    )
