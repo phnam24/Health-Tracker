@@ -402,4 +402,30 @@
     <string name="settings_about_section">About</string>
     <string name="settings_version">Version %1$s</string>
     <string name="settings_about_credit">Your everyday health companion.</string>
+
+    <!-- Edit profile -->
+    <string name="edit_profile_title">Edit profile</string>
+    <string name="edit_profile_save">Save</string>
+    <string name="edit_profile_saving">Saving…</string>
+    <string name="edit_profile_activity_level">Activity level</string>
+    <string name="edit_profile_select_activity">Select an activity level</string>
+    <string name="edit_profile_goal">Goal</string>
+    <string name="edit_profile_goal_lose">Lose</string>
+    <string name="edit_profile_goal_maintain">Maintain</string>
+    <string name="edit_profile_goal_gain">Gain</string>
+    <string name="edit_profile_preview_section">Preview</string>
+    <string name="edit_profile_preview_unavailable">Enter valid information to see a preview</string>
+    <string name="edit_profile_new_target">New target:</string>
+    <string name="edit_profile_target_value">%1$s kcal/day</string>
+    <string name="edit_profile_updated">Profile updated — new target: %1$s kcal/day</string>
+    <string name="edit_profile_discard_title">Discard changes?</string>
+    <string name="edit_profile_discard_message">Your unsaved changes will be lost.</string>
+    <string name="edit_profile_keep_editing">Keep editing</string>
+    <string name="edit_profile_discard">Discard changes</string>
+    <string name="edit_profile_load_failed_title">Unable to load profile</string>
+    <string name="edit_profile_load_failed_message">An error occurred while loading your profile. Please try again.</string>
+    <string name="edit_profile_save_failed">Unable to update your profile. Please try again.</string>
+    <string name="cd_edit_profile_back">Return to settings</string>
+    <string name="cd_edit_profile_preview">Preview the new BMI and calorie target</string>
+    <string name="cd_edit_profile_preview_values">BMI %1$.1f, %2$s; new target %3$s kcal per day</string>
 </resources>

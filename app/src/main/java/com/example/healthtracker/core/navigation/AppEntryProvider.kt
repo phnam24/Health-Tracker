@@ -10,11 +10,13 @@ import com.example.healthtracker.presentation.dashboard.ui.DashboardRoute
 import com.example.healthtracker.presentation.diary.ui.DiaryRoute
 import com.example.healthtracker.presentation.onboarding.ui.OnboardingRoute
 import com.example.healthtracker.presentation.settings.ui.SettingsRoute
+import com.example.healthtracker.presentation.editprofile.ui.EditProfileRoute
 import com.example.healthtracker.presentation.statistics.ui.StatisticsRoute
 
 @Composable
 fun appEntryProvider(
-    backStack: NavBackStack<NavKey>
+    backStack: NavBackStack<NavKey>,
+    onShowMessage: (String) -> Unit,
 ): (NavKey) -> NavEntry<NavKey> {
     return { key ->
         when (key) {
@@ -54,7 +56,10 @@ fun appEntryProvider(
             }
 
             EditProfile -> NavEntry(key) {
-                PlaceholderScreen("Edit Profile")
+                EditProfileRoute(
+                    onBack = { backStack.goBack() },
+                    onShowMessage = onShowMessage,
+                )
             }
 
             else -> NavEntry(key) {

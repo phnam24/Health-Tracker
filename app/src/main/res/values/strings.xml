@@ -402,4 +402,30 @@
     <string name="settings_about_section">Thông tin</string>
     <string name="settings_version">Phiên bản %1$s</string>
     <string name="settings_about_credit">Người bạn đồng hành sức khỏe mỗi ngày.</string>
+
+    <!-- Edit profile -->
+    <string name="edit_profile_title">Chỉnh sửa hồ sơ</string>
+    <string name="edit_profile_save">Lưu</string>
+    <string name="edit_profile_saving">Đang lưu…</string>
+    <string name="edit_profile_activity_level">Mức độ hoạt động</string>
+    <string name="edit_profile_select_activity">Chọn mức độ hoạt động</string>
+    <string name="edit_profile_goal">Mục tiêu</string>
+    <string name="edit_profile_goal_lose">Giảm cân</string>
+    <string name="edit_profile_goal_maintain">Giữ cân</string>
+    <string name="edit_profile_goal_gain">Tăng cân</string>
+    <string name="edit_profile_preview_section">Xem trước</string>
+    <string name="edit_profile_preview_unavailable">Nhập thông tin hợp lệ để xem trước</string>
+    <string name="edit_profile_new_target">Mục tiêu mới:</string>
+    <string name="edit_profile_target_value">%1$s kcal/ngày</string>
+    <string name="edit_profile_updated">Đã cập nhật hồ sơ — mục tiêu mới: %1$s kcal/ngày</string>
+    <string name="edit_profile_discard_title">Bỏ thay đổi?</string>
+    <string name="edit_profile_discard_message">Các thay đổi chưa lưu sẽ bị mất.</string>
+    <string name="edit_profile_keep_editing">Tiếp tục chỉnh sửa</string>
+    <string name="edit_profile_discard">Bỏ thay đổi</string>
+    <string name="edit_profile_load_failed_title">Không thể tải hồ sơ</string>
+    <string name="edit_profile_load_failed_message">Đã xảy ra lỗi khi tải dữ liệu hồ sơ. Vui lòng thử lại.</string>
+    <string name="edit_profile_save_failed">Không thể cập nhật hồ sơ. Vui lòng thử lại.</string>
+    <string name="cd_edit_profile_back">Quay lại màn hình cài đặt</string>
+    <string name="cd_edit_profile_preview">Xem trước BMI và mục tiêu calo mới</string>
+    <string name="cd_edit_profile_preview_values">BMI %1$.1f, %2$s; mục tiêu mới %3$s kcal mỗi ngày</string>
 </resources>
