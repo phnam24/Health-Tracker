@@ -136,7 +136,7 @@ fun TdeeResultSession(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = uiState.tdeePreview?.tdee.toString(),
+                text = uiState.tdeePreview?.target.toString(),
                 style = MaterialTheme.typography.headlineLarge
             )
 
