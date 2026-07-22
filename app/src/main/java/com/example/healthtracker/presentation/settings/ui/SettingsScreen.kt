@@ -28,6 +28,7 @@ import com.example.healthtracker.presentation.components.AppTopBar
 import com.example.healthtracker.presentation.settings.state.SettingsUiState
 import com.example.healthtracker.presentation.settings.ui.components.SettingsLoadFailedState
 import com.example.healthtracker.presentation.settings.ui.components.SettingsLoadingSkeleton
+import com.example.healthtracker.presentation.settings.ui.components.SettingsAppearanceCard
 import com.example.healthtracker.presentation.settings.ui.components.SettingsProfileCard
 import com.example.healthtracker.presentation.settings.viewmodel.SettingsEffect
 import com.example.healthtracker.presentation.settings.viewmodel.SettingsEvent
@@ -142,6 +143,25 @@ private fun SettingsContent(
                 age = requireNotNull(uiState.age),
                 bmi = bmi,
                 onEditProfile = { onEvent(SettingsEvent.EditProfileClicked) },
+            )
+        }
+
+        item(key = "appearance-heading") {
+            Text(
+                text = stringResource(R.string.settings_appearance_section).uppercase(),
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = MaterialTheme.dimensions.spacingMedium),
+            )
+        }
+
+        item(key = "appearance-card") {
+            SettingsAppearanceCard(
+                settings = uiState.settings,
+                updateInProgress = uiState.preferenceUpdateInProgress,
+                onThemeModeChange = { onEvent(SettingsEvent.ThemeModeChanged(it)) },
+                onPaletteChange = { onEvent(SettingsEvent.PaletteChanged(it)) },
+                onFontScaleChange = { onEvent(SettingsEvent.FontScaleChanged(it)) },
             )
         }
 

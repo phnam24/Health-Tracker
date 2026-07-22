@@ -380,4 +380,20 @@
     <string name="settings_load_failed_message">An error occurred while loading your data. Please try again.</string>
     <string name="settings_preference_update_failed">Unable to update the setting. Please try again.</string>
     <string name="cd_settings_bmi">BMI %1$.1f, classified as %2$s</string>
+    <string name="settings_appearance_section">Appearance</string>
+    <string name="settings_theme_mode_label">Theme mode</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_palette_label">Primary color</string>
+    <string name="settings_palette_forest">Forest</string>
+    <string name="settings_palette_teal">Teal</string>
+    <string name="settings_palette_indigo">Indigo</string>
+    <string name="settings_palette_violet">Violet</string>
+    <string name="settings_font_size_label">Font size</string>
+    <string name="settings_font_small">Small</string>
+    <string name="settings_font_medium">Medium</string>
+    <string name="settings_font_large">Large</string>
+    <string name="settings_font_preview_title">Font size preview</string>
+    <string name="settings_font_preview_text">Eat well, stay active, and live healthier every day.</string>
 </resources>

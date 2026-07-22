@@ -380,4 +380,20 @@
     <string name="settings_load_failed_message">Đã xảy ra lỗi khi tải dữ liệu. Vui lòng thử lại.</string>
     <string name="settings_preference_update_failed">Không thể cập nhật cài đặt. Vui lòng thử lại.</string>
     <string name="cd_settings_bmi">Chỉ số BMI %1$.1f, phân loại %2$s</string>
+    <string name="settings_appearance_section">Giao diện</string>
+    <string name="settings_theme_mode_label">Chế độ</string>
+    <string name="settings_theme_light">Sáng</string>
+    <string name="settings_theme_dark">Tối</string>
+    <string name="settings_theme_system">Hệ thống</string>
+    <string name="settings_palette_label">Màu chủ đạo</string>
+    <string name="settings_palette_forest">Xanh rừng</string>
+    <string name="settings_palette_teal">Xanh ngọc</string>
+    <string name="settings_palette_indigo">Chàm</string>
+    <string name="settings_palette_violet">Tím</string>
+    <string name="settings_font_size_label">Cỡ chữ</string>
+    <string name="settings_font_small">Nhỏ</string>
+    <string name="settings_font_medium">Vừa</string>
+    <string name="settings_font_large">Lớn</string>
+    <string name="settings_font_preview_title">Xem trước cỡ chữ</string>
+    <string name="settings_font_preview_text">Ăn đúng, vận động đều và sống khỏe mỗi ngày.</string>
 </resources>
