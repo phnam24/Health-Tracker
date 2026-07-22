@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.settings.editprofile.state
+package com.example.healthtracker.presentation.editprofile.state
 
 import com.example.healthtracker.domain.model.OnboardingDraft
 import com.example.healthtracker.domain.model.UserProfile

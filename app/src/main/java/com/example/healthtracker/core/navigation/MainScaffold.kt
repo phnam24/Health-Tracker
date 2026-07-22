@@ -11,14 +11,19 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberNavBackStack
 import com.example.healthtracker.R
+import kotlinx.coroutines.launch
 
 enum class TopLevelTab(
     val key: NavKey,
@@ -37,10 +42,13 @@ val topLevelKeys = TopLevelTab.entries.map { it.key }.toSet()
 @Composable
 fun MainScaffold(startKey: NavKey) {
     val backStack = rememberNavBackStack(startKey)
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
     val currentKey = backStack.lastOrNull()
     val showBottomBar = currentKey in topLevelKeys
 
     Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
             if (showBottomBar) {
                 NavigationBar {
@@ -58,6 +66,11 @@ fun MainScaffold(startKey: NavKey) {
     ) { paddingValues ->
         AppNavDisplay(
             backStack = backStack,
+            onShowMessage = { message ->
+                coroutineScope.launch {
+                    snackbarHostState.showSnackbar(message)
+                }
+            },
             modifier = Modifier.padding(paddingValues)
         )
     }

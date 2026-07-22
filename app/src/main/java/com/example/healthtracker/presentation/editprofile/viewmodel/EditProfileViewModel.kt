@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.settings.editprofile.viewmodel
+package com.example.healthtracker.presentation.editprofile.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,9 +13,9 @@ import com.example.healthtracker.domain.usecase.UpdateUserProfileResult
 import com.example.healthtracker.domain.usecase.UpdateUserProfileUseCase
 import com.example.healthtracker.domain.usecase.ValidateOnboardingUseCase
 import com.example.healthtracker.presentation.components.normalizeDecimalInput
-import com.example.healthtracker.presentation.settings.editprofile.state.EditProfileUiState
-import com.example.healthtracker.presentation.settings.editprofile.state.toDraft
-import com.example.healthtracker.presentation.settings.editprofile.state.toEditProfileUiState
+import com.example.healthtracker.presentation.editprofile.state.EditProfileUiState
+import com.example.healthtracker.presentation.editprofile.state.toDraft
+import com.example.healthtracker.presentation.editprofile.state.toEditProfileUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow

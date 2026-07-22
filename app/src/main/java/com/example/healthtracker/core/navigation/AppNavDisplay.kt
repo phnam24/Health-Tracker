@@ -9,6 +9,7 @@ import androidx.navigation3.ui.NavDisplay
 @Composable
 fun AppNavDisplay(
     backStack: NavBackStack<NavKey>,
+    onShowMessage: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     NavDisplay(
@@ -16,7 +17,10 @@ fun AppNavDisplay(
         onBack = {
             backStack.goBack()
         },
-        entryProvider = appEntryProvider(backStack),
+        entryProvider = appEntryProvider(
+            backStack = backStack,
+            onShowMessage = onShowMessage,
+        ),
         modifier = modifier
     )
 }

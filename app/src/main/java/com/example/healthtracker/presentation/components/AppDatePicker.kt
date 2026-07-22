@@ -35,8 +35,11 @@ fun AppDatePickerField(
     errorText: String?,
     value: LocalDate?,
     onDateSelected: (LocalDate) -> Unit,
-    label: String,
-    modifier: Modifier = Modifier
+    label: String?,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    minDate: LocalDate? = null,
+    maxDate: LocalDate? = null,
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
@@ -51,6 +54,7 @@ fun AppDatePickerField(
             value = displayValue,
             onValueChange = { },
             label = label,
+            enabled = enabled,
             readOnly = true,
             leadingIcon = Icons.Default.DateRange,
             trailingContent = {
@@ -68,6 +72,7 @@ fun AppDatePickerField(
             modifier = Modifier
                 .matchParentSize()
                 .clickable(
+                    enabled = enabled,
                     interactionSource = remember { MutableInteractionSource() },
                     indication = null
                 ) {
@@ -80,7 +85,9 @@ fun AppDatePickerField(
         visible = showDialog,
         selectedDate = value,
         onDateSelected = onDateSelected,
-        onDismissRequest = { showDialog = false }
+        onDismissRequest = { showDialog = false },
+        minDate = minDate,
+        maxDate = maxDate,
     )
 }
 
