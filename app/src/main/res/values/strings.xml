@@ -370,4 +370,14 @@
     <string name="cd_statistics_goal_line">Đường mục tiêu %1$d kcal</string>
     <string name="cd_statistics_goal_days">Đạt mục tiêu %1$d trên %2$d ngày đã diễn ra</string>
     <string name="cd_statistics_week_range">Tuần từ %1$s đến %2$s</string>
+    <!-- Settings -->
+    <string name="settings_title">Cài đặt</string>
+    <string name="settings_profile_section">Hồ sơ</string>
+    <string name="settings_profile_metadata">%1$d tuổi · %2$s kg · %3$s cm</string>
+    <string name="settings_bmi_label">Chỉ số BMI</string>
+    <string name="settings_edit_profile">Chỉnh sửa hồ sơ</string>
+    <string name="settings_load_failed_title">Không thể tải cài đặt</string>
+    <string name="settings_load_failed_message">Đã xảy ra lỗi khi tải dữ liệu. Vui lòng thử lại.</string>
+    <string name="settings_preference_update_failed">Không thể cập nhật cài đặt. Vui lòng thử lại.</string>
+    <string name="cd_settings_bmi">Chỉ số BMI %1$.1f, phân loại %2$s</string>
 </resources>

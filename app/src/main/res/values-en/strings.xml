@@ -370,4 +370,14 @@
     <string name="cd_statistics_goal_line">Goal line at %1$d kcal</string>
     <string name="cd_statistics_goal_days">Goal reached on %1$d of %2$d elapsed days</string>
     <string name="cd_statistics_week_range">Week from %1$s to %2$s</string>
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_profile_section">Profile</string>
+    <string name="settings_profile_metadata">Age %1$d · %2$s kg · %3$s cm</string>
+    <string name="settings_bmi_label">BMI</string>
+    <string name="settings_edit_profile">Edit profile</string>
+    <string name="settings_load_failed_title">Unable to load settings</string>
+    <string name="settings_load_failed_message">An error occurred while loading your data. Please try again.</string>
+    <string name="settings_preference_update_failed">Unable to update the setting. Please try again.</string>
+    <string name="cd_settings_bmi">BMI %1$.1f, classified as %2$s</string>
 </resources>
