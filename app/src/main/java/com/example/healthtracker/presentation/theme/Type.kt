@@ -5,12 +5,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-
-enum class AppFontScale(val multiplier: Float) {
-    SMALL(0.85f),
-    MEDIUM(1f),
-    LARGE(1.15f),
-}
+import com.example.healthtracker.domain.model.AppFontScale
 
 internal fun healthTrackerTypography(fontScale: AppFontScale): Typography {
     val multiplier = fontScale.multiplier

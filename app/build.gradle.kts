@@ -7,6 +7,12 @@ plugins {
 }
 
 android {
+
+ androidResources {
+        generateLocaleConfig = true
+        localeFilters.addAll(listOf("vi", "en"))
+    }
+    
     namespace = "com.example.healthtracker"
     compileSdk {
         version = release(37)
@@ -36,12 +42,14 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.compose.ui)

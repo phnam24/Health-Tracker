@@ -227,7 +227,7 @@ fun WeeklyIntakeBarChart(
         }
     }
     val targetCalories = points.maxOfOrNull { it.goalCalories }?.toFloat() ?: 0f
-    val maxPointValue = points.maxOfOrNull { it.eatenCalories }?.toFloat() ?: 0f
+    val maxPointValue = points.maxOfOrNull { it.eatenCalories - it.burnedCalories }?.toFloat() ?: 0f
     val maxY = maxOf(targetCalories, maxPointValue, 1f) * 1.25f
     val barPastColor = MaterialTheme.healthColors.caloriesConsumedContainer
     val barTodayColor = MaterialTheme.healthColors.caloriesConsumed
@@ -295,7 +295,7 @@ fun WeeklyIntakeBarChart(
             points.forEachIndexed { index, point ->
                 val isToday = index == points.lastIndex
                 val xCenter = chartStartX + (index * spacePerBar) + (spacePerBar / 2)
-                val barHeight = point.eatenCalories / maxY * plotHeight
+                val barHeight = (point.eatenCalories - point.burnedCalories) / maxY * plotHeight
                 val yOffset = plotBottom - barHeight
 
                 drawRoundRect(
@@ -305,8 +305,8 @@ fun WeeklyIntakeBarChart(
                     cornerRadius = CornerRadius(barWidthPx / 2f, barWidthPx / 2f),
                 )
 
-                if (point.eatenCalories > 0) {
-                    val valueText = numberFormat.format(point.eatenCalories)
+                if (point.eatenCalories - point.burnedCalories > 0) {
+                    val valueText = numberFormat.format(point.eatenCalories - point.burnedCalories)
                     val valueTextLayout = textMeasurer.measure(
                         text = valueText,
                         style = valueTextStyle.copy(

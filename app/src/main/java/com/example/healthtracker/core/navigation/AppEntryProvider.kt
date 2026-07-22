@@ -9,6 +9,7 @@ import com.example.healthtracker.presentation.activity.ui.ActivityRoute
 import com.example.healthtracker.presentation.dashboard.ui.DashboardRoute
 import com.example.healthtracker.presentation.diary.ui.DiaryRoute
 import com.example.healthtracker.presentation.onboarding.ui.OnboardingRoute
+import com.example.healthtracker.presentation.settings.ui.SettingsRoute
 import com.example.healthtracker.presentation.statistics.ui.StatisticsRoute
 
 @Composable
@@ -47,7 +48,9 @@ fun appEntryProvider(
             }
 
             Settings -> NavEntry(key) {
-                PlaceholderScreen("Settings")
+                SettingsRoute(
+                    onEditProfileNavigate = { backStack.navigate(EditProfile) },
+                )
             }
 
             EditProfile -> NavEntry(key) {

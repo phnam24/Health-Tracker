@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -54,15 +55,19 @@ fun ActivityRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
-    val deletedMessage = stringResource(R.string.activity_deleted)
-    val undoLabel = stringResource(R.string.common_undo)
-    val addFailedMessage = stringResource(R.string.activity_add_failed)
-    val deleteFailedMessage = stringResource(R.string.activity_delete_failed)
-    val restoreFailedMessage = stringResource(R.string.activity_restore_failed)
-    val refreshFailedMessage = stringResource(R.string.activity_load_failed)
-    val retryLabel = stringResource(R.string.common_retry)
-    val profileRequiredMessage = stringResource(R.string.activity_profile_required)
-    val addTodayOnlyMessage = stringResource(R.string.activity_add_today_only)
+    val deletedMessage by rememberUpdatedState(stringResource(R.string.activity_deleted))
+    val undoLabel by rememberUpdatedState(stringResource(R.string.common_undo))
+    val addFailedMessage by rememberUpdatedState(stringResource(R.string.activity_add_failed))
+    val deleteFailedMessage by rememberUpdatedState(stringResource(R.string.activity_delete_failed))
+    val restoreFailedMessage by rememberUpdatedState(stringResource(R.string.activity_restore_failed))
+    val refreshFailedMessage by rememberUpdatedState(stringResource(R.string.activity_load_failed))
+    val retryLabel by rememberUpdatedState(stringResource(R.string.common_retry))
+    val profileRequiredMessage by rememberUpdatedState(
+        stringResource(R.string.activity_profile_required),
+    )
+    val addTodayOnlyMessage by rememberUpdatedState(
+        stringResource(R.string.activity_add_today_only),
+    )
 
     LaunchedEffect(viewModel, snackbarHostState) {
         viewModel.effects.collectLatest { effect ->

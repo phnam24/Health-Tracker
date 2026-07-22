@@ -33,6 +33,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailyAdvice
 import com.example.healthtracker.domain.model.DailySummary
+import com.example.healthtracker.domain.model.ThemeMode
 import com.example.healthtracker.helper.toLocalizedDateString
 import com.example.healthtracker.presentation.dashboard.state.DashboardUiState
 import com.example.healthtracker.presentation.dashboard.ui.components.CaloriesProgressCircle
@@ -44,7 +45,6 @@ import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardEffec
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardEvent
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardViewModel
 import com.example.healthtracker.presentation.theme.HealthTrackerTheme
-import com.example.healthtracker.presentation.theme.ThemeMode
 import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable

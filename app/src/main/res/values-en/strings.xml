@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Health Tracker Application</string>
+    <string name="app_name">HealthTracker</string>
 
     <!-- Bottom navigation -->
     <string name="tab_dashboard">Overview</string>
@@ -370,4 +370,36 @@
     <string name="cd_statistics_goal_line">Goal line at %1$d kcal</string>
     <string name="cd_statistics_goal_days">Goal reached on %1$d of %2$d elapsed days</string>
     <string name="cd_statistics_week_range">Week from %1$s to %2$s</string>
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_profile_section">Profile</string>
+    <string name="settings_profile_metadata">Age %1$d · %2$s kg · %3$s cm</string>
+    <string name="settings_bmi_label">BMI</string>
+    <string name="settings_edit_profile">Edit profile</string>
+    <string name="settings_load_failed_title">Unable to load settings</string>
+    <string name="settings_load_failed_message">An error occurred while loading your data. Please try again.</string>
+    <string name="settings_preference_update_failed">Unable to update the setting. Please try again.</string>
+    <string name="cd_settings_bmi">BMI %1$.1f, classified as %2$s</string>
+    <string name="settings_appearance_section">Appearance</string>
+    <string name="settings_theme_mode_label">Theme mode</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_palette_label">Primary color</string>
+    <string name="settings_palette_forest">Forest</string>
+    <string name="settings_palette_teal">Teal</string>
+    <string name="settings_palette_indigo">Indigo</string>
+    <string name="settings_palette_violet">Violet</string>
+    <string name="settings_font_size_label">Font size</string>
+    <string name="settings_font_small">Small</string>
+    <string name="settings_font_medium">Medium</string>
+    <string name="settings_font_large">Large</string>
+    <string name="settings_font_preview_title">Font size preview</string>
+    <string name="settings_font_preview_text">Eat well, stay active, and live healthier every day.</string>
+    <string name="settings_language_section">Language</string>
+    <string name="settings_language_vietnamese">Vietnamese</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_about_section">About</string>
+    <string name="settings_version">Version %1$s</string>
+    <string name="settings_about_credit">Your everyday health companion.</string>
 </resources>

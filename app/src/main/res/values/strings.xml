@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Health Tracker Application</string>
+    <string name="app_name">HealthTracker</string>
 
     <!-- Bottom navigation -->
     <string name="tab_dashboard">Tổng quan</string>
@@ -345,7 +345,7 @@
     <string name="statistics_burned_legend">Tiêu thụ</string>
     <string name="statistics_average_eaten">TB nạp/ngày</string>
     <string name="statistics_average_burned">TB tiêu thụ/ngày</string>
-    <string name="statistics_goal_days">Ngày đạt mục tiêu</string>
+    <string name="statistics_goal_days">Đạt mục tiêu</string>
     <string name="statistics_average_value">%1$d kcal</string>
     <string name="statistics_goal_days_value">%1$d/%2$d</string>
     <string name="statistics_empty_title">Chưa có dữ liệu thống kê</string>
@@ -370,4 +370,36 @@
     <string name="cd_statistics_goal_line">Đường mục tiêu %1$d kcal</string>
     <string name="cd_statistics_goal_days">Đạt mục tiêu %1$d trên %2$d ngày đã diễn ra</string>
     <string name="cd_statistics_week_range">Tuần từ %1$s đến %2$s</string>
+    <!-- Settings -->
+    <string name="settings_title">Cài đặt</string>
+    <string name="settings_profile_section">Hồ sơ</string>
+    <string name="settings_profile_metadata">%1$d tuổi · %2$s kg · %3$s cm</string>
+    <string name="settings_bmi_label">Chỉ số BMI</string>
+    <string name="settings_edit_profile">Chỉnh sửa hồ sơ</string>
+    <string name="settings_load_failed_title">Không thể tải cài đặt</string>
+    <string name="settings_load_failed_message">Đã xảy ra lỗi khi tải dữ liệu. Vui lòng thử lại.</string>
+    <string name="settings_preference_update_failed">Không thể cập nhật cài đặt. Vui lòng thử lại.</string>
+    <string name="cd_settings_bmi">Chỉ số BMI %1$.1f, phân loại %2$s</string>
+    <string name="settings_appearance_section">Giao diện</string>
+    <string name="settings_theme_mode_label">Chế độ</string>
+    <string name="settings_theme_light">Sáng</string>
+    <string name="settings_theme_dark">Tối</string>
+    <string name="settings_theme_system">Hệ thống</string>
+    <string name="settings_palette_label">Màu chủ đạo</string>
+    <string name="settings_palette_forest">Xanh rừng</string>
+    <string name="settings_palette_teal">Xanh ngọc</string>
+    <string name="settings_palette_indigo">Chàm</string>
+    <string name="settings_palette_violet">Tím</string>
+    <string name="settings_font_size_label">Cỡ chữ</string>
+    <string name="settings_font_small">Nhỏ</string>
+    <string name="settings_font_medium">Vừa</string>
+    <string name="settings_font_large">Lớn</string>
+    <string name="settings_font_preview_title">Xem trước cỡ chữ</string>
+    <string name="settings_font_preview_text">Ăn đúng, vận động đều và sống khỏe mỗi ngày.</string>
+    <string name="settings_language_section">Ngôn ngữ</string>
+    <string name="settings_language_vietnamese">Tiếng Việt</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_about_section">Thông tin</string>
+    <string name="settings_version">Phiên bản %1$s</string>
+    <string name="settings_about_credit">Người bạn đồng hành sức khỏe mỗi ngày.</string>
 </resources>

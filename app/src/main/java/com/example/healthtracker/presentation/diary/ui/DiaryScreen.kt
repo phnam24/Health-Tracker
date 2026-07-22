@@ -24,6 +24,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -50,13 +51,17 @@ fun DiaryRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = androidx.compose.runtime.remember { SnackbarHostState() }
-    val deletedMessage = stringResource(R.string.diary_entry_deleted)
-    val undoLabel = stringResource(R.string.common_undo)
-    val addFailedMessage = stringResource(R.string.add_food_failed)
-    val customFoodFailedMessage = stringResource(R.string.custom_food_save_failed)
-    val deleteFailedMessage = stringResource(R.string.diary_delete_failed)
-    val restoreFailedMessage = stringResource(R.string.diary_restore_failed)
-    val addTodayOnlyMessage = stringResource(R.string.diary_add_today_only)
+    val deletedMessage by rememberUpdatedState(stringResource(R.string.diary_entry_deleted))
+    val undoLabel by rememberUpdatedState(stringResource(R.string.common_undo))
+    val addFailedMessage by rememberUpdatedState(stringResource(R.string.add_food_failed))
+    val customFoodFailedMessage by rememberUpdatedState(
+        stringResource(R.string.custom_food_save_failed),
+    )
+    val deleteFailedMessage by rememberUpdatedState(stringResource(R.string.diary_delete_failed))
+    val restoreFailedMessage by rememberUpdatedState(stringResource(R.string.diary_restore_failed))
+    val addTodayOnlyMessage by rememberUpdatedState(
+        stringResource(R.string.diary_add_today_only),
+    )
 
     LaunchedEffect(viewModel, snackbarHostState) {
         viewModel.effects.collectLatest { effect ->
