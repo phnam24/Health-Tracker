@@ -1,10 +1,14 @@
 package com.example.healthtracker.presentation.settings.ui.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -14,6 +18,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -26,7 +31,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -52,6 +56,11 @@ fun SettingsAppearanceCard(
     modifier: Modifier = Modifier,
 ) {
     val controlsEnabled = !updateInProgress
+    val previewDarkTheme = when (settings.themeMode) {
+        ThemeMode.LIGHT -> false
+        ThemeMode.DARK -> true
+        ThemeMode.SYSTEM -> isSystemInDarkTheme()
+    }
 
     AppCard(modifier = modifier.fillMaxWidth()) {
         Column(
@@ -82,6 +91,7 @@ fun SettingsAppearanceCard(
             PaletteSelector(
                 selected = settings.palette,
                 enabled = controlsEnabled,
+                darkTheme = previewDarkTheme,
                 onSelected = onPaletteChange,
             )
 
@@ -152,54 +162,116 @@ private fun ThemeModeSelector(
 private fun PaletteSelector(
     selected: ThemePalette,
     enabled: Boolean,
+    darkTheme: Boolean,
     onSelected: (ThemePalette) -> Unit,
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .selectableGroup()
-            .alpha(if (enabled) 1f else 0.6f),
-        horizontalArrangement = Arrangement.SpaceBetween,
+    Column(
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall),
     ) {
-        ThemePalette.entries.forEach { palette ->
-            val isSelected = palette == selected
-            val label = palette.label()
-            Box(
-                modifier = Modifier
-                    .size(MaterialTheme.dimensions.minimumTouchTarget)
-                    .selectable(
-                        selected = isSelected,
-                        enabled = enabled,
-                        role = Role.RadioButton,
-                        onClick = {
-                            if (palette != selected) onSelected(palette)
-                        },
-                    )
-                    .semantics { contentDescription = label },
-                contentAlignment = Alignment.Center,
-            ) {
-                Surface(
-                    modifier = Modifier.size(MaterialTheme.dimensions.optionIconContainerSize),
-                    shape = CircleShape,
-                    color = palette.previewColor(),
-                    contentColor = palette.previewContentColor(),
-                    border = if (isSelected) {
-                        BorderStroke(
-                            width = MaterialTheme.dimensions.focusedBorderThickness,
-                            color = MaterialTheme.colorScheme.onSurface,
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .selectableGroup()
+                .alpha(if (enabled) 1f else 0.6f),
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            ThemePalette.entries.forEach { palette ->
+                val isSelected = palette == selected
+                val label = palette.label()
+                val previewColors = colorSchemeFor(
+                    palette = palette,
+                    darkTheme = darkTheme,
+                )
+                Box(
+                    modifier = Modifier
+                        .size(MaterialTheme.dimensions.minimumTouchTarget)
+                        .selectable(
+                            selected = isSelected,
+                            enabled = enabled,
+                            role = Role.RadioButton,
+                            onClick = {
+                                if (palette != selected) onSelected(palette)
+                            },
                         )
-                    } else {
-                        null
-                    },
+                        .semantics { contentDescription = label },
+                    contentAlignment = Alignment.Center,
                 ) {
-                    if (isSelected) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Icon(
-                                imageVector = Icons.Rounded.Check,
-                                contentDescription = null,
-                                modifier = Modifier.size(MaterialTheme.dimensions.standardIconSize),
-                            )
-                        }
+                    PalettePreview(
+                        colors = previewColors,
+                        selected = isSelected,
+                    )
+                }
+            }
+        }
+
+        Text(
+            text = selected.label(),
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.primary,
+        )
+    }
+}
+
+@Composable
+private fun PalettePreview(
+    colors: ColorScheme,
+    selected: Boolean,
+) {
+    Surface(
+        modifier = Modifier.size(MaterialTheme.dimensions.optionIconContainerSize),
+        shape = MaterialTheme.shapes.small,
+        color = colors.surface,
+        border = BorderStroke(
+            width = if (selected) {
+                MaterialTheme.dimensions.focusedBorderThickness
+            } else {
+                MaterialTheme.dimensions.dividerThickness
+            },
+            color = if (selected) {
+                MaterialTheme.colorScheme.onSurface
+            } else {
+                colors.outlineVariant
+            },
+        ),
+    ) {
+        Box {
+            Row(modifier = Modifier.fillMaxSize()) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .background(colors.primary),
+                )
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .background(colors.secondary),
+                )
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .background(colors.tertiary),
+                )
+            }
+
+            if (selected) {
+                Surface(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(MaterialTheme.dimensions.standardIconSize),
+                    shape = CircleShape,
+                    color = colors.surface,
+                    contentColor = colors.primary,
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Icon(
+                            imageVector = Icons.Rounded.Check,
+                            contentDescription = null,
+                            modifier = Modifier.size(MaterialTheme.dimensions.smallIconSize),
+                        )
                     }
                 }
             }
@@ -276,15 +348,3 @@ private fun AppFontScale.label(): String = stringResource(
         AppFontScale.LARGE -> R.string.settings_font_large
     },
 )
-
-@Composable
-private fun ThemePalette.previewColor(): Color = colorSchemeFor(
-    palette = this,
-    darkTheme = false,
-).primary
-
-@Composable
-private fun ThemePalette.previewContentColor(): Color = colorSchemeFor(
-    palette = this,
-    darkTheme = false,
-).onPrimary
