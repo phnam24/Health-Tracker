@@ -59,8 +59,8 @@ class SettingsRepositoryImpl @Inject constructor(
                 it.storageId == this[THEME_MODE_KEY]
             } ?: ThemeMode.SYSTEM,
             palette = ThemePalette.entries.firstOrNull {
-                it.storageId == this[THEME_PALETTE_KEY]
-            } ?: ThemePalette.FOREST,
+                it.matchesStorageId(this[THEME_PALETTE_KEY])
+            } ?: ThemePalette.FRESH_MINT,
             fontScale = AppFontScale.entries.firstOrNull {
                 it.storageId == this[FONT_SCALE_KEY]
             } ?: AppFontScale.MEDIUM,

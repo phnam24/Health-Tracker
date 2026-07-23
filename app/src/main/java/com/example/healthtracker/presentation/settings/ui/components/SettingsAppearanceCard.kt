@@ -261,10 +261,10 @@ private fun ThemeMode.label(): String = stringResource(
 @Composable
 private fun ThemePalette.label(): String = stringResource(
     when (this) {
-        ThemePalette.FOREST -> R.string.settings_palette_forest
-        ThemePalette.TEAL -> R.string.settings_palette_teal
-        ThemePalette.INDIGO -> R.string.settings_palette_indigo
-        ThemePalette.VIOLET -> R.string.settings_palette_violet
+        ThemePalette.FRESH_MINT -> R.string.settings_palette_fresh_mint
+        ThemePalette.OCEAN_PULSE -> R.string.settings_palette_ocean_pulse
+        ThemePalette.CORAL_ENERGY -> R.string.settings_palette_coral_energy
+        ThemePalette.AURORA_VIOLET -> R.string.settings_palette_aurora_violet
     },
 )
 

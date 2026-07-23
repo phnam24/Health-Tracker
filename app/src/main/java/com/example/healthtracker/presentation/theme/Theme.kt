@@ -169,19 +169,19 @@ fun colorSchemeFor(
     palette: ThemePalette,
     darkTheme: Boolean,
 ): ColorScheme = when (palette) {
-    ThemePalette.FOREST -> {
+    ThemePalette.FRESH_MINT -> {
         if (darkTheme) FreshMintDarkColorScheme else FreshMintLightColorScheme
     }
 
-    ThemePalette.TEAL -> {
+    ThemePalette.OCEAN_PULSE -> {
         if (darkTheme) OceanPulseDarkColorScheme else OceanPulseLightColorScheme
     }
 
-    ThemePalette.INDIGO -> {
+    ThemePalette.CORAL_ENERGY -> {
         if (darkTheme) CoralEnergyDarkColorScheme else CoralEnergyLightColorScheme
     }
 
-    ThemePalette.VIOLET -> {
+    ThemePalette.AURORA_VIOLET -> {
         if (darkTheme) AuroraVioletDarkColorScheme else AuroraVioletLightColorScheme
     }
 }
@@ -210,7 +210,7 @@ fun healthColorSchemeFor(
 @Composable
 fun HealthTrackerTheme(
     themeMode: ThemeMode = ThemeMode.SYSTEM,
-    palette: ThemePalette = ThemePalette.FOREST,
+    palette: ThemePalette = ThemePalette.FRESH_MINT,
     fontScale: AppFontScale = AppFontScale.MEDIUM,
     dimensions: HealthTrackerDimensions = defaultHealthTrackerDimensions,
     content: @Composable () -> Unit,
