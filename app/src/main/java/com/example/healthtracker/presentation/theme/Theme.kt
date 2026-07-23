@@ -186,8 +186,26 @@ fun colorSchemeFor(
     }
 }
 
-fun healthColorSchemeFor(darkTheme: Boolean): HealthTrackerColorScheme =
-    if (darkTheme) DarkHealthTrackerColorScheme else LightHealthTrackerColorScheme
+fun healthColorSchemeFor(
+    palette: ThemePalette,
+    darkTheme: Boolean,
+): HealthTrackerColorScheme {
+    val materialColors = colorSchemeFor(palette, darkTheme)
+    val semanticColors = if (darkTheme) {
+        DarkHealthTrackerColorScheme
+    } else {
+        LightHealthTrackerColorScheme
+    }
+
+    return semanticColors.copy(
+        cardContainer = materialColors.surfaceContainerLow,
+        onCardContainer = materialColors.onSurface,
+        subtleContainer = materialColors.secondaryContainer,
+        onSubtleContainer = materialColors.onSecondaryContainer,
+        neutralIconContainer = materialColors.tertiaryContainer,
+        onNeutralIconContainer = materialColors.onTertiaryContainer,
+    )
+}
 
 @Composable
 fun HealthTrackerTheme(
@@ -203,7 +221,7 @@ fun HealthTrackerTheme(
         ThemeMode.SYSTEM -> isSystemInDarkTheme()
     }
 
-    val healthColors = healthColorSchemeFor(darkTheme)
+    val healthColors = healthColorSchemeFor(palette, darkTheme)
     val typography = remember(fontScale) { healthTrackerTypography(fontScale) }
     val shapes = remember(dimensions) { healthTrackerShapes(dimensions) }
 

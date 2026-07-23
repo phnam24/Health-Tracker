@@ -320,42 +320,6 @@ internal val AuroraVioletDarkSurfaces = PaletteSurfaceColors(
     inverseOnSurface = Color(0xFF342B3C),
 )
 
-internal val BackgroundLight = Color(0xFFF7F9F8)
-internal val OnBackgroundLight = Color(0xFF18201C)
-internal val SurfaceLight = Color(0xFFFFFFFF)
-internal val SurfaceDimLight = Color(0xFFE3E8E5)
-internal val SurfaceBrightLight = Color(0xFFFFFFFF)
-internal val SurfaceContainerLowestLight = Color(0xFFFFFFFF)
-internal val SurfaceContainerLowLight = Color(0xFFF3F6F4)
-internal val SurfaceContainerLight = Color(0xFFEEF2EF)
-internal val SurfaceContainerHighLight = Color(0xFFE7ECE8)
-internal val SurfaceContainerHighestLight = Color(0xFFDEE5E0)
-internal val SurfaceVariantLight = Color(0xFFDEE5E0)
-internal val OnSurfaceLight = Color(0xFF18201C)
-internal val OnSurfaceVariantLight = Color(0xFF56625B)
-internal val OutlineLight = Color(0xFF829087)
-internal val OutlineVariantLight = Color(0xFFD3DDD6)
-internal val InverseSurfaceLight = Color(0xFF2B322E)
-internal val InverseOnSurfaceLight = Color(0xFFF1F5F2)
-
-internal val BackgroundDark = Color(0xFF0C0F0D)
-internal val OnBackgroundDark = Color(0xFFE6ECE8)
-internal val SurfaceDark = Color(0xFF121614)
-internal val SurfaceDimDark = Color(0xFF0C0F0D)
-internal val SurfaceBrightDark = Color(0xFF343A36)
-internal val SurfaceContainerLowestDark = Color(0xFF080A09)
-internal val SurfaceContainerLowDark = Color(0xFF101311)
-internal val SurfaceContainerDark = Color(0xFF1A1F1C)
-internal val SurfaceContainerHighDark = Color(0xFF222824)
-internal val SurfaceContainerHighestDark = Color(0xFF2B322D)
-internal val SurfaceVariantDark = Color(0xFF2B322D)
-internal val OnSurfaceDark = Color(0xFFE6ECE8)
-internal val OnSurfaceVariantDark = Color(0xFFB8C2BC)
-internal val OutlineDark = Color(0xFF858F89)
-internal val OutlineVariantDark = Color(0xFF3D4640)
-internal val InverseSurfaceDark = Color(0xFFE6ECE8)
-internal val InverseOnSurfaceDark = Color(0xFF2B322D)
-
 internal val ErrorLight = Color(0xFFDC2626)
 internal val OnErrorLight = Color(0xFFFFFFFF)
 internal val ErrorContainerLight = Color(0xFFFEE2E2)
@@ -406,12 +370,12 @@ data class HealthTrackerColorScheme(
 )
 
 internal val LightHealthTrackerColorScheme = HealthTrackerColorScheme(
-    cardContainer = SurfaceLight,
-    onCardContainer = OnSurfaceLight,
-    subtleContainer = SurfaceContainerLight,
-    onSubtleContainer = OnSurfaceLight,
-    neutralIconContainer = SurfaceContainerHighestLight,
-    onNeutralIconContainer = OnSurfaceVariantLight,
+    cardContainer = FreshMintLightSurfaces.surfaceContainerLow,
+    onCardContainer = FreshMintLightSurfaces.onSurface,
+    subtleContainer = FreshMintLightAccents.secondaryContainer,
+    onSubtleContainer = FreshMintLightAccents.onSecondaryContainer,
+    neutralIconContainer = FreshMintLightAccents.tertiaryContainer,
+    onNeutralIconContainer = FreshMintLightAccents.onTertiaryContainer,
     caloriesConsumed = Color(0xFFFF7A45),
     onCaloriesConsumed = Color(0xFFFFFFFF),
     caloriesConsumedContainer = Color(0xFFFFE8DE),
@@ -436,12 +400,12 @@ internal val LightHealthTrackerColorScheme = HealthTrackerColorScheme(
 )
 
 internal val DarkHealthTrackerColorScheme = HealthTrackerColorScheme(
-    cardContainer = SurfaceContainerDark,
-    onCardContainer = OnSurfaceDark,
-    subtleContainer = SurfaceContainerHighDark,
-    onSubtleContainer = OnSurfaceDark,
-    neutralIconContainer = SurfaceContainerHighestDark,
-    onNeutralIconContainer = OnSurfaceVariantDark,
+    cardContainer = FreshMintDarkSurfaces.surfaceContainerLow,
+    onCardContainer = FreshMintDarkSurfaces.onSurface,
+    subtleContainer = FreshMintDarkAccents.secondaryContainer,
+    onSubtleContainer = FreshMintDarkAccents.onSecondaryContainer,
+    neutralIconContainer = FreshMintDarkAccents.tertiaryContainer,
+    onNeutralIconContainer = FreshMintDarkAccents.onTertiaryContainer,
     caloriesConsumed = Color(0xFFFB923C),
     onCaloriesConsumed = Color(0xFF431407),
     caloriesConsumedContainer = Color(0xFF4A2516),
