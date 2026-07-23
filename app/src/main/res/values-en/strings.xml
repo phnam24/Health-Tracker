@@ -386,10 +386,10 @@
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_system">System</string>
     <string name="settings_palette_label">Color palette</string>
-    <string name="settings_palette_fresh_mint">Fresh Mint</string>
-    <string name="settings_palette_ocean_pulse">Ocean Pulse</string>
-    <string name="settings_palette_coral_energy">Coral Energy</string>
-    <string name="settings_palette_aurora_violet">Aurora Violet</string>
+    <string name="settings_palette_performance">Performance</string>
+    <string name="settings_palette_organic">Organic</string>
+    <string name="settings_palette_analytical">Analytical</string>
+    <string name="settings_palette_balanced">Balanced</string>
     <string name="settings_font_size_label">Font size</string>
     <string name="settings_font_small">Small</string>
     <string name="settings_font_medium">Medium</string>

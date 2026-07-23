@@ -8,21 +8,21 @@ enum class ThemePalette(
     val storageId: String,
     private val legacyStorageIds: Set<String> = emptySet(),
 ) {
-    FRESH_MINT(
-        storageId = "fresh_mint",
-        legacyStorageIds = setOf("forest"),
+    PERFORMANCE(
+        storageId = "performance",
+        legacyStorageIds = setOf("coral_energy", "indigo"),
     ),
-    OCEAN_PULSE(
-        storageId = "ocean_pulse",
-        legacyStorageIds = setOf("teal"),
+    ORGANIC(
+        storageId = "organic",
+        legacyStorageIds = setOf("fresh_mint", "forest"),
     ),
-    CORAL_ENERGY(
-        storageId = "coral_energy",
-        legacyStorageIds = setOf("indigo"),
+    ANALYTICAL(
+        storageId = "analytical",
+        legacyStorageIds = setOf("ocean_pulse", "teal"),
     ),
-    AURORA_VIOLET(
-        storageId = "aurora_violet",
-        legacyStorageIds = setOf("violet"),
+    BALANCED(
+        storageId = "balanced",
+        legacyStorageIds = setOf("aurora_violet", "violet"),
     ),
     ;
 
@@ -41,6 +41,6 @@ enum class AppLanguage(val languageTag: String) {
 
 data class AppSettings(
     val themeMode: ThemeMode = ThemeMode.SYSTEM,
-    val palette: ThemePalette = ThemePalette.FRESH_MINT,
+    val palette: ThemePalette = ThemePalette.ORGANIC,
     val fontScale: AppFontScale = AppFontScale.MEDIUM,
 )

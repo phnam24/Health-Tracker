@@ -1,13 +1,11 @@
 package com.example.healthtracker.presentation.settings.ui.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,8 +15,6 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -31,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -66,18 +63,6 @@ fun SettingsAppearanceCard(
         Column(
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingLarge),
         ) {
-            if (updateInProgress) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End,
-                ) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(MaterialTheme.dimensions.standardIconSize),
-                        strokeWidth = MaterialTheme.dimensions.focusedBorderThickness,
-                    )
-                }
-            }
-
             AppearanceSettingLabel(text = stringResource(R.string.settings_theme_mode_label))
             ThemeModeSelector(
                 selected = settings.themeMode,
@@ -177,7 +162,6 @@ private fun PaletteSelector(
         ) {
             ThemePalette.entries.forEach { palette ->
                 val isSelected = palette == selected
-                val label = palette.label()
                 val previewColors = colorSchemeFor(
                     palette = palette,
                     darkTheme = darkTheme,
@@ -192,36 +176,31 @@ private fun PaletteSelector(
                             onClick = {
                                 if (palette != selected) onSelected(palette)
                             },
-                        )
-                        .semantics { contentDescription = label },
+                        ),
                     contentAlignment = Alignment.Center,
                 ) {
                     PalettePreview(
-                        colors = previewColors,
+                        primaryColor = previewColors.primary,
+                        onPrimaryColor = previewColors.onPrimary,
                         selected = isSelected,
                     )
                 }
             }
         }
-
-        Text(
-            text = selected.label(),
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            style = MaterialTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.primary,
-        )
     }
 }
 
 @Composable
 private fun PalettePreview(
-    colors: ColorScheme,
+    primaryColor: Color,
+    onPrimaryColor: Color,
     selected: Boolean,
 ) {
     Surface(
         modifier = Modifier.size(MaterialTheme.dimensions.optionIconContainerSize),
-        shape = MaterialTheme.shapes.small,
-        color = colors.surface,
+        shape = CircleShape,
+        color = primaryColor,
+        contentColor = onPrimaryColor,
         border = BorderStroke(
             width = if (selected) {
                 MaterialTheme.dimensions.focusedBorderThickness
@@ -231,49 +210,20 @@ private fun PalettePreview(
             color = if (selected) {
                 MaterialTheme.colorScheme.onSurface
             } else {
-                colors.outlineVariant
+                MaterialTheme.colorScheme.outlineVariant
             },
         ),
     ) {
-        Box {
-            Row(modifier = Modifier.fillMaxSize()) {
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxHeight()
-                        .background(colors.primary),
-                )
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxHeight()
-                        .background(colors.secondary),
-                )
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxHeight()
-                        .background(colors.tertiary),
-                )
-            }
-
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center,
+        ) {
             if (selected) {
-                Surface(
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .size(MaterialTheme.dimensions.standardIconSize),
-                    shape = CircleShape,
-                    color = colors.surface,
-                    contentColor = colors.primary,
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Icon(
-                            imageVector = Icons.Rounded.Check,
-                            contentDescription = null,
-                            modifier = Modifier.size(MaterialTheme.dimensions.smallIconSize),
-                        )
-                    }
-                }
+                Icon(
+                    imageVector = Icons.Rounded.Check,
+                    contentDescription = null,
+                    modifier = Modifier.size(MaterialTheme.dimensions.smallIconSize),
+                )
             }
         }
     }
@@ -330,15 +280,6 @@ private fun ThemeMode.label(): String = stringResource(
     },
 )
 
-@Composable
-private fun ThemePalette.label(): String = stringResource(
-    when (this) {
-        ThemePalette.FRESH_MINT -> R.string.settings_palette_fresh_mint
-        ThemePalette.OCEAN_PULSE -> R.string.settings_palette_ocean_pulse
-        ThemePalette.CORAL_ENERGY -> R.string.settings_palette_coral_energy
-        ThemePalette.AURORA_VIOLET -> R.string.settings_palette_aurora_violet
-    },
-)
 
 @Composable
 private fun AppFontScale.label(): String = stringResource(

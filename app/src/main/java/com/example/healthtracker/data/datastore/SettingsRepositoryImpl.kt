@@ -60,7 +60,7 @@ class SettingsRepositoryImpl @Inject constructor(
             } ?: ThemeMode.SYSTEM,
             palette = ThemePalette.entries.firstOrNull {
                 it.matchesStorageId(this[THEME_PALETTE_KEY])
-            } ?: ThemePalette.FRESH_MINT,
+            } ?: ThemePalette.ORGANIC,
             fontScale = AppFontScale.entries.firstOrNull {
                 it.storageId == this[FONT_SCALE_KEY]
             } ?: AppFontScale.MEDIUM,

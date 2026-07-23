@@ -10,7 +10,10 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.graphics.luminance
 import com.example.healthtracker.domain.model.AppFontScale
 import com.example.healthtracker.domain.model.ThemeMode
 import com.example.healthtracker.domain.model.ThemePalette
@@ -99,52 +102,52 @@ private fun darkPaletteColorScheme(
     inversePrimary = inversePrimary,
 )
 
-private val FreshMintLightColorScheme = lightPaletteColorScheme(
-    accents = FreshMintLightAccents,
-    surfaces = FreshMintLightSurfaces,
-    inversePrimary = FreshMintDarkAccents.primary,
+private val PerformanceLightColorScheme = lightPaletteColorScheme(
+    accents = PerformanceLightAccents,
+    surfaces = PerformanceLightSurfaces,
+    inversePrimary = PerformanceDarkAccents.primary,
 )
 
-private val FreshMintDarkColorScheme = darkPaletteColorScheme(
-    accents = FreshMintDarkAccents,
-    surfaces = FreshMintDarkSurfaces,
-    inversePrimary = FreshMintLightAccents.primary,
+private val PerformanceDarkColorScheme = darkPaletteColorScheme(
+    accents = PerformanceDarkAccents,
+    surfaces = PerformanceDarkSurfaces,
+    inversePrimary = PerformanceLightAccents.primary,
 )
 
-private val OceanPulseLightColorScheme = lightPaletteColorScheme(
-    accents = OceanPulseLightAccents,
-    surfaces = OceanPulseLightSurfaces,
-    inversePrimary = OceanPulseDarkAccents.primary,
+private val OrganicLightColorScheme = lightPaletteColorScheme(
+    accents = OrganicLightAccents,
+    surfaces = OrganicLightSurfaces,
+    inversePrimary = OrganicDarkAccents.primary,
 )
 
-private val OceanPulseDarkColorScheme = darkPaletteColorScheme(
-    accents = OceanPulseDarkAccents,
-    surfaces = OceanPulseDarkSurfaces,
-    inversePrimary = OceanPulseLightAccents.primary,
+private val OrganicDarkColorScheme = darkPaletteColorScheme(
+    accents = OrganicDarkAccents,
+    surfaces = OrganicDarkSurfaces,
+    inversePrimary = OrganicLightAccents.primary,
 )
 
-private val CoralEnergyLightColorScheme = lightPaletteColorScheme(
-    accents = CoralEnergyLightAccents,
-    surfaces = CoralEnergyLightSurfaces,
-    inversePrimary = CoralEnergyDarkAccents.primary,
+private val AnalyticalLightColorScheme = lightPaletteColorScheme(
+    accents = AnalyticalLightAccents,
+    surfaces = AnalyticalLightSurfaces,
+    inversePrimary = AnalyticalDarkAccents.primary,
 )
 
-private val CoralEnergyDarkColorScheme = darkPaletteColorScheme(
-    accents = CoralEnergyDarkAccents,
-    surfaces = CoralEnergyDarkSurfaces,
-    inversePrimary = CoralEnergyLightAccents.primary,
+private val AnalyticalDarkColorScheme = darkPaletteColorScheme(
+    accents = AnalyticalDarkAccents,
+    surfaces = AnalyticalDarkSurfaces,
+    inversePrimary = AnalyticalLightAccents.primary,
 )
 
-private val AuroraVioletLightColorScheme = lightPaletteColorScheme(
-    accents = AuroraVioletLightAccents,
-    surfaces = AuroraVioletLightSurfaces,
-    inversePrimary = AuroraVioletDarkAccents.primary,
+private val BalancedLightColorScheme = lightPaletteColorScheme(
+    accents = BalancedLightAccents,
+    surfaces = BalancedLightSurfaces,
+    inversePrimary = BalancedDarkAccents.primary,
 )
 
-private val AuroraVioletDarkColorScheme = darkPaletteColorScheme(
-    accents = AuroraVioletDarkAccents,
-    surfaces = AuroraVioletDarkSurfaces,
-    inversePrimary = AuroraVioletLightAccents.primary,
+private val BalancedDarkColorScheme = darkPaletteColorScheme(
+    accents = BalancedDarkAccents,
+    surfaces = BalancedDarkSurfaces,
+    inversePrimary = BalancedLightAccents.primary,
 )
 
 private val LocalHealthTrackerColors = staticCompositionLocalOf {
@@ -165,24 +168,46 @@ val MaterialTheme.dimensions: HealthTrackerDimensions
     @ReadOnlyComposable
     get() = LocalHealthTrackerDimensions.current
 
+@Composable
+fun rememberScreenBackgroundBrush(
+    colorScheme: ColorScheme = MaterialTheme.colorScheme,
+): Brush {
+    val primary = colorScheme.primary
+    val background = colorScheme.background
+
+    return remember(primary, background) {
+        val isDark = background.luminance() < 0.5f
+        val startAlpha = if (isDark) 0.18f else 0.20f
+        val middleAlpha = if (isDark) 0.07f else 0.08f
+
+        Brush.verticalGradient(
+            colors = listOf(
+                primary.copy(alpha = startAlpha).compositeOver(background),
+                primary.copy(alpha = middleAlpha).compositeOver(background),
+                background,
+            ),
+        )
+    }
+}
+
 fun colorSchemeFor(
     palette: ThemePalette,
     darkTheme: Boolean,
 ): ColorScheme = when (palette) {
-    ThemePalette.FRESH_MINT -> {
-        if (darkTheme) FreshMintDarkColorScheme else FreshMintLightColorScheme
+    ThemePalette.PERFORMANCE -> {
+        if (darkTheme) PerformanceDarkColorScheme else PerformanceLightColorScheme
     }
 
-    ThemePalette.OCEAN_PULSE -> {
-        if (darkTheme) OceanPulseDarkColorScheme else OceanPulseLightColorScheme
+    ThemePalette.ORGANIC -> {
+        if (darkTheme) OrganicDarkColorScheme else OrganicLightColorScheme
     }
 
-    ThemePalette.CORAL_ENERGY -> {
-        if (darkTheme) CoralEnergyDarkColorScheme else CoralEnergyLightColorScheme
+    ThemePalette.ANALYTICAL -> {
+        if (darkTheme) AnalyticalDarkColorScheme else AnalyticalLightColorScheme
     }
 
-    ThemePalette.AURORA_VIOLET -> {
-        if (darkTheme) AuroraVioletDarkColorScheme else AuroraVioletLightColorScheme
+    ThemePalette.BALANCED -> {
+        if (darkTheme) BalancedDarkColorScheme else BalancedLightColorScheme
     }
 }
 
@@ -200,17 +225,17 @@ fun healthColorSchemeFor(
     return semanticColors.copy(
         cardContainer = materialColors.surfaceContainerLow,
         onCardContainer = materialColors.onSurface,
-        subtleContainer = materialColors.secondaryContainer,
-        onSubtleContainer = materialColors.onSecondaryContainer,
-        neutralIconContainer = materialColors.tertiaryContainer,
-        onNeutralIconContainer = materialColors.onTertiaryContainer,
+        subtleContainer = materialColors.surfaceContainerHigh,
+        onSubtleContainer = materialColors.onSurface,
+        neutralIconContainer = materialColors.surfaceContainerHighest,
+        onNeutralIconContainer = materialColors.onSurfaceVariant,
     )
 }
 
 @Composable
 fun HealthTrackerTheme(
     themeMode: ThemeMode = ThemeMode.SYSTEM,
-    palette: ThemePalette = ThemePalette.FRESH_MINT,
+    palette: ThemePalette = ThemePalette.ORGANIC,
     fontScale: AppFontScale = AppFontScale.MEDIUM,
     dimensions: HealthTrackerDimensions = defaultHealthTrackerDimensions,
     content: @Composable () -> Unit,

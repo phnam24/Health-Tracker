@@ -386,10 +386,10 @@
     <string name="settings_theme_dark">Tối</string>
     <string name="settings_theme_system">Hệ thống</string>
     <string name="settings_palette_label">Bảng màu</string>
-    <string name="settings_palette_fresh_mint">Bạc hà tươi</string>
-    <string name="settings_palette_ocean_pulse">Sóng đại dương</string>
-    <string name="settings_palette_coral_energy">San hô năng lượng</string>
-    <string name="settings_palette_aurora_violet">Cực quang tím</string>
+    <string name="settings_palette_performance">Năng động</string>
+    <string name="settings_palette_organic">Hữu cơ</string>
+    <string name="settings_palette_analytical">Phân tích</string>
+    <string name="settings_palette_balanced">Cân bằng</string>
     <string name="settings_font_size_label">Cỡ chữ</string>
     <string name="settings_font_small">Nhỏ</string>
     <string name="settings_font_medium">Vừa</string>

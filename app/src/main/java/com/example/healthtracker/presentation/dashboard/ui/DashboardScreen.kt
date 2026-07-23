@@ -194,32 +194,3 @@ private fun DashboardCaloriesStatSection(
         )
     }
 }
-
-@Preview(name = "Dashboard - Loading", showBackground = true)
-@Composable
-private fun DashboardLoadingPreview() {
-    HealthTrackerTheme(themeMode = ThemeMode.LIGHT) {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            DashboardScreen(
-                uiState = DashboardUiState(isLoading = true),
-                onEvent = { },
-            )
-        }
-    }
-}
-
-@Preview(name = "Dashboard - Load failed", showBackground = true)
-@Composable
-private fun DashboardLoadFailedPreview() {
-    HealthTrackerTheme(themeMode = ThemeMode.LIGHT) {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            DashboardScreen(
-                uiState = DashboardUiState(
-                    isLoading = false,
-                    loadFailed = true,
-                ),
-                onEvent = { },
-            )
-        }
-    }
-}
