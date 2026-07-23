@@ -1,19 +1,15 @@
 package com.example.healthtracker.presentation.dashboard.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material.icons.outlined.PersonOff
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -23,10 +19,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -35,6 +29,8 @@ import com.example.healthtracker.domain.model.DailyAdvice
 import com.example.healthtracker.domain.model.DailySummary
 import com.example.healthtracker.domain.model.ThemeMode
 import com.example.healthtracker.helper.toLocalizedDateString
+import com.example.healthtracker.presentation.components.ScreenLoadingState
+import com.example.healthtracker.presentation.components.ScreenMessageState
 import com.example.healthtracker.presentation.dashboard.state.DashboardUiState
 import com.example.healthtracker.presentation.dashboard.ui.components.CaloriesProgressCircle
 import com.example.healthtracker.presentation.dashboard.ui.components.CaloriesStatCard
@@ -79,7 +75,9 @@ fun DashboardScreen(
     val advice = uiState.advice
 
     when {
-        uiState.isLoading -> DashboardLoadingState()
+        uiState.isLoading -> ScreenLoadingState(
+            message = stringResource(R.string.common_loading),
+        )
         uiState.loadFailed -> DashboardLoadFailedState(
             onRetryClick = { onEvent(DashboardEvent.RetryClicked) }
         )
@@ -110,7 +108,7 @@ private fun DashboardContent(
             .fillMaxSize()
             .verticalScroll(scrollState)
             .padding(MaterialTheme.dimensions.spacingLarge),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingLarge),
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DashboardHeader(
@@ -131,96 +129,37 @@ private fun DashboardContent(
 }
 
 @Composable
-private fun DashboardLoadingState() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
-        ) {
-            CircularProgressIndicator()
-
-            Text(
-                text = stringResource(R.string.common_loading),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
-            )
-        }
-    }
-}
-
-@Composable
 private fun DashboardLoadFailedState(
     onRetryClick: () -> Unit
 ) {
-    DashboardMessageState(
+    ScreenMessageState(
         icon = Icons.Outlined.ErrorOutline,
         title = stringResource(R.string.dashboard_load_failed),
-        actionLabel = stringResource(R.string.common_retry),
-        onActionClick = onRetryClick
+        titleColor = MaterialTheme.colorScheme.onSurfaceVariant,
+        titleStyle = MaterialTheme.typography.titleMedium,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(MaterialTheme.dimensions.screenPadding),
+        action = {
+            TextButton(onClick = onRetryClick) {
+                Text(text = stringResource(R.string.common_retry))
+            }
+        },
     )
 }
 
 @Composable
 private fun DashboardProfileMissingState() {
-    DashboardMessageState(
+    ScreenMessageState(
         icon = Icons.Outlined.PersonOff,
         title = stringResource(R.string.dashboard_profile_missing_title),
-        message = stringResource(R.string.dashboard_profile_missing_message)
-    )
-}
-
-@Composable
-private fun DashboardMessageState(
-    icon: ImageVector,
-    title: String,
-    message: String? = null,
-    actionLabel: String? = null,
-    onActionClick: () -> Unit = { },
-) {
-    Box(
+        message = stringResource(R.string.dashboard_profile_missing_message),
+        titleColor = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier
             .fillMaxSize()
             .padding(MaterialTheme.dimensions.screenPadding),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                modifier = Modifier.size(MaterialTheme.dimensions.emptyStateIconSize),
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
-            )
-
-            if (message != null) {
-                Text(
-                    text = message,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center
-                )
-            }
-
-            if (actionLabel != null) {
-                TextButton(onClick = onActionClick) {
-                    Text(text = actionLabel)
-                }
-            }
-        }
-    }
+        titleStyle = MaterialTheme.typography.titleMedium,
+    )
 }
 
 @Composable

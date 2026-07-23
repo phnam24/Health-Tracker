@@ -49,7 +49,7 @@ data class HealthTrackerDimensions(
     val emptyStateIconSize: Dp = 64.dp,
     val optionIconContainerSize: Dp = 40.dp,
     val statChipHeight: Dp = 28.dp,
-    val calorieRingSize: Dp = 200.dp,
+    val calorieRingSize: Dp = 196.dp,
     val calorieRingStrokeWidth: Dp = 12.dp,
     val caloriesRingGapSize: Dp = 0.dp,
     val chartHeight: Dp = 180.dp,

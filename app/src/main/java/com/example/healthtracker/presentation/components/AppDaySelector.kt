@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.diary.ui.components
+package com.example.healthtracker.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,14 +31,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.example.healthtracker.R
 import com.example.healthtracker.helper.toLocalizedDateString
-import com.example.healthtracker.presentation.components.AppCard
-import com.example.healthtracker.presentation.components.AppDatePickerDialog
 import com.example.healthtracker.presentation.theme.dimensions
-import com.example.healthtracker.presentation.theme.healthColors
 import java.time.LocalDate
 
 @Composable
-fun DiaryDateSelector(
+fun AppDaySelector(
     selectedDate: LocalDate,
     today: LocalDate,
     onPreviousClick: () -> Unit,
@@ -51,7 +48,7 @@ fun DiaryDateSelector(
     var showDatePicker by remember { mutableStateOf(false) }
     val locale = LocalConfiguration.current.locales[0]
     val datePattern = stringResource(R.string.date_format_short)
-    val weekdayPattern = stringResource(R.string.diary_weekday_format)
+    val weekdayPattern = stringResource(R.string.common_weekday_format)
     val isToday = selectedDate == today
     val previousEnabled = enabled &&
             (minDate == null || selectedDate.isAfter(minDate))
@@ -62,9 +59,8 @@ fun DiaryDateSelector(
         modifier = modifier
             .fillMaxWidth()
             .heightIn(min = MaterialTheme.dimensions.textFieldHeight),
+        variant = AppCardVariant.SUBTLE,
         shape = MaterialTheme.shapes.large,
-        containerColor = MaterialTheme.healthColors.subtleContainer,
-        contentColor = MaterialTheme.healthColors.onSubtleContainer,
         contentPadding = PaddingValues(0.dp),
     ) {
         Row(
@@ -147,7 +143,7 @@ fun DiaryDateSelector(
                                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                             ) {
                                 Text(
-                                    text = stringResource(R.string.diary_read_only),
+                                    text = stringResource(R.string.common_read_only),
                                     modifier = Modifier.padding(
                                         horizontal = MaterialTheme.dimensions.spacingSmall,
                                         vertical = MaterialTheme.dimensions.spacingExtraSmall,

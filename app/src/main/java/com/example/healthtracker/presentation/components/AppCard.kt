@@ -15,16 +15,45 @@ import androidx.compose.ui.unit.dp
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 
+enum class AppCardVariant {
+    ELEVATED,
+    OUTLINED,
+    SUBTLE,
+}
+
 @Composable
 fun AppCard(
     modifier: Modifier = Modifier,
+    variant: AppCardVariant = AppCardVariant.ELEVATED,
     shape: Shape = MaterialTheme.shapes.medium,
-    containerColor: Color = MaterialTheme.healthColors.cardContainer,
-    contentColor: Color = MaterialTheme.healthColors.onCardContainer,
+    containerColor: Color = when (variant) {
+        AppCardVariant.ELEVATED,
+        AppCardVariant.OUTLINED -> MaterialTheme.healthColors.cardContainer
+
+        AppCardVariant.SUBTLE -> MaterialTheme.healthColors.subtleContainer
+    },
+    contentColor: Color = when (variant) {
+        AppCardVariant.ELEVATED,
+        AppCardVariant.OUTLINED -> MaterialTheme.healthColors.onCardContainer
+
+        AppCardVariant.SUBTLE -> MaterialTheme.healthColors.onSubtleContainer
+    },
     contentPadding: PaddingValues = PaddingValues(MaterialTheme.dimensions.cardPadding),
     tonalElevation: Dp = 0.dp,
-    shadowElevation: Dp = MaterialTheme.dimensions.cardElevation,
-    border: BorderStroke? = null,
+    shadowElevation: Dp = when (variant) {
+        AppCardVariant.ELEVATED -> MaterialTheme.dimensions.cardElevation
+        AppCardVariant.OUTLINED,
+        AppCardVariant.SUBTLE -> 0.dp
+    },
+    border: BorderStroke? = when (variant) {
+        AppCardVariant.OUTLINED -> BorderStroke(
+            width = MaterialTheme.dimensions.dividerThickness,
+            color = MaterialTheme.colorScheme.outlineVariant,
+        )
+
+        AppCardVariant.ELEVATED,
+        AppCardVariant.SUBTLE -> null
+    },
     content: @Composable () -> Unit,
 ) {
     Surface(

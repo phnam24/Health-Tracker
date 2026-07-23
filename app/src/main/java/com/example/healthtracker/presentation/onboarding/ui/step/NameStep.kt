@@ -33,7 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.AppTextField
-import com.example.healthtracker.presentation.components.DescriptionText
+import com.example.healthtracker.presentation.components.FeatureHeader
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
@@ -121,8 +121,8 @@ fun NameStepInputField(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center
     ) {
-        DescriptionText(
-            label = stringResource(R.string.onboarding_name_label),
+        FeatureHeader(
+            title = stringResource(R.string.onboarding_name_label),
             description = stringResource(R.string.onboarding_name_description)
         )
 

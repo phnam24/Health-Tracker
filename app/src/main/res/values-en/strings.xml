@@ -149,6 +149,8 @@
     <string name="common_previous_day">Previous day</string>
     <string name="common_next_day">Next day</string>
     <string name="common_select_date">Select date</string>
+    <string name="common_weekday_format">EEEE</string>
+    <string name="common_read_only">Read only</string>
     <string name="common_no_data">No data yet</string>
 
     <!-- Dashboard -->
@@ -196,12 +198,10 @@
 
     <!-- Diary -->
     <string name="diary_title">Meal diary</string>
-    <string name="diary_weekday_format">EEEE</string>
     <string name="diary_day_total">Total calories consumed</string>
     <string name="diary_food_count_value">%1$d food items</string>
     <string name="diary_meal_count_value">%1$d meals</string>
     <string name="cd_diary_total_summary">%1$d kilocalories consumed from %2$d food items across %3$d meals</string>
-    <string name="diary_read_only">Read only</string>
     <string name="meal_breakfast">Breakfast</string>
     <string name="meal_lunch">Lunch</string>
     <string name="meal_dinner">Dinner</string>

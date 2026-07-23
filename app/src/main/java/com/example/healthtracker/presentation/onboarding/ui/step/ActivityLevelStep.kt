@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.ActivityLevel
 import com.example.healthtracker.domain.model.OnboardingField
-import com.example.healthtracker.presentation.components.DescriptionText
+import com.example.healthtracker.presentation.components.FeatureHeader
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.getUiData
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
@@ -30,8 +30,8 @@ fun ActivityLevelStep(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center
     ) {
-        DescriptionText(
-            label = stringResource(R.string.onboarding_activity_title),
+        FeatureHeader(
+            title = stringResource(R.string.onboarding_activity_title),
             description = stringResource(R.string.onboarding_activity_description)
         )
 

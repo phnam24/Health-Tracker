@@ -25,7 +25,7 @@ import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.Gender
 import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.AppDatePickerField
-import com.example.healthtracker.presentation.components.DescriptionText
+import com.example.healthtracker.presentation.components.FeatureHeader
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
@@ -42,8 +42,8 @@ fun PersonalInfoStep(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center
     ) {
-        DescriptionText(
-            label = stringResource(R.string.onboarding_personal_info_title),
+        FeatureHeader(
+            title = stringResource(R.string.onboarding_personal_info_title),
             description = stringResource(R.string.onboarding_personal_info_description)
         )
 
@@ -123,8 +123,8 @@ fun GenderSelectSession(
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        DescriptionText(
-            label = stringResource(R.string.onboarding_gender_label),
+        FeatureHeader(
+            title = stringResource(R.string.onboarding_gender_label),
             description = stringResource(R.string.onboarding_gender_description)
         )
 

@@ -21,7 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.Goal
 import com.example.healthtracker.domain.model.OnboardingField
-import com.example.healthtracker.presentation.components.DescriptionText
+import com.example.healthtracker.presentation.components.FeatureHeader
 import com.example.healthtracker.presentation.components.OptionCard
 import com.example.healthtracker.presentation.onboarding.getUiData
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
@@ -40,8 +40,8 @@ fun GoalStep(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        DescriptionText(
-            label = stringResource(R.string.onboarding_goal_title),
+        FeatureHeader(
+            title = stringResource(R.string.onboarding_goal_title),
             description = stringResource(R.string.onboarding_goal_description)
         )
 

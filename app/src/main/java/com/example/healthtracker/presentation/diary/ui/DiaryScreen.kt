@@ -11,9 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ErrorOutline
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
@@ -32,11 +30,13 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DiaryDay
+import com.example.healthtracker.presentation.components.AppDaySelector
 import com.example.healthtracker.presentation.components.AppTopBar
+import com.example.healthtracker.presentation.components.ScreenLoadingState
+import com.example.healthtracker.presentation.components.ScreenMessageState
 import com.example.healthtracker.presentation.diary.state.DiaryUiState
 import com.example.healthtracker.presentation.diary.ui.components.CaloriesSummaryCard
 import com.example.healthtracker.presentation.diary.ui.components.DiaryAddFoodSheet
-import com.example.healthtracker.presentation.diary.ui.components.DiaryDateSelector
 import com.example.healthtracker.presentation.diary.ui.components.DiaryMealSection
 import com.example.healthtracker.presentation.diary.viewmodel.DiaryEffect
 import com.example.healthtracker.presentation.diary.viewmodel.DiaryEvent
@@ -122,13 +122,23 @@ fun DiaryScreen(
 
             when {
                 uiState.isLoading && day == null -> {
-                    DiaryLoadingState(modifier = Modifier.weight(1f))
+                    ScreenLoadingState(modifier = Modifier.weight(1f))
                 }
 
                 uiState.loadFailed && day == null -> {
-                    DiaryLoadFailedState(
-                        onRetry = { onEvent(DiaryEvent.RetryClicked) },
-                        modifier = Modifier.weight(1f),
+                    ScreenMessageState(
+                        icon = Icons.Outlined.ErrorOutline,
+                        title = stringResource(R.string.diary_load_failed),
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(MaterialTheme.dimensions.screenPadding),
+                        action = {
+                            TextButton(
+                                onClick = { onEvent(DiaryEvent.RetryClicked) },
+                            ) {
+                                Text(stringResource(R.string.common_retry))
+                            }
+                        },
                     )
                 }
 
@@ -173,7 +183,7 @@ private fun DiaryContent(
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.cardSpacing)
     ) {
         item(key = "date-selector") {
-            DiaryDateSelector(
+            AppDaySelector(
                 selectedDate = day.date,
                 today = today,
                 onPreviousClick = { onEvent(DiaryEvent.PreviousDayClicked) },
@@ -207,44 +217,6 @@ private fun DiaryContent(
 
         item(key = "bottom-space") {
             Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingExtraSmall))
-        }
-    }
-}
-
-@Composable
-private fun DiaryLoadingState(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator()
-    }
-}
-
-@Composable
-private fun DiaryLoadFailedState(
-    onRetry: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(MaterialTheme.dimensions.screenPadding),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
-        ) {
-            Icon(
-                imageVector = Icons.Outlined.ErrorOutline,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Text(stringResource(R.string.diary_load_failed))
-            TextButton(onClick = onRetry) {
-                Text(stringResource(R.string.common_retry))
-            }
         }
     }
 }

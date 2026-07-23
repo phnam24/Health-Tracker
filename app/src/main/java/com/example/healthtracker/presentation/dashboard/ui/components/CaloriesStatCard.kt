@@ -4,11 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -16,12 +16,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Balance
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Lightbulb
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,6 +30,8 @@ import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailyAdvice
 import com.example.healthtracker.domain.model.DailyAdviceType
 import com.example.healthtracker.domain.model.DailySummary
+import com.example.healthtracker.presentation.components.AppCard
+import com.example.healthtracker.presentation.components.AppCardVariant
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 import kotlin.math.abs
@@ -41,16 +41,14 @@ fun CaloriesStatCard(
     dailySummary: DailySummary,
     dailyAdvice: DailyAdvice
 ) {
-    OutlinedCard(
+    AppCard(
         modifier = Modifier.fillMaxWidth(),
+        variant = AppCardVariant.OUTLINED,
         shape = MaterialTheme.shapes.large,
-        colors = CardDefaults.outlinedCardColors(
-            containerColor = MaterialTheme.healthColors.cardContainer,
-            contentColor = MaterialTheme.healthColors.onCardContainer,
-        ),
+        containerColor = MaterialTheme.healthColors.cardContainer,
+        contentColor = MaterialTheme.healthColors.onCardContainer,
     ) {
         Column(
-            modifier = Modifier.padding(MaterialTheme.dimensions.spacingLarge),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
         ) {
             CaloriesStatCardHeader()
@@ -232,17 +230,15 @@ fun CaloriesStatAdvice(
             )
         }
 
-        OutlinedCard(
+        AppCard(
+            variant = AppCardVariant.OUTLINED,
             shape = MaterialTheme.shapes.large,
-            colors = CardDefaults.outlinedCardColors(
-                containerColor = adviceContainerColor,
-                contentColor = adviceContentColor,
-            ),
+            containerColor = adviceContainerColor,
+            contentColor = adviceContentColor,
+            contentPadding = PaddingValues(MaterialTheme.dimensions.spacingSmall),
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(MaterialTheme.dimensions.spacingSmall),
+                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(

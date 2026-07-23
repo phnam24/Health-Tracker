@@ -36,7 +36,7 @@ import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.BmiCategory
 import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.AppTextField
-import com.example.healthtracker.presentation.components.DescriptionText
+import com.example.healthtracker.presentation.components.FeatureHeader
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
 import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
@@ -52,8 +52,8 @@ fun BodyMetricsStep(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center
     ) {
-        DescriptionText(
-            label = stringResource(R.string.onboarding_body_metrics_title),
+        FeatureHeader(
+            title = stringResource(R.string.onboarding_body_metrics_title),
             description = stringResource(R.string.onboarding_body_metrics_description)
         )
 
