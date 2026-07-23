@@ -22,6 +22,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,10 +48,10 @@ import java.time.LocalDate
 
 @Composable
 fun DiaryRoute(
-    viewModel: DiaryViewModel = hiltViewModel()
+    viewModel: DiaryViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val snackbarHostState = androidx.compose.runtime.remember { SnackbarHostState() }
+    val snackbarHostState = remember { SnackbarHostState() }
     val deletedMessage by rememberUpdatedState(stringResource(R.string.diary_entry_deleted))
     val undoLabel by rememberUpdatedState(stringResource(R.string.common_undo))
     val addFailedMessage by rememberUpdatedState(stringResource(R.string.add_food_failed))
@@ -71,7 +72,7 @@ fun DiaryRoute(
                         message = deletedMessage,
                         actionLabel = undoLabel,
                         withDismissAction = true,
-                        duration = SnackbarDuration.Long
+                        duration = SnackbarDuration.Long,
                     )
                     if (result == SnackbarResult.ActionPerformed) {
                         viewModel.onEvent(DiaryEvent.UndoDeleteClicked(effect.entry))
@@ -99,7 +100,7 @@ fun DiaryRoute(
     DiaryScreen(
         uiState = uiState,
         snackbarHostState = snackbarHostState,
-        onEvent = viewModel::onEvent
+        onEvent = viewModel::onEvent,
     )
 }
 
@@ -117,7 +118,7 @@ fun DiaryScreen(
         Column(modifier = Modifier.fillMaxSize()) {
             AppTopBar(
                 title = stringResource(R.string.diary_title),
-                windowInsets = WindowInsets(0)
+                windowInsets = WindowInsets(0),
             )
 
             when {
@@ -174,13 +175,13 @@ private fun DiaryContent(
     today: LocalDate,
     isMutating: Boolean,
     onEvent: (DiaryEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
             .padding(horizontal = MaterialTheme.dimensions.screenPadding),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.cardSpacing)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.cardSpacing),
     ) {
         item(key = "date-selector") {
             AppDaySelector(
@@ -190,8 +191,8 @@ private fun DiaryContent(
                 onNextClick = { onEvent(DiaryEvent.NextDayClicked) },
                 onDateSelected = { onEvent(DiaryEvent.DateSelected(it)) },
                 modifier = Modifier.padding(
-                    top = MaterialTheme.dimensions.spacingExtraSmall
-                )
+                    top = MaterialTheme.dimensions.spacingExtraSmall,
+                ),
             )
         }
 
@@ -210,7 +211,7 @@ private fun DiaryContent(
                     },
                     onDelete = {
                         onEvent(DiaryEvent.DeleteEntryClicked(it))
-                    }
+                    },
                 )
             }
         }

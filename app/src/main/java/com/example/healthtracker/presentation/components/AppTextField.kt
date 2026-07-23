@@ -17,8 +17,8 @@ import com.example.healthtracker.presentation.theme.dimensions
 fun AppTextField(
     value: String,
     onValueChange: (String) -> Unit,
-    label: String? = null,
     modifier: Modifier = Modifier,
+    label: String? = null,
     placeholder: String? = null,
     leadingIcon: ImageVector? = null,
     supportingText: String? = null,
@@ -60,7 +60,7 @@ fun AppTextField(
                     imageVector = it,
                     contentDescription = null,
                     modifier = Modifier.size(
-                        MaterialTheme.dimensions.standardIconSize
+                        MaterialTheme.dimensions.standardIconSize,
                     ),
                 )
             }

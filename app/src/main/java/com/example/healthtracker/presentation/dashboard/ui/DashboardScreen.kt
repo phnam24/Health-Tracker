@@ -36,7 +36,7 @@ import com.example.healthtracker.presentation.dashboard.ui.components.CaloriesPr
 import com.example.healthtracker.presentation.dashboard.ui.components.CaloriesStatCard
 import com.example.healthtracker.presentation.dashboard.ui.components.CaloriesSummaryRow
 import com.example.healthtracker.presentation.dashboard.ui.components.DashboardHeader
-import com.example.healthtracker.presentation.dashboard.ui.components.DashboardQuickActionSession
+import com.example.healthtracker.presentation.dashboard.ui.components.DashboardQuickActionSection
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardEffect
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardEvent
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardViewModel
@@ -47,7 +47,7 @@ import com.example.healthtracker.presentation.theme.dimensions
 fun DashboardRoute(
     onDiaryNavigate: () -> Unit,
     onActivityNavigate: () -> Unit,
-    viewModel: DashboardViewModel = hiltViewModel()
+    viewModel: DashboardViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -62,32 +62,36 @@ fun DashboardRoute(
 
     DashboardScreen(
         uiState = uiState,
-        onEvent = viewModel::onEvent
+        onEvent = viewModel::onEvent,
     )
 }
 
 @Composable
 fun DashboardScreen(
     uiState: DashboardUiState,
-    onEvent: (DashboardEvent) -> Unit
+    onEvent: (DashboardEvent) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val summary = uiState.summary
     val advice = uiState.advice
 
     when {
         uiState.isLoading -> ScreenLoadingState(
+            modifier = modifier.fillMaxSize(),
             message = stringResource(R.string.common_loading),
         )
         uiState.loadFailed -> DashboardLoadFailedState(
-            onRetryClick = { onEvent(DashboardEvent.RetryClicked) }
+            onRetryClick = { onEvent(DashboardEvent.RetryClicked) },
+            modifier = modifier,
         )
 
-        summary == null || advice == null -> DashboardProfileMissingState()
+        summary == null || advice == null -> DashboardProfileMissingState(modifier = modifier)
         else -> DashboardContent(
             userName = uiState.userName,
             summary = summary,
             advice = advice,
-            onEvent = onEvent
+            onEvent = onEvent,
+            modifier = modifier,
         )
     }
 }
@@ -97,47 +101,49 @@ private fun DashboardContent(
     userName: String,
     summary: DailySummary,
     advice: DailyAdvice,
-    onEvent: (DashboardEvent) -> Unit
+    onEvent: (DashboardEvent) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val scrollState = rememberScrollState()
     val locale = LocalConfiguration.current.locales[0]
     val datePattern = stringResource(R.string.dashboard_date_format)
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
             .padding(MaterialTheme.dimensions.spacingLarge),
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         DashboardHeader(
             userName = userName,
             dateString = summary.date.toLocalizedDateString(datePattern, locale),
         )
 
-        DashboardCaloriesStatSession(
+        DashboardCaloriesStatSection(
             dailySummary = summary,
-            dailyAdvice = advice
+            dailyAdvice = advice,
         )
 
-        DashboardQuickActionSession(
+        DashboardQuickActionSection(
             onAddMealClick = { onEvent(DashboardEvent.AddMealClicked) },
-            onAddActivityClick = { onEvent(DashboardEvent.AddActivityClicked) }
+            onAddActivityClick = { onEvent(DashboardEvent.AddActivityClicked) },
         )
     }
 }
 
 @Composable
 private fun DashboardLoadFailedState(
-    onRetryClick: () -> Unit
+    onRetryClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     ScreenMessageState(
         icon = Icons.Outlined.ErrorOutline,
         title = stringResource(R.string.dashboard_load_failed),
         titleColor = MaterialTheme.colorScheme.onSurfaceVariant,
         titleStyle = MaterialTheme.typography.titleMedium,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(MaterialTheme.dimensions.screenPadding),
         action = {
@@ -149,13 +155,15 @@ private fun DashboardLoadFailedState(
 }
 
 @Composable
-private fun DashboardProfileMissingState() {
+private fun DashboardProfileMissingState(
+    modifier: Modifier = Modifier,
+) {
     ScreenMessageState(
         icon = Icons.Outlined.PersonOff,
         title = stringResource(R.string.dashboard_profile_missing_title),
         message = stringResource(R.string.dashboard_profile_missing_message),
         titleColor = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(MaterialTheme.dimensions.screenPadding),
         titleStyle = MaterialTheme.typography.titleMedium,
@@ -163,26 +171,26 @@ private fun DashboardProfileMissingState() {
 }
 
 @Composable
-fun DashboardCaloriesStatSession(
+private fun DashboardCaloriesStatSection(
     dailySummary: DailySummary,
-    dailyAdvice: DailyAdvice
+    dailyAdvice: DailyAdvice,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         CaloriesProgressCircle(
-            dailySummary = dailySummary
+            dailySummary = dailySummary,
         )
 
         CaloriesSummaryRow(
-            dailySummary = dailySummary
+            dailySummary = dailySummary,
         )
 
         CaloriesStatCard(
             dailySummary = dailySummary,
-            dailyAdvice = dailyAdvice
+            dailyAdvice = dailyAdvice,
         )
     }
 }
@@ -194,7 +202,7 @@ private fun DashboardLoadingPreview() {
         Surface(modifier = Modifier.fillMaxSize()) {
             DashboardScreen(
                 uiState = DashboardUiState(isLoading = true),
-                onEvent = { }
+                onEvent = { },
             )
         }
     }
@@ -210,7 +218,7 @@ private fun DashboardLoadFailedPreview() {
                     isLoading = false,
                     loadFailed = true,
                 ),
-                onEvent = { }
+                onEvent = { },
             )
         }
     }

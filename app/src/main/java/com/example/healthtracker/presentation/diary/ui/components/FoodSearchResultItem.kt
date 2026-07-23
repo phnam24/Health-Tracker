@@ -39,7 +39,7 @@ fun FoodSearchResultItem(
     enabled: Boolean = true,
 ) {
     val displayName = food.localizedName(
-        LocalConfiguration.current.locales[0].language
+        LocalConfiguration.current.locales[0].language,
     )
     AppCard(
         modifier = modifier
@@ -59,7 +59,7 @@ fun FoodSearchResultItem(
                     vertical = MaterialTheme.dimensions.spacingSmall,
                 ),
             horizontalArrangement = Arrangement.spacedBy(
-                MaterialTheme.dimensions.spacingMedium
+                MaterialTheme.dimensions.spacingMedium,
             ),
             verticalAlignment = Alignment.CenterVertically,
         ) {

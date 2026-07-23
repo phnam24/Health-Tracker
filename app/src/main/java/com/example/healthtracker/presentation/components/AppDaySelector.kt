@@ -43,7 +43,7 @@ fun AppDaySelector(
     onDateSelected: (LocalDate) -> Unit,
     modifier: Modifier = Modifier,
     minDate: LocalDate? = null,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     var showDatePicker by remember { mutableStateOf(false) }
     val locale = LocalConfiguration.current.locales[0]
@@ -69,11 +69,11 @@ fun AppDaySelector(
                 .heightIn(min = MaterialTheme.dimensions.textFieldHeight)
                 .padding(horizontal = MaterialTheme.dimensions.spacingExtraSmall),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             IconButton(
                 enabled = previousEnabled,
-                onClick = onPreviousClick
+                onClick = onPreviousClick,
             ) {
                 Icon(
                     imageVector = Icons.Outlined.ChevronLeft,
@@ -82,7 +82,7 @@ fun AppDaySelector(
                         MaterialTheme.colorScheme.primary
                     } else {
                         MaterialTheme.colorScheme.onSurfaceVariant
-                    }
+                    },
                 )
             }
 
@@ -91,23 +91,23 @@ fun AppDaySelector(
                 onClick = { showDatePicker = true },
                 modifier = Modifier.semantics {
                     contentDescription = openDatePickerDescription
-                }
+                },
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(
-                        MaterialTheme.dimensions.spacingSmall
-                    )
+                        MaterialTheme.dimensions.spacingSmall,
+                    ),
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.CalendarMonth,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
+                        tint = MaterialTheme.colorScheme.onSurface,
                     )
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.spacedBy(
-                            MaterialTheme.dimensions.spacingExtraSmall
+                            MaterialTheme.dimensions.spacingExtraSmall,
                         ),
                     ) {
                         Row(
@@ -119,11 +119,11 @@ fun AppDaySelector(
                                     text = "${
                                         selectedDate.toLocalizedDateString(
                                             weekdayPattern,
-                                            locale
+                                            locale,
                                         )
                                     }, ",
                                     style = MaterialTheme.typography.titleMedium,
-                                    color = MaterialTheme.colorScheme.onSurface
+                                    color = MaterialTheme.colorScheme.onSurface,
                                 )
                             }
                             Text(
@@ -133,7 +133,7 @@ fun AppDaySelector(
                                     selectedDate.toLocalizedDateString(datePattern, locale)
                                 },
                                 style = MaterialTheme.typography.titleMedium,
-                                color = MaterialTheme.colorScheme.onSurface
+                                color = MaterialTheme.colorScheme.onSurface,
                             )
                         }
                         if (!isToday) {
@@ -158,11 +158,11 @@ fun AppDaySelector(
 
             IconButton(
                 enabled = nextEnabled,
-                onClick = onNextClick
+                onClick = onNextClick,
             ) {
                 Icon(
                     imageVector = Icons.Outlined.ChevronRight,
-                    contentDescription = stringResource(R.string.cd_next_day)
+                    contentDescription = stringResource(R.string.cd_next_day),
                 )
             }
         }
@@ -174,6 +174,6 @@ fun AppDaySelector(
         minDate = minDate,
         maxDate = today,
         onDateSelected = onDateSelected,
-        onDismissRequest = { showDatePicker = false }
+        onDismissRequest = { showDatePicker = false },
     )
 }

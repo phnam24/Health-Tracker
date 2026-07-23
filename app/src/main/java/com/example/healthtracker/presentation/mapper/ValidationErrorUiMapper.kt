@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.onboarding
+package com.example.healthtracker.presentation.mapper
 
 import androidx.annotation.StringRes
 import com.example.healthtracker.R

@@ -57,7 +57,7 @@ fun ActivityEntryList(
                 if (index != entries.lastIndex) {
                     HorizontalDivider(
                         modifier = Modifier.padding(
-                            start = MaterialTheme.dimensions.activityEntryDividerInset
+                            start = MaterialTheme.dimensions.activityEntryDividerInset,
                         ),
                         color = MaterialTheme.colorScheme.outlineVariant,
                     )
@@ -76,7 +76,7 @@ private fun ActivityEntryRow(
     modifier: Modifier = Modifier,
 ) {
     val displayName = entry.localizedName(
-        LocalConfiguration.current.locales[0].language
+        LocalConfiguration.current.locales[0].language,
     )
     val rowDescription = stringResource(
         R.string.cd_activity_entry,

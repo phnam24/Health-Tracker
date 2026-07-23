@@ -37,8 +37,8 @@ import com.example.healthtracker.domain.model.BmiCategory
 import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.AppTextField
 import com.example.healthtracker.presentation.components.FeatureHeader
+import com.example.healthtracker.presentation.mapper.toStringRes
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
-import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
@@ -46,43 +46,43 @@ import com.example.healthtracker.presentation.theme.healthColors
 @Composable
 fun BodyMetricsStep(
     uiState: OnboardingUiState,
-    onEvent: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         FeatureHeader(
             title = stringResource(R.string.onboarding_body_metrics_title),
-            description = stringResource(R.string.onboarding_body_metrics_description)
+            description = stringResource(R.string.onboarding_body_metrics_description),
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
-        WeightInputSession(
+        WeightInputSection(
             uiState = uiState,
-            onEvent = onEvent
+            onEvent = onEvent,
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
-        HeightInputSession(
+        HeightInputSection(
             uiState = uiState,
-            onEvent = onEvent
+            onEvent = onEvent,
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
-        BmiResultSession(
-            uiState = uiState
+        BmiResultSection(
+            uiState = uiState,
         )
     }
 }
 
 @Composable
-fun WeightInputSession(
+private fun WeightInputSection(
     uiState: OnboardingUiState,
-    onEvent: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit,
 ) {
     BodyMetricsInput(
         value = uiState.weightInput,
@@ -93,14 +93,14 @@ fun WeightInputSession(
         label = stringResource(R.string.onboarding_weight_label),
         unit = stringResource(R.string.unit_kilogram),
         leadingIcon = Icons.Default.MonitorWeight,
-        suggestions = listOf("50", "55", "60", "65", "70")
+        suggestions = listOf("50", "55", "60", "65", "70"),
     )
 }
 
 @Composable
-fun HeightInputSession(
+private fun HeightInputSection(
     uiState: OnboardingUiState,
-    onEvent: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit,
 ) {
     BodyMetricsInput(
         value = uiState.heightInput,
@@ -111,13 +111,13 @@ fun HeightInputSession(
         label = stringResource(R.string.onboarding_height_label),
         unit = stringResource(R.string.unit_centimeter),
         leadingIcon = Icons.Default.Straighten,
-        suggestions = listOf("150", "160", "165", "170", "175")
+        suggestions = listOf("150", "160", "165", "170", "175"),
     )
 }
 
 @Composable
-fun BmiResultSession(
-    uiState: OnboardingUiState
+private fun BmiResultSection(
+    uiState: OnboardingUiState,
 ) {
     Column(
         modifier = Modifier
@@ -125,25 +125,25 @@ fun BmiResultSession(
             .border(
                 width = MaterialTheme.dimensions.focusedBorderThickness,
                 shape = MaterialTheme.shapes.medium,
-                color = MaterialTheme.colorScheme.outline
+                color = MaterialTheme.colorScheme.outline,
             )
             .padding(MaterialTheme.dimensions.spacingMedium),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(
             text = stringResource(R.string.bmi_preview_title),
             style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = stringResource(R.string.bmi_value, uiState.bmiPreview?.value ?: 0.0),
-                style = MaterialTheme.typography.headlineLarge
+                style = MaterialTheme.typography.headlineLarge,
             )
 
             Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingMedium))
@@ -163,7 +163,7 @@ fun BmiResultSession(
                     BmiCategory.OVERWEIGHT -> MaterialTheme.healthColors.bmiOverweight
                     BmiCategory.OBESE -> MaterialTheme.healthColors.bmiObese
                     null -> MaterialTheme.colorScheme.onSurface
-                }
+                },
             )
         }
 
@@ -183,13 +183,13 @@ fun BmiResultSession(
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         BmiScaleBar(
-            bmi = uiState.bmiPreview?.value?.toFloat() ?: 10f
+            bmi = uiState.bmiPreview?.value?.toFloat() ?: 10f,
         )
     }
 }
 
 @Composable
-fun BodyMetricsInput(
+private fun BodyMetricsInput(
     value: String,
     errorText: String?,
     onValueChange: (String) -> Unit,
@@ -197,11 +197,11 @@ fun BodyMetricsInput(
     unit: String,
     leadingIcon: ImageVector,
     suggestions: List<String>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         AppTextField(
             value = value,
@@ -212,19 +212,19 @@ fun BodyMetricsInput(
                 Text(
                     text = unit,
                     style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             },
             isError = !errorText.isNullOrBlank(),
             supportingText = errorText,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium),
         ) {
             suggestions.forEach { suggestion ->
                 Box(
@@ -235,12 +235,12 @@ fun BodyMetricsInput(
                         .border(
                             width = MaterialTheme.dimensions.dividerThickness,
                             shape = MaterialTheme.shapes.medium,
-                            color = MaterialTheme.colorScheme.outline
+                            color = MaterialTheme.colorScheme.outline,
                         )
                         .clickable {
                             onValueChange(suggestion)
                         },
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Text(text = suggestion)
                 }
@@ -250,9 +250,9 @@ fun BodyMetricsInput(
 }
 
 @Composable
-fun BmiScaleBar(
+private fun BmiScaleBar(
     bmi: Float,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val gradientColors = listOf(
         MaterialTheme.healthColors.bmiUnderweight,
@@ -267,7 +267,7 @@ fun BmiScaleBar(
     val percentage = ((bmi - minBmi) / (maxBmi - minBmi)).coerceIn(0f, 1f)
 
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     ) {
         BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
             val indicatorOffset = (maxWidth * percentage) - MaterialTheme.dimensions.spacingMedium
@@ -278,7 +278,7 @@ fun BmiScaleBar(
                 tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .size(MaterialTheme.dimensions.spacingDoubleExtraLarge)
-                    .offset(x = indicatorOffset)
+                    .offset(x = indicatorOffset),
             )
         }
 
@@ -287,7 +287,7 @@ fun BmiScaleBar(
                 .fillMaxWidth()
                 .height(MaterialTheme.dimensions.spacingSmall)
                 .clip(CircleShape)
-                .background(Brush.horizontalGradient(gradientColors))
+                .background(Brush.horizontalGradient(gradientColors)),
         )
     }
 }

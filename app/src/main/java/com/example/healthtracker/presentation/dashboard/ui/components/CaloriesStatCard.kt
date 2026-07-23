@@ -39,7 +39,7 @@ import kotlin.math.abs
 @Composable
 fun CaloriesStatCard(
     dailySummary: DailySummary,
-    dailyAdvice: DailyAdvice
+    dailyAdvice: DailyAdvice,
 ) {
     AppCard(
         modifier = Modifier.fillMaxWidth(),
@@ -49,21 +49,21 @@ fun CaloriesStatCard(
         contentColor = MaterialTheme.healthColors.onCardContainer,
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium),
         ) {
             CaloriesStatCardHeader()
 
             HorizontalDivider()
 
             CaloriesStatEatenPercent(
-                dailySummary = dailySummary
+                dailySummary = dailySummary,
             )
 
             HorizontalDivider()
 
             CaloriesStatAdvice(
                 dailySummary = dailySummary,
-                dailyAdvice = dailyAdvice
+                dailyAdvice = dailyAdvice,
             )
         }
 
@@ -72,9 +72,9 @@ fun CaloriesStatCard(
 
 
 @Composable
-fun CaloriesStatCardHeader() {
+private fun CaloriesStatCardHeader() {
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
             modifier = Modifier
@@ -83,13 +83,13 @@ fun CaloriesStatCardHeader() {
                     color = MaterialTheme.healthColors.neutralIconContainer,
                     shape = CircleShape,
                 ),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             Icon(
                 imageVector = Icons.Filled.BarChart,
                 contentDescription = null,
                 tint = MaterialTheme.healthColors.onNeutralIconContainer,
-                modifier = Modifier.size(MaterialTheme.dimensions.spacingMediumLarge)
+                modifier = Modifier.size(MaterialTheme.dimensions.spacingMediumLarge),
             )
         }
 
@@ -98,14 +98,14 @@ fun CaloriesStatCardHeader() {
         Text(
             text = stringResource(R.string.dashboard_analysis_title),
             style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
         )
     }
 }
 
 @Composable
-fun CaloriesStatEatenPercent(
-    dailySummary: DailySummary
+private fun CaloriesStatEatenPercent(
+    dailySummary: DailySummary,
 ) {
     val progress = dailySummary.toCalorieProgressUi()
     val progressColor = if (progress.isOverGoal) {
@@ -116,20 +116,20 @@ fun CaloriesStatEatenPercent(
 
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = stringResource(
                     R.string.dashboard_percentage_value,
-                    progress.percentage
+                    progress.percentage,
                 ),
                 style = MaterialTheme.typography.headlineMedium,
                 color = progressColor,
-                modifier = Modifier.alignByBaseline()
+                modifier = Modifier.alignByBaseline(),
             )
 
             Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingExtraSmall))
@@ -138,12 +138,12 @@ fun CaloriesStatEatenPercent(
                 text = stringResource(R.string.dashboard_goal_progress),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.alignByBaseline()
+                modifier = Modifier.alignByBaseline(),
             )
         }
 
         Box(
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             LinearProgressIndicator(
                 progress = { 1f },
@@ -160,16 +160,16 @@ fun CaloriesStatEatenPercent(
                     .height(MaterialTheme.dimensions.spacingSmall),
                 color = progressColor,
                 trackColor = MaterialTheme.healthColors.transparent,
-                strokeCap = StrokeCap.Round
+                strokeCap = StrokeCap.Round,
             )
         }
     }
 }
 
 @Composable
-fun CaloriesStatAdvice(
+private fun CaloriesStatAdvice(
     dailySummary: DailySummary,
-    dailyAdvice: DailyAdvice
+    dailyAdvice: DailyAdvice,
 ) {
     val adviceContainerColor = if (dailyAdvice.type == DailyAdviceType.OVER) {
         MaterialTheme.healthColors.warningContainer
@@ -184,11 +184,11 @@ fun CaloriesStatAdvice(
 
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
                 imageVector = Icons.Default.Balance,
@@ -203,7 +203,7 @@ fun CaloriesStatAdvice(
                 Text(
                     text = stringResource(R.string.dashboard_energy_balance),
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
 
                 Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingExtraSmall))
@@ -214,7 +214,7 @@ fun CaloriesStatAdvice(
                     else if (dailySummary.balanceCalories > 0) stringResource(R.string.dashboard_balance_positive)
                     else stringResource(R.string.dashboard_balance_negative),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
 
@@ -223,7 +223,7 @@ fun CaloriesStatAdvice(
             Text(
                 text = stringResource(
                     R.string.dashboard_balance_signed_value,
-                    dailySummary.balanceCalories
+                    dailySummary.balanceCalories,
                 ),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
@@ -239,7 +239,7 @@ fun CaloriesStatAdvice(
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     imageVector = Icons.Default.Lightbulb,
@@ -254,13 +254,13 @@ fun CaloriesStatAdvice(
                     text = when (dailyAdvice.type) {
                         DailyAdviceType.NEED_MORE -> stringResource(
                             R.string.dashboard_advice_need_more,
-                            abs(dailyAdvice.differenceCalories)
+                            abs(dailyAdvice.differenceCalories),
                         )
 
                         DailyAdviceType.ON_TARGET -> stringResource(R.string.dashboard_advice_on_target)
                         DailyAdviceType.OVER -> stringResource(
                             R.string.dashboard_advice_over,
-                            abs(dailyAdvice.differenceCalories)
+                            abs(dailyAdvice.differenceCalories),
                         )
                     },
                     style = MaterialTheme.typography.bodyMedium,

@@ -29,7 +29,9 @@ import com.example.healthtracker.R
 import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(
+    modifier: Modifier = Modifier,
+) {
     var startAnimation by remember { mutableStateOf(false) }
 
     LaunchedEffect(key1 = true) {
@@ -39,28 +41,28 @@ fun SplashScreen() {
     val alphaAnimation by animateFloatAsState(
         targetValue = if (startAnimation) 1f else 0f,
         animationSpec = tween(
-            durationMillis = 1500
+            durationMillis = 1500,
         ),
-        label = "fade_in"
+        label = "fade_in",
     )
 
     val primaryContainer = MaterialTheme.colorScheme.primaryContainer
     val background = MaterialTheme.colorScheme.background
     val gradientBrush = remember(primaryContainer, background) {
         Brush.verticalGradient(
-            colors = listOf(primaryContainer, background)
+            colors = listOf(primaryContainer, background),
         )
     }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(brush = gradientBrush),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.alpha(alphaAnimation)
+            modifier = Modifier.alpha(alphaAnimation),
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_healthtracker_logo),
@@ -74,7 +76,7 @@ fun SplashScreen() {
             Text(
                 text = "Health Tracker",
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onBackground
+                color = MaterialTheme.colorScheme.onBackground,
             )
 
             Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingLarge))
@@ -82,7 +84,7 @@ fun SplashScreen() {
             Text(
                 text = stringResource(R.string.splash_tagline),
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
 
@@ -93,7 +95,7 @@ fun SplashScreen() {
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = MaterialTheme.dimensions.splashVersionBottomPadding)
-                .alpha(alphaAnimation)
+                .alpha(alphaAnimation),
         )
     }
 }

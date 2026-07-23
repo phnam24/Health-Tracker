@@ -34,8 +34,8 @@ import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.AppTextField
 import com.example.healthtracker.presentation.components.FeatureHeader
+import com.example.healthtracker.presentation.mapper.toStringRes
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
-import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
@@ -43,11 +43,11 @@ import com.example.healthtracker.presentation.theme.healthColors
 @Composable
 fun NameStep(
     uiState: OnboardingUiState,
-    onEvent: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         NameStepHeader()
 
@@ -59,29 +59,29 @@ fun NameStep(
 
         NameStepInputField(
             uiState = uiState,
-            onEvent = onEvent
+            onEvent = onEvent,
         )
     }
 }
 
 @Composable
-fun NameStepHeader() {
+private fun NameStepHeader() {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Box(
                 modifier = Modifier
                     .size(MaterialTheme.dimensions.splashLogoSize)
                     .clip(CircleShape)
                     .background(MaterialTheme.colorScheme.primaryContainer),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 Icon(
                     painterResource(R.drawable.ic_healthtracker_logo),
@@ -97,7 +97,7 @@ fun NameStepHeader() {
         Text(
             text = stringResource(R.string.onboarding_welcome_title),
             style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.onBackground
+            color = MaterialTheme.colorScheme.onBackground,
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingSmall))
@@ -107,23 +107,23 @@ fun NameStepHeader() {
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 2,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
     }
 }
 
 @Composable
-fun NameStepInputField(
+private fun NameStepInputField(
     uiState: OnboardingUiState,
-    onEvent: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         FeatureHeader(
             title = stringResource(R.string.onboarding_name_label),
-            description = stringResource(R.string.onboarding_name_description)
+            description = stringResource(R.string.onboarding_name_description),
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMedium))
@@ -137,31 +137,33 @@ fun NameStepInputField(
             placeholder = stringResource(R.string.onboarding_name_placeholder),
             leadingIcon = Icons.Default.Person,
             isError = uiState.errors.isNotEmpty(),
-            supportingText = uiState.errors[OnboardingField.NAME]?.let { stringResource(it.toStringRes()) }
+            supportingText = uiState.errors[OnboardingField.NAME]?.let {
+                stringResource(it.toStringRes())
+            },
         )
     }
 }
 
 @Composable
-fun ActivityColumn() {
+private fun ActivityColumn() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .border(
                 shape = MaterialTheme.shapes.medium,
                 width = MaterialTheme.dimensions.dividerThickness,
-                color = MaterialTheme.colorScheme.outline
+                color = MaterialTheme.colorScheme.outline,
             )
             .background(
                 color = MaterialTheme.healthColors.cardContainer,
                 shape = MaterialTheme.shapes.medium,
             ),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         ActivityRowIcon(
             label = stringResource(R.string.onboarding_benefit_tracking_title),
             description = stringResource(R.string.onboarding_benefit_tracking_description),
-            icon = Icons.AutoMirrored.Filled.MenuBook
+            icon = Icons.AutoMirrored.Filled.MenuBook,
         )
 
         HorizontalDivider(
@@ -172,7 +174,7 @@ fun ActivityColumn() {
         ActivityRowIcon(
             label = stringResource(R.string.onboarding_benefit_insight_title),
             description = stringResource(R.string.onboarding_benefit_insight_description),
-            icon = Icons.Filled.CoPresent
+            icon = Icons.Filled.CoPresent,
         )
 
         HorizontalDivider(
@@ -183,30 +185,30 @@ fun ActivityColumn() {
         ActivityRowIcon(
             label = stringResource(R.string.onboarding_benefit_goal_title),
             description = stringResource(R.string.onboarding_benefit_goal_description),
-            icon = Icons.Filled.TrackChanges
+            icon = Icons.Filled.TrackChanges,
         )
     }
 }
 
 @Composable
-fun ActivityRowIcon(
+private fun ActivityRowIcon(
     label: String,
     description: String,
-    icon: ImageVector
+    icon: ImageVector,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(MaterialTheme.dimensions.spacingMedium),
         horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
             modifier = Modifier
                 .size(MaterialTheme.dimensions.optionIconContainerSize)
                 .clip(CircleShape)
                 .background(MaterialTheme.healthColors.neutralIconContainer),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             Icon(
                 imageVector = icon,
@@ -219,7 +221,7 @@ fun ActivityRowIcon(
         Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingSmall))
 
         Column(
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             Text(
                 text = label,
@@ -233,7 +235,7 @@ fun ActivityRowIcon(
                 text = description,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 2
+                maxLines = 2,
             )
         }
     }

@@ -44,10 +44,10 @@ import com.example.healthtracker.domain.model.OnboardingValidationError
 import com.example.healthtracker.domain.model.OnboardingPolicy
 import com.example.healthtracker.presentation.components.AppDatePickerField
 import com.example.healthtracker.presentation.components.AppTextField
-import com.example.healthtracker.presentation.onboarding.getUiData
-import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.editprofile.state.EditProfileUiState
 import com.example.healthtracker.presentation.editprofile.viewmodel.EditProfileEvent
+import com.example.healthtracker.presentation.mapper.toOptionUiData
+import com.example.healthtracker.presentation.mapper.toStringRes
 import com.example.healthtracker.presentation.theme.dimensions
 import java.time.LocalDate
 
@@ -244,7 +244,7 @@ private fun ActivityLevelDropdown(
 ) {
     var expanded by rememberSaveable { mutableStateOf(false) }
     val interactionSource = remember { MutableInteractionSource() }
-    val selectedData = selected?.getUiData()
+    val selectedData = selected?.toOptionUiData()
 
     Column(verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall)) {
         EditProfileFieldLabel(text = stringResource(R.string.edit_profile_activity_level))
@@ -283,7 +283,7 @@ private fun ActivityLevelDropdown(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 ActivityLevel.entries.forEach { level ->
-                    val uiData = level.getUiData()
+                    val uiData = level.toOptionUiData()
                     DropdownMenuItem(
                         text = {
                             Column {

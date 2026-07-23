@@ -27,8 +27,8 @@ import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.AppDatePickerField
 import com.example.healthtracker.presentation.components.FeatureHeader
 import com.example.healthtracker.presentation.components.OptionCard
+import com.example.healthtracker.presentation.mapper.toStringRes
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
-import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
@@ -36,40 +36,40 @@ import com.example.healthtracker.presentation.theme.healthColors
 @Composable
 fun PersonalInfoStep(
     uiState: OnboardingUiState,
-    onEvent: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         FeatureHeader(
             title = stringResource(R.string.onboarding_personal_info_title),
-            description = stringResource(R.string.onboarding_personal_info_description)
+            description = stringResource(R.string.onboarding_personal_info_description),
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
-        DatePickerSession(
+        BirthDateSection(
             uiState = uiState,
-            onDateSelected = onEvent
+            onDateSelected = onEvent,
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
-        GenderSelectSession(
+        GenderSelectionSection(
             uiState = uiState,
-            onGenderSelected = onEvent
+            onGenderSelected = onEvent,
         )
     }
 }
 
 @Composable
-fun DatePickerSession(
+private fun BirthDateSection(
     uiState: OnboardingUiState,
     onDateSelected: (OnboardingEvent) -> Unit,
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         AppDatePickerField(
             value = uiState.birthDate,
@@ -93,10 +93,10 @@ fun DatePickerSession(
                     .border(
                         width = MaterialTheme.dimensions.dividerThickness,
                         shape = MaterialTheme.shapes.medium,
-                        color = MaterialTheme.colorScheme.outline
+                        color = MaterialTheme.colorScheme.outline,
                     )
                     .padding(MaterialTheme.dimensions.spacingMediumLarge),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     imageVector = Icons.Default.Cake,
@@ -116,30 +116,30 @@ fun DatePickerSession(
 }
 
 @Composable
-fun GenderSelectSession(
+private fun GenderSelectionSection(
     uiState: OnboardingUiState,
-    onGenderSelected: (OnboardingEvent) -> Unit
+    onGenderSelected: (OnboardingEvent) -> Unit,
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         FeatureHeader(
             title = stringResource(R.string.onboarding_gender_label),
-            description = stringResource(R.string.onboarding_gender_description)
+            description = stringResource(R.string.onboarding_gender_description),
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMedium))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             OptionCard(
                 title = stringResource(R.string.gender_male),
                 icon = Icons.Default.Male,
                 selected = uiState.gender == Gender.MALE,
                 onClick = { onGenderSelected(OnboardingEvent.GenderSelected(Gender.MALE)) },
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             )
 
             Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingSmall))
@@ -149,7 +149,7 @@ fun GenderSelectSession(
                 icon = Icons.Default.Female,
                 selected = uiState.gender == Gender.FEMALE,
                 onClick = { onGenderSelected(OnboardingEvent.GenderSelected(Gender.FEMALE)) },
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             )
         }
 
@@ -159,7 +159,7 @@ fun GenderSelectSession(
             Text(
                 text = stringResource(it.toStringRes()),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.error
+                color = MaterialTheme.colorScheme.error,
             )
         }
     }

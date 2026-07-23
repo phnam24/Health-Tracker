@@ -71,7 +71,7 @@ fun DiaryMealSection(
                     modifier = Modifier.weight(1f),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(
-                        MaterialTheme.dimensions.spacingMedium
+                        MaterialTheme.dimensions.spacingMedium,
                     ),
                 ) {
                     MealTypeIcon(mealType = section.type)
@@ -109,7 +109,7 @@ fun DiaryMealSection(
                     Text(
                         text = stringResource(R.string.diary_empty_meal),
                         modifier = Modifier.padding(
-                            start = MaterialTheme.dimensions.spacingSmall
+                            start = MaterialTheme.dimensions.spacingSmall,
                         ),
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -186,7 +186,7 @@ fun DiaryMealSection(
 }
 
 @Composable
-fun MealTypeIcon(
+private fun MealTypeIcon(
     mealType: MealType,
     modifier: Modifier = Modifier,
 ) {

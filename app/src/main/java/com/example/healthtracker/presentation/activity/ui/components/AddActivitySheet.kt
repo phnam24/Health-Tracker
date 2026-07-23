@@ -149,7 +149,7 @@ private fun ActivityTypeSearchContent(
 
         when {
             state.searchFailed -> SearchFailure(
-                onRetry = { onEvent(ActivityEvent.RetrySearchClicked) }
+                onRetry = { onEvent(ActivityEvent.RetrySearchClicked) },
             )
 
             state.isSearching && state.types.isEmpty() -> Box(
@@ -176,7 +176,7 @@ private fun ActivityTypeSearchContent(
                 if (state.isSearching) {
                     item(key = "search-progress") {
                         LinearProgressIndicator(
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
                         )
                     }
                 }
@@ -198,7 +198,7 @@ private fun ActivityTypeRow(
     modifier: Modifier = Modifier,
 ) {
     val displayName = type.localizedName(
-        LocalConfiguration.current.locales[0].language
+        LocalConfiguration.current.locales[0].language,
     )
     Row(
         modifier = modifier
@@ -251,7 +251,7 @@ private fun ActivityDurationEditor(
 ) {
     val type = requireNotNull(state.selectedType)
     val displayName = type.localizedName(
-        LocalConfiguration.current.locales[0].language
+        LocalConfiguration.current.locales[0].language,
     )
     val errorText = activityDurationErrorText(state.durationError)
 

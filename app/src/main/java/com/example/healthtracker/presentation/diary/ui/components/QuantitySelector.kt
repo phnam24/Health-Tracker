@@ -46,7 +46,7 @@ fun QuantitySelector(
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(
-                MaterialTheme.dimensions.spacingSmall
+                MaterialTheme.dimensions.spacingSmall,
             ),
             verticalAlignment = Alignment.CenterVertically,
         ) {

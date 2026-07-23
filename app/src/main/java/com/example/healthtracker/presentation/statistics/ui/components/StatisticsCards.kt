@@ -144,7 +144,7 @@ fun StatisticsWeeklySummary(
 }
 
 @Composable
-fun WeeklyStatCard(
+private fun WeeklyStatCard(
     label: String,
     value: String,
     supportingText: String?,
@@ -210,7 +210,7 @@ fun WeeklyTrendCard(
 }
 
 @Composable
-fun WeeklyIntakeBarChart(
+private fun WeeklyIntakeBarChart(
     points: List<DailyCaloriePoint>,
     modifier: Modifier = Modifier,
 ) {
@@ -250,7 +250,7 @@ fun WeeklyIntakeBarChart(
         modifier = modifier
             .fillMaxWidth()
             .height(chartHeight)
-            .semantics { contentDescription = description }
+            .semantics { contentDescription = description },
     ) {
         val canvasWidth = size.width
         val canvasHeight = size.height
@@ -311,7 +311,7 @@ fun WeeklyIntakeBarChart(
                         text = valueText,
                         style = valueTextStyle.copy(
                             color = if (isToday) valueTodayColor else valuePastColor,
-                            fontWeight = if (isToday) FontWeight.Bold else FontWeight.Medium
+                            fontWeight = if (isToday) FontWeight.Bold else FontWeight.Medium,
                         ),
                     )
                     drawText(
@@ -345,7 +345,7 @@ fun WeeklyIntakeBarChart(
 }
 
 @Composable
-fun WeeklyTrendLineChart(
+private fun WeeklyTrendLineChart(
     points: List<DailyCaloriePoint>,
     modifier: Modifier = Modifier,
 ) {
@@ -395,7 +395,7 @@ fun WeeklyTrendLineChart(
         Canvas(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(chartHeight)
+                .height(chartHeight),
         ) {
             val canvasWidth = size.width
             val canvasHeight = size.height

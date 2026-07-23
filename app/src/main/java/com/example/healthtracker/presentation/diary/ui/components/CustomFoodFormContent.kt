@@ -35,11 +35,11 @@ fun CustomFoodFormContent(
     val form = state.customForm ?: return
     val nameError = form.errors[CustomFoodField.NAME]?.message(CustomFoodField.NAME)
     val caloriesError = form.errors[CustomFoodField.CALORIES]?.message(
-        CustomFoodField.CALORIES
+        CustomFoodField.CALORIES,
     )
     val unitError = form.errors[CustomFoodField.UNIT]?.message(CustomFoodField.UNIT)
     val quantityError = form.errors[CustomFoodField.QUANTITY]?.message(
-        CustomFoodField.QUANTITY
+        CustomFoodField.QUANTITY,
     )
     val caloriesPerUnit = form.caloriesInput.trim().toIntOrNull()
 

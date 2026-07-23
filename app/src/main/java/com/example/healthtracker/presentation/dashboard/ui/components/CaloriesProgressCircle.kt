@@ -21,16 +21,16 @@ import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun CaloriesProgressCircle(
-    dailySummary: DailySummary
+    dailySummary: DailySummary,
 ) {
     val progress = dailySummary.toCalorieProgressUi()
 
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
     ) {
         Box(
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             CircularProgressIndicator(
                 progress = { 1f },
@@ -49,28 +49,28 @@ fun CaloriesProgressCircle(
                 },
                 strokeWidth = MaterialTheme.dimensions.calorieRingStrokeWidth,
                 trackColor = MaterialTheme.healthColors.transparent,
-                strokeCap = StrokeCap.Round
+                strokeCap = StrokeCap.Round,
             )
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingExtraSmall),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
                     text = dailySummary.remainingCalories.toString(),
-                    style = MaterialTheme.typography.headlineLarge
+                    style = MaterialTheme.typography.headlineLarge,
                 )
 
                 Text(
                     text = stringResource(R.string.dashboard_remaining),
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
 
                 Text(
                     text = stringResource(R.string.common_kcal),
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }

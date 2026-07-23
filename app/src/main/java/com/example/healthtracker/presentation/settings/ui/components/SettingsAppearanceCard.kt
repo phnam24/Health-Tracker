@@ -255,7 +255,7 @@ private fun ThemeMode.label(): String = stringResource(
         ThemeMode.LIGHT -> R.string.settings_theme_light
         ThemeMode.DARK -> R.string.settings_theme_dark
         ThemeMode.SYSTEM -> R.string.settings_theme_system
-    }
+    },
 )
 
 @Composable
@@ -265,7 +265,7 @@ private fun ThemePalette.label(): String = stringResource(
         ThemePalette.TEAL -> R.string.settings_palette_teal
         ThemePalette.INDIGO -> R.string.settings_palette_indigo
         ThemePalette.VIOLET -> R.string.settings_palette_violet
-    }
+    },
 )
 
 @Composable
@@ -274,7 +274,7 @@ private fun AppFontScale.label(): String = stringResource(
         AppFontScale.SMALL -> R.string.settings_font_small
         AppFontScale.MEDIUM -> R.string.settings_font_medium
         AppFontScale.LARGE -> R.string.settings_font_large
-    }
+    },
 )
 
 @Composable

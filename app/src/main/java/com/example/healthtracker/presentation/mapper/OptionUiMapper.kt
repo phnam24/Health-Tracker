@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.onboarding
+package com.example.healthtracker.presentation.mapper
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -15,58 +15,58 @@ import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.ActivityLevel
 import com.example.healthtracker.domain.model.Goal
 
-data class OnboardingOptionUiData(
+data class OptionUiData(
     @StringRes val titleRes: Int,
     @StringRes val descriptionRes: Int,
     val icon: ImageVector,
 )
 
-fun ActivityLevel.getUiData(): OnboardingOptionUiData = when (this) {
-    ActivityLevel.SEDENTARY -> OnboardingOptionUiData(
+fun ActivityLevel.toOptionUiData(): OptionUiData = when (this) {
+    ActivityLevel.SEDENTARY -> OptionUiData(
         titleRes = R.string.activity_sedentary_title,
         descriptionRes = R.string.activity_sedentary_description,
         icon = Icons.Filled.AirlineSeatReclineNormal,
     )
 
-    ActivityLevel.LIGHT -> OnboardingOptionUiData(
+    ActivityLevel.LIGHT -> OptionUiData(
         titleRes = R.string.activity_light_title,
         descriptionRes = R.string.activity_light_description,
         icon = Icons.AutoMirrored.Filled.DirectionsWalk,
     )
 
-    ActivityLevel.MODERATE -> OnboardingOptionUiData(
+    ActivityLevel.MODERATE -> OptionUiData(
         titleRes = R.string.activity_moderate_title,
         descriptionRes = R.string.activity_moderate_description,
         icon = Icons.AutoMirrored.Filled.DirectionsRun,
     )
 
-    ActivityLevel.ACTIVE -> OnboardingOptionUiData(
+    ActivityLevel.ACTIVE -> OptionUiData(
         titleRes = R.string.activity_active_title,
         descriptionRes = R.string.activity_active_description,
         icon = Icons.Filled.FitnessCenter,
     )
 
-    ActivityLevel.VERY_ACTIVE -> OnboardingOptionUiData(
+    ActivityLevel.VERY_ACTIVE -> OptionUiData(
         titleRes = R.string.activity_very_active_title,
         descriptionRes = R.string.activity_very_active_description,
         icon = Icons.Filled.Whatshot,
     )
 }
 
-fun Goal.getUiData(): OnboardingOptionUiData = when (this) {
-    Goal.LOSE -> OnboardingOptionUiData(
+fun Goal.toOptionUiData(): OptionUiData = when (this) {
+    Goal.LOSE -> OptionUiData(
         titleRes = R.string.goal_lose_weight_title,
         descriptionRes = R.string.goal_lose_weight_description,
         icon = Icons.AutoMirrored.Filled.TrendingDown,
     )
 
-    Goal.MAINTAIN -> OnboardingOptionUiData(
+    Goal.MAINTAIN -> OptionUiData(
         titleRes = R.string.goal_maintain_weight_title,
         descriptionRes = R.string.goal_maintain_weight_description,
         icon = Icons.AutoMirrored.Filled.TrendingFlat,
     )
 
-    Goal.GAIN -> OnboardingOptionUiData(
+    Goal.GAIN -> OptionUiData(
         titleRes = R.string.goal_gain_weight_title,
         descriptionRes = R.string.goal_gain_weight_description,
         icon = Icons.AutoMirrored.Filled.TrendingUp,

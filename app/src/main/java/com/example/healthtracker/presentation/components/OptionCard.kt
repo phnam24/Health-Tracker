@@ -84,7 +84,7 @@ fun OptionCard(
                                 MaterialTheme.colorScheme.primary
                             } else {
                                 MaterialTheme.healthColors.neutralIconContainer
-                            }
+                            },
                         ),
                     contentAlignment = Alignment.Center,
                 ) {
@@ -97,7 +97,7 @@ fun OptionCard(
                             MaterialTheme.healthColors.onNeutralIconContainer
                         },
                         modifier = Modifier.size(
-                            MaterialTheme.dimensions.standardIconSize
+                            MaterialTheme.dimensions.standardIconSize,
                         ),
                     )
                 }

@@ -97,17 +97,13 @@ fun EditProfileRoute(
         uiState = uiState,
         snackbarHostState = snackbarHostState,
         onEvent = viewModel::onEvent,
+        showDiscardDialog = showDiscardDialog,
+        onKeepEditing = { showDiscardDialog = false },
+        onDiscard = {
+            showDiscardDialog = false
+            viewModel.onEvent(EditProfileEvent.DiscardConfirmed)
+        },
     )
-
-    if (showDiscardDialog) {
-        EditProfileDiscardDialog(
-            onKeepEditing = { showDiscardDialog = false },
-            onDiscard = {
-                showDiscardDialog = false
-                viewModel.onEvent(EditProfileEvent.DiscardConfirmed)
-            },
-        )
-    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -116,6 +112,9 @@ fun EditProfileScreen(
     uiState: EditProfileUiState,
     snackbarHostState: SnackbarHostState,
     onEvent: (EditProfileEvent) -> Unit,
+    showDiscardDialog: Boolean,
+    onKeepEditing: () -> Unit,
+    onDiscard: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val savingDescription = stringResource(R.string.edit_profile_saving)
@@ -182,6 +181,13 @@ fun EditProfileScreen(
                 }
             }
         }
+    }
+
+    if (showDiscardDialog) {
+        EditProfileDiscardDialog(
+            onKeepEditing = onKeepEditing,
+            onDiscard = onDiscard,
+        )
     }
 }
 

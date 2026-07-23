@@ -30,21 +30,21 @@ import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
 fun CaloriesSummaryRow(
-    dailySummary: DailySummary
+    dailySummary: DailySummary,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
             .padding(MaterialTheme.dimensions.spacingSmall),
-        horizontalArrangement = Arrangement.SpaceAround
+        horizontalArrangement = Arrangement.SpaceAround,
     ) {
         CaloriesRowItem(
             title = stringResource(R.string.dashboard_goal),
             value = dailySummary.goalCalories,
             icon = Icons.Filled.GolfCourse,
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
 
         VerticalDivider(
@@ -52,8 +52,8 @@ fun CaloriesSummaryRow(
                 .fillMaxHeight()
                 .padding(
                     horizontal = MaterialTheme.dimensions.spacingMediumLarge,
-                    vertical = MaterialTheme.dimensions.spacingSmall
-                )
+                    vertical = MaterialTheme.dimensions.spacingSmall,
+                ),
         )
 
         CaloriesRowItem(
@@ -61,7 +61,7 @@ fun CaloriesSummaryRow(
             value = dailySummary.eatenCalories,
             icon = Icons.Filled.Restaurant,
             tint = MaterialTheme.healthColors.caloriesConsumed,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
 
         VerticalDivider(
@@ -69,8 +69,8 @@ fun CaloriesSummaryRow(
                 .fillMaxHeight()
                 .padding(
                     horizontal = MaterialTheme.dimensions.spacingMediumLarge,
-                    vertical = MaterialTheme.dimensions.spacingSmall
-                )
+                    vertical = MaterialTheme.dimensions.spacingSmall,
+                ),
         )
 
         CaloriesRowItem(
@@ -78,40 +78,41 @@ fun CaloriesSummaryRow(
             value = dailySummary.burnedCalories,
             icon = Icons.Filled.LocalFireDepartment,
             tint = MaterialTheme.healthColors.caloriesBurned,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
     }
 }
 
 @Composable
-fun CaloriesRowItem(
+private fun CaloriesRowItem(
     title: String,
     value: Int,
     icon: ImageVector,
     tint: Color,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingExtraSmall),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
             imageVector = icon,
             contentDescription = title,
             tint = tint,
-            modifier = Modifier.size(MaterialTheme.dimensions.largeIconSize)
+            modifier = Modifier.size(MaterialTheme.dimensions.largeIconSize),
         )
 
         Text(
             text = title,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
         Text(
             text = value.toString(),
             style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
         )
     }
 }

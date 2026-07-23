@@ -23,9 +23,9 @@ import com.example.healthtracker.domain.model.Goal
 import com.example.healthtracker.domain.model.OnboardingField
 import com.example.healthtracker.presentation.components.FeatureHeader
 import com.example.healthtracker.presentation.components.OptionCard
-import com.example.healthtracker.presentation.onboarding.getUiData
+import com.example.healthtracker.presentation.mapper.toOptionUiData
+import com.example.healthtracker.presentation.mapper.toStringRes
 import com.example.healthtracker.presentation.onboarding.state.OnboardingUiState
-import com.example.healthtracker.presentation.onboarding.toStringRes
 import com.example.healthtracker.presentation.onboarding.viewmodel.OnboardingEvent
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
@@ -33,25 +33,25 @@ import com.example.healthtracker.presentation.theme.healthColors
 @Composable
 fun GoalStep(
     uiState: OnboardingUiState,
-    onEvent: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         FeatureHeader(
             title = stringResource(R.string.onboarding_goal_title),
-            description = stringResource(R.string.onboarding_goal_description)
+            description = stringResource(R.string.onboarding_goal_description),
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
 
-        GoalSelectSession(
+        GoalSelectionSection(
             uiState = uiState,
             onEvent = { selectedGoal ->
                 onEvent(OnboardingEvent.GoalSelected(selectedGoal))
-            }
+            },
         )
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
@@ -61,13 +61,13 @@ fun GoalStep(
             Text(
                 text = stringResource(it.toStringRes()),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.error
+                color = MaterialTheme.colorScheme.error,
             )
         }
 
         uiState.tdeePreview?.let {
-            TdeeResultSession(
-                uiState = uiState
+            TdeeResultSection(
+                uiState = uiState,
             )
 
             Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingMediumLarge))
@@ -78,23 +78,23 @@ fun GoalStep(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(MaterialTheme.dimensions.spacingMedium)
+                modifier = Modifier.padding(MaterialTheme.dimensions.spacingMedium),
             )
         }
     }
 }
 
 @Composable
-fun GoalSelectSession(
+private fun GoalSelectionSection(
     uiState: OnboardingUiState,
-    onEvent: (Goal) -> Unit
+    onEvent: (Goal) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingSmall),
     ) {
         Goal.entries.forEach { goal ->
-            val uiData = goal.getUiData()
+            val uiData = goal.toOptionUiData()
 
             OptionCard(
                 title = stringResource(id = uiData.titleRes),
@@ -108,8 +108,8 @@ fun GoalSelectSession(
 }
 
 @Composable
-fun TdeeResultSession(
-    uiState: OnboardingUiState
+private fun TdeeResultSection(
+    uiState: OnboardingUiState,
 ) {
     Column(
         modifier = Modifier
@@ -121,10 +121,10 @@ fun TdeeResultSession(
             .border(
                 width = MaterialTheme.dimensions.focusedBorderThickness,
                 shape = MaterialTheme.shapes.medium,
-                color = MaterialTheme.colorScheme.outline
+                color = MaterialTheme.colorScheme.outline,
             )
             .padding(MaterialTheme.dimensions.spacingMedium),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium),
     ) {
         Text(
             text = stringResource(R.string.tdee_preview_title),
@@ -133,11 +133,11 @@ fun TdeeResultSession(
         )
 
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = uiState.tdeePreview?.target.toString(),
-                style = MaterialTheme.typography.headlineLarge
+                style = MaterialTheme.typography.headlineLarge,
             )
 
             Spacer(modifier = Modifier.width(MaterialTheme.dimensions.spacingSmall))
@@ -145,7 +145,7 @@ fun TdeeResultSession(
             Text(
                 text = stringResource(R.string.calories_per_day_unit),
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
 
@@ -153,12 +153,12 @@ fun TdeeResultSession(
 
         CaloriesInfoRow(
             label = stringResource(R.string.tdee_bmr_label),
-            value = stringResource(R.string.calories_value, uiState.tdeePreview?.bmr ?: 0)
+            value = stringResource(R.string.calories_value, uiState.tdeePreview?.bmr ?: 0),
         )
 
         CaloriesInfoRow(
             label = stringResource(R.string.tdee_maintenance_label),
-            value = stringResource(R.string.calories_value, uiState.tdeePreview?.tdee ?: 0)
+            value = stringResource(R.string.calories_value, uiState.tdeePreview?.tdee ?: 0),
         )
 
         CaloriesInfoRow(
@@ -166,30 +166,30 @@ fun TdeeResultSession(
             value = when (uiState.goal) {
                 Goal.LOSE -> stringResource(
                     R.string.calories_adjustment_negative,
-                    uiState.tdeePreview?.goalAdjustment ?: 0
+                    uiState.tdeePreview?.goalAdjustment ?: 0,
                 )
 
                 Goal.MAINTAIN -> stringResource(R.string.calories_adjustment_none)
                 Goal.GAIN -> stringResource(
                     R.string.calories_adjustment_positive,
-                    uiState.tdeePreview?.goalAdjustment ?: 0
+                    uiState.tdeePreview?.goalAdjustment ?: 0,
                 )
 
                 else -> stringResource(R.string.calories_adjustment_none)
-            }
+            },
         )
     }
 }
 
 @Composable
-fun CaloriesInfoRow(
+private fun CaloriesInfoRow(
     label: String,
-    value: String
+    value: String,
 ) {
     Row {
         Text(
             text = label,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyMedium,
         )
 
         Spacer(modifier = Modifier.weight(1f))
@@ -197,7 +197,7 @@ fun CaloriesInfoRow(
         Text(
             text = value,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }
