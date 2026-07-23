@@ -23,7 +23,7 @@ import com.example.healthtracker.presentation.theme.healthColors
 
 enum class AppTopBarAlignment {
     START,
-    CENTER
+    CENTER,
 }
 
 @Immutable
@@ -31,7 +31,7 @@ data class AppTopBarNavigation(
     val icon: ImageVector,
     val contentDescription: String,
     val onClick: () -> Unit,
-    val enabled: Boolean = true
+    val enabled: Boolean = true,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,7 +49,7 @@ fun AppTopBar(
         containerColor = MaterialTheme.colorScheme.background,
         scrolledContainerColor = MaterialTheme.healthColors.cardContainer,
     ),
-    actions: @Composable RowScope.() -> Unit = {}
+    actions: @Composable RowScope.() -> Unit = {},
 ) {
     val titleContent: @Composable () -> Unit = {
         Column {
@@ -57,7 +57,7 @@ fun AppTopBar(
                 text = title,
                 maxLines = titleMaxLines,
                 overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
             )
             if (subtitle != null) {
                 Text(
@@ -65,7 +65,7 @@ fun AppTopBar(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
@@ -74,11 +74,11 @@ fun AppTopBar(
         if (navigation != null) {
             IconButton(
                 onClick = navigation.onClick,
-                enabled = navigation.enabled
+                enabled = navigation.enabled,
             ) {
                 Icon(
                     imageVector = navigation.icon,
-                    contentDescription = navigation.contentDescription
+                    contentDescription = navigation.contentDescription,
                 )
             }
         }
@@ -112,17 +112,17 @@ fun AppTopBarIconAction(
     icon: ImageVector,
     contentDescription: String,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    modifier: Modifier = Modifier
 ) {
     IconButton(
         onClick = onClick,
         enabled = enabled,
-        modifier = modifier
+        modifier = modifier,
     ) {
         Icon(
             imageVector = icon,
-            contentDescription = contentDescription
+            contentDescription = contentDescription,
         )
     }
 }
@@ -131,18 +131,18 @@ fun AppTopBarIconAction(
 fun AppTopBarTextAction(
     text: String,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    modifier: Modifier = Modifier
 ) {
     TextButton(
         onClick = onClick,
         enabled = enabled,
-        modifier = modifier
+        modifier = modifier,
     ) {
         Text(
             text = text,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Ellipsis,
         )
     }
 }

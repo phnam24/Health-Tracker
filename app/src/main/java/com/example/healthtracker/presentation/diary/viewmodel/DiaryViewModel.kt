@@ -2,6 +2,7 @@ package com.example.healthtracker.presentation.diary.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.healthtracker.core.time.currentDateFlow
 import com.example.healthtracker.domain.model.AddCustomFoodInput
 import com.example.healthtracker.domain.model.AddCustomFoodResult
 import com.example.healthtracker.domain.model.AddMealError
@@ -97,14 +98,16 @@ class DiaryViewModel @Inject constructor(
     private val clock: Clock
 ) : ViewModel() {
 
-    private val selectedDate = MutableStateFlow(LocalDate.now(clock))
+    private val initialToday = LocalDate.now(clock)
+    private val currentDate = MutableStateFlow(initialToday)
+    private val selectedDate = MutableStateFlow(initialToday)
     private val retryTrigger = MutableStateFlow(0)
     private val searchQuery = MutableStateFlow<String?>(null)
     private val searchRetryTrigger = MutableStateFlow(0)
 
     private val _uiState = MutableStateFlow(
         DiaryUiState(
-            today = LocalDate.now(clock),
+            today = currentDate.value,
             selectedDate = selectedDate.value
         )
     )
@@ -114,6 +117,7 @@ class DiaryViewModel @Inject constructor(
     val effects: Flow<DiaryEffect> = _effects.receiveAsFlow()
 
     init {
+        observeCurrentDate()
         observeSelectedDay()
         observeFoodSearch()
     }
@@ -195,6 +199,34 @@ class DiaryViewModel @Inject constructor(
                         )
                     }
                 }
+        }
+    }
+
+    private fun observeCurrentDate() {
+        viewModelScope.launch {
+            currentDateFlow(clock).collect { newToday ->
+                val previousToday = currentDate.value
+                if (newToday == previousToday) return@collect
+
+                currentDate.value = newToday
+                val wasViewingToday = selectedDate.value == previousToday
+                if (wasViewingToday) {
+                    searchQuery.value = null
+                    _uiState.update {
+                        it.copy(
+                            today = newToday,
+                            selectedDate = newToday,
+                            day = null,
+                            isLoading = true,
+                            loadFailed = false,
+                            addFoodSheet = null,
+                        )
+                    }
+                    selectedDate.value = newToday
+                } else {
+                    _uiState.update { it.copy(today = newToday) }
+                }
+            }
         }
     }
 

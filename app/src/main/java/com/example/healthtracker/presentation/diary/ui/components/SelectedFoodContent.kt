@@ -40,7 +40,7 @@ fun SelectedFoodContent(
 ) {
     val food = state.selectedFood ?: return
     val displayName = food.localizedName(
-        LocalConfiguration.current.locales[0].language
+        LocalConfiguration.current.locales[0].language,
     )
     val quantityError = state.quantityError?.message()
     val mealName = stringResource(state.targetMeal.titleRes())
@@ -60,7 +60,7 @@ fun SelectedFoodContent(
         ) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(
-                    MaterialTheme.dimensions.spacingMedium
+                    MaterialTheme.dimensions.spacingMedium,
                 ),
                 verticalAlignment = Alignment.CenterVertically,
             ) {

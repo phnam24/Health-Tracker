@@ -11,9 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ErrorOutline
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
@@ -24,6 +22,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,11 +31,13 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DiaryDay
+import com.example.healthtracker.presentation.components.AppDaySelector
 import com.example.healthtracker.presentation.components.AppTopBar
+import com.example.healthtracker.presentation.components.ScreenLoadingState
+import com.example.healthtracker.presentation.components.ScreenMessageState
 import com.example.healthtracker.presentation.diary.state.DiaryUiState
 import com.example.healthtracker.presentation.diary.ui.components.CaloriesSummaryCard
 import com.example.healthtracker.presentation.diary.ui.components.DiaryAddFoodSheet
-import com.example.healthtracker.presentation.diary.ui.components.DiaryDateSelector
 import com.example.healthtracker.presentation.diary.ui.components.DiaryMealSection
 import com.example.healthtracker.presentation.diary.viewmodel.DiaryEffect
 import com.example.healthtracker.presentation.diary.viewmodel.DiaryEvent
@@ -47,10 +48,10 @@ import java.time.LocalDate
 
 @Composable
 fun DiaryRoute(
-    viewModel: DiaryViewModel = hiltViewModel()
+    viewModel: DiaryViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    val snackbarHostState = androidx.compose.runtime.remember { SnackbarHostState() }
+    val snackbarHostState = remember { SnackbarHostState() }
     val deletedMessage by rememberUpdatedState(stringResource(R.string.diary_entry_deleted))
     val undoLabel by rememberUpdatedState(stringResource(R.string.common_undo))
     val addFailedMessage by rememberUpdatedState(stringResource(R.string.add_food_failed))
@@ -71,7 +72,7 @@ fun DiaryRoute(
                         message = deletedMessage,
                         actionLabel = undoLabel,
                         withDismissAction = true,
-                        duration = SnackbarDuration.Long
+                        duration = SnackbarDuration.Long,
                     )
                     if (result == SnackbarResult.ActionPerformed) {
                         viewModel.onEvent(DiaryEvent.UndoDeleteClicked(effect.entry))
@@ -99,7 +100,7 @@ fun DiaryRoute(
     DiaryScreen(
         uiState = uiState,
         snackbarHostState = snackbarHostState,
-        onEvent = viewModel::onEvent
+        onEvent = viewModel::onEvent,
     )
 }
 
@@ -117,18 +118,28 @@ fun DiaryScreen(
         Column(modifier = Modifier.fillMaxSize()) {
             AppTopBar(
                 title = stringResource(R.string.diary_title),
-                windowInsets = WindowInsets(0)
+                windowInsets = WindowInsets(0),
             )
 
             when {
                 uiState.isLoading && day == null -> {
-                    DiaryLoadingState(modifier = Modifier.weight(1f))
+                    ScreenLoadingState(modifier = Modifier.weight(1f))
                 }
 
                 uiState.loadFailed && day == null -> {
-                    DiaryLoadFailedState(
-                        onRetry = { onEvent(DiaryEvent.RetryClicked) },
-                        modifier = Modifier.weight(1f),
+                    ScreenMessageState(
+                        icon = Icons.Outlined.ErrorOutline,
+                        title = stringResource(R.string.diary_load_failed),
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(MaterialTheme.dimensions.screenPadding),
+                        action = {
+                            TextButton(
+                                onClick = { onEvent(DiaryEvent.RetryClicked) },
+                            ) {
+                                Text(stringResource(R.string.common_retry))
+                            }
+                        },
                     )
                 }
 
@@ -164,24 +175,24 @@ private fun DiaryContent(
     today: LocalDate,
     isMutating: Boolean,
     onEvent: (DiaryEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
             .padding(horizontal = MaterialTheme.dimensions.screenPadding),
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.cardSpacing)
+        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.cardSpacing),
     ) {
         item(key = "date-selector") {
-            DiaryDateSelector(
+            AppDaySelector(
                 selectedDate = day.date,
                 today = today,
                 onPreviousClick = { onEvent(DiaryEvent.PreviousDayClicked) },
                 onNextClick = { onEvent(DiaryEvent.NextDayClicked) },
                 onDateSelected = { onEvent(DiaryEvent.DateSelected(it)) },
                 modifier = Modifier.padding(
-                    top = MaterialTheme.dimensions.spacingExtraSmall
-                )
+                    top = MaterialTheme.dimensions.spacingExtraSmall,
+                ),
             )
         }
 
@@ -200,51 +211,13 @@ private fun DiaryContent(
                     },
                     onDelete = {
                         onEvent(DiaryEvent.DeleteEntryClicked(it))
-                    }
+                    },
                 )
             }
         }
 
         item(key = "bottom-space") {
             Spacer(modifier = Modifier.height(MaterialTheme.dimensions.spacingExtraSmall))
-        }
-    }
-}
-
-@Composable
-private fun DiaryLoadingState(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator()
-    }
-}
-
-@Composable
-private fun DiaryLoadFailedState(
-    onRetry: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(MaterialTheme.dimensions.screenPadding),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium)
-        ) {
-            Icon(
-                imageVector = Icons.Outlined.ErrorOutline,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Text(stringResource(R.string.diary_load_failed))
-            TextButton(onClick = onRetry) {
-                Text(stringResource(R.string.common_retry))
-            }
         }
     }
 }

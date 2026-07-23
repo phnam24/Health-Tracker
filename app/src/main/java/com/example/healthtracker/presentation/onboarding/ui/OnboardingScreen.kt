@@ -51,7 +51,7 @@ import com.example.healthtracker.presentation.theme.dimensions
 @Composable
 fun OnboardingRoute(
     onCompleted: () -> Unit,
-    viewModel: OnboardingViewModel = hiltViewModel()
+    viewModel: OnboardingViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
@@ -70,7 +70,7 @@ fun OnboardingRoute(
     OnboardingScreen(
         uiState = uiState,
         snackbarHostState = snackbarHostState,
-        onEvent = viewModel::onEvent
+        onEvent = viewModel::onEvent,
     )
 }
 
@@ -78,33 +78,34 @@ fun OnboardingRoute(
 fun OnboardingScreen(
     uiState: OnboardingUiState,
     snackbarHostState: SnackbarHostState,
-    onEvent: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val scrollState = rememberScrollState()
 
     Scaffold(
+        modifier = modifier.fillMaxSize(),
         topBar = {
             OnboardingHeader(
                 current = uiState.currentStep.position,
                 total = OnboardingStep.entries.size,
                 showBack = !uiState.currentStep.isFirst,
-                onEvent = { onEvent(OnboardingEvent.BackClicked) }
+                onEvent = { onEvent(OnboardingEvent.BackClicked) },
             )
         },
-        snackbarHost = { SnackbarHost(snackbarHostState) }
+        snackbarHost = { SnackbarHost(snackbarHostState) },
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(scrollState)
                 .padding(paddingValues)
-                .imePadding()
+                .imePadding(),
         ) {
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .verticalScroll(rememberScrollState())
-                    .padding(horizontal = MaterialTheme.dimensions.spacingMediumLarge)
+                    .verticalScroll(scrollState)
+                    .padding(horizontal = MaterialTheme.dimensions.spacingMediumLarge),
             ) {
                 when (uiState.currentStep) {
                     OnboardingStep.NAME -> NameStep(uiState, onEvent)
@@ -118,30 +119,30 @@ fun OnboardingScreen(
             PrimaryButton(
                 text = stringResource(
                     if (uiState.currentStep.isLast) R.string.action_start
-                    else R.string.action_continue
+                    else R.string.action_continue,
                 ),
                 loading = uiState.isSaving,
                 enabled = !uiState.isSaving,
                 onClick = {
                     onEvent(
                         if (uiState.currentStep.isLast) OnboardingEvent.FinishClicked
-                        else OnboardingEvent.NextClicked
+                        else OnboardingEvent.NextClicked,
                     )
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(MaterialTheme.dimensions.spacingMediumLarge)
+                    .padding(MaterialTheme.dimensions.spacingMediumLarge),
             )
         }
     }
 }
 
 @Composable
-fun OnboardingHeader(
+private fun OnboardingHeader(
     current: Int,
     total: Int,
     showBack: Boolean = true,
-    onEvent: (OnboardingEvent) -> Unit
+    onEvent: (OnboardingEvent) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -152,12 +153,12 @@ fun OnboardingHeader(
             modifier = Modifier
                 .fillMaxWidth()
                 .defaultMinSize(minHeight = MaterialTheme.dimensions.spacingDoubleExtraLarge),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Box(
                 modifier = Modifier
                     .wrapContentSize()
-                    .align(Alignment.CenterVertically)
+                    .align(Alignment.CenterVertically),
             ) {
                 if (showBack) {
                     Icon(
@@ -165,7 +166,7 @@ fun OnboardingHeader(
                         contentDescription = "Back icon",
                         modifier = Modifier
                             .clickable { onEvent(OnboardingEvent.BackClicked) }
-                            .padding(MaterialTheme.dimensions.spacingExtraSmall)
+                            .padding(MaterialTheme.dimensions.spacingExtraSmall),
                     )
                 } else {
                     Spacer(modifier = Modifier.size(MaterialTheme.dimensions.spacingDoubleExtraLarge))
@@ -180,7 +181,7 @@ fun OnboardingHeader(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
-                    .padding(MaterialTheme.dimensions.spacingExtraSmall)
+                    .padding(MaterialTheme.dimensions.spacingExtraSmall),
             )
         }
 

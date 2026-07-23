@@ -9,25 +9,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.CloudOff
 import androidx.compose.material.icons.outlined.Restaurant
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import com.example.healthtracker.R
 import com.example.healthtracker.presentation.components.AppCard
 import com.example.healthtracker.presentation.components.PrimaryButton
+import com.example.healthtracker.presentation.components.ScreenMessageState
 import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 
@@ -35,13 +29,14 @@ import com.example.healthtracker.presentation.theme.healthColors
 fun StatisticsRecentEmptyContent(
     modifier: Modifier = Modifier,
 ) {
-    StatisticsEmptyContent(
+    ScreenMessageState(
         icon = Icons.Outlined.Restaurant,
         title = stringResource(R.string.statistics_recent_empty_title),
         message = stringResource(R.string.statistics_recent_empty_message),
         iconContainerColor = MaterialTheme.healthColors.caloriesConsumedContainer,
-        iconContentColor = MaterialTheme.healthColors.onCaloriesConsumedContainer,
-        modifier = modifier,
+        iconContainerContentColor = MaterialTheme.healthColors.onCaloriesConsumedContainer,
+        titleStyle = MaterialTheme.typography.titleMedium,
+        modifier = modifier.padding(vertical = MaterialTheme.dimensions.spacingExtraLarge),
     )
 }
 
@@ -55,7 +50,7 @@ fun StatisticsWeekEmptyCard(
             .fillMaxWidth()
             .heightIn(min = MaterialTheme.dimensions.statisticsStateCardMinHeight),
     ) {
-        StatisticsEmptyContent(
+        ScreenMessageState(
             icon = Icons.Outlined.CalendarMonth,
             title = stringResource(
                 if (isCurrentWeek) R.string.statistics_week_empty_title
@@ -63,8 +58,11 @@ fun StatisticsWeekEmptyCard(
             ),
             message = stringResource(R.string.statistics_week_empty_message),
             iconContainerColor = MaterialTheme.healthColors.neutralIconContainer,
-            iconContentColor = MaterialTheme.healthColors.onNeutralIconContainer,
-            modifier = Modifier.fillMaxSize(),
+            iconContainerContentColor = MaterialTheme.healthColors.onNeutralIconContainer,
+            titleStyle = MaterialTheme.typography.titleMedium,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = MaterialTheme.dimensions.spacingExtraLarge),
         )
     }
 }
@@ -78,13 +76,16 @@ fun StatisticsFullEmptyState(
             .fillMaxWidth()
             .heightIn(min = MaterialTheme.dimensions.statisticsStateCardMinHeight),
     ) {
-        StatisticsEmptyContent(
+        ScreenMessageState(
             icon = Icons.Outlined.CalendarMonth,
             title = stringResource(R.string.statistics_empty_title),
             message = stringResource(R.string.statistics_empty_message),
             iconContainerColor = MaterialTheme.healthColors.neutralIconContainer,
-            iconContentColor = MaterialTheme.healthColors.onNeutralIconContainer,
-            modifier = Modifier.fillMaxSize(),
+            iconContainerContentColor = MaterialTheme.healthColors.onNeutralIconContainer,
+            titleStyle = MaterialTheme.typography.titleMedium,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = MaterialTheme.dimensions.spacingExtraLarge),
         )
     }
 }
@@ -99,42 +100,21 @@ fun StatisticsLoadFailedState(
             .fillMaxWidth()
             .heightIn(min = MaterialTheme.dimensions.statisticsStateCardMinHeight),
     ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingLarge),
-        ) {
-            Surface(
-                shape = MaterialTheme.shapes.large,
-                color = MaterialTheme.colorScheme.errorContainer,
-                contentColor = MaterialTheme.colorScheme.onErrorContainer,
-            ) {
-                Icon(
-                    imageVector = Icons.Outlined.CloudOff,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(MaterialTheme.dimensions.spacingLarge)
-                        .size(MaterialTheme.dimensions.emptyStateIconSize),
+        ScreenMessageState(
+            icon = Icons.Outlined.CloudOff,
+            iconContainerColor = MaterialTheme.colorScheme.errorContainer,
+            iconContainerContentColor = MaterialTheme.colorScheme.onErrorContainer,
+            title = stringResource(R.string.statistics_load_failed),
+            titleColor = MaterialTheme.colorScheme.error,
+            message = stringResource(R.string.statistics_load_failed_message),
+            action = {
+                PrimaryButton(
+                    text = stringResource(R.string.statistics_retry),
+                    onClick = onRetry,
+                    modifier = Modifier.fillMaxWidth(),
                 )
-            }
-            Text(
-                text = stringResource(R.string.statistics_load_failed),
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.error,
-                textAlign = TextAlign.Center,
-            )
-            Text(
-                text = stringResource(R.string.statistics_load_failed_message),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center,
-            )
-            PrimaryButton(
-                text = stringResource(R.string.statistics_retry),
-                onClick = onRetry,
-                modifier = Modifier.fillMaxWidth(),
-            )
-        }
+            },
+        )
     }
 }
 
@@ -160,49 +140,6 @@ fun StatisticsLoadingSkeleton(
             }
         }
         SkeletonCard(height = MaterialTheme.dimensions.chartHeight)
-    }
-}
-
-@Composable
-private fun StatisticsEmptyContent(
-    icon: ImageVector,
-    title: String,
-    message: String,
-    iconContainerColor: Color,
-    iconContentColor: Color,
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = MaterialTheme.dimensions.spacingExtraLarge),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingMedium),
-    ) {
-        Surface(
-            shape = MaterialTheme.shapes.large,
-            color = iconContainerColor,
-            contentColor = iconContentColor,
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                modifier = Modifier
-                    .padding(MaterialTheme.dimensions.spacingLarge)
-                    .size(MaterialTheme.dimensions.emptyStateIconSize),
-            )
-        }
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleMedium,
-            textAlign = TextAlign.Center,
-        )
-        Text(
-            text = message,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = TextAlign.Center,
-        )
     }
 }
 

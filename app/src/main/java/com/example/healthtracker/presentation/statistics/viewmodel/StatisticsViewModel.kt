@@ -2,27 +2,24 @@ package com.example.healthtracker.presentation.statistics.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.healthtracker.core.time.currentDateFlow
 import com.example.healthtracker.domain.usecase.ObserveWeeklyStatsUseCase
 import com.example.healthtracker.presentation.statistics.StatisticsUiMapper
 import com.example.healthtracker.presentation.statistics.state.StatisticsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import java.time.Clock
 import java.time.DayOfWeek
-import java.time.Duration
 import java.time.LocalDate
 import java.time.temporal.TemporalAdjusters
 import javax.inject.Inject
@@ -43,17 +40,7 @@ class StatisticsViewModel @Inject constructor(
 ) : ViewModel() {
     private val selectedWeekStart = MutableStateFlow<LocalDate?>(null)
     private val retryTrigger = MutableStateFlow(0)
-    private val todayFlow = flow {
-        while (true) {
-            val today = LocalDate.now(clock)
-            emit(today)
-            val nextDay = today.plusDays(1).atStartOfDay(clock.zone).toInstant()
-            val delayMillis = Duration.between(clock.instant(), nextDay)
-                .toMillis()
-                .coerceAtLeast(1_000L)
-            delay(delayMillis)
-        }
-    }.distinctUntilChanged()
+    private val todayFlow = currentDateFlow(clock)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<StatisticsUiState> = combine(

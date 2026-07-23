@@ -29,13 +29,14 @@ import com.example.healthtracker.presentation.theme.dimensions
 import com.example.healthtracker.presentation.theme.healthColors
 
 @Composable
-fun DashboardQuickActionSession(
+fun DashboardQuickActionSection(
     onAddMealClick: () -> Unit,
-    onAddActivityClick: () -> Unit
+    onAddActivityClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingLarge)
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimensions.spacingLarge),
     ) {
         QuickActionButton(
             title = stringResource(R.string.dashboard_add_meal),
@@ -45,7 +46,7 @@ fun DashboardQuickActionSession(
                         .size(MaterialTheme.dimensions.optionIconContainerSize)
                         .clip(CircleShape)
                         .background(MaterialTheme.healthColors.caloriesConsumedContainer),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Icon(
                         imageVector = Icons.Default.Restaurant,
@@ -56,7 +57,7 @@ fun DashboardQuickActionSession(
             },
             containerColor = MaterialTheme.healthColors.cardContainer,
             onClick = onAddMealClick,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
 
         QuickActionButton(
@@ -67,46 +68,45 @@ fun DashboardQuickActionSession(
                         .size(MaterialTheme.dimensions.optionIconContainerSize)
                         .clip(CircleShape)
                         .background(MaterialTheme.healthColors.caloriesBurnedContainer),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.DirectionsRun,
                         contentDescription = "Add activity icon",
                         tint = MaterialTheme.healthColors.caloriesBurned,
-                        modifier = Modifier.size(MaterialTheme.dimensions.largeIconSize)
+                        modifier = Modifier.size(MaterialTheme.dimensions.largeIconSize),
                     )
                 }
             },
             containerColor = MaterialTheme.healthColors.cardContainer,
             onClick = onAddActivityClick,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
     }
 }
 
 @Composable
-fun QuickActionButton(
+private fun QuickActionButton(
     title: String,
     icon: @Composable () -> Unit,
     containerColor: Color,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     OutlinedCard(
         onClick = onClick,
         modifier = modifier.height(MaterialTheme.dimensions.buttonCardHeight),
-        colors = CardDefaults.cardColors(containerColor = containerColor)
+        colors = CardDefaults.cardColors(containerColor = containerColor),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(MaterialTheme.dimensions.spacingSmall),
             verticalAlignment = Alignment.CenterVertically,
-
             horizontalArrangement = Arrangement.spacedBy(
                 space = MaterialTheme.dimensions.spacingSmall,
-                alignment = Alignment.CenterHorizontally
-            )
+                alignment = Alignment.CenterHorizontally,
+            ),
         ) {
             icon()
 

@@ -60,12 +60,12 @@ fun AppDatePickerField(
             trailingContent = {
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowDown,
-                    contentDescription = stringResource(R.string.cd_open_date_picker)
+                    contentDescription = stringResource(R.string.cd_open_date_picker),
                 )
             },
             isError = errorText?.isNotBlank() == true,
             supportingText = errorText,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
 
         Box(
@@ -74,10 +74,10 @@ fun AppDatePickerField(
                 .clickable(
                     enabled = enabled,
                     interactionSource = remember { MutableInteractionSource() },
-                    indication = null
+                    indication = null,
                 ) {
                     showDialog = true
-                }
+                },
         )
     }
 
@@ -100,7 +100,7 @@ fun AppDatePickerDialog(
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
     minDate: LocalDate? = null,
-    maxDate: LocalDate? = null
+    maxDate: LocalDate? = null,
 ) {
     if (!visible) return
 
@@ -121,7 +121,7 @@ fun AppDatePickerDialog(
     val datePickerState = rememberDatePickerState(
         initialSelectedDateMillis = initialDateMillis,
         initialDisplayedMonthMillis = initialDateMillis,
-        selectableDates = selectableDates
+        selectableDates = selectableDates,
     )
     val selectedValue = datePickerState.selectedDateMillis
         ?.toLocalDateFromPicker()
@@ -137,7 +137,7 @@ fun AppDatePickerDialog(
                 onClick = {
                     selectedValue?.let(onDateSelected)
                     onDismissRequest()
-                }
+                },
             ) {
                 Text(stringResource(R.string.common_confirm))
             }
@@ -146,11 +146,11 @@ fun AppDatePickerDialog(
             TextButton(onClick = onDismissRequest) {
                 Text(stringResource(R.string.common_cancel))
             }
-        }
+        },
     ) {
         DatePicker(
             state = datePickerState,
-            modifier = modifier
+            modifier = modifier,
         )
     }
 }

@@ -158,5 +158,5 @@ private fun AppLanguage.label(): String = stringResource(
     when (this) {
         AppLanguage.VIETNAMESE -> R.string.settings_language_vietnamese
         AppLanguage.ENGLISH -> R.string.settings_language_english
-    }
+    },
 )

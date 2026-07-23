@@ -2,6 +2,7 @@ package com.example.healthtracker.presentation.dashboard.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.healthtracker.core.time.currentDateFlow
 import com.example.healthtracker.domain.usecase.ObserveDashboardUseCase
 import com.example.healthtracker.presentation.dashboard.state.DashboardUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
@@ -20,7 +22,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.Clock
-import java.time.LocalDate
 import javax.inject.Inject
 
 sealed interface DashboardEvent {
@@ -39,13 +40,12 @@ class DashboardViewModel @Inject constructor(
     private val observeDashboard: ObserveDashboardUseCase,
     clock: Clock
 ) : ViewModel() {
-    private val today = LocalDate.now(clock)
     private val retryTrigger = MutableStateFlow(0)
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<DashboardUiState> =
-        retryTrigger
-            .flatMapLatest {
+        combine(retryTrigger, currentDateFlow(clock)) { _, today -> today }
+            .flatMapLatest { today ->
                 observeDashboard(date = today)
                     .map { data ->
                         if (data == null) {

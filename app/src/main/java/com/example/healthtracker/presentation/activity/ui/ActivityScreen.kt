@@ -43,8 +43,8 @@ import com.example.healthtracker.presentation.activity.ui.components.AddActivity
 import com.example.healthtracker.presentation.activity.viewmodel.ActivityEffect
 import com.example.healthtracker.presentation.activity.viewmodel.ActivityEvent
 import com.example.healthtracker.presentation.activity.viewmodel.ActivityViewModel
+import com.example.healthtracker.presentation.components.AppDaySelector
 import com.example.healthtracker.presentation.components.AppTopBar
-import com.example.healthtracker.presentation.diary.ui.components.DiaryDateSelector
 import com.example.healthtracker.presentation.theme.dimensions
 import kotlinx.coroutines.flow.collectLatest
 import java.time.LocalDate
@@ -218,7 +218,7 @@ private fun ActivityDateSelector(
 ) {
     if (selectedDate == null || today == null) return
 
-    DiaryDateSelector(
+    AppDaySelector(
         selectedDate = selectedDate,
         today = today,
         onPreviousClick = { onEvent(ActivityEvent.PreviousDayClicked) },

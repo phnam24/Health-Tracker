@@ -2,6 +2,7 @@ package com.example.healthtracker.presentation.activity.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.healthtracker.core.time.currentDateFlow
 import com.example.healthtracker.domain.model.ActivityEntry
 import com.example.healthtracker.domain.model.ActivityPreviewResult
 import com.example.healthtracker.domain.model.ActivityType
@@ -83,14 +84,16 @@ class ActivityViewModel @Inject constructor(
     private val restoreActivityEntry: RestoreActivityEntryUseCase,
     private val clock: Clock,
 ) : ViewModel() {
-    private val selectedDate = MutableStateFlow(LocalDate.now(clock))
+    private val initialToday = LocalDate.now(clock)
+    private val currentDate = MutableStateFlow(initialToday)
+    private val selectedDate = MutableStateFlow(initialToday)
     private val retryTrigger = MutableStateFlow(0)
     private val searchQuery = MutableStateFlow<String?>(null)
     private val searchRetryTrigger = MutableStateFlow(0)
 
     private val _uiState = MutableStateFlow(
         ActivityUiState(
-            today = LocalDate.now(clock),
+            today = currentDate.value,
             selectedDate = selectedDate.value,
         )
     )
@@ -103,6 +106,7 @@ class ActivityViewModel @Inject constructor(
     private var profileMissingEffectShown = false
 
     init {
+        observeCurrentDate()
         observeSelectedDay()
         observeSearch()
     }
@@ -135,7 +139,7 @@ class ActivityViewModel @Inject constructor(
                         .onStart {
                             _uiState.update {
                                 it.copy(
-                                    today = LocalDate.now(clock),
+                                    today = currentDate.value,
                                     selectedDate = date,
                                     isLoading = true,
                                     loadFailed = false,
@@ -159,7 +163,7 @@ class ActivityViewModel @Inject constructor(
                 .collect { day ->
                     _uiState.update {
                         it.copy(
-                            today = LocalDate.now(clock),
+                            today = currentDate.value,
                             selectedDate = day.date,
                             day = day,
                             isLoading = false,
@@ -167,6 +171,36 @@ class ActivityViewModel @Inject constructor(
                         )
                     }
                 }
+        }
+    }
+
+    private fun observeCurrentDate() {
+        viewModelScope.launch {
+            currentDateFlow(clock).collect { newToday ->
+                val previousToday = currentDate.value
+                if (newToday == previousToday) return@collect
+
+                currentDate.value = newToday
+                val wasViewingToday = selectedDate.value == previousToday
+                if (wasViewingToday) {
+                    previewJob?.cancel()
+                    searchQuery.value = null
+                    profileMissingEffectShown = false
+                    _uiState.update {
+                        it.copy(
+                            today = newToday,
+                            selectedDate = newToday,
+                            day = null,
+                            isLoading = true,
+                            loadFailed = false,
+                            addSheet = null,
+                        )
+                    }
+                    selectedDate.value = newToday
+                } else {
+                    _uiState.update { it.copy(today = newToday) }
+                }
+            }
         }
     }
 

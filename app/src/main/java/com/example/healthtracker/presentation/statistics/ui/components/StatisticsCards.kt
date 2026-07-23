@@ -144,7 +144,7 @@ fun StatisticsWeeklySummary(
 }
 
 @Composable
-fun WeeklyStatCard(
+private fun WeeklyStatCard(
     label: String,
     value: String,
     supportingText: String?,
@@ -210,7 +210,7 @@ fun WeeklyTrendCard(
 }
 
 @Composable
-fun WeeklyIntakeBarChart(
+private fun WeeklyIntakeBarChart(
     points: List<DailyCaloriePoint>,
     modifier: Modifier = Modifier,
 ) {
@@ -227,7 +227,7 @@ fun WeeklyIntakeBarChart(
         }
     }
     val targetCalories = points.maxOfOrNull { it.goalCalories }?.toFloat() ?: 0f
-    val maxPointValue = points.maxOfOrNull { it.eatenCalories - it.burnedCalories }?.toFloat() ?: 0f
+    val maxPointValue = points.maxOfOrNull { it.eatenCalories }?.toFloat() ?: 0f
     val maxY = maxOf(targetCalories, maxPointValue, 1f) * 1.25f
     val barPastColor = MaterialTheme.healthColors.caloriesConsumedContainer
     val barTodayColor = MaterialTheme.healthColors.caloriesConsumed
@@ -250,7 +250,7 @@ fun WeeklyIntakeBarChart(
         modifier = modifier
             .fillMaxWidth()
             .height(chartHeight)
-            .semantics { contentDescription = description }
+            .semantics { contentDescription = description },
     ) {
         val canvasWidth = size.width
         val canvasHeight = size.height
@@ -295,7 +295,7 @@ fun WeeklyIntakeBarChart(
             points.forEachIndexed { index, point ->
                 val isToday = index == points.lastIndex
                 val xCenter = chartStartX + (index * spacePerBar) + (spacePerBar / 2)
-                val barHeight = (point.eatenCalories - point.burnedCalories) / maxY * plotHeight
+                val barHeight = point.eatenCalories / maxY * plotHeight
                 val yOffset = plotBottom - barHeight
 
                 drawRoundRect(
@@ -305,13 +305,13 @@ fun WeeklyIntakeBarChart(
                     cornerRadius = CornerRadius(barWidthPx / 2f, barWidthPx / 2f),
                 )
 
-                if (point.eatenCalories - point.burnedCalories > 0) {
-                    val valueText = numberFormat.format(point.eatenCalories - point.burnedCalories)
+                if (point.eatenCalories > 0) {
+                    val valueText = numberFormat.format(point.eatenCalories)
                     val valueTextLayout = textMeasurer.measure(
                         text = valueText,
                         style = valueTextStyle.copy(
                             color = if (isToday) valueTodayColor else valuePastColor,
-                            fontWeight = if (isToday) FontWeight.Bold else FontWeight.Medium
+                            fontWeight = if (isToday) FontWeight.Bold else FontWeight.Medium,
                         ),
                     )
                     drawText(
@@ -345,7 +345,7 @@ fun WeeklyIntakeBarChart(
 }
 
 @Composable
-fun WeeklyTrendLineChart(
+private fun WeeklyTrendLineChart(
     points: List<DailyCaloriePoint>,
     modifier: Modifier = Modifier,
 ) {
@@ -395,7 +395,7 @@ fun WeeklyTrendLineChart(
         Canvas(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(chartHeight)
+                .height(chartHeight),
         ) {
             val canvasWidth = size.width
             val canvasHeight = size.height

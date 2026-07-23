@@ -28,7 +28,7 @@ fun DashboardHeader(
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Column {
             Text(
@@ -38,7 +38,7 @@ fun DashboardHeader(
             Text(
                 text = dateString,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
 
@@ -47,7 +47,7 @@ fun DashboardHeader(
                 .size(MaterialTheme.dimensions.minimumTouchTarget)
                 .clip(CircleShape)
                 .background(MaterialTheme.healthColors.neutralIconContainer),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             Text(
                 text = userName.firstOrNull()?.toString()?.uppercase() ?: "",

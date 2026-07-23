@@ -28,19 +28,22 @@ import kotlinx.coroutines.launch
 enum class TopLevelTab(
     val key: NavKey,
     val labelRes: Int,
-    val icon: ImageVector
+    val icon: ImageVector,
 ) {
     DASHBOARD(Dashboard, R.string.tab_dashboard, Icons.Filled.Home),
     DIARY(Diary, R.string.tab_diary, Icons.Filled.RoomService),
     ACTIVITY(ActivityLog, R.string.tab_activity, Icons.Filled.SportsMartialArts),
     STATISTICS(Statistics, R.string.tab_statistics, Icons.Filled.BarChart),
-    SETTINGS(Settings, R.string.tab_settings, Icons.Filled.Settings)
+    SETTINGS(Settings, R.string.tab_settings, Icons.Filled.Settings),
 }
 
 val topLevelKeys = TopLevelTab.entries.map { it.key }.toSet()
 
 @Composable
-fun MainScaffold(startKey: NavKey) {
+fun MainScaffold(
+    startKey: NavKey,
+    modifier: Modifier = Modifier,
+) {
     val backStack = rememberNavBackStack(startKey)
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
@@ -48,6 +51,7 @@ fun MainScaffold(startKey: NavKey) {
     val showBottomBar = currentKey in topLevelKeys
 
     Scaffold(
+        modifier = modifier,
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
             if (showBottomBar) {
@@ -57,12 +61,12 @@ fun MainScaffold(startKey: NavKey) {
                             selected = currentKey == tab.key,
                             onClick = { backStack.switchTab(tab.key) },
                             icon = { Icon(tab.icon, contentDescription = null) },
-                            label = { Text(stringResource(tab.labelRes)) }
+                            label = { Text(stringResource(tab.labelRes)) },
                         )
                     }
                 }
             }
-        }
+        },
     ) { paddingValues ->
         AppNavDisplay(
             backStack = backStack,
@@ -71,7 +75,7 @@ fun MainScaffold(startKey: NavKey) {
                     snackbarHostState.showSnackbar(message)
                 }
             },
-            modifier = Modifier.padding(paddingValues)
+            modifier = Modifier.padding(paddingValues),
         )
     }
 }

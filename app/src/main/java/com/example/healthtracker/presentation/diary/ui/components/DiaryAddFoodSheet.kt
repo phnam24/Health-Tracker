@@ -65,9 +65,9 @@ fun DiaryAddFoodSheet(
                     start = MaterialTheme.dimensions.screenPadding,
                     end = MaterialTheme.dimensions.screenPadding,
                     bottom = MaterialTheme.dimensions.screenPadding,
-                ),
+            ),
             verticalArrangement = Arrangement.spacedBy(
-                MaterialTheme.dimensions.spacingMedium
+                MaterialTheme.dimensions.spacingMedium,
             ),
         ) {
             AddFoodSheetHeader(
@@ -76,7 +76,7 @@ fun DiaryAddFoodSheet(
                         R.string.custom_food_title
                     } else {
                         R.string.add_food_title
-                    }
+                    },
                 ),
                 canGoBack = canGoBack,
                 enabled = !state.isSubmitting,
@@ -86,7 +86,7 @@ fun DiaryAddFoodSheet(
                             DiaryEvent.CloseCustomFoodClicked
                         } else {
                             DiaryEvent.BackToFoodSearchClicked
-                        }
+                        },
                     )
                 },
                 onClose = { onEvent(DiaryEvent.AddFoodDismissed) },
@@ -179,7 +179,7 @@ private fun FoodSearchContent(
                     R.string.add_food_popular
                 } else {
                     R.string.add_food_results
-                }
+                },
             ),
             style = MaterialTheme.typography.titleMedium,
         )
@@ -192,7 +192,7 @@ private fun FoodSearchContent(
                 contentAlignment = Alignment.Center,
             ) {
                 CircularProgressIndicator(
-                    modifier = Modifier.size(MaterialTheme.dimensions.largeIconSize)
+                    modifier = Modifier.size(MaterialTheme.dimensions.largeIconSize),
                 )
             }
 
@@ -224,7 +224,7 @@ private fun FoodSearchContent(
                     .fillMaxWidth()
                     .weight(1f, fill = false),
                 verticalArrangement = Arrangement.spacedBy(
-                    MaterialTheme.dimensions.spacingExtraSmall
+                    MaterialTheme.dimensions.spacingExtraSmall,
                 ),
             ) {
                 items(

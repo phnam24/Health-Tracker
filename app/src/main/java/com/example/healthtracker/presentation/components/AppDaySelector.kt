@@ -1,4 +1,4 @@
-package com.example.healthtracker.presentation.diary.ui.components
+package com.example.healthtracker.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,14 +31,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.example.healthtracker.R
 import com.example.healthtracker.helper.toLocalizedDateString
-import com.example.healthtracker.presentation.components.AppCard
-import com.example.healthtracker.presentation.components.AppDatePickerDialog
 import com.example.healthtracker.presentation.theme.dimensions
-import com.example.healthtracker.presentation.theme.healthColors
 import java.time.LocalDate
 
 @Composable
-fun DiaryDateSelector(
+fun AppDaySelector(
     selectedDate: LocalDate,
     today: LocalDate,
     onPreviousClick: () -> Unit,
@@ -46,12 +43,12 @@ fun DiaryDateSelector(
     onDateSelected: (LocalDate) -> Unit,
     modifier: Modifier = Modifier,
     minDate: LocalDate? = null,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     var showDatePicker by remember { mutableStateOf(false) }
     val locale = LocalConfiguration.current.locales[0]
     val datePattern = stringResource(R.string.date_format_short)
-    val weekdayPattern = stringResource(R.string.diary_weekday_format)
+    val weekdayPattern = stringResource(R.string.common_weekday_format)
     val isToday = selectedDate == today
     val previousEnabled = enabled &&
             (minDate == null || selectedDate.isAfter(minDate))
@@ -62,9 +59,8 @@ fun DiaryDateSelector(
         modifier = modifier
             .fillMaxWidth()
             .heightIn(min = MaterialTheme.dimensions.textFieldHeight),
+        variant = AppCardVariant.SUBTLE,
         shape = MaterialTheme.shapes.large,
-        containerColor = MaterialTheme.healthColors.subtleContainer,
-        contentColor = MaterialTheme.healthColors.onSubtleContainer,
         contentPadding = PaddingValues(0.dp),
     ) {
         Row(
@@ -73,11 +69,11 @@ fun DiaryDateSelector(
                 .heightIn(min = MaterialTheme.dimensions.textFieldHeight)
                 .padding(horizontal = MaterialTheme.dimensions.spacingExtraSmall),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             IconButton(
                 enabled = previousEnabled,
-                onClick = onPreviousClick
+                onClick = onPreviousClick,
             ) {
                 Icon(
                     imageVector = Icons.Outlined.ChevronLeft,
@@ -86,7 +82,7 @@ fun DiaryDateSelector(
                         MaterialTheme.colorScheme.primary
                     } else {
                         MaterialTheme.colorScheme.onSurfaceVariant
-                    }
+                    },
                 )
             }
 
@@ -95,23 +91,23 @@ fun DiaryDateSelector(
                 onClick = { showDatePicker = true },
                 modifier = Modifier.semantics {
                     contentDescription = openDatePickerDescription
-                }
+                },
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(
-                        MaterialTheme.dimensions.spacingSmall
-                    )
+                        MaterialTheme.dimensions.spacingSmall,
+                    ),
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.CalendarMonth,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
+                        tint = MaterialTheme.colorScheme.onSurface,
                     )
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.spacedBy(
-                            MaterialTheme.dimensions.spacingExtraSmall
+                            MaterialTheme.dimensions.spacingExtraSmall,
                         ),
                     ) {
                         Row(
@@ -123,11 +119,11 @@ fun DiaryDateSelector(
                                     text = "${
                                         selectedDate.toLocalizedDateString(
                                             weekdayPattern,
-                                            locale
+                                            locale,
                                         )
                                     }, ",
                                     style = MaterialTheme.typography.titleMedium,
-                                    color = MaterialTheme.colorScheme.onSurface
+                                    color = MaterialTheme.colorScheme.onSurface,
                                 )
                             }
                             Text(
@@ -137,7 +133,7 @@ fun DiaryDateSelector(
                                     selectedDate.toLocalizedDateString(datePattern, locale)
                                 },
                                 style = MaterialTheme.typography.titleMedium,
-                                color = MaterialTheme.colorScheme.onSurface
+                                color = MaterialTheme.colorScheme.onSurface,
                             )
                         }
                         if (!isToday) {
@@ -147,7 +143,7 @@ fun DiaryDateSelector(
                                 contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                             ) {
                                 Text(
-                                    text = stringResource(R.string.diary_read_only),
+                                    text = stringResource(R.string.common_read_only),
                                     modifier = Modifier.padding(
                                         horizontal = MaterialTheme.dimensions.spacingSmall,
                                         vertical = MaterialTheme.dimensions.spacingExtraSmall,
@@ -162,11 +158,11 @@ fun DiaryDateSelector(
 
             IconButton(
                 enabled = nextEnabled,
-                onClick = onNextClick
+                onClick = onNextClick,
             ) {
                 Icon(
                     imageVector = Icons.Outlined.ChevronRight,
-                    contentDescription = stringResource(R.string.cd_next_day)
+                    contentDescription = stringResource(R.string.cd_next_day),
                 )
             }
         }
@@ -178,6 +174,6 @@ fun DiaryDateSelector(
         minDate = minDate,
         maxDate = today,
         onDateSelected = onDateSelected,
-        onDismissRequest = { showDatePicker = false }
+        onDismissRequest = { showDatePicker = false },
     )
 }
