@@ -11,7 +11,7 @@ fun normalizeDecimalInput(value: String): String =
                 filtered
             } else {
                 filtered.take(firstDot + 1) +
-                    filtered.drop(firstDot + 1).replace(".", "")
+                        filtered.drop(firstDot + 1).replace(".", "")
             }
         }
 

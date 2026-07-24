@@ -65,7 +65,7 @@ fun DiaryAddFoodSheet(
                     start = MaterialTheme.dimensions.screenPadding,
                     end = MaterialTheme.dimensions.screenPadding,
                     bottom = MaterialTheme.dimensions.screenPadding,
-            ),
+                ),
             verticalArrangement = Arrangement.spacedBy(
                 MaterialTheme.dimensions.spacingMedium,
             ),

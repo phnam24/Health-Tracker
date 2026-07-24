@@ -11,7 +11,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material.icons.outlined.PersonOff
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -21,13 +20,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.healthtracker.R
 import com.example.healthtracker.domain.model.DailyAdvice
 import com.example.healthtracker.domain.model.DailySummary
-import com.example.healthtracker.domain.model.ThemeMode
 import com.example.healthtracker.helper.toLocalizedDateString
 import com.example.healthtracker.presentation.components.ScreenLoadingState
 import com.example.healthtracker.presentation.components.ScreenMessageState
@@ -40,7 +37,6 @@ import com.example.healthtracker.presentation.dashboard.ui.components.DashboardQ
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardEffect
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardEvent
 import com.example.healthtracker.presentation.dashboard.viewmodel.DashboardViewModel
-import com.example.healthtracker.presentation.theme.HealthTrackerTheme
 import com.example.healthtracker.presentation.theme.dimensions
 
 @Composable
@@ -80,6 +76,7 @@ fun DashboardScreen(
             modifier = modifier.fillMaxSize(),
             message = stringResource(R.string.common_loading),
         )
+
         uiState.loadFailed -> DashboardLoadFailedState(
             onRetryClick = { onEvent(DashboardEvent.RetryClicked) },
             modifier = modifier,

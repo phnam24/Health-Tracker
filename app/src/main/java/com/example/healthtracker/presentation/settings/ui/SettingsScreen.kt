@@ -29,11 +29,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.healthtracker.R
 import com.example.healthtracker.presentation.components.AppTopBar
 import com.example.healthtracker.presentation.settings.state.SettingsUiState
+import com.example.healthtracker.presentation.settings.ui.components.SettingsAboutCard
+import com.example.healthtracker.presentation.settings.ui.components.SettingsAppearanceCard
+import com.example.healthtracker.presentation.settings.ui.components.SettingsLanguageCard
 import com.example.healthtracker.presentation.settings.ui.components.SettingsLoadFailedState
 import com.example.healthtracker.presentation.settings.ui.components.SettingsLoadingSkeleton
-import com.example.healthtracker.presentation.settings.ui.components.SettingsAppearanceCard
-import com.example.healthtracker.presentation.settings.ui.components.SettingsAboutCard
-import com.example.healthtracker.presentation.settings.ui.components.SettingsLanguageCard
 import com.example.healthtracker.presentation.settings.ui.components.SettingsProfileCard
 import com.example.healthtracker.presentation.settings.viewmodel.SettingsEffect
 import com.example.healthtracker.presentation.settings.viewmodel.SettingsEvent
@@ -95,9 +95,9 @@ fun SettingsScreen(
                 }
 
                 uiState.loadFailed ||
-                    uiState.profile == null ||
-                    uiState.age == null ||
-                    uiState.bmi == null -> {
+                        uiState.profile == null ||
+                        uiState.age == null ||
+                        uiState.bmi == null -> {
                     SettingsLoadFailedState(
                         onRetry = { onEvent(SettingsEvent.RetryClicked) },
                         modifier = Modifier

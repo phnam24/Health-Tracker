@@ -40,8 +40,8 @@ import com.example.healthtracker.domain.model.ActivityLevel
 import com.example.healthtracker.domain.model.Gender
 import com.example.healthtracker.domain.model.Goal
 import com.example.healthtracker.domain.model.OnboardingField
-import com.example.healthtracker.domain.model.OnboardingValidationError
 import com.example.healthtracker.domain.model.OnboardingPolicy
+import com.example.healthtracker.domain.model.OnboardingValidationError
 import com.example.healthtracker.presentation.components.AppDatePickerField
 import com.example.healthtracker.presentation.components.AppTextField
 import com.example.healthtracker.presentation.editprofile.state.EditProfileUiState
