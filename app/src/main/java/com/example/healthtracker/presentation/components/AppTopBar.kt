@@ -17,6 +17,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import com.example.healthtracker.presentation.theme.healthColors
@@ -46,7 +47,7 @@ fun AppTopBar(
     scrollBehavior: TopAppBarScrollBehavior? = null,
     windowInsets: WindowInsets = TopAppBarDefaults.windowInsets,
     colors: TopAppBarColors = TopAppBarDefaults.topAppBarColors(
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = Color.Transparent,
         scrolledContainerColor = MaterialTheme.healthColors.cardContainer,
     ),
     actions: @Composable RowScope.() -> Unit = {},

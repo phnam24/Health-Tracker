@@ -385,11 +385,11 @@
     <string name="settings_theme_light">Sáng</string>
     <string name="settings_theme_dark">Tối</string>
     <string name="settings_theme_system">Hệ thống</string>
-    <string name="settings_palette_label">Màu chủ đạo</string>
-    <string name="settings_palette_forest">Xanh rừng</string>
-    <string name="settings_palette_teal">Xanh ngọc</string>
-    <string name="settings_palette_indigo">Chàm</string>
-    <string name="settings_palette_violet">Tím</string>
+    <string name="settings_palette_label">Bảng màu</string>
+    <string name="settings_palette_performance">Năng động</string>
+    <string name="settings_palette_organic">Hữu cơ</string>
+    <string name="settings_palette_analytical">Phân tích</string>
+    <string name="settings_palette_balanced">Cân bằng</string>
     <string name="settings_font_size_label">Cỡ chữ</string>
     <string name="settings_font_small">Nhỏ</string>
     <string name="settings_font_medium">Vừa</string>

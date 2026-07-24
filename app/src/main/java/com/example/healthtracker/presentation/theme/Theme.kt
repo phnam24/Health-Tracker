@@ -10,84 +10,144 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.graphics.luminance
 import com.example.healthtracker.domain.model.AppFontScale
 import com.example.healthtracker.domain.model.ThemeMode
 import com.example.healthtracker.domain.model.ThemePalette
 
-private val ForestLightColorScheme = lightColorScheme(
-    primary = ForestPrimaryLight,
-    onPrimary = ForestOnPrimaryLight,
-    primaryContainer = ForestPrimaryContainerLight,
-    onPrimaryContainer = ForestOnPrimaryContainerLight,
-    surfaceTint = ForestPrimaryLight,
-    secondary = TealPrimaryLight,
-    onSecondary = TealOnPrimaryLight,
-    secondaryContainer = TealPrimaryContainerLight,
-    onSecondaryContainer = TealOnPrimaryContainerLight,
-    tertiary = VioletPrimaryLight,
-    onTertiary = VioletOnPrimaryLight,
-    tertiaryContainer = VioletPrimaryContainerLight,
-    onTertiaryContainer = VioletOnPrimaryContainerLight,
-    background = BackgroundLight,
-    onBackground = OnBackgroundLight,
-    surface = SurfaceLight,
-    surfaceDim = SurfaceDimLight,
-    surfaceBright = SurfaceBrightLight,
-    surfaceContainerLowest = SurfaceContainerLowestLight,
-    surfaceContainerLow = SurfaceContainerLowLight,
-    surfaceContainer = SurfaceContainerLight,
-    surfaceContainerHigh = SurfaceContainerHighLight,
-    surfaceContainerHighest = SurfaceContainerHighestLight,
-    surfaceVariant = SurfaceVariantLight,
-    onSurface = OnSurfaceLight,
-    onSurfaceVariant = OnSurfaceVariantLight,
-    outline = OutlineLight,
-    outlineVariant = OutlineVariantLight,
+private fun lightPaletteColorScheme(
+    accents: PaletteAccentColors,
+    surfaces: PaletteSurfaceColors,
+    inversePrimary: Color,
+): ColorScheme = lightColorScheme(
+    primary = accents.primary,
+    onPrimary = accents.onPrimary,
+    primaryContainer = accents.primaryContainer,
+    onPrimaryContainer = accents.onPrimaryContainer,
+    surfaceTint = accents.primary,
+    secondary = accents.secondary,
+    onSecondary = accents.onSecondary,
+    secondaryContainer = accents.secondaryContainer,
+    onSecondaryContainer = accents.onSecondaryContainer,
+    tertiary = accents.tertiary,
+    onTertiary = accents.onTertiary,
+    tertiaryContainer = accents.tertiaryContainer,
+    onTertiaryContainer = accents.onTertiaryContainer,
+    background = surfaces.background,
+    onBackground = surfaces.onBackground,
+    surface = surfaces.surface,
+    surfaceDim = surfaces.surfaceDim,
+    surfaceBright = surfaces.surfaceBright,
+    surfaceContainerLowest = surfaces.surfaceContainerLowest,
+    surfaceContainerLow = surfaces.surfaceContainerLow,
+    surfaceContainer = surfaces.surfaceContainer,
+    surfaceContainerHigh = surfaces.surfaceContainerHigh,
+    surfaceContainerHighest = surfaces.surfaceContainerHighest,
+    surfaceVariant = surfaces.surfaceVariant,
+    onSurface = surfaces.onSurface,
+    onSurfaceVariant = surfaces.onSurfaceVariant,
+    outline = surfaces.outline,
+    outlineVariant = surfaces.outlineVariant,
     error = ErrorLight,
     onError = OnErrorLight,
     errorContainer = ErrorContainerLight,
     onErrorContainer = OnErrorContainerLight,
-    inverseSurface = InverseSurfaceLight,
-    inverseOnSurface = InverseOnSurfaceLight,
-    inversePrimary = ForestPrimaryDark,
+    inverseSurface = surfaces.inverseSurface,
+    inverseOnSurface = surfaces.inverseOnSurface,
+    inversePrimary = inversePrimary,
 )
 
-private val ForestDarkColorScheme = darkColorScheme(
-    primary = ForestPrimaryDark,
-    onPrimary = ForestOnPrimaryDark,
-    primaryContainer = ForestPrimaryContainerDark,
-    onPrimaryContainer = ForestOnPrimaryContainerDark,
-    surfaceTint = ForestPrimaryDark,
-    secondary = TealPrimaryDark,
-    onSecondary = TealOnPrimaryDark,
-    secondaryContainer = TealPrimaryContainerDark,
-    onSecondaryContainer = TealOnPrimaryContainerDark,
-    tertiary = VioletPrimaryDark,
-    onTertiary = VioletOnPrimaryDark,
-    tertiaryContainer = VioletPrimaryContainerDark,
-    onTertiaryContainer = VioletOnPrimaryContainerDark,
-    background = BackgroundDark,
-    onBackground = OnBackgroundDark,
-    surface = SurfaceDark,
-    surfaceDim = SurfaceDimDark,
-    surfaceBright = SurfaceBrightDark,
-    surfaceContainerLowest = SurfaceContainerLowestDark,
-    surfaceContainerLow = SurfaceContainerLowDark,
-    surfaceContainer = SurfaceContainerDark,
-    surfaceContainerHigh = SurfaceContainerHighDark,
-    surfaceContainerHighest = SurfaceContainerHighestDark,
-    surfaceVariant = SurfaceVariantDark,
-    onSurface = OnSurfaceDark,
-    onSurfaceVariant = OnSurfaceVariantDark,
-    outline = OutlineDark,
-    outlineVariant = OutlineVariantDark,
+private fun darkPaletteColorScheme(
+    accents: PaletteAccentColors,
+    surfaces: PaletteSurfaceColors,
+    inversePrimary: Color,
+): ColorScheme = darkColorScheme(
+    primary = accents.primary,
+    onPrimary = accents.onPrimary,
+    primaryContainer = accents.primaryContainer,
+    onPrimaryContainer = accents.onPrimaryContainer,
+    surfaceTint = accents.primary,
+    secondary = accents.secondary,
+    onSecondary = accents.onSecondary,
+    secondaryContainer = accents.secondaryContainer,
+    onSecondaryContainer = accents.onSecondaryContainer,
+    tertiary = accents.tertiary,
+    onTertiary = accents.onTertiary,
+    tertiaryContainer = accents.tertiaryContainer,
+    onTertiaryContainer = accents.onTertiaryContainer,
+    background = surfaces.background,
+    onBackground = surfaces.onBackground,
+    surface = surfaces.surface,
+    surfaceDim = surfaces.surfaceDim,
+    surfaceBright = surfaces.surfaceBright,
+    surfaceContainerLowest = surfaces.surfaceContainerLowest,
+    surfaceContainerLow = surfaces.surfaceContainerLow,
+    surfaceContainer = surfaces.surfaceContainer,
+    surfaceContainerHigh = surfaces.surfaceContainerHigh,
+    surfaceContainerHighest = surfaces.surfaceContainerHighest,
+    surfaceVariant = surfaces.surfaceVariant,
+    onSurface = surfaces.onSurface,
+    onSurfaceVariant = surfaces.onSurfaceVariant,
+    outline = surfaces.outline,
+    outlineVariant = surfaces.outlineVariant,
     error = ErrorDark,
     onError = OnErrorDark,
     errorContainer = ErrorContainerDark,
     onErrorContainer = OnErrorContainerDark,
-    inverseSurface = InverseSurfaceDark,
-    inverseOnSurface = InverseOnSurfaceDark,
-    inversePrimary = ForestPrimaryLight,
+    inverseSurface = surfaces.inverseSurface,
+    inverseOnSurface = surfaces.inverseOnSurface,
+    inversePrimary = inversePrimary,
+)
+
+private val PerformanceLightColorScheme = lightPaletteColorScheme(
+    accents = PerformanceLightAccents,
+    surfaces = PerformanceLightSurfaces,
+    inversePrimary = PerformanceDarkAccents.primary,
+)
+
+private val PerformanceDarkColorScheme = darkPaletteColorScheme(
+    accents = PerformanceDarkAccents,
+    surfaces = PerformanceDarkSurfaces,
+    inversePrimary = PerformanceLightAccents.primary,
+)
+
+private val OrganicLightColorScheme = lightPaletteColorScheme(
+    accents = OrganicLightAccents,
+    surfaces = OrganicLightSurfaces,
+    inversePrimary = OrganicDarkAccents.primary,
+)
+
+private val OrganicDarkColorScheme = darkPaletteColorScheme(
+    accents = OrganicDarkAccents,
+    surfaces = OrganicDarkSurfaces,
+    inversePrimary = OrganicLightAccents.primary,
+)
+
+private val AnalyticalLightColorScheme = lightPaletteColorScheme(
+    accents = AnalyticalLightAccents,
+    surfaces = AnalyticalLightSurfaces,
+    inversePrimary = AnalyticalDarkAccents.primary,
+)
+
+private val AnalyticalDarkColorScheme = darkPaletteColorScheme(
+    accents = AnalyticalDarkAccents,
+    surfaces = AnalyticalDarkSurfaces,
+    inversePrimary = AnalyticalLightAccents.primary,
+)
+
+private val BalancedLightColorScheme = lightPaletteColorScheme(
+    accents = BalancedLightAccents,
+    surfaces = BalancedLightSurfaces,
+    inversePrimary = BalancedDarkAccents.primary,
+)
+
+private val BalancedDarkColorScheme = darkPaletteColorScheme(
+    accents = BalancedDarkAccents,
+    surfaces = BalancedDarkSurfaces,
+    inversePrimary = BalancedLightAccents.primary,
 )
 
 private val LocalHealthTrackerColors = staticCompositionLocalOf {
@@ -108,125 +168,74 @@ val MaterialTheme.dimensions: HealthTrackerDimensions
     @ReadOnlyComposable
     get() = LocalHealthTrackerDimensions.current
 
-private val TealLightColorScheme = ForestLightColorScheme.copy(
-    primary = TealPrimaryLight,
-    onPrimary = TealOnPrimaryLight,
-    primaryContainer = TealPrimaryContainerLight,
-    onPrimaryContainer = TealOnPrimaryContainerLight,
-    surfaceTint = TealPrimaryLight,
-    secondary = IndigoPrimaryLight,
-    onSecondary = IndigoOnPrimaryLight,
-    secondaryContainer = IndigoPrimaryContainerLight,
-    onSecondaryContainer = IndigoOnPrimaryContainerLight,
-    tertiary = VioletPrimaryLight,
-    onTertiary = VioletOnPrimaryLight,
-    tertiaryContainer = VioletPrimaryContainerLight,
-    onTertiaryContainer = VioletOnPrimaryContainerLight,
-    inversePrimary = TealPrimaryDark,
-)
+@Composable
+fun rememberScreenBackgroundBrush(
+    colorScheme: ColorScheme = MaterialTheme.colorScheme,
+): Brush {
+    val primary = colorScheme.primary
+    val background = colorScheme.background
 
-private val TealDarkColorScheme = ForestDarkColorScheme.copy(
-    primary = TealPrimaryDark,
-    onPrimary = TealOnPrimaryDark,
-    primaryContainer = TealPrimaryContainerDark,
-    onPrimaryContainer = TealOnPrimaryContainerDark,
-    surfaceTint = TealPrimaryDark,
-    secondary = IndigoPrimaryDark,
-    onSecondary = IndigoOnPrimaryDark,
-    secondaryContainer = IndigoPrimaryContainerDark,
-    onSecondaryContainer = IndigoOnPrimaryContainerDark,
-    tertiary = VioletPrimaryDark,
-    onTertiary = VioletOnPrimaryDark,
-    tertiaryContainer = VioletPrimaryContainerDark,
-    onTertiaryContainer = VioletOnPrimaryContainerDark,
-    inversePrimary = TealPrimaryLight,
-)
+    return remember(primary, background) {
+        val isDark = background.luminance() < 0.5f
+        val startAlpha = if (isDark) 0.18f else 0.20f
+        val middleAlpha = if (isDark) 0.07f else 0.08f
 
-private val IndigoLightColorScheme = ForestLightColorScheme.copy(
-    primary = IndigoPrimaryLight,
-    onPrimary = IndigoOnPrimaryLight,
-    primaryContainer = IndigoPrimaryContainerLight,
-    onPrimaryContainer = IndigoOnPrimaryContainerLight,
-    surfaceTint = IndigoPrimaryLight,
-    secondary = VioletPrimaryLight,
-    onSecondary = VioletOnPrimaryLight,
-    secondaryContainer = VioletPrimaryContainerLight,
-    onSecondaryContainer = VioletOnPrimaryContainerLight,
-    tertiary = TealPrimaryLight,
-    onTertiary = TealOnPrimaryLight,
-    tertiaryContainer = TealPrimaryContainerLight,
-    onTertiaryContainer = TealOnPrimaryContainerLight,
-    inversePrimary = IndigoPrimaryDark,
-)
-
-private val IndigoDarkColorScheme = ForestDarkColorScheme.copy(
-    primary = IndigoPrimaryDark,
-    onPrimary = IndigoOnPrimaryDark,
-    primaryContainer = IndigoPrimaryContainerDark,
-    onPrimaryContainer = IndigoOnPrimaryContainerDark,
-    surfaceTint = IndigoPrimaryDark,
-    secondary = VioletPrimaryDark,
-    onSecondary = VioletOnPrimaryDark,
-    secondaryContainer = VioletPrimaryContainerDark,
-    onSecondaryContainer = VioletOnPrimaryContainerDark,
-    tertiary = TealPrimaryDark,
-    onTertiary = TealOnPrimaryDark,
-    tertiaryContainer = TealPrimaryContainerDark,
-    onTertiaryContainer = TealOnPrimaryContainerDark,
-    inversePrimary = IndigoPrimaryLight,
-)
-
-private val VioletLightColorScheme = ForestLightColorScheme.copy(
-    primary = VioletPrimaryLight,
-    onPrimary = VioletOnPrimaryLight,
-    primaryContainer = VioletPrimaryContainerLight,
-    onPrimaryContainer = VioletOnPrimaryContainerLight,
-    surfaceTint = VioletPrimaryLight,
-    secondary = FuchsiaSecondaryLight,
-    onSecondary = FuchsiaOnSecondaryLight,
-    secondaryContainer = FuchsiaSecondaryContainerLight,
-    onSecondaryContainer = FuchsiaOnSecondaryContainerLight,
-    tertiary = TealPrimaryLight,
-    onTertiary = TealOnPrimaryLight,
-    tertiaryContainer = TealPrimaryContainerLight,
-    onTertiaryContainer = TealOnPrimaryContainerLight,
-    inversePrimary = VioletPrimaryDark,
-)
-
-private val VioletDarkColorScheme = ForestDarkColorScheme.copy(
-    primary = VioletPrimaryDark,
-    onPrimary = VioletOnPrimaryDark,
-    primaryContainer = VioletPrimaryContainerDark,
-    onPrimaryContainer = VioletOnPrimaryContainerDark,
-    surfaceTint = VioletPrimaryDark,
-    secondary = FuchsiaSecondaryDark,
-    onSecondary = FuchsiaOnSecondaryDark,
-    secondaryContainer = FuchsiaSecondaryContainerDark,
-    onSecondaryContainer = FuchsiaOnSecondaryContainerDark,
-    tertiary = TealPrimaryDark,
-    onTertiary = TealOnPrimaryDark,
-    tertiaryContainer = TealPrimaryContainerDark,
-    onTertiaryContainer = TealOnPrimaryContainerDark,
-    inversePrimary = VioletPrimaryLight,
-)
+        Brush.verticalGradient(
+            colors = listOf(
+                primary.copy(alpha = startAlpha).compositeOver(background),
+                primary.copy(alpha = middleAlpha).compositeOver(background),
+                background,
+            ),
+        )
+    }
+}
 
 fun colorSchemeFor(
     palette: ThemePalette,
     darkTheme: Boolean,
 ): ColorScheme = when (palette) {
-    ThemePalette.FOREST -> if (darkTheme) ForestDarkColorScheme else ForestLightColorScheme
-    ThemePalette.TEAL -> if (darkTheme) TealDarkColorScheme else TealLightColorScheme
-    ThemePalette.INDIGO -> if (darkTheme) IndigoDarkColorScheme else IndigoLightColorScheme
-    ThemePalette.VIOLET -> if (darkTheme) VioletDarkColorScheme else VioletLightColorScheme
+    ThemePalette.PERFORMANCE -> {
+        if (darkTheme) PerformanceDarkColorScheme else PerformanceLightColorScheme
+    }
+
+    ThemePalette.ORGANIC -> {
+        if (darkTheme) OrganicDarkColorScheme else OrganicLightColorScheme
+    }
+
+    ThemePalette.ANALYTICAL -> {
+        if (darkTheme) AnalyticalDarkColorScheme else AnalyticalLightColorScheme
+    }
+
+    ThemePalette.BALANCED -> {
+        if (darkTheme) BalancedDarkColorScheme else BalancedLightColorScheme
+    }
 }
 
-fun healthColorSchemeFor(darkTheme: Boolean): HealthTrackerColorScheme =
-    if (darkTheme) DarkHealthTrackerColorScheme else LightHealthTrackerColorScheme
+fun healthColorSchemeFor(
+    palette: ThemePalette,
+    darkTheme: Boolean,
+): HealthTrackerColorScheme {
+    val materialColors = colorSchemeFor(palette, darkTheme)
+    val semanticColors = if (darkTheme) {
+        DarkHealthTrackerColorScheme
+    } else {
+        LightHealthTrackerColorScheme
+    }
+
+    return semanticColors.copy(
+        cardContainer = materialColors.surfaceContainerLow,
+        onCardContainer = materialColors.onSurface,
+        subtleContainer = materialColors.surfaceContainerHigh,
+        onSubtleContainer = materialColors.onSurface,
+        neutralIconContainer = materialColors.surfaceContainerHighest,
+        onNeutralIconContainer = materialColors.onSurfaceVariant,
+    )
+}
 
 @Composable
 fun HealthTrackerTheme(
     themeMode: ThemeMode = ThemeMode.SYSTEM,
-    palette: ThemePalette = ThemePalette.FOREST,
+    palette: ThemePalette = ThemePalette.ORGANIC,
     fontScale: AppFontScale = AppFontScale.MEDIUM,
     dimensions: HealthTrackerDimensions = defaultHealthTrackerDimensions,
     content: @Composable () -> Unit,
@@ -237,7 +246,7 @@ fun HealthTrackerTheme(
         ThemeMode.SYSTEM -> isSystemInDarkTheme()
     }
 
-    val healthColors = healthColorSchemeFor(darkTheme)
+    val healthColors = healthColorSchemeFor(palette, darkTheme)
     val typography = remember(fontScale) { healthTrackerTypography(fontScale) }
     val shapes = remember(dimensions) { healthTrackerShapes(dimensions) }
 

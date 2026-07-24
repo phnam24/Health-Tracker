@@ -1,5 +1,6 @@
 package com.example.healthtracker.presentation.root.ui
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -10,6 +11,7 @@ import com.example.healthtracker.core.navigation.Dashboard
 import com.example.healthtracker.core.navigation.MainScaffold
 import com.example.healthtracker.core.navigation.Onboarding
 import com.example.healthtracker.domain.model.AppSettings
+import com.example.healthtracker.presentation.components.AppScreenBackground
 import com.example.healthtracker.presentation.root.state.RootUiState
 import com.example.healthtracker.presentation.root.viewmodel.RootViewModel
 import com.example.healthtracker.presentation.splash.SplashScreen
@@ -65,9 +67,11 @@ private fun ThemedMainScaffold(
         palette = settings.palette,
         fontScale = settings.fontScale,
     ) {
-        MainScaffold(
-            startKey = startKey,
-            modifier = modifier,
-        )
+        AppScreenBackground(modifier = modifier.fillMaxSize()) {
+            MainScaffold(
+                startKey = startKey,
+                modifier = Modifier.fillMaxSize(),
+            )
+        }
     }
 }

@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="112dp"
-    android:height="112dp"
+    android:width="108dp"
+    android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Pulse H: Health Tracker initial combined with an ECG rhythm. -->
     <path
         android:fillColor="#00000000"
         android:pathData="M31,29L31,79M77,29L77,79"
-        android:strokeColor="#0F766E"
+        android:strokeColor="#000000"
         android:strokeLineCap="round"
         android:strokeWidth="9" />
     <path
         android:fillColor="#00000000"
         android:pathData="M31,54L42,54L49,41L57,68L64,54L77,54"
-        android:strokeColor="#0F766E"
+        android:strokeColor="#000000"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
         android:strokeWidth="8" />
