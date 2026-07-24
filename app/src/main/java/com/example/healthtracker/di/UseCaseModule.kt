@@ -89,11 +89,13 @@ object UseCaseModule {
     @Singleton
     fun provideGetTdeePreviewUseCase(
         buildUserProfileUseCase: BuildUserProfileUseCase,
-        calculateTdeeUseCase: CalculateTdeeUseCase
+        calculateTdeeUseCase: CalculateTdeeUseCase,
+        clock: Clock,
     ): GetTdeePreviewUseCase =
         GetTdeePreviewUseCase(
             buildUserProfile = buildUserProfileUseCase,
-            calculateTdee = calculateTdeeUseCase
+            calculateTdee = calculateTdeeUseCase,
+            clock = clock,
         )
 
     @Provides

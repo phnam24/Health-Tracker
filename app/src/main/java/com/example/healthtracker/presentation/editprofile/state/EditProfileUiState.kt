@@ -28,8 +28,8 @@ data class EditProfileUiState(
 ) {
     val canSave: Boolean
         get() = !isLoading &&
-            !loadFailed &&
-            !isSaving &&
-            isDirty &&
-            isFormValid
+                !loadFailed &&
+                !isSaving &&
+                isDirty &&
+                isFormValid
 }

@@ -26,6 +26,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.Clock
 import java.time.LocalDate
 import javax.inject.Inject
 import kotlin.coroutines.cancellation.CancellationException
@@ -54,7 +55,8 @@ class OnboardingViewModel @Inject constructor(
     private val validateOnboarding: ValidateOnboardingUseCase,
     private val getBmiPreview: GetBmiPreviewUseCase,
     private val getTdeePreview: GetTdeePreviewUseCase,
-    private val completeOnboarding: CompleteOnboardingUseCase
+    private val completeOnboarding: CompleteOnboardingUseCase,
+    private val clock: Clock,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(OnboardingUiState())
@@ -88,8 +90,9 @@ class OnboardingViewModel @Inject constructor(
     }
 
     private fun updateBirthDate(value: LocalDate) {
-        val age = if (!value.isAfter(LocalDate.now())) {
-            calculateAge(value)
+        val today = LocalDate.now(clock)
+        val age = if (!value.isAfter(today)) {
+            calculateAge(value, today)
         } else {
             null
         }
