@@ -32,7 +32,7 @@ fun DashboardHeader(
     ) {
         Column {
             Text(
-                text = stringResource(R.string.dashboard_greeting, userName.split(" ").first()),
+                text = stringResource(R.string.dashboard_greeting, userName.split(" ").last()),
                 style = MaterialTheme.typography.titleLarge,
             )
             Text(

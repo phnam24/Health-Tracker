@@ -24,6 +24,11 @@ fun CaloriesProgressCircle(
     dailySummary: DailySummary,
 ) {
     val progress = dailySummary.toCalorieProgressUi()
+    val indicatorColor = if (progress.isOverGoal) {
+        MaterialTheme.healthColors.warning
+    } else {
+        MaterialTheme.colorScheme.primary
+    }
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -35,18 +40,14 @@ fun CaloriesProgressCircle(
             CircularProgressIndicator(
                 progress = { 1f },
                 modifier = Modifier.size(MaterialTheme.dimensions.calorieRingSize),
-                color = MaterialTheme.healthColors.neutralIconContainer,
+                color = MaterialTheme.colorScheme.outlineVariant,
                 strokeWidth = MaterialTheme.dimensions.calorieRingStrokeWidth,
             )
 
             CircularProgressIndicator(
                 progress = { progress.indicatorFraction },
                 modifier = Modifier.size(MaterialTheme.dimensions.calorieRingSize),
-                color = if (progress.isOverGoal) {
-                    MaterialTheme.healthColors.warning
-                } else {
-                    MaterialTheme.colorScheme.primary
-                },
+                color = indicatorColor,
                 strokeWidth = MaterialTheme.dimensions.calorieRingStrokeWidth,
                 trackColor = MaterialTheme.healthColors.transparent,
                 strokeCap = StrokeCap.Round,
