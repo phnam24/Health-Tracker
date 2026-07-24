@@ -49,6 +49,7 @@ fun DiaryMealSection(
     section: MealSectionData,
     mutationEnabled: Boolean,
     canAddFood: Boolean,
+    canDeleteEntries: Boolean,
     onAddFood: () -> Unit,
     onDelete: (MealEntry) -> Unit,
 ) {
@@ -151,17 +152,19 @@ fun DiaryMealSection(
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.healthColors.caloriesConsumed,
                         )
-                        IconButton(
-                            enabled = mutationEnabled,
-                            onClick = { onDelete(entry) },
-                        ) {
-                            Icon(
-                                imageVector = Icons.Outlined.Delete,
-                                contentDescription = stringResource(
-                                    R.string.cd_delete_meal_entry,
-                                    displayName,
-                                ),
-                            )
+                        if (canDeleteEntries) {
+                            IconButton(
+                                enabled = mutationEnabled,
+                                onClick = { onDelete(entry) },
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Outlined.Delete,
+                                    contentDescription = stringResource(
+                                        R.string.cd_delete_meal_entry,
+                                        displayName,
+                                    ),
+                                )
+                            }
                         }
                     }
                 }

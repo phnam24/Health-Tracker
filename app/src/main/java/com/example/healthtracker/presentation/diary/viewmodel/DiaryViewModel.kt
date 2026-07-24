@@ -626,7 +626,14 @@ class DiaryViewModel @Inject constructor(
     }
 
     private fun deleteEntry(entry: MealEntry) {
-        if (_uiState.value.isMutating) return
+        val state = _uiState.value
+        val today = LocalDate.now(clock)
+        if (
+            state.isMutating ||
+            state.selectedDate != today ||
+            entry.date != today
+        ) return
+
         _uiState.update { it.copy(isMutating = true) }
 
         viewModelScope.launch {
