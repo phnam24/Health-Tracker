@@ -206,6 +206,7 @@ private fun DiaryContent(
                     section = section,
                     mutationEnabled = !isMutating,
                     canAddFood = day.date == today,
+                    canDeleteEntries = day.date == today,
                     onAddFood = {
                         onEvent(DiaryEvent.AddFoodClicked(section.type))
                     },
